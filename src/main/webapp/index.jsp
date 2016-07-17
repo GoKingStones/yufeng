@@ -28,35 +28,32 @@
 
   $(document).ready(function() {
 
+    getRegisterInfoByName();
+  })
 
-    var content =[];
-    var data = {};
-    data.userName = "汪雷厄里";
-    data.userId = "a";
-    data.userAge = 3;
-    content.push(data);
-    var data2 = {};
-    data2.userName = "favxxx22";
-    data2.userId = "a22";
-    data2.userAge = 322;
-    content.push(data2);
+  function getRegisterInfoByName(){
+
+    var data={};
+    data.name="ROOT"
     $.ajax({
-      url: "getFavUserList",    //请求的url地址
+      url: "getRegisterInfoByName",    //请求的url地址
       dataType: "json",   //返回格式为json
       async: false, //请求是否异步，默认为异步，这也是ajax重要特性
-      type: "POST",   //请求方式
+      type: "GET",   //请求方式
       contentType:"application/json",
-      data:JSON.stringify(content),
+      data:data,
       success: function(data) {
         //请求成功时处理
 
+        console.log(data);
       },
       error: function() {
         //请求出错处理
         alert("网络异常");
       }
     });
-  })
+
+  }
 
 </script>
 

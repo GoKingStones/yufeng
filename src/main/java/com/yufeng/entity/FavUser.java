@@ -1,4 +1,4 @@
-package com.creditparty.yufeng.bean;
+package com.yufeng.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

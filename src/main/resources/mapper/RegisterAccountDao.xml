@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.RegisterAccountDao">
+
+    <!--<resultMap type="RegisterAccount" id="registerAccountResultMap">-->
+        <!--<id property="name" column="name"/>-->
+        <!--<result property="password" column="password"/>-->
+        <!--<result property="phoneNumber" column="phone_number"/>-->
+        <!--<result property="source" column="source"/>-->
+        <!--<result property="accountFlag" column="account_flag"/>-->
+        <!--<result property="createTime" column="create_time"/>-->
+    <!--</resultMap>-->
+
+    <!-- 查询学生，根据id -->
+    <select id="getRegisterAccount" parameterType="String" resultType="RegisterAccount" >
+
+            SELECT * from register_account_table rat
+                WHERE rat.name = #{name}
+
+    </select>
+
+    <insert id="insertRegisterAccount">
+
+        INSERT ignore INTO register_account_table(name,password,phone_number,source,account_flag)
+        VALUES (#{name},#{password},#{phoneNumber},#{source},#{accountFlag})
+
+    </insert>
+
+
+
+
+</mapper>

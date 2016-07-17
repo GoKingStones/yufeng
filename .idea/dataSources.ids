@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - yufeng@localhost" uuid="9eea4a4a-d62c-4e8e-ae3b-80af6071c30c">
+    <database-info product="MySQL" version="5.6.28" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="yufeng"/>
+    <table name="register_account_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35ZCN"/>
+      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="55m75b2V5a+G56CB"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35omL5py65Y+3"/>
+      <column name="source" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="5rOo5YaM5p2l5rqQ"/>
+      <column name="account_flag" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="6LSm5oi354q25oCB"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="name"/>
+      <index name="idx_account_flag" unique="false" columns="account_flag"/>
+      <index name="idx_name" unique="false" columns="name"/>
+      <index name="idx_phone_number" unique="false" columns="phone_number"/>
+    </table>
+  </data-source>
+</component>

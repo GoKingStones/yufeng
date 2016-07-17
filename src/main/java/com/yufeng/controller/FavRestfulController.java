@@ -1,6 +1,6 @@
-package com.creditparty.yufeng.controller;
+package com.yufeng.controller;
 
-import com.creditparty.yufeng.bean.FavUser;
+import com.yufeng.entity.FavUser;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

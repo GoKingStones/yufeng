@@ -1,4 +1,4 @@
-package com.creditparty.yufeng.util;
+package com.yufeng.util;
 
 
 import java.sql.Connection;
