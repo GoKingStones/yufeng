@@ -36,7 +36,7 @@
     var data={};
     data.name="ROOT"
     $.ajax({
-      url: "getRegisterInfoByName",    //请求的url地址
+      url: "getRegisterAccountByName",    //请求的url地址
       dataType: "json",   //返回格式为json
       async: false, //请求是否异步，默认为异步，这也是ajax重要特性
       type: "GET",   //请求方式
