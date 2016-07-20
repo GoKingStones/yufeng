@@ -2,10 +2,11 @@ package com.yufeng.controller;
 
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.dao.RegisterAccountDao;
+import com.yufeng.service.RegisterAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -15,13 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisterAccountController {
 
     @Autowired
-    private RegisterAccountDao registerAccountDao;
+    private RegisterAccountService registerAccountService;
 
     @RequestMapping("getRegisterAccountByName")
     public RegisterAccount getRegisterAccountByName(@RequestParam("name") String name){
 
-        RegisterAccount registerAccount= registerAccountDao.getRegisterAccount(name);
+        RegisterAccount registerAccount= registerAccountService.getRegisterAccount(name);
         return registerAccount;
+    }
+
+    @RequestMapping("insertRegisterAccount")
+    @ResponseBody
+    public void insertRegisterAccount(@RequestBody RegisterAccount body){
+        System.out.println(body);
+        int count = registerAccountService.insertRegisterAccount(body);
+
+        if(count!=1) {
+            System.out.println("insert error");
+        }
+
     }
 
 }

@@ -1,5 +1,6 @@
-package com.yufeng.dao;
+package com.yufeng.service;
 
+import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.entity.RegisterAccount;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,21 +12,17 @@ import javax.annotation.Resource;
 import static org.junit.Assert.*;
 
 /**
- * Created by kingstones on 16/7/17.
+ * Created by kingstones on 16/7/20.
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
-public class RegisterAccountDaoTest {
+public class RegisterAccountServiceTest {
 
     @Resource
-    private RegisterAccountDao registerAccountDao;
-
+    private RegisterAccountService registerAccountService;
     @Test
     public void testGetRegisterAccount() throws Exception {
 
-        RegisterAccount registerAccount =registerAccountDao.getRegisterAccount("ROOT");
-        System.out.println(registerAccount);
     }
 
     @Test
@@ -33,24 +30,17 @@ public class RegisterAccountDaoTest {
 
         RegisterAccount registerAccount=new RegisterAccount();
         registerAccount.setAccountFlag("a");
-        registerAccount.setName("wangleilei");
+        registerAccount.setName("wangleilei11");
         registerAccount.setPassword("root");
         registerAccount.setPhoneNumber("22222222");
         registerAccount.setSource("a");
-        registerAccountDao.insertRegisterAccount(registerAccount);
+        int x =registerAccountService.insertRegisterAccount(registerAccount);
+        System.out.println(x);
     }
 
     @Test
     public void testUpdateRegisterAccount() throws Exception {
 
-        RegisterAccount registerAccount=new RegisterAccount();
-        registerAccount.setAccountFlag("a");
-        registerAccount.setName("wangleilei");
-        registerAccount.setPassword("root");
-        registerAccount.setPhoneNumber("33333333");
-        registerAccount.setSource("a");
-        int x =registerAccountDao.updateRegisterAccount(registerAccount);
-        System.out.println(x);
     }
 
     @Test

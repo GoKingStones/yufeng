@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.RegisterAccountDao">
 
-    <!--<resultMap type="RegisterAccount" id="registerAccountResultMap">-->
+    <!--<resultMap type="RegisterAccountService" id="registerAccountResultMap">-->
         <!--<id property="name" column="name"/>-->
         <!--<result property="password" column="password"/>-->
         <!--<result property="phoneNumber" column="phone_number"/>-->
@@ -25,6 +25,13 @@
         VALUES (#{name},#{password},#{phoneNumber},#{source},#{accountFlag})
 
     </insert>
+
+    <update id="updateRegisterAccount" parameterType="String">
+
+        UPDATE register_account_table
+        SET name=#{name},password=#{password},phone_number=#{phoneNumber},source=#{source},account_flag=#{accountFlag}
+        WHERE name = #{name}
+    </update>
 
 
 
