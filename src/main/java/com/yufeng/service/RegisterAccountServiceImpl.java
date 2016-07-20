@@ -27,4 +27,14 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
     public int deleteRegisterAccount(RegisterAccount registerAccount) {
         return registerAccountDao.deleteRegisterAccount(registerAccount);
     }
+
+    public int updateRegisterAccountPassword(String name, String password) {
+
+        int result=0;
+        if(registerAccountDao.getRegisterAccount(name)!=null) {
+            result = registerAccountDao.updateRegisterAccountPassword(name, password);
+        }
+
+        return result;
+    }
 }
