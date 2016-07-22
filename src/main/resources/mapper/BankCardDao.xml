@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.BankCardDao">
+
+    <select id="getBankCard" parameterType="String" resultType="UserBankCardInfo" >
+
+            SELECT * FROM bank_card_Info_table WHERE internal_code=#{code}
+
+    </select>
+
+    <insert id="insertBankCard">
+
+        INSERT ignore INTO bank_card_Info_table(internal_code,bankCardNumber,bankCardType,expireTime,transferAccount,bankCardState,foundTime,updateTime)
+        VALUES (#{internal_code},#{bankCardNumber},#{bankCardType},#{expireTime},#{transferAccount},#{bankCardState},#{foundTime},#{updateTime})
+
+    </insert>
+
+    <update id="updateBankCard">
+        UPDATE bank_card_Info_table
+        SET internal_code=#{internal_code},bankCardNumber=#{bankCardNumber},bankCardType=#{bankCardType},
+        expireTime=#{expireTime},transferAccount=#{transferAccount},bankCardState=#{bankCardState},
+        foundTime=#{foundTime},updateTime=#{updateTime}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteBankCard">
+        DELETE FROM bank_card_Info_table WHERE id = #{id}
+    </delete>
+
+
+
+
+</mapper>

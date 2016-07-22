@@ -9,6 +9,9 @@ import java.util.Date;
  */
 public class UserBankCardInfo implements Serializable{
 	
+	private String id;
+	//内码
+	private String internal_code;
 	//银行卡号码
 	private String bankCardNumber;
 	//银行卡类型
@@ -24,6 +27,19 @@ public class UserBankCardInfo implements Serializable{
 	//更新时间
 	private Date updateTime;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getInternal_code() {
+		return internal_code;
+	}
+	public void setInternal_code(String internal_code) {
+		this.internal_code = internal_code;
+	}
 	public String getBankCardNumber() {
 		return bankCardNumber;
 	}
@@ -66,6 +82,9 @@ public class UserBankCardInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	
+	
 	
 	
 	

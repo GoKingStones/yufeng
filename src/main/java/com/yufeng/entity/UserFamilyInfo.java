@@ -1,13 +1,16 @@
 package com.yufeng.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author dh
- * 用户金融账户信息
+ * 用户家庭联系人信息
  */
-public class UserFamilyInfo {
+public class UserFamilyInfo implements Serializable{
 	
+	//内码
+	private String internal_code;
 	//证件类型
 	private String credentialsType;
 	//证件号码
@@ -35,6 +38,13 @@ public class UserFamilyInfo {
 	//更新时间
 	private Date updateTime;
 	
+	
+	public String getInternal_code() {
+		return internal_code;
+	}
+	public void setInternal_code(String internal_code) {
+		this.internal_code = internal_code;
+	}
 	public String getCredentialsType() {
 		return credentialsType;
 	}
@@ -113,6 +123,8 @@ public class UserFamilyInfo {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	
 	
 	
 

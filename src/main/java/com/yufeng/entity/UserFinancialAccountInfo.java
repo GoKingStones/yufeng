@@ -9,8 +9,10 @@ import java.util.Date;
  */
 public class UserFinancialAccountInfo implements Serializable{
 	
+	//内码
+	private String internal_code;
 	//信息标识ID
-	private String userId;
+	private String signId;
 	//金融消费账户ID
 	private String financialConsumeAccountId;
 	//金融消费公司
@@ -26,11 +28,18 @@ public class UserFinancialAccountInfo implements Serializable{
 	//更新时间
 	private Date updateTime;
 	
-	public String getUserId() {
-		return userId;
+	
+	public String getInternal_code() {
+		return internal_code;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setInternal_code(String internal_code) {
+		this.internal_code = internal_code;
+	}
+	public String getSignId() {
+		return signId;
+	}
+	public void setSignId(String signId) {
+		this.signId = signId;
 	}
 	public String getFinancialConsumeAccountId() {
 		return financialConsumeAccountId;
@@ -74,6 +83,9 @@ public class UserFinancialAccountInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	
+	
 	
 		
 	

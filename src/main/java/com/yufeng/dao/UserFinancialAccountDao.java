@@ -1,0 +1,19 @@
+package com.yufeng.dao;
+
+import com.yufeng.entity.UserFinancialAccountInfo;
+
+/**
+ * @author dh
+ * 用户金融账户信息dao层
+ */
+public interface UserFinancialAccountDao {
+	//查询用户金融信息详细
+	public UserFinancialAccountInfo getUserFinancialAccount(String name);
+	//新增用户金融信息信息
+	public int insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);
+	//修改用户金融信息信息
+	public int updateUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);
+	//删除用户金融信息信息
+	public int deleteUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);
+
+}
