@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.yufeng.dao.BankCardDao;
 import com.yufeng.entity.UserBankCardInfo;
 
+/**
+ * 用户银行卡业务处理层
+ * @author dh
+ */
 @Service
 public class BankCardServiceImpl {
 	

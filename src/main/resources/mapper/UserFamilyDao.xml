@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.UserFamilyDao">
+
+    <select id="getUserFamily" parameterType="String" resultType="UserFamilyInfo" >
+
+            SELECT * FROM user_family_nfo_table WHERE internal_code=#{code}
+
+    </select>
+
+    <insert id="insertUserFamily">
+
+        INSERT ignore INTO user_family_nfo_table(internal_code,credentialsType,credentialsNumber,name,gender,mailingAddress,organization,phone,mailbox,relation,highestEducationSchool,highestEducation,foundTime,updateTime)
+        VALUES (#{internal_code},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{phone},#{mailbox},#{relation},#{highestEducationSchool},#{highestEducation},#{foundTime},#{updateTime})
+
+    </insert>
+
+    <update id="updateUserFamily">
+        UPDATE user_family_nfo_table
+        SET internal_code=#{internal_code},credentialsType=#{credentialsType},credentialsNumber=#{credentialsNumber},
+        name=#{name},gender=#{gender},mailingAddress=#{mailingAddress},
+        mailingAddress=#{mailingAddress},organization=#{organization},phone=#{phone},
+        mailbox=#{mailbox},relation=#{relation},highestEducationSchool=#{highestEducationSchool},
+        highestEducation=#{highestEducation},foundTime=#{foundTime},updateTime=#{updateTime}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteUserFamily">
+        DELETE FROM user_family_nfo_table WHERE id = #{id}
+    </delete>
+
+
+
+
+</mapper>

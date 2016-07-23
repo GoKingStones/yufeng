@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class UserFamilyInfo implements Serializable{
 	
+	private String id;
 	//内码
 	private String internal_code;
 	//证件类型
@@ -39,6 +40,12 @@ public class UserFamilyInfo implements Serializable{
 	private Date updateTime;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getInternal_code() {
 		return internal_code;
 	}
@@ -123,6 +130,8 @@ public class UserFamilyInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	
 	
 	
 	
