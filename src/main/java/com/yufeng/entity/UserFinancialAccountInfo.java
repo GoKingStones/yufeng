@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class UserFinancialAccountInfo implements Serializable{
 	
+	private String id;
 	//内码
 	private String internal_code;
 	//信息标识ID
@@ -29,6 +30,12 @@ public class UserFinancialAccountInfo implements Serializable{
 	private Date updateTime;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getInternal_code() {
 		return internal_code;
 	}
@@ -83,7 +90,6 @@ public class UserFinancialAccountInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
 	
 	
 	
