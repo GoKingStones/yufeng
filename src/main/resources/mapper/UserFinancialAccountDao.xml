@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.UserFinancialAccountDao">
+
+    <select id="getUserFinancialAccount" parameterType="String" resultType="UserFinancialAccountInfo" >
+
+            SELECT * FROM user_financial_account_info_table WHERE internal_code=#{code}
+
+    </select>
+
+    <insert id="insertUserFinancialAccount">
+
+        INSERT ignore INTO user_financial_account_info_table(internal_code,signId,financialConsumeAccountId,financialConsumeCompany,financialConsumeAccountState,creditScoring,authorize,foundTime,updateTime)
+        VALUES (#{internal_code},#{signId},#{financialConsumeAccountId},#{financialConsumeCompany},#{financialConsumeAccountState},#{creditScoring},#{authorize},#{foundTime},#{updateTime})
+
+    </insert>
+
+    <update id="updateUserFinancialAccount">
+        UPDATE user_financial_account_info_table
+        SET internal_code=#{internal_code},signId=#{signId},financialConsumeAccountId=#{financialConsumeAccountId},
+        financialConsumeCompany=#{financialConsumeCompany},financialConsumeAccountState=#{financialConsumeAccountState},creditScoring=#{creditScoring},
+        authorize=#{authorize},foundTime=#{foundTime},updateTime=#{updateTime}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteUserFinancialAccount">
+        DELETE FROM user_financial_account_info_table WHERE id = #{id}
+    </delete>
+
+
+
+
+</mapper>
