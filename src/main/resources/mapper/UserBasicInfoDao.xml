@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.UserBasicInfoDao">
+
+
+	 <select id="isExistedUserBasicInfo" parameterType="String">
+
+        SELECT  COUNT(*) from user_basic_info WHERE id_type=#{idType},id_no=#{idNo}
+
+    </select>
+    
+    
+    <select id="isExistedUserBasicInfoForUpdate" parameterType="String">
+
+        SELECT  COUNT(*) from user_basic_info WHERE id_type=#{idType},id_no=#{idNo},internal_code = #{internalCode}
+
+    </select>
+
+
+
+    <select id="getUserBasicInfoByInternalCode" parameterType="String" resultType="UserBasicInfo" >
+
+            SELECT * from user_basic_info 
+                WHERE internal_code = #{internalCode}
+
+    </select>
+
+    <insert id="insertUserBasicInfo">
+
+        INSERT INTO user_basic_info(internal_code,name,id_type,id_no,cell_no,email,family_address,marital_status,postal_address,idcard_front_img_url,idcard_back_img_url,weixin_no,qq_no,address)
+        VALUES (#{internalCode},#{name},#{idType},#{idNo},#{cellNo},#{email},#{familyAddress},#{maritalStatus},#{postalAddress},#{idcardFrontImgUrl},#{idcardBackImgUrl},#{weixinNo},#{qqNo},#{address})
+
+    </insert>
+
+    <update id="updateUserBasicInfo" parameterType="String">
+
+        UPDATE register_account_table
+        SET name=#{name},id_type=#{idType},id_no=#{idNo},cell_no=#{cellNo},email=#{email},,family_address=#{familyAddress},marital_status=#{maritalStatus},postal_address=#{postalAddress},idcard_front_img_url=#{idcardFrontImgUrl},idcard_back_img_url=#{idcardBackImgUrl},weixin_no=#{weixinNo},qq_no=#{qqNo},address=#{address}
+        WHERE internal_code = #{internalCode}，id_type=#{idType},id_no=#{idNo}
+    </update>
+
+</mapper>

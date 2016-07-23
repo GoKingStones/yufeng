@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS custom_basic_info;
-CREATE TABLE custom_basic_info
+DROP TABLE IF EXISTS user_basic_info;
+CREATE TABLE user_basic_info
 
 (
     internal_code VARCHAR(20) NOT NULL COMMENT '内码',

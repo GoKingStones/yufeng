@@ -10,5 +10,7 @@
 	<bean id="registerAccountService" class="com.yufeng.service.impl.RegisterAccountServiceImpl"    autowire="byName"/>
 	
 	<bean id="bankCardServiceImpl" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
+	
+	<bean id="userBasicInfoService" class="com.yufeng.service.impl.UserBasicInfoServiceImpl"    autowire="byName"/>
 
 </beans>
