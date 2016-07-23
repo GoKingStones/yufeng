@@ -11,7 +11,13 @@
         <!--<result property="createTime" column="create_time"/>-->
     <!--</resultMap>-->
 
-    <!-- 查询学生，根据id -->
+    <select id="isExistedRegisterAccount" parameterType="String">
+
+        SELECT  COUNT(*) from register_account_table WHERE name=#{name}
+
+
+    </select>
+    <!--  -->
     <select id="getRegisterAccount" parameterType="String" resultType="RegisterAccount" >
 
             SELECT * from register_account_table rat
@@ -31,6 +37,11 @@
         UPDATE register_account_table
         SET name=#{name},password=#{password},phone_number=#{phoneNumber},source=#{source},account_flag=#{accountFlag}
         WHERE name = #{name}
+    </update>
+
+    <update id="updateRegisterAccountPassword">
+        UPDATE register_account_table SET password=#{password}
+        WHERE name=#{name}
     </update>
 
 

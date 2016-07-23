@@ -1,12 +1,13 @@
 package com.yufeng.controller;
 
+import com.yufeng.algorithm.MD5Util;
 import com.yufeng.entity.RegisterAccount;
-import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.service.RegisterAccountService;
+import com.yufeng.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,23 +19,55 @@ public class RegisterAccountController {
     @Autowired
     private RegisterAccountService registerAccountService;
 
+    @RequestMapping("isExistedRegisterAccount")
+
+    public Map<String,String> isExistedRegisterAccount(@RequestParam("name") String name) {
+
+        boolean result = registerAccountService.isExistedRegisterAccount(name);
+        return null;
+    }
+
     @RequestMapping("getRegisterAccountByName")
     public RegisterAccount getRegisterAccountByName(@RequestParam("name") String name){
 
         RegisterAccount registerAccount= registerAccountService.getRegisterAccount(name);
+        registerAccount.setPassword(MD5Util.convertMD5(MD5Util.convertMD5(registerAccount.getPassword())));
         return registerAccount;
     }
 
     @RequestMapping("insertRegisterAccount")
     @ResponseBody
-    public void insertRegisterAccount(@RequestBody RegisterAccount body){
-        System.out.println(body);
-        int count = registerAccountService.insertRegisterAccount(body);
+    public Map<String,String> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
-        if(count!=1) {
-            System.out.println("insert error");
+
+        ResultMap resultMap=new ResultMap();
+
+        System.out.println(registerAccount);
+
+        registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+        int result = registerAccountService.insertRegisterAccount(registerAccount);
+
+        if (result==0) {
+            return resultMap.getErrorMap();
+        }else {
+            return resultMap.getSuccessMap();
         }
-
     }
+
+    @RequestMapping("updateRegisterAccountPassword")
+    public Map<String,String> updateRegisterAccountPassword(@RequestParam("name") String name,String password){
+
+        //if the name is existed
+        boolean isExisted=registerAccountService.isExistedRegisterAccount(name);
+
+        ResultMap resultMap=new ResultMap();
+        int result=registerAccountService.updateRegisterAccountPassword(name,MD5Util.string2MD5(password));
+        if (result==0) {
+            return resultMap.getErrorMap();
+        }else {
+            return resultMap.getSuccessMap();
+        }
+    }
+
 
 }

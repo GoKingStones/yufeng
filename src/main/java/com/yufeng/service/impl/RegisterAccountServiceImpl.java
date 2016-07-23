@@ -14,6 +14,14 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
     @Autowired
     private RegisterAccountDao registerAccountDao;
 
+    public boolean isExistedRegisterAccount(String name) {
+        int count =registerAccountDao.isExistedRegisterAccount(name);
+        boolean result =false;
+        if(count !=0) result=true;
+        return result;
+
+    }
+
     public RegisterAccount getRegisterAccount(String name) {
         return registerAccountDao.getRegisterAccount(name);
     }
