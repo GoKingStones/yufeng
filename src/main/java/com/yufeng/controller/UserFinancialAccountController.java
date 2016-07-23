@@ -15,7 +15,7 @@ import com.yufeng.service.impl.UserFinancialAccountServiceImpl;
   */
 
 @RestController
-@RequestMapping("/ UserFinancialAccount")
+@RequestMapping("/UserFinancialAccount")
 public class UserFinancialAccountController {
 	
 	@Autowired
