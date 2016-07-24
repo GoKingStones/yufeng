@@ -26,7 +26,10 @@ public class UserBankCardInfo implements Serializable{
 	private Date foundTime;
 	//更新时间
 	private Date updateTime;
-	
+	//是否有效
+	private boolean info_status;
+	//删除操作者
+	private String delete_operator;
 	
 	public String getId() {
 		return id;
@@ -82,6 +85,22 @@ public class UserBankCardInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public String getDelete_operator() {
+		return delete_operator;
+	}
+	public void setDelete_operator(String delete_operator) {
+		this.delete_operator = delete_operator;
+	}
+	public boolean isInfo_status() {
+		return info_status;
+	}
+	public void setInfo_status(boolean info_status) {
+		this.info_status = info_status;
+	}
+	
+	
+	
 	
 	
 	

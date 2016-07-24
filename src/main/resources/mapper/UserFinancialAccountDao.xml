@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.UserFinancialAccountDao">
 
-    <select id="getUserFinancialAccount" parameterType="String" resultType="UserFinancialAccountInfo" >
+    <select id="getUserFinancialAccountByCode" parameterType="String" resultType="UserFinancialAccountInfo" >
 
-            SELECT * FROM user_financial_account_info_table WHERE internal_code=#{code}
+            SELECT * FROM user_financial_account_info_table WHERE internal_code=#{code} AND info_status=1
+
+    </select>
+    
+    <select id="getUserFinancialAccountById" parameterType="String" resultType="UserFinancialAccountInfo" >
+
+            SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
+
+    </select>
+    
+    <select id="getUserFinancialAccountByAccountId" parameterType="String" resultType="UserFinancialAccountInfo" >
+
+            SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
 
     </select>
 
@@ -24,7 +36,8 @@
     </update>
     
     <delete id="deleteUserFinancialAccount">
-        DELETE FROM user_financial_account_info_table WHERE id = #{id}
+<!--         DELETE FROM USER_FINANCIAL_ACCOUNT_INFO_TABLE WHERE ID = #{ID} -->
+        UPDATE user_financial_account_info_table SET info_status=0 WHERE id = #{id}
     </delete>
 
 

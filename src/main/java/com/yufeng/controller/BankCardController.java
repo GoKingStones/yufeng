@@ -27,32 +27,36 @@ public class BankCardController {
 	@Autowired
 	private BankCardServiceImpl bankCardServiceImpl;
 	
-	//查询银行卡信息
-	@RequestMapping("/getBankCard")
-	public List<UserBankCardInfo> getBankCard(String code){
-		List<UserBankCardInfo> info=bankCardServiceImpl.getBankCard(code);
+	//查询银行卡信息(code)
+	@RequestMapping("/getBankCardByCode")
+	public List<UserBankCardInfo> getBankCardByCode(String code){
+		List<UserBankCardInfo> info=bankCardServiceImpl.getBankCardByCode(code);
 		return info;
     }
+	
+	//查询银行卡信息(id)
+	@RequestMapping("/getBankCardByID")
+	public UserBankCardInfo getBankCardByID(String id){
+		UserBankCardInfo info=bankCardServiceImpl.getBankCardByID(id);
+		return info;
+	}
 	
 	//新建银行卡信息
 	@RequestMapping("/insertBankCard")
 	public String insertBankCard(UserBankCardInfo userBankCardInfo){
-		bankCardServiceImpl.insertBankCard(userBankCardInfo);
-		return "ok";	
+		return bankCardServiceImpl.insertBankCard(userBankCardInfo);
 	}
 	
 	//银行卡信息修改
 	@RequestMapping("/updateBankCard")
 	public String updateBankCard(UserBankCardInfo userBankCardInfo){
-		bankCardServiceImpl.updateBankCard(userBankCardInfo);
-		return "ok";	
+		return bankCardServiceImpl.updateBankCard(userBankCardInfo);
 	}
 	
 	//删除银行卡信息
 	@RequestMapping("/deleteBankCard")
 	public String deleteBankCard(UserBankCardInfo userBankCardInfo){
-		bankCardServiceImpl.deleteBankCard(userBankCardInfo);
-		return "ok";	
+		return bankCardServiceImpl.deleteBankCard(userBankCardInfo);
 	}
 
 }
