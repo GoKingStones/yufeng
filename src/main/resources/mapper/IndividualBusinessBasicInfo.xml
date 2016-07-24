@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.IndividualBusinessBasicInfoDao">
+
+
+    <select id="isExistedIndividualBusinessBasicInfo" parameterType="String">
+
+        SELECT  COUNT(*) from individual_business_basic_info_table WHERE shop_name=#{shopName}
+
+
+    </select>
+    <!--  -->
+    <select id="getIndividualBusinessBasicInfo" parameterType="String" resultType="IndividualBusinessBasicInfo" >
+
+            SELECT * from individual_business_basic_info_table ibbit
+                WHERE ibbit.shop_name = #{shopName}
+
+    </select>
+
+    <insert id="insertIndividualBusinessBasicInfo">
+
+        INSERT ignore INTO individual_business_basic_info_table(internal_code,shop_name,shopkeeper_name,shop_addr,
+        shop_tel,shopkeeper_certificate_type,shopkeeper_certificate_number,local_area,open_time,
+        close_time,close_reason,shop_status,shop_rank,shop_scope,shop_credit_value)
+        VALUES (#{internalCode},#{shopName},#{shopkeeperName},#{shopAddr},#{shopTel},
+        #{shopkeeperCertificateType},#{shopkeeperCertificateNumber},#{localArea},#{openTime},#{closeTime},#{closeReason},
+        #{shopStatus},#{shopRank},#{shopScope},#{shopCreditValue})
+
+    </insert>
+
+    <update id="updateIndividualBusinessBasicInfo" parameterType="String">
+
+        UPDATE individual_business_basic_info_table
+        SET internal_code#{internalCode},shop_name#{shopName},shopkeeper_name#{shopkeeperName},shop_addr#{shopAddr},
+        shop_tel#{shopTel},shopkeeper_certificate_type#{shopkeeperCertificateType},shopkeeper_certificate_number#{shopkeeperCertificateNumber},
+        local_area#{localArea},open_time#{openTime},
+        close_time#{closeTime},close_reason#{closeReason},shop_status#{shopStatus},shop_rank#{shopRank},shop_scope#{shopScope},shop_credit_value#{shopCreditValue}
+        WHERE shop_name = #{shopName}
+    </update>
+
+    <update id="deleteIndividualBusinessBasicInfo">
+
+    </update>
+
+
+
+
+</mapper>

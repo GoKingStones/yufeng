@@ -8,7 +8,9 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
 	<bean id="registerAccountService" class="com.yufeng.service.impl.RegisterAccountServiceImpl"    autowire="byName"/>
-	
+	<bean id="enterpriseBusinessBasicInfoService" class="com.yufeng.service.impl.EnterpriseBusinessBasicInfoServiceImpl"    autowire="byName"/>
+	<bean id="individualBusinessBasicInfoService" class="com.yufeng.service.impl.IndividualBusinessBasicInfoServiceImpl"    autowire="byName"/>
+
 	<bean id="bankCardServiceImpl" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
 	
 	<bean id="userFamilyServiceImpl" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>

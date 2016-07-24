@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.EnterpriseBusinessBasicInfoDao">
+
+    <select id="isExistedEnterpriseBusinessBasicInfo" parameterType="String">
+
+        SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE business_name=#{businessName}
+
+
+    </select>
+    <!--  -->
+    <select id="getEnterpriseBusinessBasicInfo" parameterType="String" resultType="EnterpriseBusinessBasicInfo" >
+
+            SELECT * from enterprise_business_basic_info_table rat
+                WHERE rat.business_name = #{businessName}
+
+    </select>
+
+    <insert id="insertEnterpriseBusinessBasicInfo">
+
+        INSERT ignore INTO enterprise_business_basic_info_table(internal_code,business_name,enterprise_name,enterprise_addr,email,
+        website,fax,manage_contact_name,manage_contact_tel,operate_contact_name,operate_contact_tel,business_license_number,legal_person_certificate_type
+        ,legal_person_certificate_number,legal_person_name,business_licence_management_scope,business_brand,registered_capital,open_time,
+        business_rank,business_score,business_credit_value)
+        VALUES (#{internalCode},#{businessName},#{enterpriseName},#{enterpriseAddr},#{email},#{website},#{fax},#{manageContactName},#{manageContactTel}
+        ,#{operateContactName},#{operateContactTel},#{businessLicenseNumber},#{legalPersonCertificateType},#{legalPersonCertificateNumber},#{legalPersonName},
+        #{businessLicenceManagementScope},#{businessBrand},#{registeredCapital},#{openTime},#{businessRank},#{businessScore},#{businessCreditValue})
+
+    </insert>
+
+    <update id="updateEnterpriseBusinessBasicInfo" parameterType="String">
+
+        UPDATE enterprise_business_basic_info_table
+        SET internal_code=#{internalCode},business_name=#{businessName},enterprise_name=#{enterpriseName},enterprise_addr=#{enterpriseAddr},email=#{email},
+        website=#{website},fax=#{fax},manage_contact_name=#{manageContactName},manage_contact_tel=#{manageContactTel},operate_contact_name=#{operateContactName},operate_contact_tel=#{operateContactTel},business_license_number=#{businessLicenseNumber},
+        legal_person_certificate_type=#{legalPersonCertificateType}
+        ,legal_person_certificate_number=#{legalPersonCertificateNumber},legal_person_name=#{legalPersonName},business_licence_management_scope=#{businessLicenceManagementScope},business_brand=#{businessBrand},
+        registered_capital=#{registeredCapital},open_time=#{openTime},
+        business_rank=#{businessRank},business_score=#{businessScore},business_credit_value=#{businessCreditValue}
+        WHERE business_name = #{businessName}
+    </update>
+
+
+    <delete id="deleteEnterpriseBusinessBasicInfo">
+
+
+
+    </delete>
+
+
+
+</mapper>
