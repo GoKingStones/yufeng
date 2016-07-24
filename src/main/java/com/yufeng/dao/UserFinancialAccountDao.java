@@ -1,5 +1,7 @@
 package com.yufeng.dao;
 
+import java.util.List;
+
 import com.yufeng.entity.UserFinancialAccountInfo;
 
 /**
@@ -8,7 +10,7 @@ import com.yufeng.entity.UserFinancialAccountInfo;
  */
 public interface UserFinancialAccountDao {
 	//查询用户金融信息详细
-	public UserFinancialAccountInfo getUserFinancialAccount(String name);
+	public List<UserFinancialAccountInfo> getUserFinancialAccount(String code);
 	//新增用户金融信息信息
 	public int insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);
 	//修改用户金融信息信息

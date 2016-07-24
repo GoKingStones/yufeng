@@ -1,5 +1,7 @@
 package com.yufeng.dao;
 
+import java.util.List;
+
 import com.yufeng.entity.UserFamilyInfo;
 
 /**
@@ -9,7 +11,7 @@ import com.yufeng.entity.UserFamilyInfo;
 public interface UserFamilyDao {
 	
 	//查询用户家庭联系人信息详细
-	public UserFamilyInfo getUserFamily(String name);
+	public List<UserFamilyInfo> getUserFamily(String code);
 	//新增用户家庭联系人信息
 	public int insertUserFamily(UserFamilyInfo userFamilyInfo);
 	//修改用户家庭联系人信息
