@@ -19,5 +19,6 @@
 	
 	<bean id="rewardPunishmentInfoServiceImpl" class="com.yufeng.service.impl.RewardPunishmentInfoServiceImpl"    autowire="byName"/>
 
+	<bean id="schoolExperienceInfoServiceImpl" class="com.yufeng.service.impl.SchoolExperienceInfoServiceImpl"    autowire="byName"/>
 
 </beans>

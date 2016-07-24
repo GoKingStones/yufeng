@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.SchoolExperienceInfoDao">
+
+
+	 <select id="isExistedSchoolExperienceInfo" >
+
+        SELECT  COUNT(*) from school_experience_info WHERE unique_id=#{uniqueId},internal_code=#{internalCode}
+
+    </select>
+
+
+    <select id="getSchoolExperienceInfoByInternalCode" parameterType="String" resultType="SchoolExperienceInfo" >
+
+            SELECT * from school_experience_info 
+                WHERE internal_code = #{internalCode} and info_status!='d';
+
+    </select>
+
+    <insert id="insertSchoolExperienceInfo">
+
+        INSERT INTO school_experience_info(internal_code,student_code,school_code,academy_code,major_code,other_school_name,other_academy_name,other_major_name,admission_date,finish_school_date,class_no,school_student_id,education_type,education,info_status，who_did)
+        VALUES (#{internalCode},#{studentCode},#{schoolCode},#{academyCode},#{majorCode},#{otherSchoolName},#{otherAcademyName},#{otherMajorName},#{admissionDate},#{finishSchoolDate},#{classNo},#{schoolStudentId},#{educationType},#{education},#{infoStatus},#{whoDid})
+
+    </insert>
+
+    <update id="updateSchoolExperienceInfo" parameterType="String">
+
+        UPDATE school_experience_info
+        SET student_code=#{studentCode},school_code=#{schoolCode},academy_code=#{academyCode},major_code=#{majorCode},other_school_name=#{otherSchoolName},other_academy_name=#{otherAcademyName},other_major_name=#{otherMajorName},admission_date=#{admissionDate},finish_school_date=#{finishSchoolDate},class_no=#{classNo},school_student_id=#{schoolStudentId},education_type=#{educationType},education=#{education},info_status=#{infoStatus},who_did=#{whoDid}
+        WHERE internal_code = #{internalCode}，unique_id=#{uniqueId}
+    </update>
+    
+    <update id="deleteSchoolExperienceInfo" parameterType="String">
+
+        UPDATE school_experience_info
+        SET info_status='d',who_did=#{whoDid}
+        WHERE internal_code = #{internalCode}，unique_id=#{uniqueId}
+    </update>
+
+</mapper>
