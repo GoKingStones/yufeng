@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.RewardPunishmentInfoDao">
+
+
+	 <select id="isExistedRewardPunishmentInfo" >
+
+        SELECT  COUNT(*) from reward_punishment_info WHERE unique_id=#{uniqueId},internal_code=#{internalCode}
+
+    </select>
+
+
+    <select id="getRewardPunishmentInfoByInternalCode" parameterType="String" resultType="RewardPunishmentInfo" >
+
+            SELECT * from reward_punishment_info 
+                WHERE internal_code = #{internalCode} and info_status!='d';
+
+    </select>
+
+    <insert id="insertRewardPunishmentInfo">
+
+        INSERT INTO reward_punishment_info(internal_code,certificate_no,info_type,describe_info,occurrence_date,occurrence_location,data_source,certificate_img_url,verify,info_status，who_did)
+        VALUES (#{internalCode},#{certificateNo},#{infoType},#{describeInfo},#{occurrenceDate},#{occurrenceLocation},#{dataSource},#{certificateImgUrl},#{verify},#{infoStatus},#{whoDid})
+
+    </insert>
+
+    <update id="updateRewardPunishmentInfo" parameterType="String">
+
+        UPDATE reward_punishment_info
+        SET certificate_no=#{certificateNo},info_type=#{infoType},describe_info=#{describeInfo},occurrence_date=#{occurrenceDate},occurrence_location=#{occurrenceLocation},data_source=#{dataSource},certificate_img_url=#{certificateImgUrl},verify=#{verify},info_status=#{infoStatus},who_did=#{whoDid}
+        WHERE internal_code = #{internalCode}，unique_id=#{uniqueId}
+    </update>
+    
+    <update id="deleteRewardPunishmentInfo" parameterType="String">
+
+        UPDATE reward_punishment_info
+        SET info_status='d',who_did=#{whoDid}
+        WHERE internal_code = #{internalCode}，unique_id=#{uniqueId}
+    </update>
+
+</mapper>
