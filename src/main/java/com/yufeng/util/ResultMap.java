@@ -29,5 +29,14 @@ public class ResultMap {
         return map;
     }
 
+    public Map<String,String> getExistIDErrorMap() {
+        map.put("flag","there was a same ID in DB");
+        return map;
+    }
+    
+    public Map<String,String> getnotExistIDErrorMap() {
+        map.put("flag","there was no ID in DB");
+        return map;
+    }
 
 }

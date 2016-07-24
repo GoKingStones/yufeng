@@ -13,8 +13,13 @@
 
 	<bean id="bankCardServiceImpl" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
 	
+	<bean id="userBasicInfoService" class="com.yufeng.service.impl.UserBasicInfoServiceImpl"    autowire="byName"/>
+	
 	<bean id="userFamilyServiceImpl" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>
 	
 	<bean id="userFinancialAccountServiceImpl" class="com.yufeng.service.impl.UserFinancialAccountServiceImpl"    autowire="byName"/>
+	
+	<bean id="rewardPunishmentInfoServiceImpl" class="com.yufeng.service.impl.RewardPunishmentInfoServiceImpl"    autowire="byName"/>
+
 
 </beans>
