@@ -35,7 +35,7 @@
     <update id="updateUserBasicInfo" parameterType="String">
 
         UPDATE register_account_table
-        SET name=#{name},id_type=#{idType},id_no=#{idNo},cell_no=#{cellNo},email=#{email},,family_address=#{familyAddress},marital_status=#{maritalStatus},postal_address=#{postalAddress},idcard_front_img_url=#{idcardFrontImgUrl},idcard_back_img_url=#{idcardBackImgUrl},weixin_no=#{weixinNo},qq_no=#{qqNo},address=#{address}
+        SET name=#{name},id_type=#{idType},id_no=#{idNo},cell_no=#{cellNo},email=#{email},family_address=#{familyAddress},marital_status=#{maritalStatus},postal_address=#{postalAddress},idcard_front_img_url=#{idcardFrontImgUrl},idcard_back_img_url=#{idcardBackImgUrl},weixin_no=#{weixinNo},qq_no=#{qqNo},address=#{address}
         WHERE internal_code = #{internalCode}，id_type=#{idType},id_no=#{idNo}
     </update>
 
