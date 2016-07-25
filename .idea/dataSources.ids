@@ -7,6 +7,51 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="yufeng"/>
+    <table name="enterprise_business_basic_info_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="internal_code" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="5YaF56CBSUQ="/>
+      <column name="business_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5ZWG5oi35ZCN56ew"/>
+      <column name="enterprise_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5YWs5Y+45ZCN56ew"/>
+      <column name="enterprise_addr" sqlType="VARCHAR" precision="500" scale="0" nullable="false" jdbcType="12" remarks="5YWs5Y+45Zyw5Z2A"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55S15a2Q6YKu5Lu2"/>
+      <column name="website" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="572R5Z2A"/>
+      <column name="fax" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5Lyg55yf"/>
+      <column name="manage_contact_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="566h55CG5bGC6IGU57O75Lq65ZCN56ew"/>
+      <column name="manage_contact_tel" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="566h55CG5bGC6IGU57O75Lq655S16K+d"/>
+      <column name="operate_contact_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6L+Q6JCl6IGU57O75Lq65ZCN56ew"/>
+      <column name="operate_contact_tel" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6L+Q6JCl6IGU57O75Lq655S16K+d"/>
+      <column name="business_license_number" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bel5ZWG6JCl5Lia5omn54Wn5Y+3"/>
+      <column name="legal_person_certificate_type" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5rOV5Lq66K+B5Lu257G75Z6L"/>
+      <column name="legal_person_certificate_number" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5rOV5Lq66K+B5Lu25Y+356CB"/>
+      <column name="legal_person_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5rOV5Lq65aeT5ZCN"/>
+      <column name="business_licence_management_scope" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="57uP6JCl5omn54Wn6JCl5Lia6IyD5Zu0"/>
+      <column name="business_brand" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="57uP6JCl5ZOB54mM"/>
+      <column name="registered_capital" sqlType="DECIMAL" precision="10" scale="0" nullable="false" jdbcType="3" remarks="5rOo5YaM6LWE6YeR"/>
+      <column name="open_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5byA6YCa5pe26Ze0" version="true"/>
+      <column name="business_rank" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5ZWG5oi3562J57qn"/>
+      <column name="business_score" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" remarks="5ZWG5oi356ev5YiG"/>
+      <column name="business_credit_value" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" remarks="5ZWG5oi35L+h55So5YC8"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="internal_code"/>
+    </table>
+    <table name="individual_business_basic_info_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="internal_code" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="5YaF56CBSUQ="/>
+      <column name="shop_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX6ZO65ZCN56ew"/>
+      <column name="shopkeeper_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX5Li75ZCN56ew"/>
+      <column name="shop_addr" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX6ZO65Zyw5Z2A"/>
+      <column name="shop_tel" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6IGU57O755S16K+d"/>
+      <column name="shopkeeper_certificate_type" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX5Li76K+B5Lu257G75Z6L"/>
+      <column name="shopkeeper_certificate_number" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX5Li76K+B5Lu25Y+356CB"/>
+      <column name="local_area" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5omA5Zyo5Zyw5Yy6"/>
+      <column name="open_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5byA6YCa5pe26Ze0"/>
+      <column name="close_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn" remarks="5YWz6Zet5pe26Ze0"/>
+      <column name="close_reason" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5YWz6Zet5Y6f5Zug"/>
+      <column name="shop_status" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX6ZO654q25oCB"/>
+      <column name="shop_rank" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5bqX6ZO6562J57qn"/>
+      <column name="shop_scope" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" remarks="5bqX6ZO656ev5YiG5YC8"/>
+      <column name="shop_credit_value" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" remarks="5bqX6ZO65L+h55So5YC8"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="internal_code"/>
+    </table>
     <table name="register_account_table" schema="" catalog="yufeng" type="TABLE">
       <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35ZCN"/>
       <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="55m75b2V5a+G56CB"/>
