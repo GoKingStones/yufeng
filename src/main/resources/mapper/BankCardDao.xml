@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.BankCardDao">
 
-    <select id="getBankCard" parameterType="String" resultType="UserBankCardInfo" >
+    <select id="getBankCardByCode" parameterType="String" resultType="UserBankCardInfo" >
 
-            SELECT * FROM bank_card_Info_table WHERE internal_code=#{code}
+            SELECT * FROM bank_card_Info_table WHERE internal_code=#{code} AND info_status=1
+
+    </select>
+    
+    <select id="getBankCardByID" parameterType="String" resultType="UserBankCardInfo" >
+
+            SELECT * FROM bank_card_Info_table WHERE id=#{id} AND info_status=1
+
+    </select>
+    
+    <select id="getBankCardByBankCardNumber" parameterType="String" resultType="UserBankCardInfo" >
+
+            SELECT * FROM bank_card_Info_table WHERE bankCardNumber=#{bankCardNumber} AND info_status=1
 
     </select>
 
@@ -24,7 +36,8 @@
     </update>
     
     <delete id="deleteBankCard">
-        DELETE FROM bank_card_Info_table WHERE id = #{id}
+<!--         DELETE FROM bank_card_Info_table WHERE id = #{id} -->
+        UPDATE bank_card_Info_table SET info_status=0,delete_operator=#{delete_operator} WHERE id = #{id}
     </delete>
 
 

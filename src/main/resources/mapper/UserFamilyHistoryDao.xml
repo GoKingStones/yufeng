@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.UserFamilyHistoryDao">
+
+
+    <insert id="insertUserFamilyHistory">
+
+        INSERT ignore INTO user_family_info_history_table(internal_code,credentialsType,credentialsNumber,name,gender,mailingAddress,organization,phone,mailbox,relation,highestEducationSchool,highestEducation,foundTime,updateTime,delete_operator)
+        VALUES (#{internal_code},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{phone},#{mailbox},#{relation},#{highestEducationSchool},#{highestEducation},#{foundTime},#{updateTime},#{delete_operator})
+
+    </insert>
+
+
+</mapper>

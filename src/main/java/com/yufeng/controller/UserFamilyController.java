@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yufeng.entity.UserBankCardInfo;
+import com.yufeng.entity.UserFamilyHistoryInfo;
 import com.yufeng.entity.UserFamilyInfo;
 import com.yufeng.service.impl.UserFamilyServiceImpl;
 
@@ -24,31 +25,33 @@ public class UserFamilyController {
 	
 	
 	//查询联系人信息
-	@RequestMapping("/getUserFamily")
-	public List<UserFamilyInfo> getUserFamily(String code){
-		List<UserFamilyInfo> info=userFamilyService.getUserFamily(code);
-		return info;
+	@RequestMapping("/getUserFamilyByCode")
+	public List<UserFamilyInfo> getUserFamilyByCode(String code){
+		return userFamilyService.getUserFamilyByCode(code);
+	}
+	
+	//查询联系人信息
+	@RequestMapping("/getUserFamilyById")
+	public UserFamilyInfo getUserFamilyById(String id){
+		return userFamilyService.getUserFamilyById(id);
 	}
 	
 	//新建联系人信息
 	@RequestMapping("/insertUserFamily")
 	public String insertUserFamily(UserFamilyInfo userFamilyInfo){
-		userFamilyService.insertUserFamily(userFamilyInfo);
-		return "ok";	
+		return userFamilyService.insertUserFamily(userFamilyInfo);
 	}
 		
 	//联系人信息修改
 	@RequestMapping("/updateUserFamily")
 	public String updateUserFamily(UserFamilyInfo userFamilyInfo){
-		userFamilyService.updateUserFamily(userFamilyInfo);
-		return "ok";	
+		return userFamilyService.updateUserFamily(userFamilyInfo);
 	}
 		
 	//删除联系人信息
 	@RequestMapping("/deleteUserFamily")
-	public String deleteUserFamily(UserFamilyInfo userFamilyInfo){
-		userFamilyService.deleteUserFamily(userFamilyInfo);
-		return "ok";	
+	public String deleteUserFamily(UserFamilyHistoryInfo userFamilyHistoryInfo){
+		return userFamilyService.deleteUserFamily(userFamilyHistoryInfo);
 	}
  
 }

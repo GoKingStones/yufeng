@@ -22,31 +22,35 @@ public class UserFinancialAccountController {
 	private UserFinancialAccountServiceImpl userFinancialAccountServiceImpl;
 	
 	//查询金融账户信息
-	@RequestMapping("/getUserFinancialAccount")
-	public List<UserFinancialAccountInfo> getUserFinancialAccount(String code){
-		List<UserFinancialAccountInfo> info=userFinancialAccountServiceImpl.getUserFinancialAccount(code);
+	@RequestMapping("/getUserFinancialAccountByCode")
+	public List<UserFinancialAccountInfo> getUserFinancialAccountByCode(String code){
+		List<UserFinancialAccountInfo> info=userFinancialAccountServiceImpl.getUserFinancialAccountByCode(code);
 	    return info;
+	}
+	
+	//查询金融账户信息
+	@RequestMapping("/getUserFinancialAccountById")
+	public UserFinancialAccountInfo getUserFinancialAccountById(String id){
+		UserFinancialAccountInfo info=userFinancialAccountServiceImpl.getUserFinancialAccountById(id);
+		   return info;
 	}
 		
 	//新建金融账户信息
 	@RequestMapping("/insertUserFinancialAccount")
 	public String insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
-		userFinancialAccountServiceImpl.insertUserFinancialAccount(userFinancialAccountInfo);
-		return "ok";	
+		return userFinancialAccountServiceImpl.insertUserFinancialAccount(userFinancialAccountInfo);	
 	}
 			
 	//金融账户信息修改
 	@RequestMapping("/updateUserFinancialAccount")
 	public String updateUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
-		userFinancialAccountServiceImpl.updateUserFinancialAccount(userFinancialAccountInfo);
-		return "ok";	
+		return userFinancialAccountServiceImpl.updateUserFinancialAccount(userFinancialAccountInfo);	
 	}
 			
 	//删除金融账户信息
 	@RequestMapping("/deleteUserFinancialAccount")
 	public String deleteUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
-		userFinancialAccountServiceImpl.deleteUserFinancialAccount(userFinancialAccountInfo);
-		return "ok";	
+		return userFinancialAccountServiceImpl.deleteUserFinancialAccount(userFinancialAccountInfo);	
 	}
 
 }

@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.UserFamilyDao">
 
-    <select id="getUserFamily" parameterType="String" resultType="UserFamilyInfo" >
+    <select id="getUserFamilyByCode" parameterType="String" resultType="UserFamilyInfo" >
 
             SELECT * FROM user_family_info_table WHERE internal_code=#{code}
+
+    </select>
+    
+    <select id="getUserFamilyById" parameterType="String" resultType="UserFamilyInfo" >
+
+            SELECT * FROM user_family_info_table WHERE id=#{id}
+
+    </select>
+    
+    <select id="getUserFamilyByCredentialsNumber" parameterType="String" resultType="UserFamilyInfo" >
+
+            SELECT * FROM user_family_info_table WHERE credentialsNumber=#{credentialsNumber}
 
     </select>
 

@@ -13,6 +13,6 @@ public interface RewardPunishmentInfoDao {
     List<RewardPunishmentInfo> getRewardPunishmentInfoByInternalCode(String internalCode);
     int insertRewardPunishmentInfo(RewardPunishmentInfo rewardPunishmentInfo);
     int updateRewardPunishmentInfo(RewardPunishmentInfo rewardPunishmentInfo);
-    int deleteRewardPunishmentInfo(RewardPunishmentInfo userBasicInfo);
+    int deleteRewardPunishmentInfo(RewardPunishmentInfo rewardPunishmentInfo);
     
 }
