@@ -14,8 +14,8 @@
 
     <insert id="insertCityHousePriceTable">
 
-        INSERT INTO city_house_price_table(city_code,house_price,info_status)
-        VALUES (#{cityCode},#{housePrice},#{infoStatus})
+        INSERT INTO city_house_price_table(city_code,house_price,data_period)
+        VALUES (#{cityCode},#{housePrice},#{dataPeriod})
 
     </insert>
 

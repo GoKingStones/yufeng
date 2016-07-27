@@ -78,7 +78,7 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
         			
         			cityHousePriceTmp.setCityCode(cityCodetmp.getCityCode());
         			cityHousePriceTmp.setHousePrice(houseAndPrice[1].replaceAll("[^0-9]", ""));
-        			cityHousePriceTmp.setInfoStatus("e");
+        			cityHousePriceTmp.setDataPeriod(filePath.substring(filePath.lastIndexOf("/")+1));
         			
         			System.out.println("城市编码："+cityCodetmp.getCityCode()+";房屋均价："+houseAndPrice[1].replaceAll("[^0-9]", ""));
         			
@@ -87,21 +87,6 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
     			
     		}
     	}
-    	
-    }
-    
-    
-    
-    public static void main(String args[]){
-
-    	
-    	String filePath = "/Users/yuqikang777/zxworkspace/201606";
-
-    	
-    	ImportCityDataServiceimpl importCityData = new ImportCityDataServiceimpl();
-    	
-    	importCityData.insertCityHousePrice(filePath);
-    	
     	
     }
     
