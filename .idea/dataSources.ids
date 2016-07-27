@@ -7,6 +7,15 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="yufeng"/>
+    <table name="college_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="college_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh57yW5Y+3"/>
+      <column name="college_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh5ZCN56ew"/>
+      <column name="city_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5omA5Zyo5Z+O5biC57yW5Y+3"/>
+      <column name="college_classification" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5a2m5qCh5YiG57G7"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="college_code"/>
+    </table>
     <table name="enterprise_business_basic_info_table" schema="" catalog="yufeng" type="TABLE">
       <column name="internal_code" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="5YaF56CBSUQ="/>
       <column name="business_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5ZWG5oi35ZCN56ew"/>
@@ -52,17 +61,41 @@
       <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
       <primary-key name="PRIMARY" columns="internal_code"/>
     </table>
+    <table name="internal_code_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="internal_code" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5YaF56CBSUQ="/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="internal_code"/>
+    </table>
+    <table name="provinces" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="register_account_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="internal_code" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" remarks="5YaF56CBSUQ="/>
       <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35ZCN"/>
       <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="55m75b2V5a+G56CB"/>
       <column name="phone_number" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35omL5py65Y+3"/>
       <column name="source" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="5rOo5YaM5p2l5rqQ"/>
       <column name="account_flag" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="6LSm5oi354q25oCB"/>
       <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
       <primary-key name="PRIMARY" columns="name"/>
       <index name="idx_account_flag" unique="false" columns="account_flag"/>
       <index name="idx_name" unique="false" columns="name"/>
       <index name="idx_phone_number" unique="false" columns="phone_number"/>
+    </table>
+    <table name="schools" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="univs" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>
 </component>

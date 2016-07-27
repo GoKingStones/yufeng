@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 企业商户基本信息Controller层
@@ -28,7 +29,6 @@ public class EnterpriseBusinessBasicInfoController {
 	public EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String businessName){
 
 		//
-		enterpriseBusinessBasicInfoService.isExistedEnterpriseBusinessBasicInfo(businessName);
 		EnterpriseBusinessBasicInfo info=enterpriseBusinessBasicInfoService.getEnterpriseBusinessBasicInfo(businessName);
 		return info;
 	}
@@ -36,6 +36,7 @@ public class EnterpriseBusinessBasicInfoController {
 	//插入企业商户信息
 	@RequestMapping("/insertEnterpriseBusinessBasicInfo")
 	public String insertEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo){
+
 		enterpriseBusinessBasicInfoService.insertEnterpriseBusinessBasicInfo(enterpriseBusinessBasicInfo);
 		return "ok";	
 	}

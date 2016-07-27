@@ -9,5 +9,4 @@ public interface InternalCodeDao {
 
     int isExistedInternalCode(String internalCode);
     int insertInternalCode(InternalCode internalCode);
-    int deleteInternalCode(InternalCode internalCode);
 }

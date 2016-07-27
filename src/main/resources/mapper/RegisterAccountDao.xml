@@ -45,6 +45,12 @@
     </update>
 
 
+    <update id="updateRegisterAccountInternalCode">
+        UPDATE register_account_table SET internal_code=#{internalCode}
+        WHERE name=#{name}
+
+    </update>
+
 
 
 </mapper>

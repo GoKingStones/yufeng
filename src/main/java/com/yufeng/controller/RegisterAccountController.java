@@ -57,9 +57,6 @@ public class RegisterAccountController {
     @RequestMapping("updateRegisterAccountPassword")
     public Map<String,String> updateRegisterAccountPassword(@RequestParam("name") String name,String password){
 
-        //if the name is existed
-        boolean isExisted=registerAccountService.isExistedRegisterAccount(name);
-
         ResultMap resultMap=new ResultMap();
         int result=registerAccountService.updateRegisterAccountPassword(name,MD5Util.string2MD5(password));
         if (result==0) {

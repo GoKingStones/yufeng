@@ -14,4 +14,5 @@ public interface RegisterAccountDao {
     int updateRegisterAccount(RegisterAccount registerAccount);
     int deleteRegisterAccount(RegisterAccount registerAccount);
     int updateRegisterAccountPassword(@Param("name")String name,@Param("password")String password);
+    int updateRegisterAccountInternalCode(@Param("name")String name,@Param("internalCode")String internalCode);
 }

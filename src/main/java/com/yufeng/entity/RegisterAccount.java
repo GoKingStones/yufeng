@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class RegisterAccount implements Serializable{
 
+    private String internal_code;
     private String name;
     private String password;
     private String phoneNumber;
@@ -17,6 +18,14 @@ public class RegisterAccount implements Serializable{
     //账户状态
     private String accountFlag;
     private Date createTime;
+
+    public String getInternal_code() {
+        return internal_code;
+    }
+
+    public void setInternal_code(String internal_code) {
+        this.internal_code = internal_code;
+    }
 
     public String getName() {
         return name;

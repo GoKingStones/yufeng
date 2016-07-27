@@ -2,6 +2,7 @@ DROP TABLE if EXISTS register_account_table;
 
 CREATE TABLE register_account_table
 (
+    internal_code VARCHAR(20) COMMENT '内码ID',
     name VARCHAR(100) NOT NULL COMMENT '用户名',
     password VARCHAR(20) NOT NULL COMMENT '登录密码',
     phone_number VARCHAR(11) NOT NULL COMMENT '用户手机号',
