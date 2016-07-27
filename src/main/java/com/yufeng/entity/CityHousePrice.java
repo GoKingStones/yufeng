@@ -17,7 +17,7 @@ public class CityHousePrice implements Serializable{
 	private int uniqueId;//内码
     private String cityCode;//姓名
     private String housePrice;//证件类型
-    private String infoStatus;//证件号码
+    private String dataPeriod;//证件号码
     private Date createTime;//创建时间
     private Date modTime;//修改时间
 
@@ -66,15 +66,18 @@ public class CityHousePrice implements Serializable{
 
 
 
-	public String getInfoStatus() {
-		return infoStatus;
+
+
+
+	public String getDataPeriod() {
+		return dataPeriod;
 	}
 
 
 
 
-	public void setInfoStatus(String infoStatus) {
-		this.infoStatus = infoStatus;
+	public void setDataPeriod(String dataPeriod) {
+		this.dataPeriod = dataPeriod;
 	}
 
 
@@ -110,7 +113,7 @@ public class CityHousePrice implements Serializable{
 
 	@Override
     public String toString(){
-        return uniqueId+"+"+cityCode+"+"+housePrice+"+"+infoStatus
+        return uniqueId+"+"+cityCode+"+"+housePrice+"+"+dataPeriod
         		+"+"+createTime+"+"+modTime;
     }
 }
