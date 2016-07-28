@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.FastConsumerLoanOrderDao">
+
+    <!--订单 -->
+    <resultMap type="FastConsumerLoanOrder" id="FastConsumerLoanOrderMap">  
+        <result column="id" property="id"/>  
+        <result column="order_id" property="order_id"/>
+        <result column="order_type" property="order_type"/>
+        <result column="user_internal_code" property="user_internal_code"/>
+        <result column="order_state" property="order_state"/>
+        <result column="invoice_number" property="invoice_number"/>
+        <result column="total_amount" property="total_amount"/>
+        <result column="discount_price" property="discount_price"/>
+        <result column="order_discount_price" property="order_discount_price"/>
+        <result column="found_time" property="found_time"/>
+        <result column="update_time" property="update_time"/>
+    </resultMap> 
+   
+    <select id="getFastConsumerLoanOrderById" parameterType="String" resultMap="FastConsumerLoanOrderMap" >
+
+            SELECT * FROM fast_consumer_loan_order_table WHERE id=#{id}
+
+    </select>
+    
+    <select id="getFastConsumerLoanOrderByOrderId" parameterType="String" resultMap="FastConsumerLoanOrderMap" >
+
+            SELECT * FROM fast_consumer_loan_order_table WHERE order_id=#{order_id}
+
+    </select>
+    
+   <insert id="insertFastConsumerLoanOrder">
+
+        INSERT ignore INTO fast_consumer_loan_order_table(id,order_id,order_type,user_internal_code,order_state,invoice_number,total_amount,discount_price,order_discount_price,found_time)
+        VALUES (#{id},#{order_id},#{order_type},#{user_internal_code},#{order_state},#{invoice_number},#{total_amount},#{discount_price},#{order_discount_price},#{found_time})
+
+    </insert>
+
+    <update id="updateFastConsumerLoanOrder">
+        
+        UPDATE fast_consumer_loan_order_table
+        SET order_id=#{order_id},order_type=#{order_type},user_internal_code=#{user_internal_code},
+        order_state=#{order_state},invoice_number=#{invoice_number},total_amount=#{total_amount},
+        discount_price=#{discount_price},order_discount_price=#{order_discount_price},update_time=#{update_time}
+        WHERE id = #{id}
+        
+    </update>
+    
+   
+   
+   
+    <!--商品 -->
+    <resultMap type="FastConsumerLoanOrderCommodity" id="FastConsumerLoanOrderCommodityMap">  
+        <result column="id" property="id"/>  
+        <result column="commodity_id" property="commodity_id"/>
+        <result column="commodity_name" property="commodity_name"/>
+        <result column="order_id" property="order_id"/>
+        <result column="price" property="price"/>
+        <result column="number" property="number"/>
+        <result column="user_internal_code" property="user_internal_code"/>
+        <result column="seller_internal_code" property="seller_internal_code"/>
+        <result column="total_amount" property="total_amount"/>
+        <result column="information_state" property="information_state"/>
+        <result column="pay_method" property="pay_method"/>
+        <result column="pay_name" property="pay_name"/>
+        <result column="pay_code" property="pay_code"/>
+        <result column="external_pay_number" property="external_pay_number"/>
+        <result column="pay_time" property="pay_time"/>
+        <result column="order_time" property="order_time"/>
+        <result column="send_time" property="send_time"/>
+        <result column="pay_message" property="pay_message"/>
+        <result column="receipt_time" property="receipt_time"/>
+        <result column="finish_time" property="finish_time"/>
+        <result column="discount_price" property="discount_price"/>
+        <result column="anonymous" property="anonymous"/>
+        <result column="found_time" property="found_time"/>
+        <result column="update_time" property="update_time"/>
+    </resultMap>
+    <select id="getFastConsumerLoanOrderCommodityById" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
+
+            SELECT * FROM fast_consumer_loan_order_commodity_table WHERE id=#{id}
+
+    </select>
+    <select id="getFastConsumerLoanOrderCommodityByOrderId" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
+
+            SELECT * FROM fast_consumer_loan_order_commodity_table WHERE order_id=#{order_id}
+
+    </select>
+    
+   <insert id="insertFastConsumerLoanOrderCommodity">
+
+        INSERT ignore INTO fast_consumer_loan_order_commodity_table(id,commodity_id,commodity_name,order_id,price,number,user_internal_code,seller_internal_code,total_amount,information_state,pay_method,pay_name,pay_code,external_pay_number,pay_time,order_time,send_time,pay_message,receipt_time,finish_time,discount_price,anonymous,found_time)
+        VALUES (#{id},#{commodity_id},#{commodity_name},#{order_id},#{price},#{number},#{user_internal_code},#{seller_internal_code},#{total_amount},#{information_state},#{pay_method},#{pay_name},#{pay_code},#{external_pay_number},#{pay_time},#{order_time},#{send_time},#{pay_message},#{receipt_time},#{finish_time},#{discount_price},#{anonymous},#{found_time})
+
+    </insert>
+
+    <update id="updateFastConsumerLoanOrderCommodity">
+    
+        UPDATE fast_consumer_loan_order_commodity_table
+        SET commodity_id=#{commodity_id},commodity_name=#{commodity_name},order_id=#{order_id},
+        price=#{price},number=#{number},user_internal_code=#{user_internal_code},
+        seller_internal_code=#{seller_internal_code},total_amount=#{total_amount},information_state=#{information_state},
+        pay_method=#{pay_method},pay_name=#{pay_name},pay_code=#{pay_code},
+        external_pay_number=#{external_pay_number},pay_time=#{pay_time},order_time=#{order_time},
+        send_time=#{send_time},pay_message=#{pay_message},receipt_time=#{receipt_time},
+        finish_time=#{finish_time},discount_price=#{discount_price},anonymous=#{anonymous},
+        update_time=#{update_time}
+        WHERE id = #{id}
+        
+    </update>
+    
+  
+
+
+
+
+</mapper>
