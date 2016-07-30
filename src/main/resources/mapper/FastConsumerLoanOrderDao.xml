@@ -39,9 +39,37 @@
     <update id="updateFastConsumerLoanOrder">
         
         UPDATE fast_consumer_loan_order_table
-        SET order_id=#{order_id},order_type=#{order_type},user_internal_code=#{user_internal_code},
-        order_state=#{order_state},invoice_number=#{invoice_number},total_amount=#{total_amount},
-        discount_price=#{discount_price},order_discount_price=#{order_discount_price},update_time=#{update_time}
+        
+        <set>  
+        <if test="order_id !=null">  
+            order_id = #{order_id},  
+        </if>
+        <if test="order_type !=null">  
+            order_type = #{order_type},  
+        </if>
+        <if test="user_internal_code !=null">  
+            user_internal_code = #{user_internal_code},  
+        </if>
+        <if test="order_state !=null">  
+            order_state = #{order_state},  
+        </if>
+        <if test="invoice_number !=null">  
+            invoice_number = #{invoice_number},  
+        </if>
+        <if test="total_amount !=null">  
+            total_amount = #{total_amount},  
+        </if>
+        <if test="discount_price !=null">  
+            discount_price = #{discount_price},  
+        </if>
+        <if test="order_discount_price !=null">  
+            order_discount_price = #{order_discount_price},  
+        </if>
+        <if test="update_time !=null">  
+            update_time = #{update_time},  
+        </if>
+        </set>
+        
         WHERE id = #{id}
         
     </update>
@@ -76,11 +104,13 @@
         <result column="found_time" property="found_time"/>
         <result column="update_time" property="update_time"/>
     </resultMap>
+    
     <select id="getFastConsumerLoanOrderCommodityById" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
 
             SELECT * FROM fast_consumer_loan_order_commodity_table WHERE id=#{id}
 
     </select>
+    
     <select id="getFastConsumerLoanOrderCommodityByOrderId" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
 
             SELECT * FROM fast_consumer_loan_order_commodity_table WHERE order_id=#{order_id}
@@ -95,16 +125,78 @@
     </insert>
 
     <update id="updateFastConsumerLoanOrderCommodity">
-    
+        
         UPDATE fast_consumer_loan_order_commodity_table
-        SET commodity_id=#{commodity_id},commodity_name=#{commodity_name},order_id=#{order_id},
-        price=#{price},number=#{number},user_internal_code=#{user_internal_code},
-        seller_internal_code=#{seller_internal_code},total_amount=#{total_amount},information_state=#{information_state},
-        pay_method=#{pay_method},pay_name=#{pay_name},pay_code=#{pay_code},
-        external_pay_number=#{external_pay_number},pay_time=#{pay_time},order_time=#{order_time},
-        send_time=#{send_time},pay_message=#{pay_message},receipt_time=#{receipt_time},
-        finish_time=#{finish_time},discount_price=#{discount_price},anonymous=#{anonymous},
-        update_time=#{update_time}
+    
+        <set>  
+        <if test="commodity_id !=null">  
+            commodity_id = #{commodity_id},  
+        </if>
+        <if test="commodity_name !=null">  
+            commodity_name = #{commodity_name},  
+        </if>
+        <if test="order_id !=null">  
+            order_id = #{order_id},  
+        </if>
+        <if test="price !=null">  
+            price = #{price},  
+        </if>
+        <if test="number !=null">  
+            number = #{number},  
+        </if>
+        <if test="user_internal_code !=null">  
+            user_internal_code = #{user_internal_code},  
+        </if>
+        <if test="seller_internal_code !=null">  
+            seller_internal_code = #{seller_internal_code},  
+        </if>
+        <if test="total_amount !=null">  
+            total_amount = #{total_amount},  
+        </if>
+        <if test="information_state !=null">  
+            information_state = #{information_state},  
+        </if>
+        <if test="pay_method !=null">  
+            pay_method = #{pay_method},  
+        </if>
+        <if test="pay_name !=null">  
+            pay_name = #{pay_name},  
+        </if>
+        <if test="pay_code !=null">  
+            pay_code = #{pay_code},  
+        </if>
+        <if test="external_pay_number !=null">  
+            external_pay_number = #{external_pay_number},  
+        </if>
+        <if test="pay_time !=null">  
+            pay_time = #{pay_time},  
+        </if>
+        <if test="order_time !=null">  
+            order_time = #{order_time},  
+        </if>
+        <if test="send_time !=null">  
+            send_time = #{send_time},  
+        </if>
+        <if test="pay_message !=null">  
+            pay_message = #{pay_message},  
+        </if>
+        <if test="receipt_time !=null">  
+            receipt_time = #{receipt_time},  
+        </if>
+        <if test="finish_time !=null">  
+            finish_time = #{finish_time},  
+        </if>
+        <if test="discount_price !=null">  
+            discount_price = #{discount_price},  
+        </if>
+        <if test="anonymous !=null">  
+            anonymous = #{anonymous},  
+        </if>
+        <if test="update_time !=null">  
+            update_time = #{update_time},  
+        </if>
+        </set>
+    
         WHERE id = #{id}
         
     </update>
