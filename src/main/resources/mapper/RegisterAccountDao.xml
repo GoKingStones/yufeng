@@ -17,6 +17,11 @@
 
 
     </select>
+
+    <select id="isExistedRegisterAccountByPhoneNumber" parameterType="String">
+        SELECT COUNT(*) FROM register_account_table WHERE phone_number=#{phoneNumber}
+
+    </select>
     <!--  -->
     <select id="getRegisterAccount" parameterType="String" resultType="RegisterAccount" >
 
@@ -25,6 +30,11 @@
 
     </select>
 
+    <select id="getRegisterAccountByPhoneNumber" parameterType="String" resultType="RegisterAccount">
+
+        SELECT * from register_account_table rat
+                WHERE rat.phone_number = #{phoneNumber}
+    </select>
     <insert id="insertRegisterAccount">
 
         INSERT ignore INTO register_account_table(name,password,phone_number,source,account_flag)
@@ -44,10 +54,21 @@
         WHERE name=#{name}
     </update>
 
+    <update id="updateRegisterAccountPasswordByPhoneNumber">
+        UPDATE register_account_table SET password=#{password}
+        WHERE phone_number=#{phoneNumber}
+
+    </update>
 
     <update id="updateRegisterAccountInternalCode">
         UPDATE register_account_table SET internal_code=#{internalCode}
         WHERE name=#{name}
+
+    </update>
+
+    <update id="updateRegisterAccountInternalCodeByPhoneNumber">
+        UPDATE register_account_table SET internal_code=#{internalCode}
+        WHERE phone_number=#{phoneNumber}
 
     </update>
 

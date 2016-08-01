@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.CollegeAcademyEntityDao">
+
+    <select id="getCollegeAcademyEntity">
+
+        SELECT  COUNT(*) from college_table WHERE college_name=#{collegeName}
+
+
+    </select>
+    <!--  -->
+    <insert id="insertCollegeAcademyEntity">
+
+        INSERT ignore INTO college_table(college_code,college_name,city_code,college_classification) VALUES (#{collegeCode},#{collegeName},#{cityCode},#{collegeClassification})
+
+    </insert>
+
+
+</mapper>

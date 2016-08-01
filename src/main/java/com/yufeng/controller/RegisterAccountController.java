@@ -27,10 +27,26 @@ public class RegisterAccountController {
         return null;
     }
 
+    @RequestMapping("isExistedRegisterAccountByPhoneNumber")
+    public Map<String,String> isExistedRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber) {
+
+        boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
+        return null;
+    }
+
+
     @RequestMapping("getRegisterAccountByName")
     public RegisterAccount getRegisterAccountByName(@RequestParam("name") String name){
 
         RegisterAccount registerAccount= registerAccountService.getRegisterAccount(name);
+        registerAccount.setPassword(MD5Util.convertMD5(MD5Util.convertMD5(registerAccount.getPassword())));
+        return registerAccount;
+    }
+
+    @RequestMapping("getRegisterAccountByPhoneNumber")
+    public RegisterAccount getRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber){
+
+        RegisterAccount registerAccount= registerAccountService.getRegisterAccountByPhoneNumber(phoneNumber);
         registerAccount.setPassword(MD5Util.convertMD5(MD5Util.convertMD5(registerAccount.getPassword())));
         return registerAccount;
     }
@@ -59,6 +75,19 @@ public class RegisterAccountController {
 
         ResultMap resultMap=new ResultMap();
         int result=registerAccountService.updateRegisterAccountPassword(name,MD5Util.string2MD5(password));
+        if (result==0) {
+            return resultMap.getErrorMap();
+        }else {
+            return resultMap.getSuccessMap();
+        }
+    }
+
+
+    @RequestMapping("updateRegisterAccountInternalCodeByPhoneNumber")
+    public Map<String,String> updateRegisterAccountInternalCodeByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber,String password){
+
+        ResultMap resultMap=new ResultMap();
+        int result=registerAccountService.updateRegisterAccountPasswordByPhoneNumber(phoneNumber,MD5Util.string2MD5(password));
         if (result==0) {
             return resultMap.getErrorMap();
         }else {
