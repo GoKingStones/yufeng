@@ -24,5 +24,7 @@
 	<bean id="schoolExperienceInfoServiceImpl" class="com.yufeng.service.impl.SchoolExperienceInfoServiceImpl"    autowire="byName"/>
 
 	<bean id="importCityDataServiceimpl" class="com.yufeng.service.impl.ImportCityDataServiceimpl"    autowire="byName"/>
+	
+	<bean id="fastConsumerLoanOrderServiceImpl" class="com.yufeng.service.impl.FastConsumerLoanOrderServiceImpl"    autowire="byName"/>
 
 </beans>

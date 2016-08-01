@@ -2,19 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.UserFamilyDao">
 
-    <select id="getUserFamilyByCode" parameterType="String" resultType="UserFamilyInfo" >
+    <resultMap type="UserFamilyInfo" id="UserFamilyInfoMap">  
+        <result column="id" property="id"/>
+        <result column="internal_code" property="internal_code"/>
+        <result column="credentialsType" property="credentialsType"/>
+        <result column="credentialsNumber" property="credentialsNumber"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="mailingAddress" property="mailingAddress"/>
+        <result column="organization" property="organization"/>
+        <result column="phone" property="phone"/>
+        <result column="mailbox" property="mailbox"/>
+        <result column="relation" property="relation"/>
+        <result column="highestEducationSchool" property="highestEducationSchool"/>
+        <result column="highestEducation" property="highestEducation"/>
+        <result column="foundTime" property="foundTime"/>
+        <result column="updateTime" property="updateTime"/> 
+        
+    </resultMap>
+
+    <select id="getUserFamilyByCode" parameterType="String" resultMap="UserFamilyInfoMap" >
 
             SELECT * FROM user_family_info_table WHERE internal_code=#{code}
 
     </select>
     
-    <select id="getUserFamilyById" parameterType="String" resultType="UserFamilyInfo" >
+    <select id="getUserFamilyById" parameterType="String" resultMap="UserFamilyInfoMap" >
 
             SELECT * FROM user_family_info_table WHERE id=#{id}
 
     </select>
     
-    <select id="getUserFamilyByCredentialsNumber" parameterType="String" resultType="UserFamilyInfo" >
+    <select id="getUserFamilyByCredentialsNumber" parameterType="String" resultMap="UserFamilyInfoMap" >
 
             SELECT * FROM user_family_info_table WHERE credentialsNumber=#{credentialsNumber}
 
@@ -29,11 +48,49 @@
 
     <update id="updateUserFamily">
         UPDATE user_family_info_table
-        SET internal_code=#{internal_code},credentialsType=#{credentialsType},credentialsNumber=#{credentialsNumber},
-        name=#{name},gender=#{gender},mailingAddress=#{mailingAddress},
-        mailingAddress=#{mailingAddress},organization=#{organization},phone=#{phone},
-        mailbox=#{mailbox},relation=#{relation},highestEducationSchool=#{highestEducationSchool},
-        highestEducation=#{highestEducation},foundTime=#{foundTime},updateTime=#{updateTime}
+        
+        <set>  
+        <if test="internal_code !=null">  
+            internal_code = #{internal_code},  
+        </if>
+        <if test="credentialsType !=null">  
+            credentialsType = #{credentialsType},  
+        </if>
+        <if test="credentialsNumber !=null">  
+            credentialsNumber = #{credentialsNumber},  
+        </if>
+        <if test="name !=null">  
+            name = #{name},  
+        </if>
+        <if test="gender !=null">  
+            gender = #{gender},  
+        </if>
+        <if test="mailingAddress !=null">  
+            mailingAddress = #{mailingAddress},  
+        </if>
+        <if test="organization !=null">  
+            organization = #{organization},  
+        </if>
+        <if test="phone !=null">  
+            phone = #{phone},  
+        </if>
+        <if test="mailbox !=null">  
+            mailbox = #{mailbox},  
+        </if>
+        <if test="relation !=null">  
+            relation = #{relation},  
+        </if>
+        <if test="highestEducationSchool !=null">  
+            highestEducationSchool = #{highestEducationSchool},  
+        </if>
+        <if test="highestEducation !=null">  
+            highestEducation = #{highestEducation},  
+        </if>
+        <if test="updateTime !=null">  
+            updateTime = #{updateTime},  
+        </if>
+        </set>
+        
         WHERE id = #{id}
     </update>
     
