@@ -2,19 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.UserFinancialAccountDao">
 
-    <select id="getUserFinancialAccountByCode" parameterType="String" resultType="UserFinancialAccountInfo" >
+    <resultMap type="UserFinancialAccountInfo" id="UserFinancialAccountInfoMap">  
+        <result column="id" property="id"/>
+        <result column="internal_code" property="internal_code"/>
+        <result column="signId" property="signId"/>
+        <result column="financialConsumeAccountId" property="financialConsumeAccountId"/>
+        <result column="financialConsumeCompany" property="financialConsumeCompany"/>
+        <result column="financialConsumeAccountState" property="financialConsumeAccountState"/>
+        <result column="creditScoring" property="creditScoring"/>
+        <result column="authorize" property="authorize"/>
+        <result column="foundTime" property="foundTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="info_status" property="info_status"/>
+        <result column="delete_operator" property="delete_operator"/>  
+    </resultMap>
+
+    <select id="getUserFinancialAccountByCode" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
             SELECT * FROM user_financial_account_info_table WHERE internal_code=#{code} AND info_status=1
 
     </select>
     
-    <select id="getUserFinancialAccountById" parameterType="String" resultType="UserFinancialAccountInfo" >
+    <select id="getUserFinancialAccountById" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
             SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
 
     </select>
     
-    <select id="getUserFinancialAccountByAccountId" parameterType="String" resultType="UserFinancialAccountInfo" >
+    <select id="getUserFinancialAccountByAccountId" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
             SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
 
@@ -29,9 +44,34 @@
 
     <update id="updateUserFinancialAccount">
         UPDATE user_financial_account_info_table
-        SET internal_code=#{internal_code},signId=#{signId},financialConsumeAccountId=#{financialConsumeAccountId},
-        financialConsumeCompany=#{financialConsumeCompany},financialConsumeAccountState=#{financialConsumeAccountState},creditScoring=#{creditScoring},
-        authorize=#{authorize},foundTime=#{foundTime},updateTime=#{updateTime}
+        
+        <set>  
+        <if test="internal_code !=null">  
+            internal_code = #{internal_code},  
+        </if>
+        <if test="signId !=null">  
+            signId = #{signId},  
+        </if>
+        <if test="financialConsumeAccountId !=null">  
+            financialConsumeAccountId = #{financialConsumeAccountId},  
+        </if>
+        <if test="financialConsumeCompany !=null">  
+            financialConsumeCompany = #{financialConsumeCompany},  
+        </if>
+        <if test="financialConsumeAccountState !=null">  
+            financialConsumeAccountState = #{financialConsumeAccountState},  
+        </if>
+        <if test="creditScoring !=null">  
+            creditScoring = #{creditScoring},  
+        </if>
+        <if test="authorize !=null">  
+            authorize = #{authorize},  
+        </if>
+        <if test="updateTime !=null">  
+            updateTime = #{updateTime},  
+        </if>
+        </set>
+        
         WHERE id = #{id}
     </update>
     

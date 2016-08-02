@@ -4,6 +4,7 @@ import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.service.RegisterAccountService;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -22,8 +23,23 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
 
     }
 
+    public boolean isExistedRegisterAccountByPhoneNumber(String phoneNumber) {
+
+        int count =registerAccountDao.isExistedRegisterAccountByPhoneNumber(phoneNumber);
+        boolean result =false;
+        if(count !=0) result=true;
+        return result;
+
+
+    }
+
+
     public RegisterAccount getRegisterAccount(String name) {
         return registerAccountDao.getRegisterAccount(name);
+    }
+
+    public RegisterAccount getRegisterAccountByPhoneNumber(String phoneNumber) {
+        return registerAccountDao.getRegisterAccountByPhoneNumber(phoneNumber);
     }
 
     public int insertRegisterAccount(RegisterAccount registerAccount) {
@@ -32,6 +48,10 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
 
     public int updateRegisterAccount(RegisterAccount registerAccount) {
         return registerAccountDao.updateRegisterAccount(registerAccount);
+    }
+
+    public int updateRegisterAccountPasswordByPhoneNumber(@Param("phoneNumber") String phoneNumber, @Param("password") String password) {
+        return registerAccountDao.updateRegisterAccountPasswordByPhoneNumber(phoneNumber, password);
     }
 
     public int deleteRegisterAccount(RegisterAccount registerAccount) {

@@ -2,19 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.BankCardDao">
 
-    <select id="getBankCardByCode" parameterType="String" resultType="UserBankCardInfo" >
+    <resultMap type="UserBankCardInfo" id="UserBankCardInfoMap">  
+        <result column="id" property="id"/> 
+        <result column="internal_code" property="internal_code"/>
+        <result column="bankCardNumber" property="bankCardNumber"/>
+        <result column="bankCardType" property="bankCardType"/>
+        <result column="expireTime" property="expireTime"/>
+        <result column="transferAccount" property="transferAccount"/>
+        <result column="bankCardState" property="bankCardState"/>
+        <result column="foundTime" property="foundTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="info_status" property="info_status"/>
+        <result column="delete_operator" property="delete_operator"/>
+        
+    </resultMap>
+
+    <select id="getBankCardByCode" parameterType="String" resultMap="UserBankCardInfoMap" >
 
             SELECT * FROM bank_card_Info_table WHERE internal_code=#{code} AND info_status=1
 
     </select>
     
-    <select id="getBankCardByID" parameterType="String" resultType="UserBankCardInfo" >
+    <select id="getBankCardByID" parameterType="String" resultMap="UserBankCardInfoMap" >
 
             SELECT * FROM bank_card_Info_table WHERE id=#{id} AND info_status=1
 
     </select>
     
-    <select id="getBankCardByBankCardNumber" parameterType="String" resultType="UserBankCardInfo" >
+    <select id="getBankCardByBankCardNumber" parameterType="String" resultMap="UserBankCardInfoMap" >
 
             SELECT * FROM bank_card_Info_table WHERE bankCardNumber=#{bankCardNumber} AND info_status=1
 
@@ -29,9 +44,31 @@
 
     <update id="updateBankCard">
         UPDATE bank_card_Info_table
-        SET internal_code=#{internal_code},bankCardNumber=#{bankCardNumber},bankCardType=#{bankCardType},
-        expireTime=#{expireTime},transferAccount=#{transferAccount},bankCardState=#{bankCardState},
-        foundTime=#{foundTime},updateTime=#{updateTime}
+        
+        <set>  
+        <if test="internal_code !=null">  
+            internal_code = #{internal_code},  
+        </if>
+        <if test="bankCardNumber !=null">  
+            bankCardNumber = #{bankCardNumber},  
+        </if>
+        <if test="bankCardType !=null">  
+            bankCardType = #{bankCardType},  
+        </if>
+        <if test="expireTime !=null">  
+            expireTime = #{expireTime},  
+        </if>
+        <if test="transferAccount !=null">  
+            transferAccount = #{transferAccount},  
+        </if>
+        <if test="bankCardState !=null">  
+            bankCardState = #{bankCardState},  
+        </if>
+        <if test="updateTime !=null">  
+            updateTime = #{updateTime},  
+        </if>
+        </set>
+        
         WHERE id = #{id}
     </update>
     

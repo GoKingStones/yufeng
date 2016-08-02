@@ -7,6 +7,29 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="yufeng"/>
+    <table name="city_code_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="city_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5Z+O5biC57yW5Y+3"/>
+      <column name="province_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55yB55u06L6W5biC5ZCN56ew"/>
+      <column name="city_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5biC5ZCN56ew"/>
+      <column name="district_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5Yy65Y6/5ZCN56ew"/>
+      <column name="full_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5YWo56ew"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="city_code"/>
+    </table>
+    <table name="city_college_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="collegeName" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cityName" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="collegeType" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="college_id_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="college_id" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="college_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="college_table" schema="" catalog="yufeng" type="TABLE">
       <column name="college_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh57yW5Y+3"/>
       <column name="college_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh5ZCN56ew"/>
@@ -15,6 +38,14 @@
       <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
       <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
       <primary-key name="PRIMARY" columns="college_code"/>
+    </table>
+    <table name="college_tuition_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="college_province" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="college_tuition" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="enterprise_business_basic_info_table" schema="" catalog="yufeng" type="TABLE">
       <column name="internal_code" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="5YaF56CBSUQ="/>

@@ -13,3 +13,6 @@ CREATE TABLE city_code_table
     PRIMARY KEY (city_code)
     
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='城市表';
+
+
+
