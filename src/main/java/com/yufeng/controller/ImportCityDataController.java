@@ -23,6 +23,14 @@ public class ImportCityDataController {
     	importCityDataService.insertCityHousePrice(filePath);
 
     }
+    
+    
+    @RequestMapping("insertCitySalaryCoefficient")
+    public void insertCitySalaryCoefficient(@RequestParam("filePath") String filePath) throws ParseException{
+
+    	importCityDataService.insertCitySalaryCoefficient(filePath);
+
+    }
 
 
 }

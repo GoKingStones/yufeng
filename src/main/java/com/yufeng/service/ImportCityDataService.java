@@ -9,4 +9,5 @@ public interface ImportCityDataService {
     
     void insertCityHousePrice(String filePath);
     List<String> readTxtFile(String filePath);
+    void insertCitySalaryCoefficient(String filePath);
 }

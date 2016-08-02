@@ -5,13 +5,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yufeng.dao.CityDataDao;
 import com.yufeng.entity.CityCode;
 import com.yufeng.entity.CityHousePrice;
+import com.yufeng.entity.CitySalaryCoefficient;
 import com.yufeng.service.ImportCityDataService;
 
 public class ImportCityDataServiceimpl implements ImportCityDataService{
@@ -26,7 +29,7 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
     public List<String> readTxtFile(String filePath){
     	
     	
-    	List<String> housePriceList = new ArrayList<String>();
+    	List<String> dateList = new ArrayList<String>();
     	
         try {
                 String encoding="UTF-8";
@@ -37,11 +40,11 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
                     BufferedReader bufferedReader = new BufferedReader(read);
                     String lineTxt = null;
                     while((lineTxt = bufferedReader.readLine()) != null){
-                    	housePriceList.add(lineTxt);
+                    	dateList.add(lineTxt);
                     }
                     read.close();
                     
-                    return housePriceList;
+                    return dateList;
                     
         }else{
             System.out.println("找不到指定的文件");
@@ -91,4 +94,56 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
     }
     
     
+    public void insertCitySalaryCoefficient(String filePath){
+    	
+    	
+    	Map<String,String> citySalaryCoefficientMap = new HashMap<String,String>();
+    	
+    	List<String> listCitySalaryCoefficient = readTxtFile(filePath);
+    	
+    	if(listCitySalaryCoefficient!=null){
+    		
+    		for(String citySalaryCoefficient:listCitySalaryCoefficient){
+    			
+    			System.out.println(citySalaryCoefficient);
+    			
+    			String[] citySalaryCoefficientArray = citySalaryCoefficient.split("\\s+");
+    			
+    			citySalaryCoefficientMap.put(citySalaryCoefficientArray[1], citySalaryCoefficientArray[2]);
+    			
+    		}
+    	}
+    	
+    	List<CityCode> cityCodeList = cityDataDao.getCityCode();
+    	
+    	for(CityCode tmpCityCode:cityCodeList){
+    		
+    		CitySalaryCoefficient citySalaryCoefficient = new CitySalaryCoefficient();
+    		
+    		
+    		if(tmpCityCode.getCityName().contains("市")&&citySalaryCoefficientMap.containsKey(tmpCityCode.getCityName().substring(0, tmpCityCode.getCityName().indexOf("市")))){    			
+    			
+    			citySalaryCoefficient.setCityCode(tmpCityCode.getCityCode());
+    			citySalaryCoefficient.setSalaryCoefficient(citySalaryCoefficientMap.get(tmpCityCode.getCityName().substring(0, tmpCityCode.getCityName().indexOf("市"))));
+    			citySalaryCoefficient.setDataPeriod(filePath.substring(filePath.lastIndexOf("/")+1));
+    			
+    			cityDataDao.insertCitySalaryCoefficient(citySalaryCoefficient);
+    			
+    		}else{
+    			
+    			if(citySalaryCoefficientMap.containsKey(tmpCityCode.getProvinceName())){
+    				
+    				citySalaryCoefficient.setCityCode(tmpCityCode.getCityCode());
+        			citySalaryCoefficient.setSalaryCoefficient(citySalaryCoefficientMap.get(tmpCityCode.getProvinceName()));
+        			citySalaryCoefficient.setDataPeriod(filePath.substring(filePath.lastIndexOf("/")+1));
+        			
+        			cityDataDao.insertCitySalaryCoefficient(citySalaryCoefficient);
+    			}
+    					
+    		}
+    			
+    	}
+    	
+    }
+   
 }
