@@ -1,7 +1,10 @@
 package com.yufeng.controller;
 
+import com.yufeng.dao.RegisterAccountDao;
+import com.yufeng.dao.UserBasicInfoDao;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
+import com.yufeng.util.InternalCodeGenerator;
 import com.yufeng.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,9 @@ public class UserBasicInfoController {
 
     @Autowired
     private UserBasicInfoService userBasicInfoService;
+    
+    @Autowired
+    private RegisterAccountDao registerAccountDao;
 
     
     @RequestMapping("isExistedUserBasicInfo")
@@ -54,9 +60,16 @@ public class UserBasicInfoController {
     		    errorMap = userBasicInfoService.checkUserBasicInfo(userBasicInfo);
     		
     		    if(errorMap.isEmpty()){
+    		    	
+    		    	//生成内码
+    		    	userBasicInfo.setInternalCode(InternalCodeGenerator.getCode(Integer.parseInt(userBasicInfo.getIdType()),userBasicInfo.getIdNo()));
+    		    	
     		    	int result = userBasicInfoService.insertUserBasicInfo(userBasicInfo);
 
-        	        if (result==0) {
+    		    	//生成内码添加至用户注册表中
+    		    	int result2 = registerAccountDao.updateRegisterAccountInternalCode(userBasicInfo.getName(), userBasicInfo.getInternalCode());
+    		    	  	
+        	        if (result==0 && result2==0) {
         	            return resultMap.getErrorMap();
         	        }else {
         	            return resultMap.getSuccessMap();

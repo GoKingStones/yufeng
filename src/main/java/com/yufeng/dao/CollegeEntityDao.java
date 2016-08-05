@@ -9,5 +9,5 @@ public interface CollegeEntityDao {
 
     CollegeEntity getCollegeEntity(String collegeName);
     int insertCollegeEntity(CollegeEntity collegeEntity);
-
+    CollegeEntity getCollegeAcademyEntityByCollegeCode(String collegeCode);
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yufeng.dao.CityDataDao;
 import com.yufeng.entity.CityCode;
+import com.yufeng.entity.CityConsumptionLevel;
 import com.yufeng.entity.CityHousePrice;
 import com.yufeng.entity.CitySalaryCoefficient;
 import com.yufeng.service.ImportCityDataService;
@@ -29,7 +30,7 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
     public List<String> readTxtFile(String filePath){
     	
     	
-    	List<String> dateList = new ArrayList<String>();
+    	List<String> dataList = new ArrayList<String>();
     	
         try {
                 String encoding="UTF-8";
@@ -40,11 +41,11 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
                     BufferedReader bufferedReader = new BufferedReader(read);
                     String lineTxt = null;
                     while((lineTxt = bufferedReader.readLine()) != null){
-                    	dateList.add(lineTxt);
+                    	dataList.add(lineTxt);
                     }
                     read.close();
                     
-                    return dateList;
+                    return dataList;
                     
         }else{
             System.out.println("找不到指定的文件");
@@ -145,5 +146,46 @@ public class ImportCityDataServiceimpl implements ImportCityDataService{
     	}
     	
     }
+    
+    public void insertCityConsumptionlevel(String filePath){
+    	
+    	Map<String,Double> cityConsumptionlevelMap = new HashMap<String,Double>();
+    	
+    	double bjConsumption = 0;
+    	
+    	List<String> listCityConsumption = readTxtFile(filePath);
+    	
+    	if(listCityConsumption!=null){
+    		
+    		bjConsumption = Double.parseDouble(listCityConsumption.get(0).split(",")[1]);
+    		
+    		for(String cityConsumptionStr:listCityConsumption){
+    			
+    			String cityName = cityConsumptionStr.split(",")[0];
+    			double cityConsumption = Double.parseDouble(cityConsumptionStr.split(",")[1]);
+    			
+    			cityConsumptionlevelMap.put(cityName, Math.round((cityConsumption/bjConsumption) * 100) * 0.01);		
+    		}
+    	}
+    	
+    	List<CityCode> cityCodeList = cityDataDao.getCityCode();
+    	
+    	for(CityCode tmpCityCode:cityCodeList){
+    		
+    		CityConsumptionLevel cityConsumptionLevel = new CityConsumptionLevel();
+    		
+    		
+    		if(cityConsumptionlevelMap.containsKey(tmpCityCode.getProvinceName())){
+    				
+    			cityConsumptionLevel.setCityCode(tmpCityCode.getCityCode());
+    			cityConsumptionLevel.setConsumptionLevel(cityConsumptionlevelMap.get(tmpCityCode.getProvinceName()));
+    			cityConsumptionLevel.setDataPeriod("2014");
+        			
+        		cityDataDao.insertCityConsumptionLevel(cityConsumptionLevel);
+    			}
+    					
+    		}
+    			
+    	}
    
 }

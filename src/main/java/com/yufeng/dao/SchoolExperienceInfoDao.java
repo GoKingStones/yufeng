@@ -14,5 +14,6 @@ public interface SchoolExperienceInfoDao {
     int insertSchoolExperienceInfo(SchoolExperienceInfo schoolExperienceInfo);
     int updateSchoolExperienceInfo(SchoolExperienceInfo schoolExperienceInfo);
     int deleteSchoolExperienceInfo(SchoolExperienceInfo schoolExperienceInfo);
+    List<SchoolExperienceInfo> getSchoolExperienceInfoByInternalCodeForCreditLine(String internalCode);
     
 }

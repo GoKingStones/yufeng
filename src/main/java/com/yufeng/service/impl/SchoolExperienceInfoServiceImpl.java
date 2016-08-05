@@ -51,5 +51,7 @@ public class SchoolExperienceInfoServiceImpl implements SchoolExperienceInfoServ
 		
 	}
 
-	
+	public List<SchoolExperienceInfo> getSchoolExperienceInfoByInternalCodeForCreditLine(String internalCode) {
+		return schoolExperienceInfoDao.getSchoolExperienceInfoByInternalCodeForCreditLine(internalCode);
+	}
 }

@@ -11,6 +11,14 @@
                 WHERE city_name like concat(#{cityName},'%') 
 
     </select>
+    
+    
+    <select id="getCityCode" resultType="CityCode" >
+
+            SELECT * from city_code_table 
+
+    </select>
+    
 
     <insert id="insertCityHousePriceTable">
 
@@ -18,5 +26,43 @@
         VALUES (#{cityCode},#{housePrice},#{dataPeriod})
 
     </insert>
+    
+    
+     <insert id="insertCitySalaryCoefficient">
+
+        INSERT INTO city_salary_Coefficient(city_code,salary_Coefficient,data_period)
+        VALUES (#{cityCode},#{salaryCoefficient},#{dataPeriod})
+
+    </insert>
+    
+    
+    <insert id="insertCityConsumptionLevel">
+
+        INSERT INTO city_consumption_level(city_code,consumption_level,data_period)
+        VALUES (#{cityCode},#{consumptionLevel},#{dataPeriod})
+
+    </insert>
+    
+    
+    <select id="getCityConsumptionLevel" parameterType="String" resultType="CityConsumptionLevel" >
+
+        select * from city_consumption_level where city_code=#{cityCode}
+   
+    </select>
+    
+    
+    <select id="getCitySalaryCoefficient" parameterType="String" resultType="CitySalaryCoefficient" >
+
+        select * from city_salary_Coefficient where city_code=#{cityCode}
+   
+    </select>
+    
+    <select id="getCityHousePrice" parameterType="String" resultType="CityHousePrice" >
+
+        select * from city_house_price_table where city_code=#{cityCode}
+   
+    </select>
+    
+    
 
 </mapper>

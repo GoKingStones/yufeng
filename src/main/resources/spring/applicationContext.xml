@@ -28,11 +28,14 @@
 	<bean id="fastConsumerLoanOrderServiceImpl" class="com.yufeng.service.impl.FastConsumerLoanOrderServiceImpl"    autowire="byName"/>
 	
 	<bean id="GuaranteeRelationshipServiceImpl" class="com.yufeng.service.impl.GuaranteeRelationshipServiceImpl"    autowire="byName"/>
+<<<<<<< HEAD
 
 	<bean id="userInfoService" class="com.yufeng.service.impl.UserInfoServiceimpl"    autowire="byName"/>
 
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/GoKingStones/yufeng.git
 
 </beans>

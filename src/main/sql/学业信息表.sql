@@ -13,6 +13,7 @@ CREATE TABLE school_experience_info
 	other_major_name VARCHAR(100) COMMENT '其他专业名称',
     admission_date date NOT NULL COMMENT '入学时间',
 	finish_school_date date COMMENT '毕业时间',	
+	completing VARCHAR(2) NOT NULL COMMENT '是否在读',
     class_no VARCHAR(20) COMMENT '班级',
     school_student_id VARCHAR(100) COMMENT '学号',
     education_type VARCHAR(100) NOT NULL COMMENT '就读学历',

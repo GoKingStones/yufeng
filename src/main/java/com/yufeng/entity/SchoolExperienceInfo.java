@@ -33,6 +33,7 @@ public class SchoolExperienceInfo implements Serializable {
 	private Date modTime;//更新时间
 	private String infoStatus;//信息状态
 	private String whoDid;//操作者
+	private String completing;//是否在读
 	
 	public int getUniqueId() {
 		return uniqueId;
@@ -149,6 +150,13 @@ public class SchoolExperienceInfo implements Serializable {
 		this.whoDid = whoDid;
 	}
 	
+	
+	public String getCompleting() {
+		return completing;
+	}
+	public void setCompleting(String completing) {
+		this.completing = completing;
+	}
 	@Override
     public String toString(){
         return 	uniqueId+"+"+internalCode+"+"+studentCode+"+"+schoolCode+"+"+academyCode

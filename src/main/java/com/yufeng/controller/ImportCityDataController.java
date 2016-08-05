@@ -11,6 +11,7 @@ import java.text.ParseException;
  * Created by fishyu on 16/7/26.
  */
 @RestController
+@RequestMapping("/dataImport")
 public class ImportCityDataController {
 
     @Autowired
@@ -29,6 +30,13 @@ public class ImportCityDataController {
     public void insertCitySalaryCoefficient(@RequestParam("filePath") String filePath) throws ParseException{
 
     	importCityDataService.insertCitySalaryCoefficient(filePath);
+
+    }
+    
+    @RequestMapping("insertCityConsumptionLevel")
+    public void insertCityConsumptionLevel(@RequestParam("filePath") String filePath) throws ParseException{
+
+    	importCityDataService.insertCityConsumptionlevel(filePath);
 
     }
 

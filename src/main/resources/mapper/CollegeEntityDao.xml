@@ -8,6 +8,18 @@
 
 
     </select>
+    
+    
+    <select id="getCollegeAcademyEntityByCollegeCode">
+
+        SELECT  COUNT(*) from college_table WHERE college_code=#{collegeCode}
+
+
+    </select>
+    
+    
+    
+    
     <!--  -->
     <insert id="insertCollegeEntity">
 
