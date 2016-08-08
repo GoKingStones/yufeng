@@ -11,13 +11,14 @@ import com.yufeng.dao.UserFamilyDao;
 import com.yufeng.dao.UserFamilyHistoryDao;
 import com.yufeng.entity.UserFamilyHistoryInfo;
 import com.yufeng.entity.UserFamilyInfo;
+import com.yufeng.service.UserFamilyService;
 
 /**
  * 用户家庭联系人业务处理层
  * @author dh
  */
 @Service
-public class UserFamilyServiceImpl {
+public class UserFamilyServiceImpl implements UserFamilyService{
 	
 	@Autowired
     private UserFamilyDao userFamilyDao;
