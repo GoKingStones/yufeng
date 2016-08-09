@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yufeng.entity.GuaranteeRelationshipInfo;
-import com.yufeng.service.impl.GuaranteeRelationshipServiceImpl;
+import com.yufeng.service.GuaranteeRelationshipService;
 
 /**
  * 担保关系控制层
@@ -18,42 +18,42 @@ import com.yufeng.service.impl.GuaranteeRelationshipServiceImpl;
 public class GuaranteeRelationshipController {
 	
 	@Autowired
-	private GuaranteeRelationshipServiceImpl guaranteeRelationshipServiceImpl;
+	private GuaranteeRelationshipService guaranteeRelationshipService;
 	
 	//查询银行卡信息(id)
 	@RequestMapping("/getById")
 	public Map<String, Object> getById(String id){
-		return guaranteeRelationshipServiceImpl.getById(id);
+		return guaranteeRelationshipService.getById(id);
 	}
 	
 	//查看我的担保圈(我被谁担保)
 	@RequestMapping("/getByCode")
 	public Map<String, Object> getByCode(String code){
-		return guaranteeRelationshipServiceImpl.getByCode(code);
+		return guaranteeRelationshipService.getByCode(code);
 	}
 	
 	//查看我的担保圈(我担保谁)
 	@RequestMapping("/getByRelateCode")
 	public Map<String, Object> getByRelateCode(String code){
-		return guaranteeRelationshipServiceImpl.getByRelateCode(code);
+		return guaranteeRelationshipService.getByRelateCode(code);
 	}
 	
 	//创建担保关系
 	@RequestMapping("/foundGuaranteeRelationship")
 	public String foundGuaranteeRelationship(GuaranteeRelationshipInfo info){
-		return guaranteeRelationshipServiceImpl.foundGuaranteeRelationship(info);
+		return guaranteeRelationshipService.foundGuaranteeRelationship(info);
 	}
 	
 	//取消担保关系
 	@RequestMapping("/deleteGuaranteeRelationship")
 	public String deleteGuaranteeRelationship(String id){
-		return guaranteeRelationshipServiceImpl.deleteGuaranteeRelationship(id);
+		return guaranteeRelationshipService.deleteGuaranteeRelationship(id);
 	}
 	
 	//修改担保关系
 	@RequestMapping("/updateGuaranteeRelationship")
 	public String updateGuaranteeRelationship(GuaranteeRelationshipInfo info){
-		return guaranteeRelationshipServiceImpl.updateGuaranteeRelationship(info);
+		return guaranteeRelationshipService.updateGuaranteeRelationship(info);
 	}
 
 }

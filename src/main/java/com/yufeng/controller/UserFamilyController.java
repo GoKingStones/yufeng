@@ -6,22 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.entity.UserFamilyHistoryInfo;
 import com.yufeng.entity.UserFamilyInfo;
-import com.yufeng.service.impl.UserFamilyServiceImpl;
+import com.yufeng.service.UserFamilyService;
 
 /**
  * 用户家庭联系人控制层
  * @author dh
   */
-
 @RestController
 @RequestMapping("/UserFamily")
 public class UserFamilyController {
 	
 	@Autowired
-	private UserFamilyServiceImpl userFamilyService;
+	private UserFamilyService userFamilyService;
 	
 	
 	//查询联系人信息
