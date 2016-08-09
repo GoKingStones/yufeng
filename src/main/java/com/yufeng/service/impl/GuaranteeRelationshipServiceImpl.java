@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.yufeng.dao.GuaranteeRelationshipDao;
 import com.yufeng.entity.GuaranteeRelationshipInfo;
+import com.yufeng.service.GuaranteeRelationshipService;
 
 /**
  * 担保关系业务处理层
  * @author dh
  */
 @Service
-public class GuaranteeRelationshipServiceImpl {
+public class GuaranteeRelationshipServiceImpl implements GuaranteeRelationshipService{
 	
 	@Autowired
     private GuaranteeRelationshipDao guaranteeRelationshipDao;

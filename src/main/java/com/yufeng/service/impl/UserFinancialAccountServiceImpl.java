@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yufeng.dao.UserFinancialAccountDao;
 import com.yufeng.entity.UserFinancialAccountInfo;
+import com.yufeng.service.UserFinancialAccountService;
 
 /**
  * 用户金融业务处理层
  * @author dh
  */
 @Service
-public class UserFinancialAccountServiceImpl {
+public class UserFinancialAccountServiceImpl implements UserFinancialAccountService{
 	
 	@Autowired
     private UserFinancialAccountDao userFinancialAccountDao;

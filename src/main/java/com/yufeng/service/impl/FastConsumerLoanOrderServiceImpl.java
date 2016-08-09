@@ -15,12 +15,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.yufeng.dao.FastConsumerLoanOrderDao;
 import com.yufeng.entity.FastConsumerLoanOrder;
 import com.yufeng.entity.FastConsumerLoanOrderCommodity;
+import com.yufeng.service.FastConsumerLoanOrderService;
 
 /**
  * 快速消费品分期订单业务处理层
  * @author dh
  */
-public class FastConsumerLoanOrderServiceImpl {
+public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderService{
 	@Autowired
 	private FastConsumerLoanOrderDao fastConsumerLoanOrderDao;
 	
