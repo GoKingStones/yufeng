@@ -47,6 +47,10 @@
         <if test="accountName!=null">
             account_name=#{accountName},
         </if>
+        <if test="internalCode!=null">
+            internal_code=#{internalCode},
+        </if>
+
         <if test="password!=null">
             password=#{password},
         </if>

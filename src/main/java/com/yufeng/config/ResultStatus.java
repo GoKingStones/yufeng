@@ -11,7 +11,10 @@ public enum ResultStatus {
     SUCCESS(100, "成功"),
     USERNAME_OR_PASSWORD_ERROR(-1001, "用户名或密码错误"),
     USER_NOT_FOUND(-1002, "用户不存在"),
+    BAD_REQUEST(-100, "传入参数异常"),
+    INTERNAL_SERVER_ERROR(-101, "后台异常"),
     USER_NOT_LOGIN(-1003, "用户未登录");
+
 
     /**
      * 返回码

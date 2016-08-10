@@ -69,7 +69,7 @@ public class UserBasicInfoController {
 
     		    	//生成内码添加至用户注册表中
 					RegisterAccount registerAccount=registerAccountDao.getRegisterAccount(userBasicInfo.getName());
-    		    	registerAccount.setInternal_code(userBasicInfo.getInternalCode());
+    		    	registerAccount.setInternalCode(userBasicInfo.getInternalCode());
 					int result2 = registerAccountDao.updateRegisterAccount(registerAccount);
     		    	  	
         	        if (result==0 && result2==0) {

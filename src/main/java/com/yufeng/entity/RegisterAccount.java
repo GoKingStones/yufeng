@@ -12,7 +12,7 @@ public class RegisterAccount implements Serializable{
 
 
     private int registerAccountId;
-    private String internal_code;
+    private String internalCode;
     private String accountName;
     private String password;
     private String phoneNumber;
@@ -30,12 +30,12 @@ public class RegisterAccount implements Serializable{
         this.registerAccountId = registerAccountId;
     }
 
-    public String getInternal_code() {
-        return internal_code;
+    public String getInternalCode() {
+        return internalCode;
     }
 
-    public void setInternal_code(String internal_code) {
-        this.internal_code = internal_code;
+    public void setInternalCode(String internalCode) {
+        this.internalCode = internalCode;
     }
 
     public String getAccountName() {

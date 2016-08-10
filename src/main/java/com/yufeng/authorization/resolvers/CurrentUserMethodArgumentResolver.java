@@ -25,6 +25,8 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
 
     public boolean supportsParameter(MethodParameter parameter) {
+
+        System.out.println("");
         //如果参数类型是User并且有CurrentUser注解则支持
         if (parameter.getParameterType().isAssignableFrom(RegisterAccount.class) &&
                 parameter.hasParameterAnnotation(CurrentUser.class)) {

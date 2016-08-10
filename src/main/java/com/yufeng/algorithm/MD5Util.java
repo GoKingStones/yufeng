@@ -55,6 +55,7 @@ public class MD5Util {
         String s = new String("wangleilei");
         System.out.println("原始：" + s);
         System.out.println("MD5后：" + string2MD5(s));
+        System.out.println(string2MD5(s).length());
         System.out.println("加密的：" + convertMD5(s));
         System.out.println("解密的：" + convertMD5(convertMD5(s)));
 

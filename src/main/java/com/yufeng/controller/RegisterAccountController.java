@@ -23,6 +23,7 @@ import java.util.Map;
  * Created by kingstones on 16/7/16.
  */
 @RestController
+@RequestMapping("registerAccount")
 public class RegisterAccountController {
 
     @Autowired
@@ -42,7 +43,7 @@ public class RegisterAccountController {
         }
     }
 
-    @RequestMapping("isExistedRegisterAccountByPhoneNumber")
+    @RequestMapping("／isExistedRegisterAccountByPhoneNumber")
     public ResponseEntity<String> isExistedRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber) {
 
         boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
@@ -55,7 +56,7 @@ public class RegisterAccountController {
 
 
 
-    @RequestMapping("insertRegisterAccount")
+    @RequestMapping("/insertRegisterAccount")
     public ResponseEntity<RegisterAccount> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
         registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
@@ -67,26 +68,27 @@ public class RegisterAccountController {
         }
     }
 
-    @RequestMapping("updateRegisterAccountPassword")
+    @RequestMapping("/updateRegisterAccountPassword")
     public Map<Object,Object> updateRegisterAccount(@RequestParam("name") String name,String password){
         return null;
     }
 
 
 
-    @RequestMapping(value="loginByAccoutName",method = RequestMethod.POST)
-    public ResponseEntity<ResultModel> loginByAccoutName(@RequestParam String accountName, @RequestParam String password) {
-        Assert.notNull(accountName, "username can not be empty");
-        Assert.notNull(password, "password can not be empty");
+    @RequestMapping(value="/loginByAccoutName",method = RequestMethod.POST)
+    @Authorization
+    public ResponseEntity<ResultModel> loginByAccoutName(@RequestBody RegisterAccount registerAccount) {
+        Assert.notNull(registerAccount.getAccountName(), "accountName can not be empty");
+        Assert.notNull(registerAccount.getPassword(), "password can not be empty");
 
-        RegisterAccount registerAccount=registerAccountService.getRegisterAccountByName(accountName);
-        if (registerAccount == null ||  //未注册
-                !MD5Util.convertMD5(registerAccount.getPassword()).equals(password)) {  //密码错误
+        RegisterAccount registerAccount1=registerAccountService.getRegisterAccountByName(registerAccount.getAccountName());
+        if (registerAccount1== null ||  //未注册
+                !MD5Util.convertMD5(registerAccount.getPassword()).equals(registerAccount1.getPassword())) {  //密码错误
             //提示用户名或密码错误
-            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USERNAME_OR_PASSWORD_ERROR), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USERNAME_OR_PASSWORD_ERROR), HttpStatus.OK);
         }
         //生成一个token，保存用户登录状态
-        TokenModel model = tokenModelService.createToken(registerAccount.getRegisterAccountId());
+        TokenModel model = tokenModelService.createToken(registerAccount1.getRegisterAccountId());
         return new ResponseEntity<ResultModel>(ResultModel.ok(model), HttpStatus.OK);
     }
 
@@ -106,7 +108,7 @@ public class RegisterAccountController {
         return new ResponseEntity<ResultModel>(ResultModel.ok(model), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "logout",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/logout",method = RequestMethod.POST)
     @Authorization
     public ResponseEntity<ResultModel> logout(@CurrentUser RegisterAccount registerAccount) {
         tokenModelService.deleteToken(registerAccount.getRegisterAccountId());
