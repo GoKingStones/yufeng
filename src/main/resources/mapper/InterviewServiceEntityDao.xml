@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.InterviewServiceEntityDao">
+
+    <select id="getInterviewServiceEntityByWorkerId" parameterType="String" resultType="InterviewServiceEntity">
+
+        SELECT * from interview_service_table WHERE worker_id=#{workerId}
+
+    </select>
+
+    <select id="getInterviewServiceEntityByInternalCode" parameterType="String" resultType="InterviewServiceEntity">
+
+        SELECT * from interview_service_table WHERE internal_code=#{internalCode}
+
+    </select>
+
+
+    <insert id="insertInterviewServiceEntity" parameterType="InterviewServiceEntity">
+
+        INSERT ignore INTO interview_service_table(worker_id,internal_code,interview_time,interview_place,
+        interview_result,phone_url,detail)
+        VALUES (#{workerId},#{internalCode},#{interviewTime},#{interviewPlace}
+        ,#{interviewResult},#{phoneUrl},#{detail})
+    </insert>
+
+
+    <update id="updateInterviewServiceEntity" parameterType="int">
+        UPDATE interview_service_table SET
+
+        <if test="workerId!=null">
+            worker_id=#{workerId},
+        </if>
+        <if test="internalCode!=null">
+            internal_code=#{internalCode},
+        </if>
+        <if test="interviewTime!=null">
+            interview_time=#{interviewTime}
+        </if>
+        <if test="interviewPlace!=null">
+            interview_place = #{interviewPlace}
+        </if>
+        <if test="interviewResult!=null">
+            interview_result = #{interviewResult}
+        </if>
+        <if test="phoneUrl!=null">
+            phone_url = #{phoneUrl}
+        </if>
+        <if test="detail!=null">
+            detail=#{detail}
+        </if>
+
+        WHERE id=#{id}
+
+    </update>
+
+
+</mapper>

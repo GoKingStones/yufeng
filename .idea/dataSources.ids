@@ -31,18 +31,32 @@
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="college_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="college_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh57yW5Y+3"/>
       <column name="college_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a2m5qCh5ZCN56ew"/>
       <column name="city_code" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5omA5Zyo5Z+O5biC57yW5Y+3"/>
       <column name="college_classification" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5a2m5qCh5YiG57G7"/>
       <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
       <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
-      <primary-key name="PRIMARY" columns="college_code"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="college_tuition_table" schema="" catalog="yufeng" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="college_province" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="college_tuition" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="custom_service_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="SUQ=" autoIncrement="true"/>
+      <column name="worker_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5a6i5oi357uP55CGSUQ="/>
+      <column name="internal_code" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a6i5oi35YaF56CB"/>
+      <column name="service_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pyN5Yqh5pe26Ze0"/>
+      <column name="service_mode" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5pyN5Yqh5pa55byP"/>
+      <column name="service_type" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5pyN5Yqh57G75Z6L"/>
+      <column name="service_level" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12" remarks="5ruh5oSP5bqm"/>
+      <column name="detail" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="6K+m57uG5L+h5oGv"/>
       <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
       <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
       <primary-key name="PRIMARY" columns="id"/>
@@ -97,6 +111,19 @@
       <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
       <primary-key name="PRIMARY" columns="internal_code"/>
     </table>
+    <table name="interview_service_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="SUQ=" autoIncrement="true"/>
+      <column name="worker_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5a6i5oi357uP55CGSUQ="/>
+      <column name="internal_code" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a6i5oi35YaF56CB"/>
+      <column name="interview_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="6Z2i562+5pe26Ze0"/>
+      <column name="interview_place" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6Z2i562+5Zyw54K5"/>
+      <column name="interview_result" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="6Z2i562+57uT5p6c"/>
+      <column name="phone_url" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5ZCI5b2x54Wn54mH5Zyw5Z2ACQ=="/>
+      <column name="detail" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="6K+m57uG5oOF5Ya1"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="provinces" schema="" catalog="yufeng" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
@@ -122,10 +149,50 @@
       <column name="uid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
+    <table name="token_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="registerAccountId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="token" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="createTime" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="registerAccountId"/>
+    </table>
     <table name="univs" schema="" catalog="yufeng" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="pid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="urge_repayment_service" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="SUQ=" autoIncrement="true"/>
+      <column name="worker_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5a6i5oi357uP55CGSUQ="/>
+      <column name="internal_code" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5a6i5oi35YaF56CB"/>
+      <column name="urge_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5YKs5pS25pe26Ze0"/>
+      <column name="urge_mode" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5YKs5pS25pa55byP"/>
+      <column name="urge_type" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5YKs5pS257G75Z6L"/>
+      <column name="repayment" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" remarks="5bqU6L+Y6YeR6aKd"/>
+      <column name="urge_status" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5YKs5pS254q25oCB"/>
+      <column name="detail" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12" remarks="6K+m57uG5oOF5Ya1"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="worker_info_table" schema="" catalog="yufeng" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5a6i5oi357uP55CGSUQ=" autoIncrement="true"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" def="JzEyMzQ1Nic=" remarks="55m75b2V5a+G56CB"/>
+      <column name="worker_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5aeT5ZCN"/>
+      <column name="id_type" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="6K+B5Lu257G75Z6L"/>
+      <column name="id_number" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="6K+B5Lu25Y+356CB"/>
+      <column name="org_id" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5omA5bGe5py65p6E"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12" remarks="55S16K+d5Y+356CB"/>
+      <column name="work_phone" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12" remarks="5bel5L2N55S16K+d"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="55S15a2Q6YKu566x"/>
+      <column name="weixin_no" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5b6u5L+h5Y+3"/>
+      <column name="category" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="57G75Yir"/>
+      <column name="worker_position" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6IGM5L2N"/>
+      <column name="position_level" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="6IGM5L2N562J57qn"/>
+      <column name="creator" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" remarks="5Yib5bu66ICF"/>
+      <column name="worker_status" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="5ZGY5bel54q25oCB"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="mod_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5pu05paw5pe26Ze0" version="true"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>

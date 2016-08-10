@@ -7,17 +7,18 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
+	<bean id="tokenModelService" class="com.yufeng.service.impl.TokenModelServiceImpl" autowire="byName"></bean>
 	<bean id="registerAccountService" class="com.yufeng.service.impl.RegisterAccountServiceImpl"    autowire="byName"/>
 	<bean id="enterpriseBusinessBasicInfoService" class="com.yufeng.service.impl.EnterpriseBusinessBasicInfoServiceImpl"    autowire="byName"/>
 	<bean id="individualBusinessBasicInfoService" class="com.yufeng.service.impl.IndividualBusinessBasicInfoServiceImpl"    autowire="byName"/>
 
-	<bean id="bankCardService" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
+	<bean id="bankCardServiceImpl" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
 	
 	<bean id="userBasicInfoService" class="com.yufeng.service.impl.UserBasicInfoServiceImpl"    autowire="byName"/>
 	
-	<bean id="userFamilyService" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>
+	<bean id="userFamilyServiceImpl" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>
 	
-	<bean id="userFinancialAccountService" class="com.yufeng.service.impl.UserFinancialAccountServiceImpl"    autowire="byName"/>
+	<bean id="userFinancialAccountServiceImpl" class="com.yufeng.service.impl.UserFinancialAccountServiceImpl"    autowire="byName"/>
 	
 	<bean id="rewardPunishmentInfoServiceImpl" class="com.yufeng.service.impl.RewardPunishmentInfoServiceImpl"    autowire="byName"/>
 
@@ -25,11 +26,15 @@
 
 	<bean id="importCityDataServiceimpl" class="com.yufeng.service.impl.ImportCityDataServiceimpl"    autowire="byName"/>
 	
-	<bean id="fastConsumerLoanOrderService" class="com.yufeng.service.impl.FastConsumerLoanOrderServiceImpl"    autowire="byName"/>
+	<bean id="fastConsumerLoanOrderServiceImpl" class="com.yufeng.service.impl.FastConsumerLoanOrderServiceImpl"    autowire="byName"/>
 	
-	<bean id="GuaranteeRelationshipService" class="com.yufeng.service.impl.GuaranteeRelationshipServiceImpl"    autowire="byName"/>
+	<bean id="guaranteeRelationshipService" class="com.yufeng.service.impl.GuaranteeRelationshipServiceImpl"    autowire="byName"/>
 
 	<bean id="userInfoService" class="com.yufeng.service.impl.UserInfoServiceimpl"    autowire="byName"/>
 
+	<bean id="workerInfoService" class="com.yufeng.service.impl.WorkerInfoServiceImpl" autowire="byName"></bean>
 
+	<bean id="interviewServiceEntityService" class="com.yufeng.service.impl.InterviewServiceEntityServiceImpl" autowire="byName"></bean>
+	<bean id="customServiceEntityService" class="com.yufeng.service.impl.CustomServiceEntityServiceImpl" autowire="byName"></bean>
+	<bean id="urgeRepaymentServiceEntityService" class="com.yufeng.service.impl.UrgeRepaymentServiceEntityServiceImpl" autowire="byName"></bean>
 </beans>

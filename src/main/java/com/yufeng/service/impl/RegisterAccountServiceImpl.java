@@ -1,9 +1,13 @@
 package com.yufeng.service.impl;
 
+import com.yufeng.algorithm.UUIDGenerator;
+import com.yufeng.dao.InternalCodeDao;
 import com.yufeng.dao.RegisterAccountDao;
+import com.yufeng.entity.InternalCode;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.service.RegisterAccountService;
 
+import com.yufeng.util.InternalCodeGenerator;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,56 +19,67 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
     @Autowired
     private RegisterAccountDao registerAccountDao;
 
-    public boolean isExistedRegisterAccount(String name) {
-        int count =registerAccountDao.isExistedRegisterAccount(name);
-        boolean result =false;
-        if(count !=0) result=true;
-        return result;
+    public boolean isExistedRegisterAccount(String accountName) {
+        int count =registerAccountDao.isExistedRegisterAccount(accountName);
+        return count==1?true:false;
 
+    }
+
+
+    public RegisterAccount getRegisterAccountByPhoneNumber(String phoneNumber) {
+       return registerAccountDao.getRegisterAccountByPhoneNumber(phoneNumber);
+    }
+
+    public RegisterAccount getRegisterAccountByName(String accountName) {
+        return registerAccountDao.getRegisterAccount(accountName);
     }
 
     public boolean isExistedRegisterAccountByPhoneNumber(String phoneNumber) {
 
         int count =registerAccountDao.isExistedRegisterAccountByPhoneNumber(phoneNumber);
-        boolean result =false;
-        if(count !=0) result=true;
-        return result;
-
+        return count==1?true:false;
 
     }
 
 
-    public RegisterAccount getRegisterAccount(String name) {
-        return registerAccountDao.getRegisterAccount(name);
-    }
+    public RegisterAccount insertRegisterAccount(RegisterAccount registerAccount) {
 
-    public RegisterAccount getRegisterAccountByPhoneNumber(String phoneNumber) {
-        return registerAccountDao.getRegisterAccountByPhoneNumber(phoneNumber);
-    }
 
-    public int insertRegisterAccount(RegisterAccount registerAccount) {
-        return registerAccountDao.insertRegisterAccount(registerAccount);
-    }
+        int result =  registerAccountDao.insertRegisterAccount(registerAccount);
+        RegisterAccount registerAccount1=null;
 
-    public int updateRegisterAccount(RegisterAccount registerAccount) {
-        return registerAccountDao.updateRegisterAccount(registerAccount);
-    }
+        if(result==1) {
+            if(registerAccount.getAccountName()!="") {
+                registerAccount1=registerAccountDao.getRegisterAccount(registerAccount.getAccountName());
 
-    public int updateRegisterAccountPasswordByPhoneNumber(@Param("phoneNumber") String phoneNumber, @Param("password") String password) {
-        return registerAccountDao.updateRegisterAccountPasswordByPhoneNumber(phoneNumber, password);
-    }
-
-    public int deleteRegisterAccount(RegisterAccount registerAccount) {
-        return registerAccountDao.deleteRegisterAccount(registerAccount);
-    }
-
-    public int updateRegisterAccountPassword(String name, String password) {
-
-        int result=0;
-        if(registerAccountDao.getRegisterAccount(name)!=null) {
-            result = registerAccountDao.updateRegisterAccountPassword(name, password);
+            }else {
+                registerAccount1=registerAccountDao.getRegisterAccountByPhoneNumber(registerAccount.getPhoneNumber());
+            }
         }
 
-        return result;
+        return registerAccount1;
+
     }
+
+    public RegisterAccount updateRegisterAccount(RegisterAccount registerAccount) {
+
+        int result = registerAccountDao.updateRegisterAccount(registerAccount);
+        RegisterAccount registerAccount1=null;
+        if(result==1) {
+            registerAccount1 =registerAccountDao.getRegisterAccountById(registerAccount.getRegisterAccountId());
+        }
+
+        return registerAccount1;
+    }
+
+
+    public boolean deleteRegisterAccount(int registerAccountId) {
+
+
+        int result = registerAccountDao.deleteRegisterAccount(registerAccountId);
+
+
+        return result==1?true:false;
+    }
+
 }

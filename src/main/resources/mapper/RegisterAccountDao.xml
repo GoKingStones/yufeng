@@ -2,19 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.RegisterAccountDao">
 
-    <!--<resultMap type="RegisterAccountService" id="registerAccountResultMap">-->
-        <!--<id property="name" column="name"/>-->
-        <!--<result property="password" column="password"/>-->
-        <!--<result property="phoneNumber" column="phone_number"/>-->
-        <!--<result property="source" column="source"/>-->
-        <!--<result property="accountFlag" column="account_flag"/>-->
-        <!--<result property="createTime" column="create_time"/>-->
-    <!--</resultMap>-->
-
     <select id="isExistedRegisterAccount" parameterType="String">
 
-        SELECT  COUNT(*) from register_account_table WHERE name=#{name}
-
+        SELECT  COUNT(*) from register_account_table WHERE account_name=#{accoutName}
 
     </select>
 
@@ -22,11 +12,19 @@
         SELECT COUNT(*) FROM register_account_table WHERE phone_number=#{phoneNumber}
 
     </select>
+
     <!--  -->
     <select id="getRegisterAccount" parameterType="String" resultType="RegisterAccount" >
 
             SELECT * from register_account_table rat
-                WHERE rat.name = #{name}
+                WHERE rat.account_name = #{accountName}
+
+    </select>
+
+    <select id="getRegisterAccountById" parameterType="int" resultType="RegisterAccount" >
+
+        SELECT * from register_account_table rat
+        WHERE rat.register_account_id = #{registerAccountId}
 
     </select>
 
@@ -37,38 +35,35 @@
     </select>
     <insert id="insertRegisterAccount">
 
-        INSERT ignore INTO register_account_table(name,password,phone_number,source,account_flag)
-        VALUES (#{name},#{password},#{phoneNumber},#{source},#{accountFlag})
+        INSERT ignore INTO register_account_table(account_name,password,phone_number,source,account_flag)
+        VALUES (#{accountName},#{password},#{phoneNumber},#{source},#{accountFlag})
 
     </insert>
 
     <update id="updateRegisterAccount" parameterType="String">
 
         UPDATE register_account_table
-        SET name=#{name},password=#{password},phone_number=#{phoneNumber},source=#{source},account_flag=#{accountFlag}
-        WHERE name = #{name}
-    </update>
+        SET
+        <if test="accountName!=null">
+            account_name=#{accountName},
+        </if>
+        <if test="password!=null">
+            password=#{password},
+        </if>
+        <if test="phoneNumber!=null">
+            phone_number=#{phoneNumber},
+        </if>
+        <if test="source!=null">
+            source=#{source},
+        </if>
+        <if test="accountFlag!=null">
+            account_flag=#{accountFlag},
+        </if>
+        <if test="source!=null">
+            source=#{source},
+        </if>
 
-    <update id="updateRegisterAccountPassword">
-        UPDATE register_account_table SET password=#{password}
-        WHERE name=#{name}
-    </update>
-
-    <update id="updateRegisterAccountPasswordByPhoneNumber">
-        UPDATE register_account_table SET password=#{password}
-        WHERE phone_number=#{phoneNumber}
-
-    </update>
-
-    <update id="updateRegisterAccountInternalCode">
-        UPDATE register_account_table SET internal_code=#{internalCode}
-        WHERE name=#{name}
-
-    </update>
-
-    <update id="updateRegisterAccountInternalCodeByPhoneNumber">
-        UPDATE register_account_table SET internal_code=#{internalCode}
-        WHERE phone_number=#{phoneNumber}
+        WHERE register_account_id=#{registerAccountId}
 
     </update>
 
