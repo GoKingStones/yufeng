@@ -4,6 +4,7 @@ import com.yufeng.dao.InternalCodeDao;
 import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.dao.UserBasicInfoDao;
 import com.yufeng.entity.InternalCode;
+import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.CheckMethod;
@@ -36,7 +37,7 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
 		return userBasicInfoDao.getUserBasicInfoByInternalCode(internalCode);
 	}
 
-	public Map<String,String> insertUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException {
+	public Map<String,String> insertUserBasicInfoForSignUp(UserBasicInfo userBasicInfo,RegisterAccount registerAccount) throws ParseException {
 		
 		
 		ResultMap resultMap=new ResultMap();
@@ -52,7 +53,13 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     		    Map<String,String> errorMap = new HashMap<String,String>();
     		    
     		    errorMap = checkUserBasicInfo(userBasicInfo);
-    		
+    		    
+    		    if(registerAccount.getRegisterAccountId()==0){
+    		    
+    		    	errorMap.put("register", "no data error");
+    		   
+    		    }
+    		    
     		    if(errorMap.isEmpty()){
     		    	
     		    	//生成内码
@@ -65,8 +72,9 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     		    	userBasicInfo.setInternalCode(internalCode.getInternalCode());
     		    	int result = userBasicInfoDao.insertUserBasicInfo(userBasicInfo);
 
-    		    	//生成内码更新至用户注册表中
-    		    	int result2 = registerAccountDao.updateRegisterAccountInternalCodeByPhoneNumber(userBasicInfo.getCellNo(), userBasicInfo.getInternalCode());
+    		    	//生成内码更新至用户注册表中	    	
+    		    	registerAccount.setInternal_code(userBasicInfo.getInternalCode());    		    	
+    		    	int result2 = registerAccountDao.updateRegisterAccount(registerAccount);
     		    	  	
         	        if (result==0 && result2==0) {
         	            return resultMap.getErrorMap();

@@ -1,5 +1,6 @@
 package com.yufeng.controller;
 
+import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.ResultMap;
@@ -39,9 +40,9 @@ public class UserBasicInfoController {
 
     @RequestMapping("insertUserBasicInfo")
     @ResponseBody
-    public Map<String,String> insertUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo) throws ParseException{
+    public Map<String,String> insertUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo,@RequestBody RegisterAccount registerAccount) throws ParseException{
 
-    	return userBasicInfoService.insertUserBasicInfo(userBasicInfo);
+    	return userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
 
     }
 

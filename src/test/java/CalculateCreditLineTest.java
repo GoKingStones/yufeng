@@ -35,7 +35,7 @@ public class CalculateCreditLineTest {
     	RegisterAccount registerAccount = new RegisterAccount();
     	
     	registerAccount.setAccountFlag("0");
-    	registerAccount.setName("fishyu");
+    	registerAccount.setAccountName("fishyu");
     	registerAccount.setPassword("123456");
     	registerAccount.setPhoneNumber("18601923137");
     	registerAccount.setSource("mall");
@@ -63,7 +63,7 @@ public class CalculateCreditLineTest {
     	userBasicInfo.setQqNo("81741099");
     	userBasicInfo.setAddress("天津市现住址");
 
-    	userBasicInfoService.insertUserBasicInfo(userBasicInfo);
+    	userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
 
 
 
