@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Created by kingstones on 16/8/10.
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)

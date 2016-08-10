@@ -44,11 +44,8 @@ public class RegisterAccountDaoTest {
     public void testUpdateRegisterAccount() throws Exception {
 
         RegisterAccount registerAccount=new RegisterAccount();
-        registerAccount.setAccountFlag("a");
-        registerAccount.setAccountName("wangleilei");
-        registerAccount.setPassword("root");
-        registerAccount.setPhoneNumber("33333333");
-        registerAccount.setSource("a");
+        registerAccount.setAccountFlag("tt");
+        registerAccount.setRegisterAccountId(2);
         int x =registerAccountDao.updateRegisterAccount(registerAccount);
         System.out.println(x);
     }
@@ -62,21 +59,29 @@ public class RegisterAccountDaoTest {
     @Test
     public void testGetRegisterAccountById() throws Exception {
 
+        RegisterAccount registerAccount=registerAccountDao.getRegisterAccountById(1);
+        System.out.println(registerAccount.getAccountName());
     }
 
     @Test
     public void testGetRegisterAccountByPhoneNumber() throws Exception {
 
+        RegisterAccount registerAccount=registerAccountDao.getRegisterAccountByPhoneNumber("1822323232");
+        System.out.println(registerAccount.getAccountName());
     }
 
     @Test
     public void testIsExistedRegisterAccount() throws Exception {
 
+       int result = registerAccountDao.isExistedRegisterAccount("ROOT");
+        System.out.println(result);
     }
 
     @Test
     public void testIsExistedRegisterAccountByPhoneNumber() throws Exception {
 
+        int result = registerAccountDao.isExistedRegisterAccountByPhoneNumber("1822323232");
+        System.out.println(result);
     }
 
 

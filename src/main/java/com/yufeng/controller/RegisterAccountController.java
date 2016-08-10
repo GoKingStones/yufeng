@@ -35,9 +35,9 @@ public class RegisterAccountController {
     private TokenModelService tokenModelService;
 
     @RequestMapping(value = "/isExistedRegisterAccount",method = RequestMethod.GET)
-    public ResponseEntity<ResultModel> isExistedRegisterAccount(@RequestParam("accoutName") String accoutName) {
+    public ResponseEntity<ResultModel> isExistedRegisterAccount(@RequestParam("accountName") String accountName) {
 
-        boolean result = registerAccountService.isExistedRegisterAccount(accoutName);
+        boolean result = registerAccountService.isExistedRegisterAccount(accountName);
         if(result) {
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
         }else {
@@ -45,7 +45,7 @@ public class RegisterAccountController {
         }
     }
 
-    @RequestMapping(value = "／isExistedRegisterAccountByPhoneNumber",method = RequestMethod.GET)
+    @RequestMapping(value = "/isExistedRegisterAccountByPhoneNumber",method = RequestMethod.GET)
     public ResponseEntity<ResultModel> isExistedRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber) {
 
         boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
@@ -59,15 +59,15 @@ public class RegisterAccountController {
 
 
     @RequestMapping(value = "/insertRegisterAccount",method = RequestMethod.POST)
-    public ResponseEntity<RegisterAccount> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
+    public ResponseEntity<ResultModel> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
         registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
 
         RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
         if (registerAccount1!=null) {
-            return new ResponseEntity<RegisterAccount>(registerAccount1,HttpStatus.OK);
+            return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
         }else {
-            return new ResponseEntity<RegisterAccount>(HttpStatus.OK);
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
         }
     }
 

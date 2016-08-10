@@ -28,10 +28,9 @@ public class RegisterAccountControllerTest {
     public void testIsExistedRegisterAccount() throws Exception {
 
         RestTemplate restTemplate = new RestTemplate();
-        Map<String,String> map=new HashMap<String,String>();
-        String accountName="ROOT";
-        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/registerAccount/isExistedRegisterAccount",
-                ResultModel.class,accountName);
+
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/registerAccount/isExistedRegisterAccount?accountName=ROOT1",
+                ResultModel.class);
 
         // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
         System.out.println(resultModelResponseEntity.getStatusCode());
@@ -44,16 +43,63 @@ public class RegisterAccountControllerTest {
     @Test
     public void testIsExistedRegisterAccountByPhoneNumber() throws Exception {
 
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/registerAccount/isExistedRegisterAccountByPhoneNumber?phoneNumber=1822323232",
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
     }
 
     @Test
     public void testInsertRegisterAccount() throws Exception {
 
+        RestTemplate restTemplate = new RestTemplate();
+
+        RegisterAccount registerAccount=new RegisterAccount();
+        registerAccount.setAccountName("王磊磊");
+        registerAccount.setPassword("aaa");
+        registerAccount.setAccountFlag("1");
+        registerAccount.setPhoneNumber("18722475214");
+        registerAccount.setSource("mall");
+
+        HttpEntity<RegisterAccount> httpEntity=new HttpEntity<RegisterAccount>(registerAccount);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/registerAccount/insertRegisterAccount",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
     }
 
     @Test
     public void testUpdateRegisterAccount() throws Exception {
 
+        RestTemplate restTemplate = new RestTemplate();
+
+        RegisterAccount registerAccount=new RegisterAccount();
+        registerAccount.setRegisterAccountId(2);
+        registerAccount.setPhoneNumber("13232223");
+
+        HttpEntity<RegisterAccount> httpEntity=new HttpEntity<RegisterAccount>(registerAccount);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/registerAccount/updateRegisterAccount",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
     }
 
     @Test
