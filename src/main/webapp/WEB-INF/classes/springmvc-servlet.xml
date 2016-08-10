@@ -34,6 +34,23 @@
         <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
 
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:argument-resolvers>-->
+            <!--<bean class="com.yufeng.authorization.resolvers.CurrentUserMethodArgumentResolver" />-->
+        <!--</mvc:argument-resolvers>-->
+    <!--</mvc:annotation-driven>-->
+
+
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash; session超时 &ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*/*"/>-->
+            <!--<bean class="com.yufeng.authorization.interceptor.AuthorizationInterceptor">-->
+
+            <!--</bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
     <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
         <!--<property name="interceptors">-->
             <!--<list>-->

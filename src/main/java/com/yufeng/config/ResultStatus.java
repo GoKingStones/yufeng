@@ -19,6 +19,7 @@ public enum ResultStatus {
 	
 
 
+
     /**
      * 返回码
      */
