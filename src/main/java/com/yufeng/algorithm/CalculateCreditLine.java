@@ -1,14 +1,24 @@
 package com.yufeng.algorithm;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.yufeng.controller.UserBasicInfoController;
 import com.yufeng.dao.CityDataDao;
 import com.yufeng.dao.CollegeEntityDao;
+import com.yufeng.dao.UserBasicInfoDao;
+import com.yufeng.entity.RewardPunishmentInfo;
 import com.yufeng.entity.SchoolExperienceInfo;
+import com.yufeng.entity.UserBankCardInfo;
+import com.yufeng.entity.UserBasicInfo;
+import com.yufeng.entity.UserFamilyInfo;
+import com.yufeng.entity.UserFinancialAccountInfo;
 import com.yufeng.entity.UserInfo;
 import com.yufeng.service.UserInfoService;
+import com.yufeng.util.InternalCodeGenerator;
 import com.yufeng.util.Utils;
 
 public class CalculateCreditLine {
@@ -277,5 +287,6 @@ public class CalculateCreditLine {
 		return Math.round(creditLine);
 		
 	}
+	
 	
 }

@@ -1,9 +1,14 @@
 package com.yufeng.service.impl;
 
+import com.yufeng.dao.InternalCodeDao;
+import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.dao.UserBasicInfoDao;
+import com.yufeng.entity.InternalCode;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.CheckMethod;
+import com.yufeng.util.InternalCodeGenerator;
+import com.yufeng.util.ResultMap;
 
 import java.text.ParseException;
 import java.util.HashMap;
@@ -18,14 +23,63 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
 
     @Autowired
     private UserBasicInfoDao userBasicInfoDao;
+    
+    
+    @Autowired
+    private RegisterAccountDao registerAccountDao;
+    
+    @Autowired
+    private InternalCodeDao internalCodeDao;
+    
 
 	public UserBasicInfo getUserBasicInfoByInternalCode(String internalCode) {
 		return userBasicInfoDao.getUserBasicInfoByInternalCode(internalCode);
 	}
 
-	public int insertUserBasicInfo(UserBasicInfo userBasicInfo) {
+	public Map<String,String> insertUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException {
 		
-		return userBasicInfoDao.insertUserBasicInfo(userBasicInfo);
+		
+		ResultMap resultMap=new ResultMap();
+		
+		int count =userBasicInfoDao.isExistedUserBasicInfo(userBasicInfo.getIdType(), userBasicInfo.getIdNo());
+    	
+    	if(count>0){
+    		
+    		return resultMap.getExistIDErrorMap();
+    		
+    	}else{
+
+    		    Map<String,String> errorMap = new HashMap<String,String>();
+    		    
+    		    errorMap = checkUserBasicInfo(userBasicInfo);
+    		
+    		    if(errorMap.isEmpty()){
+    		    	
+    		    	//生成内码
+    		    	InternalCode internalCode = new InternalCode();
+    		    	internalCode.setInternalCode(InternalCodeGenerator.getCode(Integer.parseInt(userBasicInfo.getIdType()),userBasicInfo.getIdNo()));
+    		    	//在内码表插入一条数据
+    		    	internalCodeDao.insertInternalCode(internalCode);
+    		    	
+    		    	//在客户基本信息表中插入一条数据
+    		    	userBasicInfo.setInternalCode(internalCode.getInternalCode());
+    		    	int result = userBasicInfoDao.insertUserBasicInfo(userBasicInfo);
+
+    		    	//生成内码更新至用户注册表中
+    		    	int result2 = registerAccountDao.updateRegisterAccountInternalCodeByPhoneNumber(userBasicInfo.getCellNo(), userBasicInfo.getInternalCode());
+    		    	  	
+        	        if (result==0 && result2==0) {
+        	            return resultMap.getErrorMap();
+        	        }else {
+        	            return resultMap.getSuccessMap();
+        	        }
+    		    }else{
+    		    	
+    		    	return errorMap;
+    		    	
+    		    }
+    	}
+		
 	}
 
 	public int updateUserBasicInfo(UserBasicInfo userBasicInfo) {

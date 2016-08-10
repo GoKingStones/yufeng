@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user_basic_info;
 CREATE TABLE user_basic_info
 
 (
-    internal_code VARCHAR(20) NOT NULL COMMENT '内码',
+    internal_code VARCHAR(100) NOT NULL COMMENT '内码',
     name VARCHAR(50) NOT NULL COMMENT '姓名',
     id_type VARCHAR(2) NOT NULL COMMENT '证件类型',
     id_no VARCHAR(50) NOT NULL COMMENT '证件号码',
@@ -21,13 +21,6 @@ CREATE TABLE user_basic_info
     mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间',
     
     PRIMARY KEY (id_type,id_no),
-    foreign key(internal_code) references interal_code_table(interal_code)
+    foreign key(internal_code) references internal_code_table(internal_code)
     
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户基本表';
-
-
-
-
-
-
-

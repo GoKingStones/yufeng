@@ -27,6 +27,7 @@ public class UserBasicInfo implements Serializable{
     private String idcardBackImgUrl;//身份证背面照片地址
     private String weixinNo;//微信号
     private String qqNo;//QQ号
+    private String weiboNo;//微博号码
     private String address;//现居住地址
     private Date createTime;//创建时间
     private Date modTime;//修改时间
@@ -346,6 +347,26 @@ public class UserBasicInfo implements Serializable{
 	public void setModTime(Date modTime) {
 		this.modTime = modTime;
 	}
+
+
+
+
+
+	public String getWeiboNo() {
+		return weiboNo;
+	}
+
+
+
+
+
+
+
+	public void setWeiboNo(String weiboNo) {
+		this.weiboNo = weiboNo;
+	}
+
+
 
 
 
