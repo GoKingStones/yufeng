@@ -12,7 +12,7 @@ public interface UserBasicInfoService {
 
 	boolean isExistedUserBasicInfo(String idType,String idNo);
 	UserBasicInfo getUserBasicInfoByInternalCode(String internalCode);
-    int insertUserBasicInfo(UserBasicInfo userBasicInfo);
+	Map<String,String> insertUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException ;
     int updateUserBasicInfo(UserBasicInfo userBasicInfo);
     Map<String,String> checkUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException;
     boolean isExistedUserBasicInfoForUpdate(String idType,String idNo,String internalCode);
