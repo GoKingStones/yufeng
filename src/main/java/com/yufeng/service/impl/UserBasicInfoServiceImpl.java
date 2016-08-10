@@ -66,7 +66,7 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     		    	int result = userBasicInfoDao.insertUserBasicInfo(userBasicInfo);
 
     		    	//生成内码更新至用户注册表中
-    		    	int result2 = registerAccountDao.updateRegisterAccountInternalCodeByPhoneNumber(userBasicInfo.getCellNo(), userBasicInfo.getInternalCode());
+    		    	int result2 = 2;//registerAccountDao.updateRegisterAccountInternalCodeByPhoneNumber(userBasicInfo.getCellNo(), userBasicInfo.getInternalCode());
     		    	  	
         	        if (result==0 && result2==0) {
         	            return resultMap.getErrorMap();

@@ -16,4 +16,5 @@ public interface RegisterAccountDao {
     int insertRegisterAccount(RegisterAccount registerAccount);
     int updateRegisterAccount(RegisterAccount registerAccount);
     int deleteRegisterAccount(int registerAccountId);
+    int updateRegsiterAccountInternalCode(@Param("internalCode") String internalCode,@Param("registerAccountId")int registerAccountId,@Param("phoneNumber")String phoneNumber);
 }

@@ -16,24 +16,24 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
 
-    <!--<mvc:annotation-driven></mvc:annotation-driven>-->
+    <mvc:annotation-driven></mvc:annotation-driven>
 
-    <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="com.yufeng.authorization.resolvers.CurrentUserMethodArgumentResolver" />
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:argument-resolvers>-->
+            <!--<bean class="com.yufeng.authorization.resolvers.CurrentUserMethodArgumentResolver" />-->
+        <!--</mvc:argument-resolvers>-->
+    <!--</mvc:annotation-driven>-->
 
 
-    <mvc:interceptors>
-        <!-- session超时 -->
-        <mvc:interceptor>
-            <mvc:mapping path="/*/*"/>
-            <bean class="com.yufeng.authorization.interceptor.AuthorizationInterceptor">
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash; session超时 &ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*/*"/>-->
+            <!--<bean class="com.yufeng.authorization.interceptor.AuthorizationInterceptor">-->
 
-            </bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+            <!--</bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
         <!--<property name="interceptors">-->

@@ -35,7 +35,7 @@ public class CalculateCreditLineTest {
     	RegisterAccount registerAccount = new RegisterAccount();
     	
     	registerAccount.setAccountFlag("0");
-    	registerAccount.setName("fishyu");
+    	registerAccount.setAccountName("fishyu");
     	registerAccount.setPassword("123456");
     	registerAccount.setPhoneNumber("18601923137");
     	registerAccount.setSource("mall");

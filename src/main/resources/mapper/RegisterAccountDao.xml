@@ -40,6 +40,18 @@
 
     </insert>
 
+    <update id="updateRegsiterAccountInternalCode">
+
+        UPDATE register_account_table
+        SET
+        internal_code=#{internalCode}
+        WHERE
+        register_account_id=#{registerAccountId}
+        AND
+        phone_number=#{phoneNumber}
+
+    </update>
+
     <update id="updateRegisterAccount" parameterType="String">
 
         UPDATE register_account_table

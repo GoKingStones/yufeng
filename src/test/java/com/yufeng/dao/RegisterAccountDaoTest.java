@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:spring/*.xml"})
 public class RegisterAccountDaoTest {
 
     @Resource
@@ -56,5 +56,36 @@ public class RegisterAccountDaoTest {
     @Test
     public void testDeleteRegisterAccount() throws Exception {
 
+    }
+
+
+    @Test
+    public void testGetRegisterAccountById() throws Exception {
+
+    }
+
+    @Test
+    public void testGetRegisterAccountByPhoneNumber() throws Exception {
+
+    }
+
+    @Test
+    public void testIsExistedRegisterAccount() throws Exception {
+
+    }
+
+    @Test
+    public void testIsExistedRegisterAccountByPhoneNumber() throws Exception {
+
+    }
+
+
+    @Test
+    public void testUpdateRegsiterAccountInternalCode() throws Exception {
+
+        int x=registerAccountDao.updateRegsiterAccountInternalCode("xxx",1,"1822323232");
+        System.out.println(x);
+        RegisterAccount registerAccount=registerAccountDao.getRegisterAccountByPhoneNumber("1822323232");
+        System.out.println(registerAccount.getInternalCode());
     }
 }

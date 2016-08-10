@@ -10,6 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import sun.jvm.hotspot.opto.MachSafePointNode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -22,6 +26,18 @@ public class RegisterAccountControllerTest {
 
     @Test
     public void testIsExistedRegisterAccount() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String,String> map=new HashMap<String,String>();
+        String accountName="ROOT";
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/registerAccount/isExistedRegisterAccount",
+                ResultModel.class,accountName);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
 
     }
 

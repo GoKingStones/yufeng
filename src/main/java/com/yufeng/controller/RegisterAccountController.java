@@ -16,11 +16,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.Result;
 import java.util.Map;
 
 
 /**
  * Created by kingstones on 16/7/16.
+ * 用户信息controller层
  */
 @RestController
 @RequestMapping("registerAccount")
@@ -32,34 +34,35 @@ public class RegisterAccountController {
     @Autowired
     private TokenModelService tokenModelService;
 
-    @RequestMapping(value = "/isExistedRegisterAccount",method = RequestMethod.POST)
-    public ResponseEntity<String> isExistedRegisterAccount(@RequestParam("accoutName") String accoutName) {
+    @RequestMapping(value = "/isExistedRegisterAccount",method = RequestMethod.GET)
+    public ResponseEntity<ResultModel> isExistedRegisterAccount(@RequestParam("accoutName") String accoutName) {
 
         boolean result = registerAccountService.isExistedRegisterAccount(accoutName);
         if(result) {
-            return new ResponseEntity<String>(accoutName,HttpStatus.CONFLICT);
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
         }else {
-            return new ResponseEntity<String>(accoutName,HttpStatus.OK);
+            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }
     }
 
-    @RequestMapping("／isExistedRegisterAccountByPhoneNumber")
-    public ResponseEntity<String> isExistedRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber) {
+    @RequestMapping(value = "／isExistedRegisterAccountByPhoneNumber",method = RequestMethod.GET)
+    public ResponseEntity<ResultModel> isExistedRegisterAccountByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber) {
 
         boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
         if(result) {
-            return new ResponseEntity<String>(phoneNumber,HttpStatus.CONFLICT);
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
         }else {
-            return new ResponseEntity<String>(phoneNumber,HttpStatus.OK);
+            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }
     }
 
 
 
-    @RequestMapping("/insertRegisterAccount")
+    @RequestMapping(value = "/insertRegisterAccount",method = RequestMethod.POST)
     public ResponseEntity<RegisterAccount> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
         registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+
         RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
         if (registerAccount1!=null) {
             return new ResponseEntity<RegisterAccount>(registerAccount1,HttpStatus.OK);
@@ -68,9 +71,20 @@ public class RegisterAccountController {
         }
     }
 
-    @RequestMapping("/updateRegisterAccountPassword")
-    public Map<Object,Object> updateRegisterAccount(@RequestParam("name") String name,String password){
-        return null;
+    @RequestMapping(value = "/updateRegisterAccount",method = RequestMethod.POST)
+    public ResponseEntity<ResultModel> updateRegisterAccount(@RequestBody RegisterAccount registerAccount){
+
+        if(registerAccount.getPassword()!=null){
+            registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+        }
+
+        RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
+        if (registerAccount1!=null) {
+            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
+        }else {
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+        }
+
     }
 
 
