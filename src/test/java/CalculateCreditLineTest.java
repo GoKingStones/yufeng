@@ -82,7 +82,6 @@ public class CalculateCreditLineTest {
 
 
 
-
 //
 //
 //userBasicInfo = userBasicInfoDao.getUserBasicInfoByInternalCode(internalCode);

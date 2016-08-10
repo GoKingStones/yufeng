@@ -128,5 +128,4 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
         if(count !=0) result=true;
         return result;
 	}
-
 }

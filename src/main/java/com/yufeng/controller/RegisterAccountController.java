@@ -84,7 +84,6 @@ public class RegisterAccountController {
         }else {
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
         }
-
     }
 
 

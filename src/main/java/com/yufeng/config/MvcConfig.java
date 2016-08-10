@@ -38,3 +38,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         argumentResolvers.add(currentUserMethodArgumentResolver);
     }
 }
+

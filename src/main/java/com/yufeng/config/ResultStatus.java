@@ -16,6 +16,7 @@ public enum ResultStatus {
     OPERATION_FAILURE(-200,"操作失败"),
     INTERNAL_SERVER_ERROR(-101, "后台异常"),
     USER_NOT_LOGIN(-1003, "用户未登录");
+	
 
 
     /**

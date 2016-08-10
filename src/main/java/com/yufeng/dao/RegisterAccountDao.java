@@ -18,3 +18,4 @@ public interface RegisterAccountDao {
     int deleteRegisterAccount(int registerAccountId);
     int updateRegsiterAccountInternalCode(@Param("internalCode") String internalCode,@Param("registerAccountId")int registerAccountId,@Param("phoneNumber")String phoneNumber);
 }
+

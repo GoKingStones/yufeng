@@ -46,3 +46,4 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
         throw new MissingServletRequestPartException(Constants.CURRENT_USER_ID);
     }
 }
+
