@@ -129,5 +129,4 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
         return result;
 	}
 
-	
 }
