@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.RegisterAccountDao">
 
-    <select id="isExistedRegisterAccount" parameterType="String">
+    <select id="isExistedRegisterAccount" parameterType="String" resultType="int">
 
         SELECT  COUNT(*) from register_account_table WHERE account_name=#{accoutName}
 
     </select>
 
-    <select id="isExistedRegisterAccountByPhoneNumber" parameterType="String">
+    <select id="isExistedRegisterAccountByPhoneNumber" parameterType="String" resultType="int">
         SELECT COUNT(*) FROM register_account_table WHERE phone_number=#{phoneNumber}
 
     </select>
@@ -40,13 +40,29 @@
 
     </insert>
 
-    <update id="updateRegisterAccount" parameterType="String">
+    <update id="updateRegsiterAccountInternalCode">
 
         UPDATE register_account_table
         SET
+        internal_code=#{internalCode}
+        WHERE
+        register_account_id=#{registerAccountId}
+        AND
+        phone_number=#{phoneNumber}
+
+    </update>
+
+    <update id="updateRegisterAccount">
+
+        UPDATE register_account_table
+        <trim prefix="set" suffixOverrides=",">
         <if test="accountName!=null">
             account_name=#{accountName},
         </if>
+        <if test="internalCode!=null">
+            internal_code=#{internalCode},
+        </if>
+
         <if test="password!=null">
             password=#{password},
         </if>
@@ -62,8 +78,9 @@
         <if test="source!=null">
             source=#{source},
         </if>
+        </trim>
 
-        WHERE register_account_id=#{registerAccountId}
+        WHERE register_account_table.register_account_id=#{registerAccountId}
 
     </update>
 

@@ -34,6 +34,8 @@ public class ResultModel {
         return content;
     }
 
+    public ResultModel() {};
+
     public ResultModel(int code, String message) {
         this.code = code;
         this.message = message;

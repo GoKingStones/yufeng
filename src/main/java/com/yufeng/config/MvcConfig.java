@@ -25,11 +25,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        System.out.println("****************");
+        System.out.println(authorizationInterceptor);
         registry.addInterceptor(authorizationInterceptor);
     }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+
+        System.out.println("****************");
+        System.out.println(currentUserMethodArgumentResolver);
         argumentResolvers.add(currentUserMethodArgumentResolver);
     }
 }
