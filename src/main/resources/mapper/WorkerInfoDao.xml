@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.WorkerInfoDao">
+
+    <select id="getWorkerInfoByOrgId" parameterType="String" resultType="WorkerInfo">
+
+        SELECT * from worker_info_table WHERE org_id=#{orgId}
+
+    </select>
+
+    <select id="getWorkerInfoByWorkerName" parameterType="String" resultType="WorkerInfo">
+
+        SELECT * from worker_info_table WHERE worker_name=#{workerName}
+
+    </select>
+
+    <select id="getWorkerInfoByPhoneNumber" parameterType="String" resultType="WorkerInfo">
+
+        SELECT * from worker_info_table WHERE phone_number=#{phoneNumber}
+
+    </select>
+    <!--  -->
+    <insert id="insertWorkerInfo">
+
+
+        INSERT ignore INTO worker_info_table(password,worker_name,id_type,id_numer,org_id,phone_number,work_phone,
+        email,weixin_no,category,worker_position,position_level,creator,worker_status) VALUES (#{password},#{workerName},
+        #{idType},#{idNumber},#{orgId},#{phoneNumber},#{workPhone},#{email},#{weixinNo},
+        #{category},#{workerPosition},#{positionLevel},#{creator},#{workerStatus})
+
+    </insert>
+
+
+    <update id="updateWorkerInfo" parameterType="int">
+        UPDATE worker_info_table SET
+
+        <if test="workerId!=null">
+            worker_id=#{workerId},
+        </if>
+        <if test="password!=null">
+            password=#{password},
+        </if>
+        <if test="workerName!=null">
+            worker_name=#{workerName}
+        </if>
+        <if test="idType!=null">
+            id_type = #{idType}
+        </if>
+        <if test="idNumber!=null">
+            id_number = #{idNumber}
+        </if>
+        <if test="orgId!=null">
+            org_id = #{orgId}
+        </if>
+        <if test="phoneNumber!=null">
+            phone_number=#{phoneNumber}
+        </if>
+        <if test="workPhone!=null">
+            work_phone=#{workPhone}
+        </if>
+        <if test="email!=null">
+            email=#{email}
+        </if>
+        <if test="weixinNo!=null">
+            weixin_no=#{weixinNo}
+        </if>
+        <if test="category!=null">
+            category=#{category}
+        </if>
+        <if test="workerPosition!=null">
+            worker_position=#{workerPosition}
+        </if>
+        <if test="positionLevel!=null">
+            position_level=#{positionLevel}
+        </if>
+        <if test="creator!=null">
+            creator=#{creator}
+        </if>
+        <if test="workerStatus!=null">
+            worker_status=#{workerStatus}
+        </if>
+
+        WHERE worker_id=#{workerId}
+
+    </update>
+
+
+</mapper>

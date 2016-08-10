@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
+	<bean id="tokenModelService" class="com.yufeng.service.impl.TokenModelServiceImpl" autowire="byName"></bean>
 	<bean id="registerAccountService" class="com.yufeng.service.impl.RegisterAccountServiceImpl"    autowire="byName"/>
 	<bean id="enterpriseBusinessBasicInfoService" class="com.yufeng.service.impl.EnterpriseBusinessBasicInfoServiceImpl"    autowire="byName"/>
 	<bean id="individualBusinessBasicInfoService" class="com.yufeng.service.impl.IndividualBusinessBasicInfoServiceImpl"    autowire="byName"/>
@@ -28,14 +29,12 @@
 	<bean id="fastConsumerLoanOrderServiceImpl" class="com.yufeng.service.impl.FastConsumerLoanOrderServiceImpl"    autowire="byName"/>
 	
 	<bean id="GuaranteeRelationshipServiceImpl" class="com.yufeng.service.impl.GuaranteeRelationshipServiceImpl"    autowire="byName"/>
-<<<<<<< HEAD
 
 	<bean id="userInfoService" class="com.yufeng.service.impl.UserInfoServiceimpl"    autowire="byName"/>
 
+	<bean id="workerInfoService" class="com.yufeng.service.impl.WorkerInfoServiceImpl" autowire="byName"></bean>
 
-
-
-=======
->>>>>>> branch 'master' of https://github.com/GoKingStones/yufeng.git
-
+	<bean id="interviewServiceEntityService" class="com.yufeng.service.impl.InterviewServiceEntityServiceImpl" autowire="byName"></bean>
+	<bean id="customServiceEntityService" class="com.yufeng.service.impl.CustomServiceEntityServiceImpl" autowire="byName"></bean>
+	<bean id="urgeRepaymentServiceEntityService" class="com.yufeng.service.impl.UrgeRepaymentServiceEntityServiceImpl" autowire="byName"></bean>
 </beans>

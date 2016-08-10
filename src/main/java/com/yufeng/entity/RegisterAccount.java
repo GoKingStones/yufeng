@@ -5,12 +5,15 @@ import java.util.Date;
 
 /**
  * Created by kingstones on 16/7/16.
+ * 用户注册账号实体
  *
  */
 public class RegisterAccount implements Serializable{
 
+
+    private int registerAccountId;
     private String internal_code;
-    private String name;
+    private String accountName;
     private String password;
     private String phoneNumber;
     //注册来源
@@ -18,6 +21,14 @@ public class RegisterAccount implements Serializable{
     //账户状态
     private String accountFlag;
     private Date createTime;
+
+    public int getRegisterAccountId() {
+        return registerAccountId;
+    }
+
+    public void setRegisterAccountId(int registerAccountId) {
+        this.registerAccountId = registerAccountId;
+    }
 
     public String getInternal_code() {
         return internal_code;
@@ -27,12 +38,12 @@ public class RegisterAccount implements Serializable{
         this.internal_code = internal_code;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getPassword() {
@@ -80,7 +91,7 @@ public class RegisterAccount implements Serializable{
 
     @Override
     public String toString(){
-        return name+","+password+","+phoneNumber+","
+        return accountName+","+password+","+phoneNumber+","
                 +source+","+accountFlag+","+createTime;
     }
 }

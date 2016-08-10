@@ -8,14 +8,12 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface RegisterAccountService {
 
-    boolean isExistedRegisterAccount(String name);
+    boolean isExistedRegisterAccount(String accountName);
     boolean isExistedRegisterAccountByPhoneNumber(String phoneNumber);
-    RegisterAccount getRegisterAccount(String name);
     RegisterAccount getRegisterAccountByPhoneNumber(String phoneNumber);
-    int insertRegisterAccount(RegisterAccount registerAccount);
-    int updateRegisterAccount(RegisterAccount registerAccount);
-    int updateRegisterAccountPasswordByPhoneNumber(@Param("phoneNumber")String phoneNumber,@Param("password")String password);
-    int deleteRegisterAccount(RegisterAccount registerAccount);
-    int updateRegisterAccountPassword(String name,String password);
+    RegisterAccount getRegisterAccountByName(String accountName);
+    RegisterAccount insertRegisterAccount(RegisterAccount registerAccount);
+    RegisterAccount updateRegisterAccount(RegisterAccount registerAccount);
+    boolean deleteRegisterAccount(int registerAccountId);
 
 }

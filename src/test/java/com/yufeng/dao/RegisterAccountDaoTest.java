@@ -33,7 +33,7 @@ public class RegisterAccountDaoTest {
 
         RegisterAccount registerAccount=new RegisterAccount();
         registerAccount.setAccountFlag("a");
-        registerAccount.setName("wangleilei");
+        registerAccount.setAccountName("wangleilei");
         registerAccount.setPassword("root");
         registerAccount.setPhoneNumber("22222222");
         registerAccount.setSource("a");
@@ -45,7 +45,7 @@ public class RegisterAccountDaoTest {
 
         RegisterAccount registerAccount=new RegisterAccount();
         registerAccount.setAccountFlag("a");
-        registerAccount.setName("wangleilei");
+        registerAccount.setAccountName("wangleilei");
         registerAccount.setPassword("root");
         registerAccount.setPhoneNumber("33333333");
         registerAccount.setSource("a");

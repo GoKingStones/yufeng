@@ -2,6 +2,7 @@ package com.yufeng.controller;
 
 import com.yufeng.dao.RegisterAccountDao;
 import com.yufeng.dao.UserBasicInfoDao;
+import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.InternalCodeGenerator;
@@ -67,7 +68,9 @@ public class UserBasicInfoController {
     		    	int result = userBasicInfoService.insertUserBasicInfo(userBasicInfo);
 
     		    	//生成内码添加至用户注册表中
-    		    	int result2 = registerAccountDao.updateRegisterAccountInternalCode(userBasicInfo.getName(), userBasicInfo.getInternalCode());
+					RegisterAccount registerAccount=registerAccountDao.getRegisterAccount(userBasicInfo.getName());
+    		    	registerAccount.setInternal_code(userBasicInfo.getInternalCode());
+					int result2 = registerAccountDao.updateRegisterAccount(registerAccount);
     		    	  	
         	        if (result==0 && result2==0) {
         	            return resultMap.getErrorMap();

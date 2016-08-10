@@ -10,7 +10,7 @@ public class ReadCSV {
 
     public static void main(String[] args) throws IOException {
 
-        tuition(args);
+        college(args);
     }
 
 
@@ -18,7 +18,7 @@ public class ReadCSV {
 
     public static void college(String[] args) throws IOException {
 
-        FileInputStream inputStream=new FileInputStream(new File("/Users/kingstones/Desktop/学校表.csv"));
+        FileInputStream inputStream=new FileInputStream(new File("/Users/kingstones/Desktop/college.csv"));
         InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
         BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
         String line="";

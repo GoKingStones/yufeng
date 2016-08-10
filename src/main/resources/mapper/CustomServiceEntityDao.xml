@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.CustomServiceEntityDao">
+
+    <select id="getCustomServiceEntityByWorkerId" parameterType="String" resultType="CustomServiceEntity">
+
+        SELECT * from custom_service_table WHERE worker_id=#{workerId}
+
+    </select>
+
+    <select id="getCustomServiceEntityByInternalCode" parameterType="String" resultType="CustomServiceEntity">
+
+        SELECT * from custom_service_table WHERE internal_code=#{internalCode}
+
+    </select>
+
+
+    <insert id="insertCustomServiceEntity" parameterType="CustomServiceEntity">
+
+        INSERT ignore INTO custom_service_table(worker_id,internal_code,service_time,service_mode,
+        service_type,service_level,detail)
+        VALUES (#{workId},#{internalId},#{serviceTime},#{serviceMode},
+        #{serviceType},#{serviceLevel},#{detail})
+    </insert>
+
+
+    <update id="updateCustomServiceEntity" parameterType="int">
+        UPDATE custom_service_table SET
+
+        <if test="workerId!=null">
+            worker_id=#{workerId},
+        </if>
+        <if test="internalCode!=null">
+            internal_code=#{internalCode},
+        </if>
+        <if test="serviceTime!=null">
+            service_time=#{serviceTime}
+        </if>
+        <if test="interviewMode!=null">
+            service_mode = #{interviewMode}
+        </if>
+        <if test="interviewType!=null">
+            service_type = #{interviewType}
+        </if>
+        <if test="serviceLevel!=null">
+            service_level = #{serviceLevel}
+        </if>
+        <if test="detail!=null">
+            detail=#{detail}
+        </if>
+
+        WHERE id=#{id}
+
+    </update>
+
+
+</mapper>
