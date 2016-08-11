@@ -61,6 +61,7 @@ public class RegisterAccountController {
     @RequestMapping(value = "/insertRegisterAccount",method = RequestMethod.POST)
     public ResponseEntity<ResultModel> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
+
         registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
 
         RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
@@ -72,19 +73,20 @@ public class RegisterAccountController {
     }
 
     @RequestMapping(value = "/updateRegisterAccount",method = RequestMethod.POST)
-    public ResponseEntity<ResultModel> updateRegisterAccount(@RequestBody RegisterAccount registerAccount){
+    public ResponseEntity<ResultModel> updateRegisterAccount(@RequestBody RegisterAccount registerAccount) {
 
-        if(registerAccount.getPassword()!=null){
+        if (registerAccount.getPassword() != null) {
             registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
         }
 
         RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
-        if (registerAccount1!=null) {
-            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else {
-            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+        if (registerAccount1 != null) {
+            return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE), HttpStatus.OK);
         }
 
+    }
 
 
     @RequestMapping(value="/loginByAccoutName",method = RequestMethod.POST)

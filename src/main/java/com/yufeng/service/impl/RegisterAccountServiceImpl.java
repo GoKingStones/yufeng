@@ -49,7 +49,7 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
         RegisterAccount registerAccount1=null;
 
         if(result==1) {
-            if(registerAccount.getAccountName()!="") {
+            if(registerAccount.getAccountName()!=null) {
                 registerAccount1=registerAccountDao.getRegisterAccount(registerAccount.getAccountName());
 
             }else {

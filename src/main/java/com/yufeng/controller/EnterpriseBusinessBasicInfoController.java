@@ -17,7 +17,7 @@ import java.util.Map;
   */
 
 @RestController
-@RequestMapping("/EnterpriseBusinessBasicInfo")
+@RequestMapping("EnterpriseBusinessBasicInfo")
 public class EnterpriseBusinessBasicInfoController {
 	
 	@Autowired
