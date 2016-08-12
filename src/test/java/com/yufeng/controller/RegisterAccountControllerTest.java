@@ -1,6 +1,5 @@
 package com.yufeng.controller;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import com.yufeng.config.Constants;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.util.ResultModel;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import sun.jvm.hotspot.opto.MachSafePointNode;
 
 import java.util.HashMap;
 import java.util.Map;
