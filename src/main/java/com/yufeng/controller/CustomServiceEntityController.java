@@ -13,7 +13,7 @@ import java.util.Map;
  * @author kingstones
   */
 @RestController
-@RequestMapping("/customService")
+@RequestMapping("customService")
 public class CustomServiceEntityController {
 	
 	@Autowired

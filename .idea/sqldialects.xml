@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/sql/token.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/个体商户基本信息表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/企业商户基本信息表.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/sql/信用账户表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/催收服务表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/内码表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/城市表.sql" dialect="MySQL" />

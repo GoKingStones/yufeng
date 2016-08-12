@@ -22,6 +22,18 @@ public class ResultModel {
      */
     private Object content;
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setContent(Object content) {
+        this.content = content;
+    }
+
     public int getCode() {
         return code;
     }
@@ -34,7 +46,9 @@ public class ResultModel {
         return content;
     }
 
-    public ResultModel() {};
+    public ResultModel() {
+
+    }
 
     public ResultModel(int code, String message) {
         this.code = code;
