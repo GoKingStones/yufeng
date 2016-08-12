@@ -22,7 +22,6 @@ public class CreditAccountInfoServiceImpl implements CreditAccountInfoService{
     @Autowired
     private CreditAccountInfoDao creditAccountInfoDao;
 
-	@Override
 	public CreditAccountInfo getCreditAccountInfo(String internalCode) {
 		
 		CreditAccountInfo creditAccountInfo = new CreditAccountInfo();
@@ -32,7 +31,7 @@ public class CreditAccountInfoServiceImpl implements CreditAccountInfoService{
 		return creditAccountInfo;
 	}
 
-	@Override
+
 	public boolean isExistedCreditAccountInfo(String internalCode) {
 		
 		
@@ -49,7 +48,7 @@ public class CreditAccountInfoServiceImpl implements CreditAccountInfoService{
 		return result;
 	}
 
-	@Override
+
 	public CreditAccountInfo insertCreditAccountInfo(CreditAccountInfo creditAccountInfo) {
 		
 		int result =  creditAccountInfoDao.insertCreditAccountInfo(creditAccountInfo);
@@ -65,7 +64,7 @@ public class CreditAccountInfoServiceImpl implements CreditAccountInfoService{
 	        return creditAccountInfoResult;
 	}
 
-	@Override
+
 	public CreditAccountInfo updateCreditAccountInfo(CreditAccountInfo creditAccountInfo) {
 		
 		int result = creditAccountInfoDao.updateCreditAccountInfo(creditAccountInfo);
