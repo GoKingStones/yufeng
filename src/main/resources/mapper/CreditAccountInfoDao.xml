@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.CreditAccountInfoDao">
+
+
+	<select id="isExistedCreditAccountInfo" parameterType="String"  resultType="Integer">
+
+        SELECT  COUNT(*) from credit_account_info WHERE internal_code=#{0}
+
+    </select>
+
+
+
+    <select id="getCreditAccountInfo" parameterType="String" resultType="CreditAccountInfo" >
+
+            SELECT * from credit_account_info 
+                WHERE internal_code = #{internalCode}
+
+    </select>
+
+    <insert id="insertCreditAccountInfo">
+
+        INSERT INTO credit_account_info(internal_code,open_date,account_type,initial_cash_quota,initial_guarantee_quota,
+        current_cash_quota,current_guarantee_quota,available_cash_quota,available_guarantee_quota,account_status)
+        VALUES (#{internalCode},#{openDate},#{accountType},#{initialCashQuota},#{initialGuaranteeQuota},
+        #{currentCashQuota},#{currentGuaranteeQuota},#{availableCashQuota},#{availableGuaranteeQuota},#{accountStatus})
+
+    </insert>
+
+    <update id="updateCreditAccountInfo" parameterType="String">
+
+        UPDATE credit_account_info
+        <trim prefix="set" suffixOverrides=",">
+        
+        <if test="accountType!=null">
+            account_type=#{accountType},
+        </if>
+        <if test="initialCashQuota!=null">
+            initial_cash_quota=#{initialCashQuota},
+        </if>
+        <if test="initialGuaranteeQuota!=null">
+            initial_guarantee_quota=#{initialGuaranteeQuota},
+        </if>
+        <if test="currentCashQuota!=null">
+            current_cash_quota=#{currentCashQuota},
+        </if>
+        <if test="currentGuaranteeQuota!=null">
+            current_guarantee_quota=#{currentGuaranteeQuota},
+        </if>
+        <if test="availableCashQuota!=null">
+            available_cash_quota=#{availableCashQuota},
+        </if>
+        <if test="availableGuaranteeQuota!=null">
+            available_guarantee_quota=#{availableGuaranteeQuota},
+        </if>
+        <if test="accountStatus!=null">
+            account_status=#{accountStatus},
+        </if>
+        
+        </trim>
+
+        WHERE credit_account_info.internal_code=#{internalCode}
+        
+        
+    </update>
+
+</mapper>
