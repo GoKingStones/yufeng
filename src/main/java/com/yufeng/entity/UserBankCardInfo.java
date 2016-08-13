@@ -19,7 +19,7 @@ public class UserBankCardInfo implements Serializable{
 	//到期时间
 	private Date expireTime;
 	//是否为转入账户
-	private boolean transferAccount;
+	private Boolean transferAccount;
 	//银行卡状态
 	private String bankCardState;
 	//创建时间
@@ -27,9 +27,10 @@ public class UserBankCardInfo implements Serializable{
 	//更新时间
 	private Date updateTime;
 	//是否有效
-	private boolean info_status;
+	private Boolean info_status;
 	//删除操作者
 	private String delete_operator;
+	
 	
 	public String getId() {
 		return id;
@@ -61,10 +62,10 @@ public class UserBankCardInfo implements Serializable{
 	public void setExpireTime(Date expireTime) {
 		this.expireTime = expireTime;
 	}
-	public boolean isTransferAccount() {
+	public Boolean getTransferAccount() {
 		return transferAccount;
 	}
-	public void setTransferAccount(boolean transferAccount) {
+	public void setTransferAccount(Boolean transferAccount) {
 		this.transferAccount = transferAccount;
 	}
 	public String getBankCardState() {
@@ -85,27 +86,18 @@ public class UserBankCardInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
+	public Boolean getInfo_status() {
+		return info_status;
+	}
+	public void setInfo_status(Boolean info_status) {
+		this.info_status = info_status;
+	}
 	public String getDelete_operator() {
 		return delete_operator;
 	}
 	public void setDelete_operator(String delete_operator) {
 		this.delete_operator = delete_operator;
 	}
-	public boolean isInfo_status() {
-		return info_status;
-	}
-	public void setInfo_status(boolean info_status) {
-		this.info_status = info_status;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

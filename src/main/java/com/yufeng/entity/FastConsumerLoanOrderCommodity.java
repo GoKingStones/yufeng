@@ -52,7 +52,7 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
 	//折扣价
 	private BigDecimal discount_price;
 	//是否匿名
-	private boolean anonymous;
+	private Boolean anonymous;
 	//创建时间
 	private Date found_time;
 	//修改时间
@@ -185,10 +185,10 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
 	public void setDiscount_price(BigDecimal discount_price) {
 		this.discount_price = discount_price;
 	}
-	public boolean isAnonymous() {
+	public Boolean getAnonymous() {
 		return anonymous;
 	}
-	public void setAnonymous(boolean anonymous) {
+	public void setAnonymous(Boolean anonymous) {
 		this.anonymous = anonymous;
 	}
 	public Date getFound_time() {
@@ -203,6 +203,7 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
+	
 	
 	
 	

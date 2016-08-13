@@ -29,7 +29,7 @@ public class UserFinancialAccountInfo implements Serializable{
 	//更新时间
 	private Date updateTime;
 	//是否有效
-	private boolean info_status;
+	private Boolean info_status;
 	//删除操作者
 	private String delete_operator;
 	
@@ -94,10 +94,10 @@ public class UserFinancialAccountInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	public boolean isInfo_status() {
+	public Boolean getInfo_status() {
 		return info_status;
 	}
-	public void setInfo_status(boolean info_status) {
+	public void setInfo_status(Boolean info_status) {
 		this.info_status = info_status;
 	}
 	public String getDelete_operator() {
@@ -109,8 +109,4 @@ public class UserFinancialAccountInfo implements Serializable{
 	
 	
 	
-	
-		
-	
-
 }

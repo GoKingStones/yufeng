@@ -77,7 +77,15 @@
     
     <delete id="deleteUserFinancialAccount">
 <!--         DELETE FROM USER_FINANCIAL_ACCOUNT_INFO_TABLE WHERE ID = #{ID} -->
-        UPDATE user_financial_account_info_table SET info_status=0 WHERE id = #{id}
+        UPDATE user_financial_account_info_table
+        <set>  
+        info_status=0,
+        <if test="delete_operator !=null">  
+            delete_operator = #{delete_operator},  
+        </if>
+        </set>
+        
+        WHERE id = #{id}
     </delete>
 
 

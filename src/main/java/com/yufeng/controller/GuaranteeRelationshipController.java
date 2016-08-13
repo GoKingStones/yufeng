@@ -3,6 +3,7 @@ package com.yufeng.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +13,7 @@ import com.yufeng.service.GuaranteeRelationshipService;
 /**
  * 担保关系控制层
  * @author dh
-  */
+ */
 @RestController
 @RequestMapping("/GuaranteeRelationship")
 public class GuaranteeRelationshipController {
@@ -40,7 +41,7 @@ public class GuaranteeRelationshipController {
 	
 	//创建担保关系
 	@RequestMapping("/foundGuaranteeRelationship")
-	public String foundGuaranteeRelationship(GuaranteeRelationshipInfo info){
+	public String foundGuaranteeRelationship(@RequestBody GuaranteeRelationshipInfo info){
 		return guaranteeRelationshipService.foundGuaranteeRelationship(info);
 	}
 	
@@ -52,7 +53,7 @@ public class GuaranteeRelationshipController {
 	
 	//修改担保关系
 	@RequestMapping("/updateGuaranteeRelationship")
-	public String updateGuaranteeRelationship(GuaranteeRelationshipInfo info){
+	public String updateGuaranteeRelationship(@RequestBody GuaranteeRelationshipInfo info){
 		return guaranteeRelationshipService.updateGuaranteeRelationship(info);
 	}
 

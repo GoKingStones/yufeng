@@ -66,8 +66,23 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 		if(info==null){
 			return "0";
 		}
+		UserFamilyHistoryInfo u=new UserFamilyHistoryInfo();
+		u.setCredentialsNumber(info.getCredentialsNumber());
+		u.setCredentialsType(info.getCredentialsType());
+		u.setDelete_operator(userFamilyHistoryInfo.getDelete_operator());//取得操作者
+		u.setFoundTime(info.getFoundTime());
+		u.setGender(info.getGender());
+		u.setHighestEducation(info.getHighestEducation());
+		u.setHighestEducationSchool(info.getHighestEducationSchool());
+		u.setInternal_code(info.getInternal_code());
+		u.setMailbox(info.getMailbox());
+		u.setMailingAddress(info.getMailingAddress());
+		u.setName(info.getName());
+		u.setOrganization(info.getOrganization());
+		u.setPhone(info.getPhone());
+		u.setRelation(info.getRelation());
 		//保存联系人进历史表
-		userFamilyHistoryDao.insertUserFamilyHistory(userFamilyHistoryInfo);
+		userFamilyHistoryDao.insertUserFamilyHistory(u);
 		return userFamilyDao.deleteUserFamily(userFamilyHistoryInfo)+"";
 	}
 

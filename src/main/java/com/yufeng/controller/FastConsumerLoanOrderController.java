@@ -23,21 +23,21 @@ public class FastConsumerLoanOrderController {
 	@Autowired
 	private FastConsumerLoanOrderService fastConsumerLoanOrderService;
 	
-	//查询银行卡信息(code)
+	//查询订单信息(code)
 	@RequestMapping("/getFastConsumerLoanOrder")
 	public Map<String,Object> getFastConsumerLoanOrder(String order_id){
 		return fastConsumerLoanOrderService.getFastConsumerLoanOrder(order_id);
 	   }
 		
-	//新建银行卡信息
+	//新建订单信息
 	@RequestMapping("/insertFastConsumerLoanOrder")
-	public String insertFastConsumerLoanOrder(String json){
+	public String insertFastConsumerLoanOrder(@RequestBody String json){
 		return fastConsumerLoanOrderService.insertFastConsumerLoanOrder(json);
 	}
 		
-	//银行卡信息修改
+	//订单订单修改
 	@RequestMapping("/updateFastConsumerLoanOrder")
-	public String updateFastConsumerLoanOrder(String json){
+	public String updateFastConsumerLoanOrder(@RequestBody String json){
 		return fastConsumerLoanOrderService.updateFastConsumerLoanOrder(json);
 	}
 		

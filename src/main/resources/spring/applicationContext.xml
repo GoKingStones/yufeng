@@ -12,13 +12,13 @@
 	<bean id="enterpriseBusinessBasicInfoService" class="com.yufeng.service.impl.EnterpriseBusinessBasicInfoServiceImpl"    autowire="byName"/>
 	<bean id="individualBusinessBasicInfoService" class="com.yufeng.service.impl.IndividualBusinessBasicInfoServiceImpl"    autowire="byName"/>
 
-	<bean id="bankCardServiceImpl" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
+	<bean id="bankCardService" class="com.yufeng.service.impl.BankCardServiceImpl"    autowire="byName"/>
 	
 	<bean id="userBasicInfoService" class="com.yufeng.service.impl.UserBasicInfoServiceImpl"    autowire="byName"/>
 	
-	<bean id="userFamilyServiceImpl" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>
+	<bean id="userFamilyService" class="com.yufeng.service.impl.UserFamilyServiceImpl"    autowire="byName"/>
 	
-	<bean id="userFinancialAccountServiceImpl" class="com.yufeng.service.impl.UserFinancialAccountServiceImpl"    autowire="byName"/>
+	<bean id="userFinancialAccountService" class="com.yufeng.service.impl.UserFinancialAccountServiceImpl"    autowire="byName"/>
 	
 	<bean id="rewardPunishmentInfoServiceImpl" class="com.yufeng.service.impl.RewardPunishmentInfoServiceImpl"    autowire="byName"/>
 

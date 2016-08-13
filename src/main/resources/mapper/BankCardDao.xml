@@ -37,8 +37,8 @@
 
     <insert id="insertBankCard">
 
-        INSERT ignore INTO bank_card_Info_table(internal_code,bankCardNumber,bankCardType,expireTime,transferAccount,bankCardState,foundTime,updateTime)
-        VALUES (#{internal_code},#{bankCardNumber},#{bankCardType},#{expireTime},#{transferAccount},#{bankCardState},#{foundTime},#{updateTime})
+        INSERT ignore INTO bank_card_Info_table(internal_code,bankCardNumber,bankCardType,expireTime,transferAccount,bankCardState,foundTime,delete_operator)
+        VALUES (#{internal_code},#{bankCardNumber},#{bankCardType},#{expireTime},#{transferAccount},#{bankCardState},#{foundTime},#{delete_operator})
 
     </insert>
 
@@ -74,7 +74,16 @@
     
     <delete id="deleteBankCard">
 <!--         DELETE FROM bank_card_Info_table WHERE id = #{id} -->
-        UPDATE bank_card_Info_table SET info_status=0,delete_operator=#{delete_operator} WHERE id = #{id}
+        UPDATE bank_card_Info_table
+        
+        <set>  
+        info_status=0,
+        <if test="delete_operator !=null">  
+            delete_operator = #{delete_operator},  
+        </if>
+        </set>
+        
+        WHERE id = #{id}
     </delete>
 
 

@@ -34,7 +34,7 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 		//查询商品
 		List<FastConsumerLoanOrderCommodity> consumer_info_list=fastConsumerLoanOrderDao.getFastConsumerLoanOrderCommodityByOrderId(order_info.getId());
 		map.put("loanOrder", order_info);
-		map.put("loanOrderConsumer", consumer_info_list);
+		map.put("loanOrderConsumerList", consumer_info_list);
 		return map;
 	}
 	
@@ -46,8 +46,8 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 			String order_id = UUID.randomUUID().toString();
 			// 获取单个订单与多个商品的json
 			JSONObject obj = JSON.parseObject(json);
-			String order = obj.getString("order");
-			String commodityList = obj.getString("commodityList");
+			String order = obj.getString("loanOrder");
+			String commodityList = obj.getString("loanOrderConsumerList");
 			// 订单
 			FastConsumerLoanOrder loanOrder = JSON.parseObject(order, FastConsumerLoanOrder.class);
 			loanOrder.setId(order_id);
@@ -77,15 +77,16 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 			// 新建分期订单id
 			// 获取单个订单与多个商品的json
 			JSONObject obj = JSON.parseObject(json);
-			String order = obj.getString("order");
-			String commodityList = obj.getString("commodityList");
+			String order = obj.getString("loanOrder");
+			String commodityList = obj.getString("loanOrderConsumerList");
 			// 订单
 			if(order!=null&&(!"".equals(order))){
 				FastConsumerLoanOrder loanOrder = JSON.parseObject(order, FastConsumerLoanOrder.class);
 				loanOrder.setUpdate_time(date);
 				// 修改订单(先查出原值)
-				FastConsumerLoanOrder oldObj=fastConsumerLoanOrderDao.getFastConsumerLoanOrderById(loanOrder.getId());
+				//FastConsumerLoanOrder oldObj=fastConsumerLoanOrderDao.getFastConsumerLoanOrderById(loanOrder.getId());
 				fastConsumerLoanOrderDao.updateFastConsumerLoanOrder(loanOrder);
+				//存入历史
 			}
 			// 商品
 			if(commodityList!=null&&(!"".equals(commodityList))){
