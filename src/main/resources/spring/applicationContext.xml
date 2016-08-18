@@ -37,4 +37,9 @@
 	<bean id="interviewServiceEntityService" class="com.yufeng.service.impl.InterviewServiceEntityServiceImpl" autowire="byName"></bean>
 	<bean id="customServiceEntityService" class="com.yufeng.service.impl.CustomServiceEntityServiceImpl" autowire="byName"></bean>
 	<bean id="urgeRepaymentServiceEntityService" class="com.yufeng.service.impl.UrgeRepaymentServiceEntityServiceImpl" autowire="byName"></bean>
+	
+	<bean id="creditAccountInfoService" class="com.yufeng.service.impl.CreditAccountInfoServiceImpl"    autowire="byName"/>
+
+
+
 </beans>
