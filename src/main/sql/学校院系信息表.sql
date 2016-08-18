@@ -16,7 +16,7 @@ CREATE TABLE college_academy_table
     employment_rate DOUBLE NOT NULL DEFAULT 0 COMMENT '就业率',
     current_flag VARCHAR(2) NOT NULL DEFAULT "" COMMENT '当前状态',
     create_time timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间',
+    mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间'
 
 
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学校表';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学校学院信息表';

@@ -3,7 +3,7 @@ CREATE TABLE reward_punishment_info
 
 (
 	unique_id int unsigned NOT NULL auto_increment COMMENT '信息标识ID',
-    internal_code VARCHAR(20) NOT NULL COMMENT '内码',
+    internal_code VARCHAR(100) NOT NULL COMMENT '内码',
     certificate_no VARCHAR(100) COMMENT '奖惩证书编号',
     info_type VARCHAR(2) NOT NULL COMMENT '奖惩类型',
     describe_info Text NOT NULL COMMENT '描述',

@@ -1,16 +1,8 @@
---数据库初始化脚本
-
---创建数据库
-CREATE DATABASE yufeng;
-
---使用数据库
-
-use yufeng;
-
---创建注册账户表
+--创建金融账户信息表
+DROP TABLE IF EXISTS user_financial_account_info_table;
 CREATE TABLE `user_financial_account_info_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `internal_code` varchar(50) DEFAULT NULL COMMENT '内码',
+  `internal_code` varchar(100) DEFAULT NULL COMMENT '内码',
   `signId` varchar(100) DEFAULT NULL COMMENT '信息标识ID',
   `financialConsumeAccountId` varchar(100) DEFAULT NULL COMMENT '金融消费账户ID',
   `financialConsumeCompany` varchar(100) DEFAULT NULL COMMENT '金融消费公司',
@@ -22,4 +14,4 @@ CREATE TABLE `user_financial_account_info_table` (
   `info_status` tinyint(2) DEFAULT '1' COMMENT '是否有效',
   `delete_operator` varchar(50) DEFAULT NULL COMMENT '删除操作者',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -2,7 +2,7 @@ CREATE TABLE `fast_consumer_loan_order_table` (
   `id` varchar(50) NOT NULL COMMENT 'id',
   `order_id` varchar(50) DEFAULT NULL COMMENT '订单id',
   `order_type` varchar(10) DEFAULT NULL COMMENT '订单类型',
-  `user_internal_code` varchar(50) DEFAULT NULL COMMENT '购买用户内码',
+  `user_internal_code` varchar(100) DEFAULT NULL COMMENT '购买用户内码',
   `order_state` varchar(10) DEFAULT NULL COMMENT '订单状态',
   `invoice_number` varchar(50) DEFAULT NULL COMMENT '发票号码',
   `total_amount` decimal(50,2) DEFAULT NULL COMMENT '总金额',

@@ -1,16 +1,7 @@
---数据库初始化脚本
-
---创建数据库
-CREATE DATABASE yufeng;
-
---使用数据库
-
-use yufeng;
-
---创建注册账户表
+DROP TABLE IF EXISTS user_family_info_table;
 CREATE TABLE `user_family_info_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `internal_code` varchar(255) DEFAULT NULL,
+  `internal_code` varchar(100) DEFAULT NULL,
   `credentialsType` varchar(2) DEFAULT NULL COMMENT '证件类型',
   `credentialsNumber` varchar(50) DEFAULT NULL COMMENT '证件号码',
   `name` varchar(50) DEFAULT NULL COMMENT '姓名',
@@ -25,4 +16,4 @@ CREATE TABLE `user_family_info_table` (
   `foundTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updateTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

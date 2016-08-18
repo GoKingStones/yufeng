@@ -1,7 +1,7 @@
 DROP  TABLE  IF EXISTS individual_business_basic_info_table ;
 
 CREATE TABLE individual_business_basic_info_table(
-    internal_code VARCHAR(20) NOT NULL COMMENT '内码ID',
+    internal_code VARCHAR(100) NOT NULL COMMENT '内码ID',
     shop_name VARCHAR(100) NOT NULL COMMENT '店铺名称',
     shopkeeper_name VARCHAR(100) NOT NULL COMMENT '店主名称',
     shop_addr VARCHAR(100) NOT NULL COMMENT '店铺地址',

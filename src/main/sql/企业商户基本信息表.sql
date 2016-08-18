@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS enterprise_business_basic_info_table;
 CREATE TABLE enterprise_business_basic_info_table(
-    internal_code VARCHAR(20) NOT NULL COMMENT '内码ID',
+    internal_code VARCHAR(100) NOT NULL COMMENT '内码ID',
     business_name VARCHAR(100) NOT NULL COMMENT '商户名称',
     enterprise_name VARCHAR(100) NOT NULL COMMENT '公司名称',
     enterprise_addr VARCHAR(500) NOT NULL COMMENT '公司地址',
