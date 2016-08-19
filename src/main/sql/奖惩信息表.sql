@@ -18,7 +18,7 @@ CREATE TABLE reward_punishment_info
     who_did VARCHAR(100) NOT NULL COMMENT '操作者',
     
     PRIMARY KEY (unique_id),
-    foreign key(internal_code) references interal_code_table(interal_code)
+    foreign key(internal_code) references internal_code_table(internal_code)
     
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='奖惩信息表';
 

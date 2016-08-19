@@ -56,7 +56,7 @@ CREATE TABLE user_basic_info
     idcard_back_img_url VARCHAR(1024) NOT NULL COMMENT '身份证背面照片地址',
 	weixin_no VARCHAR(100) COMMENT '微信号',
     qq_no VARCHAR(100)  COMMENT 'QQ号',
-    weibo_bo VARCHAR(100)  COMMENT '微博号',
+    weibo_no VARCHAR(100)  COMMENT '微博号',
     address VARCHAR(200)  COMMENT '现居住地址',
     create_time timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间',
@@ -374,6 +374,30 @@ CREATE TABLE `guarantee_relationship_info_his_table` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS reward_punishment_info;
+CREATE TABLE reward_punishment_info
+
+(
+	unique_id int unsigned NOT NULL auto_increment COMMENT '信息标识ID',
+    internal_code VARCHAR(100) NOT NULL COMMENT '内码',
+    certificate_no VARCHAR(100) COMMENT '奖惩证书编号',
+    info_type VARCHAR(2) NOT NULL COMMENT '奖惩类型',
+    describe_info Text NOT NULL COMMENT '描述',
+    occurrence_date timestamp NOT NULL COMMENT '发生时间',
+    occurrence_location VARCHAR(100) COMMENT '获得地点',
+    data_source VARCHAR(20) NOT NULL COMMENT '数据来源',
+	certificate_img_url VARCHAR(1024) COMMENT '证明照片地址',
+    verify VARCHAR(2) NOT NULL COMMENT '是否验证',
+    info_status VARCHAR(2) NOT NULL COMMENT '信息状态',
+    create_time timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间',
+    who_did VARCHAR(100) NOT NULL COMMENT '操作者',
+    
+    PRIMARY KEY (unique_id),
+    foreign key(internal_code) references internal_code_table(internal_code)
+    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='奖惩信息表';
+
 --创建客户基本信息，以及信用账户相关的数据库表
---包括：内码表、注册账户表、客户基本表、信用账户表、面签服务、学业信息表、用户家庭联系人信息表、用户家庭联系人历史表、用户金融账户信息表、用户银行卡信息表、担保关系表、担保关系历史表；
+--包括：内码表、注册账户表、客户基本表、信用账户表、面签服务、学业信息表、用户家庭联系人信息表、用户家庭联系人历史表、用户金融账户信息表、用户银行卡信息表、担保关系表、担保关系历史表、奖惩信息表；
 --城市表、城市房价系数表、城市年消费水平表、城市薪酬差异系数表、省份学费表、学校表、学校学院信息表、
