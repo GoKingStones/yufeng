@@ -15,7 +15,7 @@ CREATE TABLE user_basic_info
     idcard_back_img_url VARCHAR(1024) NOT NULL COMMENT '身份证背面照片地址',
 	weixin_no VARCHAR(100) COMMENT '微信号',
     qq_no VARCHAR(100)  COMMENT 'QQ号',
-    weibo_bo VARCHAR(100)  COMMENT '微博号',
+    weibo_no VARCHAR(100)  COMMENT '微博号',
     address VARCHAR(200)  COMMENT '现居住地址',
     create_time timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     mod_time timestamp default current_timestamp on update current_timestamp COMMENT '更新时间',

@@ -1,9 +1,15 @@
 package com.yufeng.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserInfo {
+public class UserInfo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7135082269928579805L;
+
 	//客户基本信息
 	private UserBasicInfo userBasicInfo;
 	
@@ -69,6 +75,11 @@ public class UserInfo {
 
 	public void setRewardPunishmentInfoList(List<RewardPunishmentInfo> rewardPunishmentInfoList) {
 		this.rewardPunishmentInfoList = rewardPunishmentInfoList;
+	}
+	
+	@Override
+    public String toString(){
+		return "";
 	}
 	
 }

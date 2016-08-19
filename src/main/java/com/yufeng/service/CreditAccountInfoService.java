@@ -9,7 +9,6 @@ public interface CreditAccountInfoService {
 
     CreditAccountInfo getCreditAccountInfo(String internalCode);
     boolean isExistedCreditAccountInfo(String internalCode);
-    CreditAccountInfo insertCreditAccountInfo(CreditAccountInfo creditAccountInfo);
+    CreditAccountInfo insertOrUpdateCreditAccountInfo(String internalCode,String accountType);
     CreditAccountInfo updateCreditAccountInfo(CreditAccountInfo creditAccountInfo);
-        
 }

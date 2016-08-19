@@ -1,10 +1,14 @@
 package com.yufeng.controller;
 
-import com.yufeng.entity.RegisterAccount;
+import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.ResultMap;
+import com.yufeng.util.ResultModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -16,19 +20,12 @@ import java.util.Map;
  * Created by fishyu on 16/7/23.
  */
 @RestController
+@RequestMapping("userBasicInfo")
 public class UserBasicInfoController {
 
     @Autowired
     private UserBasicInfoService userBasicInfoService;
 
-    
-//    @RequestMapping("isExistedUserBasicInfo")
-//
-//    public boolean isExistedUserBasicInfo(@RequestParam("idType") String idType,@RequestParam("idNo") String idNo) {
-//
-//        boolean result = userBasicInfoService.isExistedUserBasicInfo(idType, idNo);
-//        return result;
-//    }
 
     @RequestMapping("getUserBasicInfoByInternalCode")
     public UserBasicInfo getUserBasicInfoByInternalCode(@RequestParam("internalCode") String internalCode){
@@ -38,11 +35,17 @@ public class UserBasicInfoController {
         return userBasicInfo;
     }
 
-    @RequestMapping("insertUserBasicInfo")
-    @ResponseBody
-    public Map<String,String> insertUserBasicInfo(@RequestBody UserBasicInfo userBasicInfo,@RequestBody RegisterAccount registerAccount) throws ParseException{
 
-    	return userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
+    @RequestMapping(value = "/insertUserBasicInfoForSignUp",method = RequestMethod.POST)
+    public ResponseEntity<ResultModel> insertUserBasicInfo(@RequestBody String json) throws ParseException{
+
+    	UserBasicInfo userBasicInfoResult = userBasicInfoService.insertUserBasicInfoForSignUp(json);
+    		
+    	if (userBasicInfoResult!=null) {
+            return new ResponseEntity<ResultModel>(ResultModel.ok(userBasicInfoResult),HttpStatus.OK);
+        }else {
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+        }
 
     }
 

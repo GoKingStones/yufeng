@@ -1,36 +1,26 @@
 package com.yufeng.algorithm;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.yufeng.controller.UserBasicInfoController;
 import com.yufeng.dao.CityDataDao;
 import com.yufeng.dao.CollegeEntityDao;
-import com.yufeng.dao.UserBasicInfoDao;
-import com.yufeng.entity.RewardPunishmentInfo;
 import com.yufeng.entity.SchoolExperienceInfo;
-import com.yufeng.entity.UserBankCardInfo;
-import com.yufeng.entity.UserBasicInfo;
-import com.yufeng.entity.UserFamilyInfo;
-import com.yufeng.entity.UserFinancialAccountInfo;
 import com.yufeng.entity.UserInfo;
 import com.yufeng.service.UserInfoService;
-import com.yufeng.util.InternalCodeGenerator;
 import com.yufeng.util.Utils;
 
 public class CalculateCreditLine {
 	
 	@Autowired
-	UserInfoService userInfoService;
+	private UserInfoService userInfoService;
 	
 	@Autowired
-	CollegeEntityDao collegeEntityDao;
+	private CollegeEntityDao collegeEntityDao;
 	
 	@Autowired
-	CityDataDao cityDataDao;
+	private CityDataDao cityDataDao;
 	
 	
 	/**获得学校当地的消费系数
@@ -162,8 +152,7 @@ public class CalculateCreditLine {
 	 * 
 	 * 初级，额度最高500元，不予提现。解决客户拓展，独立申请便利性。经过准入审核，即给予初级额度
 	 * 一级，初始额度最高3000元。参考2345贷款王，应对竞争。
-	 * 二级，额度最高5000元，应对主流分期平台
-	 * 三级，额度按照规则测算，最高10000元，打造自身特色。
+	 * 二级，额度按照规则测算，最高10000元，打造自身特色。
 	 * @param internalCode 用户内码
 	 * @return 额度四舍五入取整
 	 * 
@@ -177,7 +166,9 @@ public class CalculateCreditLine {
 		userInfo = userInfoService.getUserInfo(internalCode);
 		
 		//获得用户级别
-		int userLevel = userInfoService.getUserLevel(userInfo);
+		int userLevel = userInfoService.getStudentUserLevel(userInfo);
+		
+		System.out.println("学生信用账户级别=="+userLevel);
 		
 		switch (userLevel){
 
@@ -192,16 +183,10 @@ public class CalculateCreditLine {
 				creditLine = 3000;
 
 				break;
-				
+	
 			case Utils.LEVEL_2:
-				
-				creditLine = 5000;
-
-				break;
 	
-			case Utils.LEVEL_3:
-	
-				creditLine = CalculateRule(userInfo);
+				creditLine = CalculateRuleForStudent(userInfo);
 				
 				if(creditLine>Utils.HIGHEST_CREDIT_LINE){
 					
@@ -212,17 +197,33 @@ public class CalculateCreditLine {
 				break;
 				
 		}
+		
+		System.out.println("学生信用账户额度=="+creditLine);
 
 		return creditLine;
 		
 	}
 	
+	/**
+	 * 规则未确定，暂时返回基础值
+	 * 
+	 * 
+	 * */
+	public double CalculateCreditLineForAdult(String internalCode){
+		
+		double creditLine = Utils.BASIC_CREDIT_LINE;
+		
+		return creditLine;
+		
+	}
 	
-	/**公式：基础值*学校所属地区消费系数*户籍地收入/房价系数*月消费水平系数*院系年费系数*信用分系数
+	
+	/**公式：基础值*学校所属地区消费系数*当地经济系数*月消费水平系数*院系年费系数*信用分系数
+	 * 当地经济系数 = 0.5+ 2.5*户籍地收入/房价系数
 	 * @param UserInfo userInfo 客户全部信息
 	 * @return 客户测算额度值
 	 * */
-	private double CalculateRule(UserInfo userInfo){
+	private double CalculateRuleForStudent(UserInfo userInfo){
 		
 		//获得在读学校信息
 		SchoolExperienceInfo completingSchoolExperienceInfo = new SchoolExperienceInfo();
@@ -259,34 +260,57 @@ public class CalculateCreditLine {
 					
 		//从数据库获得学校所在cityNo
 		String cityNo = collegeEntityDao.getCollegeAcademyEntityByCollegeCode(completingSchoolExperienceInfo.getSchoolCode()).getCityCode();
+		System.out.println("从数据库获得学校所在cityNo=="+cityNo);
 					
 		//从数据库获得IDNo
 		String IDNo = userInfo.getUserBasicInfo().getIdNo();
+		System.out.println("从数据库获得IDNo=="+IDNo);
 					
 		//从数据库获得collegeCode学校编号
 		String collegeCode = completingSchoolExperienceInfo.getSchoolCode();
+		System.out.println("从数据库获得collegeCode学校编号=="+collegeCode);
 					
 		//从数据库获得getAcademyCode学院编号
 		String academyCode = completingSchoolExperienceInfo.getAcademyCode();
+		System.out.println("从数据库获得getAcademyCode学院编号=="+academyCode);
 					
 					
 		double consumptionCoefficient = getConsumptionCoefficient(cityNo);
+		
+		System.out.println("消费系数=="+consumptionCoefficient);
 					
 		double incomeCoefficient = getIncomeCoefficient(IDNo);
+		
+		System.out.println("收入系数=="+incomeCoefficient);
 					
 		double housePriceCoefficient = getHousePriceCoefficient(IDNo);
+		
+		System.out.println("房价系数=="+housePriceCoefficient);
 					
 		double univsNoConsumptionCoefficient = getUnivsNoConsumptionCoefficient(collegeCode);
+		
+		System.out.println("校园消费系数=="+univsNoConsumptionCoefficient);
 					
 		double tuitionCoefficient = getTuitionCoefficient(academyCode,collegeCode);
+		
+		System.out.println("学费系数=="+tuitionCoefficient);
 					
 		double creditScoreCoefficient = getCreditScoreCoefficient(userInfo.getUserBasicInfo().getInternalCode());
-							
-		double creditLine = Utils.BASIC_CREDIT_LINE*consumptionCoefficient*(incomeCoefficient/housePriceCoefficient)*univsNoConsumptionCoefficient*tuitionCoefficient*creditScoreCoefficient;
-							
+		
+		System.out.println("信用评分系数=="+creditScoreCoefficient);
+		
+		double economicCoefficient = 0.5+2.5*(incomeCoefficient/housePriceCoefficient);
+		
+		System.out.println("经济系数=="+economicCoefficient);
+				
+		double creditLine = Utils.BASIC_CREDIT_LINE*consumptionCoefficient*economicCoefficient*univsNoConsumptionCoefficient*tuitionCoefficient*creditScoreCoefficient;
+					
+		System.out.println("计算出的额度=="+creditLine);
+		
 		return Math.round(creditLine);
 		
 	}
+	
 	
 	
 }

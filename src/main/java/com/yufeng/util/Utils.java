@@ -1,7 +1,6 @@
 package com.yufeng.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Utils {
@@ -41,6 +40,23 @@ public class Utils {
 	public final static int NO_LEVEL = -1;
 	
 	public final static String BJ_CODE = "110000";
+	
+	
+	//学生账户
+	public final static String STUDENT_ACCOUNT = "student";
+	//学生账户
+	public final static String ADULT_ACCOUNT = "adult";
+	
+	//信用账户状态--正常
+	public final static String NORMAL_ACCOUNT = "normal";
+	
+	//信用账户状态--失效
+	public final static String INVALID_ACCOUNT = "invalid";
+	
+	//信用账户状态--冻结
+	public final static String FREEZE_ACCOUNT = "freeze";
+	
+	public final static BigDecimal GUARANTEE_QUOATA_RATIO = new BigDecimal(0.2);
 	
 	
 	

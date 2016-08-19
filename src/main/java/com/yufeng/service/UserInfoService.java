@@ -10,6 +10,6 @@ public interface UserInfoService {
    
 	UserInfo getUserInfo(String internalCode);
 	
-	int getUserLevel(UserInfo userInfo);
+	int getStudentUserLevel(UserInfo userInfo);
 	
 }

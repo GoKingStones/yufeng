@@ -30,7 +30,7 @@
 	
 	<bean id="guaranteeRelationshipService" class="com.yufeng.service.impl.GuaranteeRelationshipServiceImpl"    autowire="byName"/>
 
-	<bean id="userInfoService" class="com.yufeng.service.impl.UserInfoServiceimpl"    autowire="byName"/>
+	<bean id="userInfoService" class="com.yufeng.service.impl.UserInfoServiceImpl"    autowire="byName"/>
 
 	<bean id="workerInfoService" class="com.yufeng.service.impl.WorkerInfoServiceImpl" autowire="byName"></bean>
 

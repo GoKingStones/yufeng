@@ -3,7 +3,6 @@ package com.yufeng.service;
 import java.text.ParseException;
 import java.util.Map;
 
-import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBasicInfo;
 
 /**
@@ -13,7 +12,7 @@ public interface UserBasicInfoService {
 
 	boolean isExistedUserBasicInfo(String idType,String idNo);
 	UserBasicInfo getUserBasicInfoByInternalCode(String internalCode);
-	Map<String,String> insertUserBasicInfoForSignUp(UserBasicInfo userBasicInfo,RegisterAccount registerAccount) throws ParseException ;
+	UserBasicInfo insertUserBasicInfoForSignUp(String json) throws ParseException ;
     int updateUserBasicInfo(UserBasicInfo userBasicInfo);
     Map<String,String> checkUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException;
     boolean isExistedUserBasicInfoForUpdate(String idType,String idNo,String internalCode);
