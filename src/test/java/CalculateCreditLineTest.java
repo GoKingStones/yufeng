@@ -1,5 +1,6 @@
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -63,7 +64,8 @@ public class CalculateCreditLineTest {
     	userBasicInfo.setQqNo("81741099");
     	userBasicInfo.setAddress("天津市现住址");
     	
-    	userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
+
+    	//userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
 
 
 
