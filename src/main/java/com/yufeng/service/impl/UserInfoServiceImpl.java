@@ -13,6 +13,7 @@ import com.yufeng.dao.SchoolExperienceInfoDao;
 import com.yufeng.dao.UserBasicInfoDao;
 import com.yufeng.dao.UserFamilyDao;
 import com.yufeng.dao.UserFinancialAccountDao;
+import com.yufeng.entity.InterviewServiceEntity;
 import com.yufeng.entity.RewardPunishmentInfo;
 import com.yufeng.entity.SchoolExperienceInfo;
 import com.yufeng.entity.UserBankCardInfo;
@@ -20,12 +21,14 @@ import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.entity.UserFamilyInfo;
 import com.yufeng.entity.UserFinancialAccountInfo;
 import com.yufeng.entity.UserInfo;
+import com.yufeng.service.InterviewServiceEntityService;
 import com.yufeng.service.UserInfoService;
 import com.yufeng.util.Utils;
 
 /**
  * Created by fishyu on 5/8/26.
  */
+
 public class UserInfoServiceImpl implements UserInfoService{
 	
 	@Autowired
@@ -49,6 +52,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 //	@Autowired
 //	private GuaranteeRelationshipDao guaranteeRelationshipDao;
 	
+	@Autowired
+	private InterviewServiceEntityService interviewServiceEntityService;
+	
 	
 	
 	
@@ -61,39 +67,65 @@ public class UserInfoServiceImpl implements UserInfoService{
 		
 		System.out.println("获得客户基本信息开始");
 		userBasicInfo = userBasicInfoDao.getUserBasicInfoByInternalCode(internalCode);
-		System.out.println("userBasicInfo=="+userBasicInfo.toString());
+		if(userBasicInfo!=null){
+			System.out.println("userBasicInfo=="+userBasicInfo.toString());
+		}else{
+			System.out.println("userBasicInfo is null");
+		}
 		System.out.println("获得客户基本信息结束");
 		
 		//获得客户学业信息
 		System.out.println("获得客户学业信息开始");
 		List<SchoolExperienceInfo> schoolExperienceInfoList = new ArrayList<SchoolExperienceInfo>();		
 		schoolExperienceInfoList = schoolExperienceInfoDao.getSchoolExperienceInfoByInternalCodeForCreditLine(internalCode);
-		System.out.println("schoolExperienceInfoList=="+schoolExperienceInfoList.size());
+		if(schoolExperienceInfoList!=null){
+			System.out.println("schoolExperienceInfoList=="+schoolExperienceInfoList.size());
+		}else{
+			System.out.println("schoolExperienceInfoList is null");
+		}		
 		System.out.println("获得客户学业信息结束");		
 		
 		//获得客户银行卡信息
 		System.out.println("获得客户银行卡信息开始");
 		List<UserBankCardInfo> userBankCardInfoList = new ArrayList<UserBankCardInfo>();
 		userBankCardInfoList = bankCardDao.getBankCardByCode(internalCode);
-		System.out.println("userBankCardInfoList=="+userBankCardInfoList.size());
+		
+		if(userBankCardInfoList!=null){
+			System.out.println("userBankCardInfoList=="+userBankCardInfoList.size());
+		}else{
+			System.out.println("userBankCardInfoList is null");
+		}
+		
 		System.out.println("获得客户银行卡信息结束");
 		//获得客户金融账户信息
 		System.out.println("获得客户金融账户信息开始");
 		List<UserFinancialAccountInfo> userFinancialAccountInfoList = new ArrayList<UserFinancialAccountInfo>();
 		userFinancialAccountInfoList = userFinancialAccountDao.getUserFinancialAccountByCode(internalCode);
-		System.out.println("userFinancialAccountInfoList=="+userFinancialAccountInfoList.size());
+		if(userFinancialAccountInfoList!=null){
+			System.out.println("userFinancialAccountInfoList=="+userFinancialAccountInfoList.size());
+		}else{
+			System.out.println("userFinancialAccountInfoList is null");
+		}
 		System.out.println("获得客户金融账户信息结束");
 		//获得客户奖惩信息
 		System.out.println("获得客户奖惩信息开始");
 		List<RewardPunishmentInfo> rewardPunishmentInfoList = new ArrayList<RewardPunishmentInfo>();
 		rewardPunishmentInfoList = rewardPunishmentInfoDao.getRewardPunishmentInfoByInternalCode(internalCode);
-		System.out.println("rewardPunishmentInfoList=="+rewardPunishmentInfoList.size());
+		if(rewardPunishmentInfoList!=null){
+			System.out.println("rewardPunishmentInfoList=="+rewardPunishmentInfoList.size());
+		}else{
+			System.out.println("rewardPunishmentInfoList is null");
+		}
 		System.out.println("获得客户奖惩信息结束");
 		//获得客户联系人信息
 		System.out.println("获得客户联系人信息开始");
 		List<UserFamilyInfo> userFamilyInfoList = new ArrayList<UserFamilyInfo>();
 		userFamilyInfoList = userFamilyDao.getUserFamilyByCode(internalCode);
-		System.out.println("userFamilyInfoList=="+userFamilyInfoList.size());
+		if(userFamilyInfoList!=null){
+			System.out.println("userFamilyInfoList=="+userFamilyInfoList.size());
+		}else{
+			System.out.println("userFamilyInfoList is null");
+		}
 		System.out.println("获得客户联系人信息结束");
 		
 		userInfo.setUserBasicInfo(userBasicInfo);
@@ -121,8 +153,21 @@ public class UserInfoServiceImpl implements UserInfoService{
 		int userLevel = Utils.NO_LEVEL;
 		
 		
-		//TODO 获得面签结果
+		//获得面签结果
+		//暂时判定面签的规则是：多次面签只要有通过就算通过
 		String interviewReslut = "f";
+		
+		List<InterviewServiceEntity> listInterviewServiceEntity = new ArrayList<InterviewServiceEntity>();
+		
+		listInterviewServiceEntity = interviewServiceEntityService.getInterviewServiceEntityByInternalCode(userInfo.getUserBasicInfo().getInternalCode());
+		
+		for(InterviewServiceEntity tmpInterviewServiceEntity:listInterviewServiceEntity){
+					
+			if(tmpInterviewServiceEntity.getInterviewResult().equals("t")){
+				interviewReslut = "t";
+			}
+		}
+		
 		
 //		//获得担保圈数据
 //		int totalGuarantee = guaranteeRelationshipDao.getByCode(userInfo.getUserBasicInfo().getInternalCode()).size();
@@ -138,7 +183,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 				&&userInfo.getSchoolExperienceInfoList().size()>0
 				&&userInfo.getUserBankCardInfoList().size()>0
 				&&userInfo.getUserFamilyInfoList().size()==0
-				&&interviewReslut.equals("f")
+//				&&interviewReslut.equals("f")
 //				&&guaranteeResult.equals("f")
 				){
 			
