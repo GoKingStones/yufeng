@@ -85,5 +85,9 @@ public class ResultModel {
     public static ResultModel error(ResultStatus error) {
         return new ResultModel(error);
     }
+
+    public static ResultModel error(ResultStatus error,Object content) {
+        return new ResultModel(error,content);
+    }
 }
 

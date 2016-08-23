@@ -9,7 +9,9 @@ import com.yufeng.entity.WorkerInfo;
 public interface WorkerInfoDao {
 
     public int insertWorkerInfo(WorkerInfo workerInfo);
+    public int updateWorkerInfoByAdmin(WorkerInfo workerInfo);
     public int updateWorkerInfo(WorkerInfo workerInfo);
+    public WorkerInfo getWorkInfoByWorkerId(int workerId);
     public WorkerInfo getWorkerInfoByOrgId(String orgId);
     public WorkerInfo getWorkerInfoByWorkerName(String workerName);
     public WorkerInfo getWorkerInfoByPhoneNumber(String phoneNumber);

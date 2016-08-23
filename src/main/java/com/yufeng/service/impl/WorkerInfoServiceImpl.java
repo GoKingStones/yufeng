@@ -15,17 +15,39 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     @Autowired
     private WorkerInfoDao workerInfoDao;
 
-    public int insertWorkerInfo(WorkerInfo workerInfo) {
-        return workerInfoDao.insertWorkerInfo(workerInfo);
+    public WorkerInfo insertWorkerInfo(WorkerInfo workerInfo) {
+
+        int result = workerInfoDao.insertWorkerInfo(workerInfo);
+        if (result==1) {
+            return workerInfoDao.getWorkerInfoByOrgId(workerInfo.getPhoneNumber());
+        }else {
+            return null;
+        }
     }
 
-    public int updateWorkerInfo(WorkerInfo workerInfo) {
+    public WorkerInfo updateWorkerInfo(WorkerInfo workerInfo) {
 
-        //员工可以修改自己的基本信息：电话号码、工位固定号码、电子邮箱、微信号
+        int result = workerInfoDao.updateWorkerInfo(workerInfo);
 
+        if (result==1) {
+            return workerInfoDao.getWorkInfoByWorkerId(workerInfo.getWorkerId());
+        }else {
+            return null;
+        }
+    }
 
-        //管理员权限的员工可以修改其他员工的信息：1、信息修改；2密码重置
-        return workerInfoDao.updateWorkerInfo(workerInfo);
+    public WorkerInfo updateWorkerInfoByAdmin(WorkerInfo workerInfo) {
+
+        int result = workerInfoDao.updateWorkerInfoByAdmin(workerInfo);
+        if (result==1) {
+            return workerInfoDao.getWorkInfoByWorkerId(workerInfo.getWorkerId());
+        }else {
+            return null;
+        }
+    }
+
+    public WorkerInfo getWorkerInfoByWorkerId(int workerId) {
+        return workerInfoDao.getWorkInfoByWorkerId(workerId);
     }
 
     public WorkerInfo getWorkerInfoByOrgId(String orgId) {

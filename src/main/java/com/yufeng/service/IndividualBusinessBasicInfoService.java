@@ -8,9 +8,9 @@ import com.yufeng.entity.IndividualBusinessBasicInfo;
  */
 public interface IndividualBusinessBasicInfoService {
 
-    int isExistedIndividualBusinessBasicInfo(String shopName);
-    IndividualBusinessBasicInfo getIndividualBusinessBasicInfo(String shopName);
-    int insertIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo);
-    int updateIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo);
-    int deleteIndividualBusinessBasicInfo(String shopName);
+    boolean isExistedIndividualBusinessBasicInfo(String internalCode);
+    boolean isExistedShopName(String shopName);
+    IndividualBusinessBasicInfo getIndividualBusinessBasicInfo(String internalCode);
+    IndividualBusinessBasicInfo insertIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo);
+    IndividualBusinessBasicInfo updateIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo);
 }

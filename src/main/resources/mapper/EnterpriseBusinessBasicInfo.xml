@@ -2,9 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.EnterpriseBusinessBasicInfoDao">
 
-    <select id="isExistedEnterpriseBusinessBasicInfo" parameterType="String">
+    <select id="isExistedEnterpriseBusinessBasicInfo" parameterType="String" resultType="int">
+
+        SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE internal_code=#{internalCode}
+
+
+    </select>
+
+    <select id="isExistedBusinessName" parameterType="String" resultType="int">
 
         SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE business_name=#{businessName}
+
+
+    </select>
+
+    <select id="isExistedBusinessLicenceManagementScope" parameterType="String" resultType="int">
+
+        SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE business_licence_management_scope=#{businessLicenceManagementScope}
 
 
     </select>
@@ -12,7 +26,7 @@
     <select id="getEnterpriseBusinessBasicInfo" parameterType="String" resultType="EnterpriseBusinessBasicInfo" >
 
             SELECT * from enterprise_business_basic_info_table rat
-                WHERE rat.business_name = #{businessName}
+                WHERE rat.internal_code = #{internalCode}
 
     </select>
 
@@ -31,21 +45,72 @@
     <update id="updateEnterpriseBusinessBasicInfo" parameterType="String">
 
         UPDATE enterprise_business_basic_info_table
-        SET internal_code=#{internalCode},business_name=#{businessName},enterprise_name=#{enterpriseName},enterprise_addr=#{enterpriseAddr},email=#{email},
-        website=#{website},fax=#{fax},manage_contact_name=#{manageContactName},manage_contact_tel=#{manageContactTel},operate_contact_name=#{operateContactName},operate_contact_tel=#{operateContactTel},business_license_number=#{businessLicenseNumber},
-        legal_person_certificate_type=#{legalPersonCertificateType}
-        ,legal_person_certificate_number=#{legalPersonCertificateNumber},legal_person_name=#{legalPersonName},business_licence_management_scope=#{businessLicenceManagementScope},business_brand=#{businessBrand},
-        registered_capital=#{registeredCapital},open_time=#{openTime},
-        business_rank=#{businessRank},business_score=#{businessScore},business_credit_value=#{businessCreditValue}
-        WHERE business_name = #{businessName}
+        <trim prefix="set" suffixOverrides=",">
+        <if test="businessName!=null">
+            business_name=#{businessName},
+        </if>
+        <if test="enterpriseName!=null">
+            enterprise_name=#{enterpriseName},
+        </if>
+        <if test="enterpriseAddr!=null">
+            enterprise_addr=#{enterpriseAddr},
+        </if>
+        <if test="email!=null">
+            email=#{email},
+        </if>
+        <if test="website!=null">
+            website=#{website},
+        </if>
+        <if test="fax!=null">
+            fax=#{fax},
+        </if>
+        <if test="manageContactName!=null">
+            manage_contact_name=#{manageContactName},
+        </if>
+        <if test="manageContactTel!=null">
+            manage_contact_tel=#{manageContactTel},
+        </if>
+
+        <if test="operateContactName!=null">
+            operate_contact_name=#{operateContactName},
+        </if>
+        <if test="businessLicenseNumber!=null">
+            business_license_number=#{businessLicenseNumber},
+        </if>
+        <if test="legalPersonCertificateType!=null">
+            legal_person_certificate_type=#{legalPersonCertificateType},
+        </if>
+        <if test="legalPersonCertificateNumber!=null">
+            legal_person_certificate_number=#{legalPersonCertificateNumber},
+        </if>
+        <if test="legalPersonName!=null">
+            legal_person_name=#{legalPersonName},
+        </if>
+        <if test="businessLicenceManagementScope!=null">
+            business_licence_management_scope=#{businessLicenceManagementScope},
+        </if>
+        <if test="businessBrand!=null">
+            business_brand=#{businessBrand},
+        </if>
+        <if test="registeredCapital!=null">
+            registered_capital=#{registeredCapital},
+        </if>
+        <if test="openTime!=null">
+            open_time=#{openTime},
+        </if>
+        <if test="businessRank!=null">
+            business_rank=#{businessRank},
+        </if>
+        <if test="businessScore!=null">
+            business_score=#{businessScore},
+        </if>
+        <if test="businessCreditValue!=null">
+            business_credit_value=#{businessCreditValue},
+        </if>
+        </trim>
+        WHERE internal_code = #{internalCode}
     </update>
 
-
-    <delete id="deleteEnterpriseBusinessBasicInfo">
-
-
-
-    </delete>
 
 
 

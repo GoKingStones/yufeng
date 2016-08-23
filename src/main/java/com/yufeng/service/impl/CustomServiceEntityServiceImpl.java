@@ -5,6 +5,8 @@ import com.yufeng.entity.CustomServiceEntity;
 import com.yufeng.service.CustomServiceEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by kingstones on 16/8/7.
  */
@@ -14,19 +16,31 @@ public class CustomServiceEntityServiceImpl implements CustomServiceEntityServic
 
     private CustomServiceEntityDao customServiceEntityDao;
 
-    public int insertCustomServiceEntity(CustomServiceEntity customServiceEntity) {
-        return customServiceEntityDao.insertCustomServiceEntity(customServiceEntity);
+    public CustomServiceEntity insertCustomServiceEntity(CustomServiceEntity customServiceEntity) {
+
+        int result =  customServiceEntityDao.insertCustomServiceEntity(customServiceEntity);
+        if(result==1) {
+            return customServiceEntity;
+        }else {
+            return null;
+        }
     }
 
-    public int updateCustomServiceEntity(CustomServiceEntity customServiceEntity) {
-        return 0;
+    public CustomServiceEntity updateCustomServiceEntity(CustomServiceEntity customServiceEntity) {
+
+        int result =  customServiceEntityDao.updateCustomServiceEntity(customServiceEntity);
+        if(result==1) {
+            return customServiceEntity;
+        }else {
+            return null;
+        }
     }
 
-    public CustomServiceEntity getCustomServiceEntityByWorkerId(int workerId) {
-        return null;
+    public List<CustomServiceEntity> getCustomServiceEntityByWorkerId(int workerId) {
+        return customServiceEntityDao.getCustomServiceEntityByWorkerId(workerId);
     }
 
-    public CustomServiceEntity getCustomServiceEntityByInternalCode(String internalCode) {
-        return null;
+    public List<CustomServiceEntity> getCustomServiceEntityByInternalCode(String internalCode) {
+        return customServiceEntityDao.getCustomServiceEntityByInternalCode(internalCode);
     }
 }

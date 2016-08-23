@@ -5,6 +5,13 @@
 
     <select id="isExistedIndividualBusinessBasicInfo" parameterType="String">
 
+        SELECT  COUNT(*) from individual_business_basic_info_table WHERE internal_code=#{internalCode}
+
+
+    </select>
+
+    <select id="isExistedShopName" parameterType="String">
+
         SELECT  COUNT(*) from individual_business_basic_info_table WHERE shop_name=#{shopName}
 
 
@@ -13,7 +20,7 @@
     <select id="getIndividualBusinessBasicInfo" parameterType="String" resultType="IndividualBusinessBasicInfo" >
 
             SELECT * from individual_business_basic_info_table ibbit
-                WHERE ibbit.shop_name = #{shopName}
+                WHERE ibbit.internal_code = #{internalCode}
 
     </select>
 
@@ -31,16 +38,53 @@
     <update id="updateIndividualBusinessBasicInfo" parameterType="String">
 
         UPDATE individual_business_basic_info_table
-        SET internal_code#{internalCode},shop_name#{shopName},shopkeeper_name#{shopkeeperName},shop_addr#{shopAddr},
-        shop_tel#{shopTel},shopkeeper_certificate_type#{shopkeeperCertificateType},shopkeeper_certificate_number#{shopkeeperCertificateNumber},
-        local_area#{localArea},open_time#{openTime},
-        close_time#{closeTime},close_reason#{closeReason},shop_status#{shopStatus},shop_rank#{shopRank},shop_scope#{shopScope},shop_credit_value#{shopCreditValue}
-        WHERE shop_name = #{shopName}
+        <trim prefix="set" suffixOverrides=",">
+        <if test="shopName!=null">
+            shop_name=#{shopName},
+        </if>
+        <if test="shopkeeperName!=null">
+            shopkeeper_name=#{shopkeeperName},
+        </if>
+        <if test="shopAddr!=null">
+            shop_addr=#{shopAddr},
+        </if>
+        <if test="shopTel!=null">
+            shop_tel=#{shopTel},
+        </if>
+        <if test="shopkeeperCertificateType!=null">
+            shopkeeper_certificate_type=#{shopkeeperCertificateType},
+        </if>
+        <if test="shopkeeperCertificateNumber!=null">
+            shopkeeper_certificate_number=#{shopkeeperCertificateNumber},
+        </if>
+        <if test="localArea!=null">
+            local_area=#{localArea},
+        </if>
+        <if test="openTime!=null">
+            open_time=#{openTime},
+        </if>
+        <if test="closeTime!=null">
+            close_time=#{closeTime},
+        </if>
+        <if test="closeReason!=null">
+            close_reason=#{closeReason},
+        </if>
+        <if test="shopStatus!=null">
+            shop_status=#{shopStatus},
+        </if>
+        <if test="shopRank!=null">
+            shop_rank=#{shopRank},
+        </if>
+        <if test="shopScope!=null">
+            shop_scope=#{shopScope},
+        </if>
+        <if test="shopCreditValue!=null">
+            shop_credit_value=#{shopCreditValue},
+        </if>
+        </trim>
+        WHERE internal_code = #{internalCode}
     </update>
 
-    <update id="deleteIndividualBusinessBasicInfo">
-
-    </update>
 
 
 

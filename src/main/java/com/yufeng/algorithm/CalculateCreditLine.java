@@ -10,7 +10,9 @@ import com.yufeng.entity.SchoolExperienceInfo;
 import com.yufeng.entity.UserInfo;
 import com.yufeng.service.UserInfoService;
 import com.yufeng.util.Utils;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class CalculateCreditLine {
 	
 	@Autowired

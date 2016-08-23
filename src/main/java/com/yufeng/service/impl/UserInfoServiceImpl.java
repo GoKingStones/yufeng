@@ -26,7 +26,6 @@ import com.yufeng.util.Utils;
 /**
  * Created by fishyu on 5/8/26.
  */
-
 public class UserInfoServiceImpl implements UserInfoService{
 	
 	@Autowired
