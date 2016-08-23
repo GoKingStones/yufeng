@@ -64,7 +64,6 @@ public class CalculateCreditLineTest {
     	userBasicInfo.setQqNo("81741099");
     	userBasicInfo.setAddress("天津市现住址");
     	
-
     	//userBasicInfoService.insertUserBasicInfoForSignUp(userBasicInfo,registerAccount);
 
 
