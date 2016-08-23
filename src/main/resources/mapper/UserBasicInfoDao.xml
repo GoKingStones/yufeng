@@ -12,7 +12,7 @@
     
     <select id="isExistedUserBasicInfoForUpdate" parameterType="String" resultType="Integer">
 
-        SELECT  COUNT(*) from user_basic_info WHERE id_type=#{idType},id_no=#{idNo},internal_code = #{internalCode}
+        SELECT  COUNT(*) from user_basic_info WHERE id_type=#{0} and id_no=#{1} and internal_code=#{2}
 
     </select>
 
@@ -32,11 +32,48 @@
 
     </insert>
 
-    <update id="updateUserBasicInfo" parameterType="String">
+    <update id="updateUserBasicInfo" >
 
-        UPDATE register_account_table
-        SET name=#{name},id_type=#{idType},id_no=#{idNo},cell_no=#{cellNo},email=#{email},family_address=#{familyAddress},marital_status=#{maritalStatus},postal_address=#{postalAddress},idcard_front_img_url=#{idcardFrontImgUrl},idcard_back_img_url=#{idcardBackImgUrl},weixin_no=#{weixinNo},qq_no=#{qqNo},address=#{address},weibo_no=#{weiboNo}
-        WHERE internal_code = #{internalCode}，id_type=#{idType},id_no=#{idNo}
+        UPDATE user_basic_info
+        <trim prefix="set" suffixOverrides=",">
+        <if test="name!=null">
+            name=#{name},
+        </if>
+        <if test="cellNo!=null">
+            cell_no=#{cellNo},
+        </if>
+        <if test="email!=null">
+            email=#{email},
+        </if>
+        <if test="familyAddress!=null">
+            family_address=#{familyAddress},
+        </if>
+        <if test="maritalStatus!=null">
+            marital_status=#{maritalStatus},
+        </if>
+        <if test="postalAddress!=null">
+            postal_address=#{postalAddress},
+        </if>
+        <if test="idcardFrontImgUrl!=null">
+            idcard_front_img_url=#{idcardFrontImgUrl},
+        </if>
+        <if test="idcardBackImgUrl!=null">
+            idcard_back_img_url=#{idcardBackImgUrl},
+        </if>
+        <if test="weixinNo!=null">
+            weixin_no=#{weixinNo},
+        </if>
+        <if test="qqNo!=null">
+            qq_no=#{qqNo},
+        </if>
+        <if test="address!=null">
+            address=#{address},
+        </if>
+        <if test="weiboNo!=null">
+            weibo_no=#{weiboNo},
+        </if>
+        </trim>
+        WHERE internal_code=#{internalCode} and id_type=#{idType} and id_no=#{idNo}
     </update>
 
 </mapper>

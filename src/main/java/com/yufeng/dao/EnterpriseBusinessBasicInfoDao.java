@@ -8,10 +8,11 @@ import com.yufeng.entity.EnterpriseBusinessBasicInfo;
  */
 public interface EnterpriseBusinessBasicInfoDao {
 
-    int isExistedEnterpriseBusinessBasicInfo(String businessName);
-    //根据商户名称来查询，商户名称是全局唯一的
-    EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String businessName);
+    int isExistedEnterpriseBusinessBasicInfo(String internalCode);
+    //是否存在店铺名称
+    int isExistedBusinessName(String businessName);
+    int isExistedBusinessLicenceManagementScope(String businessLicenceManagementScope);
+    EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String internalCode);
     int insertEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);
     int updateEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);
-    int deleteEnterpriseBusinessBasicInfo(String businessName);
 }

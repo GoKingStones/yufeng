@@ -35,7 +35,7 @@ public class EnterpriseBusinessBasicInfo {
     //工商营业执照号
     private String businessLicenseNumber;
     //法人证件类型
-    private String legalPersonCertificateType;
+    private int legalPersonCertificateType;
     //法人证件号码
     private String legalPersonCertificateNumber;
     //法人姓名
@@ -46,6 +46,7 @@ public class EnterpriseBusinessBasicInfo {
     private String businessBrand;
     //注册资金
     private BigDecimal registeredCapital;
+
     //开通时间
     private Date openTime;
     //商户等级
@@ -54,6 +55,7 @@ public class EnterpriseBusinessBasicInfo {
     private double business_score;
     //商户信用值
     private double business_credit_value;
+
 
     public String getInternalCode() {
         return internalCode;
@@ -151,11 +153,11 @@ public class EnterpriseBusinessBasicInfo {
         this.businessLicenseNumber = businessLicenseNumber;
     }
 
-    public String getLegalPersonCertificateType() {
+    public int getLegalPersonCertificateType() {
         return legalPersonCertificateType;
     }
 
-    public void setLegalPersonCertificateType(String legalPersonCertificateType) {
+    public void setLegalPersonCertificateType(int legalPersonCertificateType) {
         this.legalPersonCertificateType = legalPersonCertificateType;
     }
 

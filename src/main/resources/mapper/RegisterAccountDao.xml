@@ -17,21 +17,21 @@
     <select id="getRegisterAccount" parameterType="String" resultType="RegisterAccount" >
 
             SELECT * from register_account_table rat
-                WHERE rat.account_name = #{accountName}
+                WHERE rat.account_name = #{accountName} limit 1
 
     </select>
 
     <select id="getRegisterAccountById" parameterType="int" resultType="RegisterAccount" >
 
         SELECT * from register_account_table rat
-        WHERE rat.register_account_id = #{registerAccountId}
+        WHERE rat.register_account_id = #{registerAccountId} limit 1
 
     </select>
 
     <select id="getRegisterAccountByPhoneNumber" parameterType="String" resultType="RegisterAccount">
 
         SELECT * from register_account_table rat
-                WHERE rat.phone_number = #{phoneNumber}
+                WHERE rat.phone_number = #{phoneNumber} limit 1
     </select>
     <insert id="insertRegisterAccount">
 

@@ -75,10 +75,5 @@
     <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.14" level="project" />
     <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.sf.json-lib:json-lib:2.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: commons-beanutils:commons-beanutils:1.7.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: commons-lang:commons-lang:2.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.sf.ezmorph:ezmorph:1.0.4" level="project" />
   </component>
 </module>

@@ -61,30 +61,90 @@ public class RegisterAccountController {
     @RequestMapping(value = "/insertRegisterAccount",method = RequestMethod.POST)
     public ResponseEntity<ResultModel> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
-
-        registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
-
-        RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
-        if (registerAccount1!=null) {
-            return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
+        String accountName = registerAccount.getAccountName();
+        String phoneNumber = registerAccount.getPhoneNumber();
+        if(accountName==null&&phoneNumber==null||accountName!=null&&phoneNumber!=null) {
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BAD_REQUEST),HttpStatus.OK);
         }else {
-            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+            if(accountName!=null) {
+                boolean result = registerAccountService.isExistedRegisterAccount(accountName);
+                if(result) {
+                    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
+                }else {
+                    registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+
+                    RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
+                    if (registerAccount1!=null) {
+                        return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
+                    }else {
+                        return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+                    }
+                }
+            }else {
+                boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
+                if(result) {
+                    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
+                }else {
+                    registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+
+                    RegisterAccount registerAccount1 = registerAccountService.insertRegisterAccount(registerAccount);
+                    if (registerAccount1!=null) {
+                        return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
+                    }else {
+                        return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+                    }
+                }
+            }
+
+
         }
+
     }
 
     @RequestMapping(value = "/updateRegisterAccount",method = RequestMethod.POST)
     public ResponseEntity<ResultModel> updateRegisterAccount(@RequestBody RegisterAccount registerAccount) {
 
+
+        String accountName = registerAccount.getAccountName();
+        String phoneNumber = registerAccount.getPhoneNumber();
+
         if (registerAccount.getPassword() != null) {
             registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
         }
 
-        RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
-        if (registerAccount1 != null) {
-            return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE), HttpStatus.OK);
+        if(accountName!=null&&phoneNumber==null) {
+            boolean result = registerAccountService.isExistedRegisterAccount(accountName);
+            if(result) {
+                return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
+            }else {
+                registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+
+                RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
+                if (registerAccount1!=null) {
+                    return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
+                }else {
+                    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+                }
+            }
+        }else if(accountName==null&&phoneNumber!=null){
+            boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
+            if(result) {
+                return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
+            }else {
+                registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+
+                RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
+                if (registerAccount1!=null) {
+                    return new ResponseEntity<ResultModel>(ResultModel.ok(registerAccount1),HttpStatus.OK);
+                }else {
+                    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+                }
+            }
+        }else {
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BAD_REQUEST),HttpStatus.OK);
         }
+
+
 
     }
 

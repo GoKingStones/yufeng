@@ -1,10 +1,20 @@
 package com.yufeng.controller;
 
+import com.yufeng.config.ResultStatus;
+import com.yufeng.entity.EnterpriseBusinessBasicInfo;
 import com.yufeng.entity.IndividualBusinessBasicInfo;
 import com.yufeng.service.IndividualBusinessBasicInfoService;
+import com.yufeng.util.InternalCodeGenerator;
+import com.yufeng.util.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 个体商户基本信息Controller层
@@ -12,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
   */
 
 @RestController
-@RequestMapping("/IndividualBusinessBasicInfo")
+@RequestMapping("IndividualBusinessBasicInfo")
 public class IndividualBusinessBasicInfoController {
 	
 	@Autowired
@@ -20,34 +30,65 @@ public class IndividualBusinessBasicInfoController {
 	
 	
 	//查询个体商户信息
-	@RequestMapping("/getIndividualBusinessBasicInfo")
-	public IndividualBusinessBasicInfo getIndividualBusinessBasicInfo(String shopName){
+	@RequestMapping(value = "/getIndividualBusinessBasicInfo",method = RequestMethod.GET)
+	public ResponseEntity<ResultModel> getIndividualBusinessBasicInfo(String internalCode){
 
-		individualBusinessBasicInfoService.isExistedIndividualBusinessBasicInfo(shopName);
-		IndividualBusinessBasicInfo info=individualBusinessBasicInfoService.getIndividualBusinessBasicInfo(shopName);
-		return info;
+		boolean flag = individualBusinessBasicInfoService.isExistedIndividualBusinessBasicInfo(internalCode);
+		if (!flag) {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND), HttpStatus.OK);
+		}
+		IndividualBusinessBasicInfo info=individualBusinessBasicInfoService.getIndividualBusinessBasicInfo(internalCode);
+		if (info!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(info), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+		}
 	}
 	
 	//插入个体商户信息
-	@RequestMapping("/insertIndividualBusinessBasicInfo")
-	public String insertIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo){
+	@RequestMapping(value = "/insertIndividualBusinessBasicInfo",method = RequestMethod.POST)
+	public ResponseEntity<ResultModel> insertIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo){
+		String internalCode = InternalCodeGenerator.getCode(individualBusinessBasicInfo.getShopkeeperCertificateType(), individualBusinessBasicInfo.getShopkeeperCertificateNumber());
+		boolean flag = individualBusinessBasicInfoService.isExistedIndividualBusinessBasicInfo(internalCode);
+		if (flag) {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,internalCode),HttpStatus.OK);
+		}
 
-		individualBusinessBasicInfoService.insertIndividualBusinessBasicInfo(individualBusinessBasicInfo);
-		return "ok";	
+		flag=individualBusinessBasicInfoService.isExistedShopName(individualBusinessBasicInfo.getShopName());
+		if (flag) {
+			Map<String,String> map=new HashMap<String,String>();
+			map.put("shopName",individualBusinessBasicInfo.getShopName());
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,map),HttpStatus.OK);
+		}
+
+		IndividualBusinessBasicInfo individualBusinessBasicInfo1 =individualBusinessBasicInfoService.insertIndividualBusinessBasicInfo(individualBusinessBasicInfo);
+		if (individualBusinessBasicInfo1!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(individualBusinessBasicInfo1), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+		}
 	}
 		
 	//个体商户修改
-	@RequestMapping("/updateIndividualBusinessBasicInfo")
-	public String updateIndividualBusinessBasicInfo(IndividualBusinessBasicInfo  individualBusinessBasicInfo){
-		individualBusinessBasicInfoService.updateIndividualBusinessBasicInfo(individualBusinessBasicInfo);
-		return "ok";	
+	@RequestMapping(value = "/updateIndividualBusinessBasicInfo",method = RequestMethod.POST)
+	public ResponseEntity<ResultModel> updateIndividualBusinessBasicInfo(IndividualBusinessBasicInfo  individualBusinessBasicInfo){
+
+		if(individualBusinessBasicInfo.getShopName()!=null) {
+			boolean flag=individualBusinessBasicInfoService.isExistedShopName(individualBusinessBasicInfo.getShopName());
+			if (flag) {
+				Map<String,String> map=new HashMap<String,String>();
+				map.put("shopName",individualBusinessBasicInfo.getShopName());
+				return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,map),HttpStatus.OK);
+			}
+		}
+
+		IndividualBusinessBasicInfo individualBusinessBasicInfo1 =individualBusinessBasicInfoService.updateIndividualBusinessBasicInfo(individualBusinessBasicInfo);
+		if (individualBusinessBasicInfo1!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(individualBusinessBasicInfo1), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+		}
 	}
-		
-	//删除个体商户
-	@RequestMapping("/deleteIndividualBusinessBasicInfo")
-	public String deleteIndividualBusinessBasicInfo(String  businessName){
-		individualBusinessBasicInfoService.deleteIndividualBusinessBasicInfo(businessName);
-		return "ok";	
-	}
+
  
 }

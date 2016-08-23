@@ -10,7 +10,7 @@ public class WorkerInfo {
 
 
     //客户经理ID
-    private String workerId;
+    private int workerId;
 
     //登录密码
     private String password;
@@ -45,11 +45,11 @@ public class WorkerInfo {
     //修改时间
     private Date modTime;
 
-    public String getWorkerId() {
+    public int getWorkerId() {
         return workerId;
     }
 
-    public void setWorkerId(String workerId) {
+    public void setWorkerId(int workerId) {
         this.workerId = workerId;
     }
 

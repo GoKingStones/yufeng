@@ -2,13 +2,15 @@ package com.yufeng.service;
 
 import com.yufeng.entity.UrgeRepaymentServiceEntity;
 
+import java.util.List;
+
 /**
  * Created by kingstones on 16/8/7.
  */
 public interface UrgeRepaymentServiceEntityService {
 
-    public int insertUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
-    public int updateUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
-    public UrgeRepaymentServiceEntity getUrgeRepaymentServiceEntityByWorkerId(int workerId);
-    public UrgeRepaymentServiceEntity getUrgeRepaymentServiceEntityByInternalCode(String internalCode);
+    public UrgeRepaymentServiceEntity insertUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
+    public UrgeRepaymentServiceEntity updateUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
+    public List<UrgeRepaymentServiceEntity> getUrgeRepaymentServiceEntityByWorkerId(int workerId);
+    public List<UrgeRepaymentServiceEntity> getUrgeRepaymentServiceEntityByInternalCode(String internalCode);
 }

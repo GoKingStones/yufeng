@@ -7,10 +7,13 @@ import com.yufeng.entity.WorkerInfo;
  */
 public interface WorkerInfoService {
 
-    public int insertWorkerInfo(WorkerInfo workerInfo);
+    public WorkerInfo insertWorkerInfo(WorkerInfo workerInfo);
 
-    public int updateWorkerInfo(WorkerInfo workerInfo);
+    public WorkerInfo updateWorkerInfo(WorkerInfo workerInfo);
 
+    public WorkerInfo updateWorkerInfoByAdmin(WorkerInfo workerInfo);
+
+    public WorkerInfo getWorkerInfoByWorkerId(int workerId);
     public WorkerInfo getWorkerInfoByOrgId(String orgId);
     public WorkerInfo getWorkerInfoByWorkerName(String workerName);
     public WorkerInfo getWorkerInfoByPhoneNumber(String phoneNumber);

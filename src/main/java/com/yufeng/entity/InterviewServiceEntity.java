@@ -12,10 +12,10 @@ public class InterviewServiceEntity {
     private int id;
 
     //客户经理ID
-    private int worker_id;
+    private int workerId;
 
     //客户内码
-    private String internal_code;
+    private String internalCode;
 
     //面签时间
     private Date interviewTime;
@@ -40,20 +40,20 @@ public class InterviewServiceEntity {
         this.id = id;
     }
 
-    public int getWorker_id() {
-        return worker_id;
+    public int getWorkerId() {
+        return workerId;
     }
 
-    public void setWorker_id(int worker_id) {
-        this.worker_id = worker_id;
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
 
-    public String getInternal_code() {
-        return internal_code;
+    public String getInternalCode() {
+        return internalCode;
     }
 
-    public void setInternal_code(String internal_code) {
-        this.internal_code = internal_code;
+    public void setInternalCode(String internalCode) {
+        this.internalCode = internalCode;
     }
 
     public Date getInterviewTime() {

@@ -1,13 +1,16 @@
 package com.yufeng.controller;
 
 import com.yufeng.algorithm.MD5Util;
+import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.entity.WorkerInfo;
 import com.yufeng.service.WorkerInfoService;
-import com.yufeng.service.impl.BankCardServiceImpl;
 import com.yufeng.util.ResultMap;
+import com.yufeng.util.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -19,7 +22,7 @@ import java.util.Map;
  * @author kingstones
   */
 @RestController
-@RequestMapping("/workerInfo")
+@RequestMapping("workerInfo")
 public class WorkerInfoController {
 	
 	@Autowired
@@ -27,109 +30,78 @@ public class WorkerInfoController {
 	
 	//
 	@RequestMapping("/getWorkerInfoByWorkerName")
-	public Map<String,String> getWorkerInfoByWorkerName(@RequestParam("workerName") String workerName){
+	public ResponseEntity<ResultModel> getWorkerInfoByWorkerName(@RequestParam("workerName") String workerName){
 
-		WorkerInfo workerInfo=null;
-		ResultMap resultMap=new ResultMap();
-		Map<String,String> result=new HashMap<String, String>();
-		if(!workerName.equals("")) {
-			workerInfo=workerInfoService.getWorkerInfoByWorkerName(workerName);
-			if (workerInfo!=null) {
-				result=resultMap.getSuccessMap();
-				result.put("workerInfo",workerInfo.toString());
-			}else {
-				result=resultMap.getErrorMap();
-				result.put("content","select error");
-			}
-
+		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByWorkerName(workerName);
+		if (workerInfo!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
 		}
-
-		return result;
 
     }
 
 	//
 	@RequestMapping("/getWorkerInfoByOrgId")
-	public Map<String,String> getWorkerInfoByOrgId(@RequestParam("orgId") String orgId){
+	public ResponseEntity<ResultModel> getWorkerInfoByOrgId(@RequestParam("orgId") String orgId){
 
-		WorkerInfo workerInfo=null;
-		ResultMap resultMap=new ResultMap();
-		Map<String,String> result=new HashMap<String, String>();
-		if(!orgId.equals("")) {
-			workerInfo=workerInfoService.getWorkerInfoByOrgId(orgId);
-			if (workerInfo!=null) {
-				result=resultMap.getSuccessMap();
-				result.put("workerInfo",workerInfo.toString());
-			}else {
-				result=resultMap.getErrorMap();
-				result.put("content","select error");
-			}
-
+		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByOrgId(orgId);
+		if (workerInfo!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
 		}
-
-		return result;
-
 
 	}
 
 	//
 	@RequestMapping("/getWorkerInfoByPhoneNumber")
-	public Map<String,String> getWorkerInfoByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber){
+	public ResponseEntity<ResultModel> getWorkerInfoByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber){
 
-		WorkerInfo workerInfo=null;
-		ResultMap resultMap=new ResultMap();
-		Map<String,String> result=new HashMap<String, String>();
-		if(!phoneNumber.equals("")) {
-			workerInfo=workerInfoService.getWorkerInfoByPhoneNumber(phoneNumber);
-			if (workerInfo!=null) {
-				result=resultMap.getSuccessMap();
-				result.put("workerInfo",workerInfo.toString());
-			}else {
-				result=resultMap.getErrorMap();
-				result.put("content","select error");
-			}
-
+		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByPhoneNumber(phoneNumber);
+		if (workerInfo!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
 		}
-
-		return result;
 	}
 
 
-	@RequestMapping("insertWorkerInfo")
-	@ResponseBody
-	public Map<String,String> insertWorkerInfo(@RequestBody WorkerInfo workerInfo){
+	@RequestMapping("/insertWorkerInfo")
+	public ResponseEntity<ResultModel> insertWorkerInfo(@RequestBody WorkerInfo workerInfo){
 
 
-		ResultMap resultMap=new ResultMap();
 
-
-		workerInfo.setPassword(MD5Util.string2MD5(workerInfo.getPassword()));
-		int result = workerInfoService.insertWorkerInfo(workerInfo);
-
-		if (result==0) {
-			return resultMap.getErrorMap();
+		WorkerInfo  workerInfo1 =workerInfoService.insertWorkerInfo(workerInfo);
+		if (workerInfo1!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo1), HttpStatus.OK);
 		}else {
-			return resultMap.getSuccessMap();
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
 		}
 	}
 
 	@RequestMapping("updateWorkerInfo")
-	@ResponseBody
-	public Map<String,String> updateWorkerInfo(@RequestBody WorkerInfo workerInfo){
+	public ResponseEntity<ResultModel> updateWorkerInfo(@RequestBody WorkerInfo workerInfo){
 
-
-		ResultMap resultMap=new ResultMap();
-
-		workerInfo.setPassword(MD5Util.string2MD5(workerInfo.getPassword()));
-		int result = workerInfoService.updateWorkerInfo(workerInfo);
-
-		if (result==0) {
-			return resultMap.getErrorMap();
+		WorkerInfo  workerInfo1 =workerInfoService.updateWorkerInfo(workerInfo);
+		if (workerInfo1!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo1), HttpStatus.OK);
 		}else {
-			return resultMap.getSuccessMap();
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
 		}
+
 	}
 
+	@RequestMapping("updateWorkerInfoByAdmin")
+	public ResponseEntity<ResultModel> updateWorkerInfoByAdmin(@RequestBody WorkerInfo workerInfo){
+
+		WorkerInfo  workerInfo1 =workerInfoService.updateWorkerInfo(workerInfo);
+		if (workerInfo1!=null) {
+			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo1), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
+		}
+	}
 
 
 

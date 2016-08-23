@@ -9,6 +9,7 @@ import com.yufeng.entity.InternalCode;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.service.CreditAccountInfoService;
+import com.yufeng.service.RegisterAccountService;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.util.CheckMethod;
 import com.yufeng.util.InternalCodeGenerator;
@@ -35,6 +36,9 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     
     @Autowired
     private CreditAccountInfoService creditAccountInfoService;
+    
+    @Autowired
+    private RegisterAccountService registerAccountService;
     
 
 	public UserBasicInfo getUserBasicInfoByInternalCode(String internalCode) {
@@ -63,10 +67,8 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     		    
     		    errorMap = checkUserBasicInfo(userBasicInfo);
     		    
-    		    RegisterAccount registerAccount =  registerAccountDao.getRegisterAccountByPhoneNumber(userBasicInfo.getCellNo());
-    		    
     		    //不存在注册用户
-    		    if(registerAccount==null){
+    		    if(!registerAccountService.isExistedRegisterAccountByPhoneNumber(userBasicInfo.getCellNo())){
     		    	System.out.println("不存在这个注册用户");
     		    	return null;
     		   
@@ -90,6 +92,8 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
     		    	System.out.println("结束插入内码数据");
     		    	//生成内码更新至用户注册表中	    
     		    	System.out.println("开始更新注册账户数据");
+    		    	RegisterAccount registerAccount = new RegisterAccount();
+    		    	registerAccount = registerAccountService.getRegisterAccountByPhoneNumber(userBasicInfo.getCellNo());
     		    	registerAccount.setInternalCode(userBasicInfo.getInternalCode());  
     		    	System.out.println("更新数据为"+registerAccount.toString());
     		    	int result2 = registerAccountDao.updateRegisterAccount(registerAccount);
@@ -116,8 +120,21 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
 		
 	}
 
-	public int updateUserBasicInfo(UserBasicInfo userBasicInfo) {
-		return userBasicInfoDao.updateUserBasicInfo(userBasicInfo);
+	public UserBasicInfo updateUserBasicInfo(UserBasicInfo userBasicInfo) throws ParseException {
+		UserBasicInfo userBasicInfoResult=null;
+		
+        if(isExistedUserBasicInfoForUpdate(userBasicInfo.getIdType(), userBasicInfo.getIdNo(),userBasicInfo.getInternalCode())){
+        	
+    	    if(checkUserBasicInfo(userBasicInfo).isEmpty()){
+    	    		
+    	    	int result=userBasicInfoDao.updateUserBasicInfo(userBasicInfo);
+    	    	
+    	    	if (result == 1) {
+    	    		userBasicInfoResult = userBasicInfoDao.getUserBasicInfoByInternalCode(userBasicInfo.getInternalCode());
+    	        }
+    	    }	   
+        }
+        return userBasicInfoResult;
 	}
 
 	public boolean isExistedUserBasicInfo(String idType, String idNo) {
@@ -131,11 +148,11 @@ public class UserBasicInfoServiceImpl implements UserBasicInfoService{
 		
 		Map<String, String> errorMap = new HashMap<String,String>();
 		
-		if(!CheckMethod.isEmail(userBasicInfo.getEmail())){
+		if(userBasicInfo.getEmail()!=null&&!userBasicInfo.getEmail().trim().equals("")&&!CheckMethod.isEmail(userBasicInfo.getEmail())){
 			errorMap.put("email", "format error");
 		}
 		
-		if(!CheckMethod.isNumeric(userBasicInfo.getQqNo())){
+		if(userBasicInfo.getQqNo()!=null&&!userBasicInfo.getQqNo().trim().equals("")&&!CheckMethod.isNumeric(userBasicInfo.getQqNo())){
 			errorMap.put("qqNo", "format error");
 		}
 		

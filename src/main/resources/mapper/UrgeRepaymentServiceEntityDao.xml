@@ -25,8 +25,8 @@
 
 
     <update id="updateUrgeRepaymentServiceEntity" parameterType="int">
-        UPDATE urge_repayment_service_table SET
-
+        UPDATE urge_repayment_service_table
+        <trim prefix="set" suffixOverrides=",">
         <if test="workerId!=null">
             worker_id=#{workerId},
         </if>
@@ -34,27 +34,27 @@
             internal_code=#{internalCode},
         </if>
         <if test="urgeTime!=null">
-            urge_time=#{urgeTime}
+            urge_time=#{urgeTime},
         </if>
         <if test="urgeMode!=null">
-            urge_mode = #{urgeMode}
+            urge_mode = #{urgeMode},
         </if>
         <if test="urgeType!=null">
-            urge_type = #{urgeType}
+            urge_type = #{urgeType},
         </if>
         <if test="repayment!=null">
-            repayment = #{repayment}
+            repayment = #{repayment},
         </if>
 
         <if test="urgeStatus!=null">
-            urge_status = #{urgeStatus}
+            urge_status = #{urgeStatus},
         </if>
 
 
         <if test="detail!=null">
-            detail=#{detail}
+            detail=#{detail},
         </if>
-
+        </trim>
         WHERE id=#{id}
 
     </update>

@@ -19,7 +19,7 @@ public class IndividualBusinessBasicInfo {
     //联系电话
     private String shopTel;
     //店主证件类型
-    private String shopkeeperCertificateType;
+    private int shopkeeperCertificateType;
     //店主证件号码
     private String shopkeeperCertificateNumber;
     //所在地区
@@ -79,11 +79,11 @@ public class IndividualBusinessBasicInfo {
         this.shopTel = shopTel;
     }
 
-    public String getShopkeeperCertificateType() {
+    public int getShopkeeperCertificateType() {
         return shopkeeperCertificateType;
     }
 
-    public void setShopkeeperCertificateType(String shopkeeperCertificateType) {
+    public void setShopkeeperCertificateType(int shopkeeperCertificateType) {
         this.shopkeeperCertificateType = shopkeeperCertificateType;
     }
 
