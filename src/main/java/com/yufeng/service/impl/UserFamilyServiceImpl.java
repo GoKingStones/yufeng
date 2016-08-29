@@ -43,19 +43,19 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 			return "2";//重复
 		}
 		//保存新建时间
-		userFamilyInfo.setFoundTime(new Date());
+		userFamilyInfo.setCreateTime(new Date());
 		return userFamilyDao.insertUserFamily(userFamilyInfo)+"";
 	}
 			
 	//联系人信息修改
 	public String updateUserFamily(UserFamilyInfo userFamilyInfo){
-		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyInfo.getId());
+		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyInfo.getUniqueId());
 		//检查信息是否存在
 		if(info==null){
 			return "0";
 		}
 		//保存修改时间
-		userFamilyInfo.setUpdateTime(new Date());
+		userFamilyInfo.setModTime(new Date());
 		return userFamilyDao.updateUserFamily(userFamilyInfo)+"";
 	}
 			
@@ -70,16 +70,16 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 		u.setCredentialsNumber(info.getCredentialsNumber());
 		u.setCredentialsType(info.getCredentialsType());
 		u.setDelete_operator(userFamilyHistoryInfo.getDelete_operator());//取得操作者
-		u.setFoundTime(info.getFoundTime());
+		u.setFoundTime(info.getCreateTime());
 		u.setGender(info.getGender());
 		u.setHighestEducation(info.getHighestEducation());
 		u.setHighestEducationSchool(info.getHighestEducationSchool());
-		u.setInternal_code(info.getInternal_code());
-		u.setMailbox(info.getMailbox());
+		u.setInternal_code(info.getInternalCode());
+		u.setMailbox(info.getEmail());
 		u.setMailingAddress(info.getMailingAddress());
 		u.setName(info.getName());
 		u.setOrganization(info.getOrganization());
-		u.setPhone(info.getPhone());
+		u.setPhone(info.getCellNo());
 		u.setRelation(info.getRelation());
 		//保存联系人进历史表
 		userFamilyHistoryDao.insertUserFamilyHistory(u);

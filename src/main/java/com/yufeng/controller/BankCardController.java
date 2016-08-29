@@ -31,9 +31,9 @@ public class BankCardController {
 	
 	//查询银行卡信息(id)
 	@RequestMapping("/getBankCardById")
-	id和内码作为where条件，以免出现问题
-	public UserBankCardInfo getBankCardByID(String id){
-		UserBankCardInfo info=bankCardService.getBankCardByID(id);
+	//id和内码作为where条件，以免出现问题
+	public UserBankCardInfo getBankCardByID(String id,String internalCode){
+		UserBankCardInfo info=bankCardService.getBankCardByID(id,internalCode);
 		return info;
 	}
 	

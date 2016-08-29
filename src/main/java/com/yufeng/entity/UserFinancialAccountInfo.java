@@ -8,10 +8,10 @@ import java.util.Date;
  * 用户金融账户信息
  */
 public class UserFinancialAccountInfo implements Serializable{
-	请修改做了标记的字段，按照java规范，并参考UserFamilyInfo中的字段名进行修改。
-11	private String id;
+	
+	private String uniqueId;
 	//内码
-11	private String internal_code;
+	private String internalCode;
 	//信息标识ID
 	private String signId;
 	//金融消费账户ID
@@ -25,26 +25,24 @@ public class UserFinancialAccountInfo implements Serializable{
 	//是否授权
 	private String authorize;
 	//创建时间
-11	private Date foundTime;
+	private Date createTime;
 	//更新时间
-11	private Date updateTime;
+	private Date modTime;
 	//是否有效
-11	private Boolean info_status;
+	private Boolean infoStatus;
 	//删除操作者
-11	private String delete_operator;
-	
-	
-	public String getId() {
-		return id;
+	private String deleteOperator;
+	public String getUniqueId() {
+		return uniqueId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
-	public String getInternal_code() {
-		return internal_code;
+	public String getInternalCode() {
+		return internalCode;
 	}
-	public void setInternal_code(String internal_code) {
-		this.internal_code = internal_code;
+	public void setInternalCode(String internalCode) {
+		this.internalCode = internalCode;
 	}
 	public String getSignId() {
 		return signId;
@@ -82,30 +80,32 @@ public class UserFinancialAccountInfo implements Serializable{
 	public void setAuthorize(String authorize) {
 		this.authorize = authorize;
 	}
-	public Date getFoundTime() {
-		return foundTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setFoundTime(Date foundTime) {
-		this.foundTime = foundTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getModTime() {
+		return modTime;
 	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setModTime(Date modTime) {
+		this.modTime = modTime;
 	}
-	public Boolean getInfo_status() {
-		return info_status;
+	public Boolean getInfoStatus() {
+		return infoStatus;
 	}
-	public void setInfo_status(Boolean info_status) {
-		this.info_status = info_status;
+	public void setInfoStatus(Boolean infoStatus) {
+		this.infoStatus = infoStatus;
 	}
-	public String getDelete_operator() {
-		return delete_operator;
+	public String getDeleteOperator() {
+		return deleteOperator;
 	}
-	public void setDelete_operator(String delete_operator) {
-		this.delete_operator = delete_operator;
+	public void setDeleteOperator(String deleteOperator) {
+		this.deleteOperator = deleteOperator;
 	}
+	
+	
 	
 	
 	

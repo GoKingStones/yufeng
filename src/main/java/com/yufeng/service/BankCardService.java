@@ -13,7 +13,7 @@ public interface BankCardService {
 	//查询银行卡信息
 	public List<UserBankCardInfo> getBankCardByCode(String code);
 	//查询银行卡信息
-	public UserBankCardInfo getBankCardByID(String id);
+	public UserBankCardInfo getBankCardByID(String id,String internalCode);
 	//新建银行卡信息
 	public String insertBankCard(UserBankCardInfo userBankCardInfo);
 	//银行卡信息修改

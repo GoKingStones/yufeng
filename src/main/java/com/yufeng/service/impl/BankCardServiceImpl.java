@@ -27,14 +27,14 @@ public class BankCardServiceImpl implements BankCardService{
 	}
 	
 	//查询银行卡信息
-	public UserBankCardInfo getBankCardByID(String id){
+	public UserBankCardInfo getBankCardByID(String id,String internalCode){
 		UserBankCardInfo info=bankCardDao.getBankCardByID(id);
 		return info;
 	}
 		
 	//新建银行卡信息
 	public String insertBankCard(UserBankCardInfo userBankCardInfo){
-		userBankCardInfo.setFoundTime(new Date());
+		userBankCardInfo.setCreateTime(new Date());
 		//检查是否存在重复银行卡号
 		UserBankCardInfo info=bankCardDao.getBankCardByBankCardNumber(userBankCardInfo.getBankCardNumber());
 		if(info!=null){
@@ -45,9 +45,9 @@ public class BankCardServiceImpl implements BankCardService{
 		
 	//银行卡信息修改
 	public String updateBankCard(UserBankCardInfo userBankCardInfo){
-		userBankCardInfo.setUpdateTime(new Date());
+		userBankCardInfo.setModTime(new Date());
 		//检查数据是否存在
-		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getId());
+		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId());
 		if(info==null){
 			return "0";
 		}
@@ -57,7 +57,7 @@ public class BankCardServiceImpl implements BankCardService{
 	//删除银行卡信息
 	public String deleteBankCard(UserBankCardInfo userBankCardInfo){
 		//检查数据是否存在
-		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getId());
+		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId());
 		if(info==null){
 			return "0";
 		}

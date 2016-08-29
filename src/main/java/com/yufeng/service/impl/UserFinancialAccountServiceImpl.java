@@ -39,23 +39,23 @@ public class UserFinancialAccountServiceImpl implements UserFinancialAccountServ
 		if(info!=null){
 			return "2";//存在重复
 		}
-		userFinancialAccountInfo.setFoundTime(new Date());
+		userFinancialAccountInfo.setCreateTime(new Date());
 		return userFinancialAccountDao.insertUserFinancialAccount(userFinancialAccountInfo)+"";
 	}
 				
 	//金融账户信息修改
 	public String updateUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
-		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getId());
+		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getUniqueId());
 		if(info==null){
 			return "0";
 		}
-		userFinancialAccountInfo.setUpdateTime(new Date());
+		userFinancialAccountInfo.setModTime(new Date());
 		return userFinancialAccountDao.updateUserFinancialAccount(userFinancialAccountInfo)+"";
 	}
 				
 	//删除金融账户信息
 	public String deleteUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
-		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getId());
+		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getUniqueId());
 		if(info==null){
 			return "0";
 		}
