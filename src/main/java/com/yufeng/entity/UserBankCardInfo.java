@@ -9,9 +9,9 @@ import java.util.Date;
  */
 public class UserBankCardInfo implements Serializable{
 	
-	private String id;
+	private String uniqueId;
 	//内码
-	private String internal_code;
+	private String internalCode;
 	//银行卡号码
 	private String bankCardNumber;
 	//银行卡类型
@@ -23,26 +23,24 @@ public class UserBankCardInfo implements Serializable{
 	//银行卡状态
 	private String bankCardState;
 	//创建时间
-	private Date foundTime;
+	private Date createTime;
 	//更新时间
-	private Date updateTime;
+	private Date modTime;
 	//是否有效
-	private Boolean info_status;
+	private String infoStatus;
 	//删除操作者
-	private String delete_operator;
-	
-	
-	public String getId() {
-		return id;
+	private String deleteOperator;
+	public String getUniqueId() {
+		return uniqueId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
-	public String getInternal_code() {
-		return internal_code;
+	public String getInternalCode() {
+		return internalCode;
 	}
-	public void setInternal_code(String internal_code) {
-		this.internal_code = internal_code;
+	public void setInternalCode(String internalCode) {
+		this.internalCode = internalCode;
 	}
 	public String getBankCardNumber() {
 		return bankCardNumber;
@@ -74,31 +72,33 @@ public class UserBankCardInfo implements Serializable{
 	public void setBankCardState(String bankCardState) {
 		this.bankCardState = bankCardState;
 	}
-	public Date getFoundTime() {
-		return foundTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setFoundTime(Date foundTime) {
-		this.foundTime = foundTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getModTime() {
+		return modTime;
 	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setModTime(Date modTime) {
+		this.modTime = modTime;
 	}
-	public Boolean getInfo_status() {
-		return info_status;
+	public String getInfoStatus() {
+		return infoStatus;
 	}
-	public void setInfo_status(Boolean info_status) {
-		this.info_status = info_status;
+	public void setInfoStatus(String infoStatus) {
+		this.infoStatus = infoStatus;
 	}
-	public String getDelete_operator() {
-		return delete_operator;
+	public String getDeleteOperator() {
+		return deleteOperator;
 	}
-	public void setDelete_operator(String delete_operator) {
-		this.delete_operator = delete_operator;
+	public void setDeleteOperator(String deleteOperator) {
+		this.deleteOperator = deleteOperator;
 	}
 	
 	
+
+
 
 }

@@ -8,10 +8,10 @@ import java.util.Date;
  * 用户金融账户信息
  */
 public class UserFinancialAccountInfo implements Serializable{
-	
-	private String id;
+	请修改做了标记的字段，按照java规范，并参考UserFamilyInfo中的字段名进行修改。
+11	private String id;
 	//内码
-	private String internal_code;
+11	private String internal_code;
 	//信息标识ID
 	private String signId;
 	//金融消费账户ID
@@ -25,13 +25,13 @@ public class UserFinancialAccountInfo implements Serializable{
 	//是否授权
 	private String authorize;
 	//创建时间
-	private Date foundTime;
+11	private Date foundTime;
 	//更新时间
-	private Date updateTime;
+11	private Date updateTime;
 	//是否有效
-	private Boolean info_status;
+11	private Boolean info_status;
 	//删除操作者
-	private String delete_operator;
+11	private String delete_operator;
 	
 	
 	public String getId() {

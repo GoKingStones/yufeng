@@ -9,9 +9,14 @@ import java.util.Date;
  */
 public class UserFamilyInfo implements Serializable{
 	
-	private String id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3544087117780850728L;
+	
+	private String uniqueId;
 	//内码
-	private String internal_code;
+	private String internalCode;
 	//证件类型
 	private String credentialsType;
 	//证件号码
@@ -25,9 +30,9 @@ public class UserFamilyInfo implements Serializable{
 	//工作单位
 	private String organization;
 	//手机号码
-	private String phone;
+	private String cellNo;
 	//电子邮箱
-	private String mailbox;
+	private String email;
 	//与主体关系
 	private String relation;
 	//最高学历院校
@@ -35,22 +40,20 @@ public class UserFamilyInfo implements Serializable{
 	//最高学历
 	private String highestEducation;
 	//创建时间
-	private Date foundTime;
+	private Date createTime;
 	//更新时间
-	private Date updateTime;
-	
-	
-	public String getId() {
-		return id;
+	private Date modTime;
+	public String getUniqueId() {
+		return uniqueId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
-	public String getInternal_code() {
-		return internal_code;
+	public String getInternalCode() {
+		return internalCode;
 	}
-	public void setInternal_code(String internal_code) {
-		this.internal_code = internal_code;
+	public void setInternalCode(String internalCode) {
+		this.internalCode = internalCode;
 	}
 	public String getCredentialsType() {
 		return credentialsType;
@@ -88,17 +91,17 @@ public class UserFamilyInfo implements Serializable{
 	public void setOrganization(String organization) {
 		this.organization = organization;
 	}
-	public String getPhone() {
-		return phone;
+	public String getCellNo() {
+		return cellNo;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCellNo(String cellNo) {
+		this.cellNo = cellNo;
 	}
-	public String getMailbox() {
-		return mailbox;
+	public String getEmail() {
+		return email;
 	}
-	public void setMailbox(String mailbox) {
-		this.mailbox = mailbox;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getRelation() {
 		return relation;
@@ -118,23 +121,19 @@ public class UserFamilyInfo implements Serializable{
 	public void setHighestEducation(String highestEducation) {
 		this.highestEducation = highestEducation;
 	}
-	public Date getFoundTime() {
-		return foundTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setFoundTime(Date foundTime) {
-		this.foundTime = foundTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getModTime() {
+		return modTime;
 	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setModTime(Date modTime) {
+		this.modTime = modTime;
 	}
 	
-	
-	
-	
-	
-	
+
 
 }

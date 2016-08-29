@@ -23,14 +23,15 @@ public class BankCardController {
 	private BankCardService bankCardService;
 	
 	//查询银行卡信息(code)
-	@RequestMapping("/getBankCardByCode")
+	@RequestMapping("/getBankCardByInternalCode")
 	public List<UserBankCardInfo> getBankCardByCode(String code){
 		List<UserBankCardInfo> info=bankCardService.getBankCardByCode(code);
 		return info;
     }
 	
 	//查询银行卡信息(id)
-	@RequestMapping("/getBankCardByID")
+	@RequestMapping("/getBankCardById")
+	id和内码作为where条件，以免出现问题
 	public UserBankCardInfo getBankCardByID(String id){
 		UserBankCardInfo info=bankCardService.getBankCardByID(id);
 		return info;
@@ -38,6 +39,7 @@ public class BankCardController {
 	
 	//新建银行卡信息
 	@RequestMapping("/insertBankCard")
+	入参应该是个list
 	public String insertBankCard(@RequestBody UserBankCardInfo userBankCardInfo){
 		return bankCardService.insertBankCard(userBankCardInfo);
 	}
@@ -45,6 +47,7 @@ public class BankCardController {
 	//银行卡信息修改
 	@RequestMapping("/updateBankCard")
 	public String updateBankCard(@RequestBody UserBankCardInfo userBankCardInfo){
+		id和内码作为where条件，以免出现问题
 		return bankCardService.updateBankCard(userBankCardInfo);
 	}
 	
@@ -54,4 +57,8 @@ public class BankCardController {
 		return bankCardService.deleteBankCard(userBankCardInfo);
 	}
 
+	
+返回值应为ResponseEntity，参考RegisterAccountController
+	
+	
 }

@@ -24,19 +24,21 @@ public class UserFamilyController {
 	
 	
 	//查询联系人信息
-	@RequestMapping("/getUserFamilyByCode")
+	@RequestMapping("/getUserFamilyByInternalCode")
 	public List<UserFamilyInfo> getUserFamilyByCode(String code){
 		return userFamilyService.getUserFamilyByCode(code);
 	}
 	
 	//查询联系人信息
 	@RequestMapping("/getUserFamilyById")
+	id和内码作为where条件，以免出现问题
 	public UserFamilyInfo getUserFamilyById(String id){
 		return userFamilyService.getUserFamilyById(id);
 	}
 	
 	//新建联系人信息
 	@RequestMapping("/insertUserFamily")
+	入参这应该是个list，填写联系人应该是在一个page内，会一起提交。
 	public String insertUserFamily(@RequestBody UserFamilyInfo userFamilyInfo){
 		return userFamilyService.insertUserFamily(userFamilyInfo);
 	}
@@ -52,5 +54,5 @@ public class UserFamilyController {
 	public String deleteUserFamily(@RequestBody UserFamilyHistoryInfo userFamilyHistoryInfo){
 		return userFamilyService.deleteUserFamily(userFamilyHistoryInfo);
 	}
- 
+	返回值应为ResponseEntity，参考RegisterAccountController
 }
