@@ -26,15 +26,15 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 	private FastConsumerLoanOrderDao fastConsumerLoanOrderDao;
 	
 	//查询订单详细
-	public Map<String,Object> getFastConsumerLoanOrder(String order_id){
+	public Map<String,Object> getFastConsumerLoanOrder(String orderId){
 		Map<String,Object> map=new HashMap<String, Object>();
 		//查询订单
-		FastConsumerLoanOrder order_info=fastConsumerLoanOrderDao.getFastConsumerLoanOrderByOrderId(order_id);
-		if(order_info==null)return null;
+		FastConsumerLoanOrder orderInfo=fastConsumerLoanOrderDao.getFastConsumerLoanOrderByOrderId(orderId);
+		if(orderInfo==null)return null;
 		//查询商品
-		List<FastConsumerLoanOrderCommodity> consumer_info_list=fastConsumerLoanOrderDao.getFastConsumerLoanOrderCommodityByOrderId(order_info.getId());
-		map.put("loanOrder", order_info);
-		map.put("loanOrderConsumerList", consumer_info_list);
+		List<FastConsumerLoanOrderCommodity> consumerInfoList=fastConsumerLoanOrderDao.getFastConsumerLoanOrderCommodityByOrderId(orderInfo.getUniqueId());
+		map.put("loanOrder", orderInfo);
+		map.put("loanOrderConsumerList", consumerInfoList);
 		return map;
 	}
 	
@@ -43,15 +43,15 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 		try {
 			Date date = new Date();
 			// 新建分期订单id
-			String order_id = UUID.randomUUID().toString();
+			String orderId = UUID.randomUUID().toString();
 			// 获取单个订单与多个商品的json
 			JSONObject obj = JSON.parseObject(json);
 			String order = obj.getString("loanOrder");
 			String commodityList = obj.getString("loanOrderConsumerList");
 			// 订单
 			FastConsumerLoanOrder loanOrder = JSON.parseObject(order, FastConsumerLoanOrder.class);
-			loanOrder.setId(order_id);
-			loanOrder.setFound_time(date);
+			loanOrder.setUniqueId(orderId);
+			loanOrder.setCreateTime(date);
 			// 储存订单
 			fastConsumerLoanOrderDao.insertFastConsumerLoanOrder(loanOrder);
 			// 商品
@@ -59,9 +59,9 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 			for (String str : arry) {
 				// 储存商品
 				FastConsumerLoanOrderCommodity commodity = JSON.parseObject(str, FastConsumerLoanOrderCommodity.class);
-				commodity.setOrder_id(order_id);
-				commodity.setId(UUID.randomUUID().toString());
-				commodity.setFound_time(date);
+				commodity.setOrderId(orderId);
+				commodity.setUniqueId(UUID.randomUUID().toString());
+				commodity.setCreateTime(date);
 				fastConsumerLoanOrderDao.insertFastConsumerLoanOrderCommodity(commodity);
 			}
 			return "1";
@@ -82,7 +82,7 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 			// 订单
 			if(order!=null&&(!"".equals(order))){
 				FastConsumerLoanOrder loanOrder = JSON.parseObject(order, FastConsumerLoanOrder.class);
-				loanOrder.setUpdate_time(date);
+				loanOrder.setModTime(date);
 				// 修改订单(先查出原值)
 				//FastConsumerLoanOrder oldObj=fastConsumerLoanOrderDao.getFastConsumerLoanOrderById(loanOrder.getId());
 				fastConsumerLoanOrderDao.updateFastConsumerLoanOrder(loanOrder);
@@ -94,7 +94,7 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 				for (String str : arry) {
 					// 储存商品
 					FastConsumerLoanOrderCommodity commodity = JSON.parseObject(str, FastConsumerLoanOrderCommodity.class);
-					commodity.setUpdate_time(date);
+					commodity.setModTime(date);
 					fastConsumerLoanOrderDao.updateFastConsumerLoanOrderCommodity(commodity);
 				}
 			}

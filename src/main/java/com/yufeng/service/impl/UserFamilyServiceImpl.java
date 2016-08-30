@@ -31,28 +31,37 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 	}
 	
 	//查询联系人信息
-	public UserFamilyInfo getUserFamilyById(String id){
-		return userFamilyDao.getUserFamilyById(id);
+	public UserFamilyInfo getUserFamilyById(String uniqueId,String internalCode){
+		return userFamilyDao.getUserFamilyById(uniqueId,internalCode);
 	}
 	
 	//新建联系人信息
-	public String insertUserFamily(UserFamilyInfo userFamilyInfo){
-		//检查身份证号是否重复
-		UserFamilyInfo info=userFamilyDao.getUserFamilyByCredentialsNumber(userFamilyInfo.getCredentialsNumber());
-		if(info!=null){
-			return "2";//重复
-		}
-		//保存新建时间
-		userFamilyInfo.setCreateTime(new Date());
-		return userFamilyDao.insertUserFamily(userFamilyInfo)+"";
+	public String insertUserFamily(List<UserFamilyInfo> userFamilyInfo){
+	  //验证信息
+        if(userFamilyInfo!=null&&userFamilyInfo.size()>0){
+            for(UserFamilyInfo u:userFamilyInfo){
+              //检查身份证号是否重复
+                UserFamilyInfo info=userFamilyDao.getUserFamilyByCredentialsNumber(u.getCredentialsNumber());
+                if(info!=null){
+                    return "99";//重复
+                }
+                //保存新建时间
+                u.setCreateTime(new Date());
+                userFamilyDao.insertUserFamily(u);
+            }
+            return "1";
+        }else{
+            return "0";
+        }
+		
 	}
 			
 	//联系人信息修改
 	public String updateUserFamily(UserFamilyInfo userFamilyInfo){
-		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyInfo.getUniqueId());
+		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyInfo.getUniqueId(),userFamilyInfo.getInternalCode());
 		//检查信息是否存在
 		if(info==null){
-			return "0";
+			return "3";
 		}
 		//保存修改时间
 		userFamilyInfo.setModTime(new Date());
@@ -61,26 +70,27 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 			
 	//删除联系人信息
 	public String deleteUserFamily(UserFamilyHistoryInfo userFamilyHistoryInfo){
-		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyHistoryInfo.getId());
+		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyHistoryInfo.getUniqueId(),userFamilyHistoryInfo.getInternalCode());
 		//检查信息是否存在
 		if(info==null){
-			return "0";
+			return "3";
 		}
 		UserFamilyHistoryInfo u=new UserFamilyHistoryInfo();
 		u.setCredentialsNumber(info.getCredentialsNumber());
 		u.setCredentialsType(info.getCredentialsType());
-		u.setDelete_operator(userFamilyHistoryInfo.getDelete_operator());//取得操作者
-		u.setFoundTime(info.getCreateTime());
+		u.setDeleteOperator(userFamilyHistoryInfo.getDeleteOperator());//取得操作者
+		u.setCreateTime(info.getCreateTime());
 		u.setGender(info.getGender());
 		u.setHighestEducation(info.getHighestEducation());
 		u.setHighestEducationSchool(info.getHighestEducationSchool());
-		u.setInternal_code(info.getInternalCode());
-		u.setMailbox(info.getEmail());
+		u.setInternalCode(info.getInternalCode());
+		u.setEmail(info.getEmail());
 		u.setMailingAddress(info.getMailingAddress());
 		u.setName(info.getName());
 		u.setOrganization(info.getOrganization());
-		u.setPhone(info.getCellNo());
+		u.setCellNo(info.getCellNo());
 		u.setRelation(info.getRelation());
+		u.setCreateTime(new Date());
 		//保存联系人进历史表
 		userFamilyHistoryDao.insertUserFamilyHistory(u);
 		return userFamilyDao.deleteUserFamily(userFamilyHistoryInfo)+"";

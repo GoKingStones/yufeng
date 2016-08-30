@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.FastConsumerLoanOrder;
 import com.yufeng.entity.FastConsumerLoanOrderCommodity;
 import com.yufeng.service.FastConsumerLoanOrderService;
+import com.yufeng.util.ResultModel;
 
 /**
  * 快速消费品分期订单控制层
@@ -25,20 +29,30 @@ public class FastConsumerLoanOrderController {
 	
 	//查询订单信息(code)
 	@RequestMapping("/getFastConsumerLoanOrder")
-	public Map<String,Object> getFastConsumerLoanOrder(String order_id){
-		return fastConsumerLoanOrderService.getFastConsumerLoanOrder(order_id);
-	   }
-		
-	//新建订单信息
-	@RequestMapping("/insertFastConsumerLoanOrder")
-	public String insertFastConsumerLoanOrder(@RequestBody String json){
-		return fastConsumerLoanOrderService.insertFastConsumerLoanOrder(json);
+	public Map<String,Object> getFastConsumerLoanOrder(String orderId){
+		return fastConsumerLoanOrderService.getFastConsumerLoanOrder(orderId);
 	}
 		
-	//订单订单修改
+	//新建订单信息(接收json)
+	@RequestMapping("/insertFastConsumerLoanOrder")
+	public ResponseEntity<ResultModel> insertFastConsumerLoanOrder(@RequestBody String order){
+		String type=fastConsumerLoanOrderService.insertFastConsumerLoanOrder(order);
+		if("1".equals(type)){
+            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
+        }else{//操作失败
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+        }
+	}
+		
+	//订单订单修改(接收json)
 	@RequestMapping("/updateFastConsumerLoanOrder")
-	public String updateFastConsumerLoanOrder(@RequestBody String json){
-		return fastConsumerLoanOrderService.updateFastConsumerLoanOrder(json);
+	public ResponseEntity<ResultModel> updateFastConsumerLoanOrder(@RequestBody String order){
+		String type=fastConsumerLoanOrderService.updateFastConsumerLoanOrder(order);
+		if("1".equals(type)){
+            return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
+        }else{//操作失败
+            return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
+        }
 	}
 		
 

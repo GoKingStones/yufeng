@@ -14,9 +14,9 @@ public interface UserFamilyService {
 	//查询联系人信息
 	public List<UserFamilyInfo> getUserFamilyByCode(String code);
 	//查询联系人信息
-	public UserFamilyInfo getUserFamilyById(String id);
+	public UserFamilyInfo getUserFamilyById(String uniqueId,String internalCode);
 	//新建联系人信息
-	public String insertUserFamily(UserFamilyInfo userFamilyInfo);
+	public String insertUserFamily(List<UserFamilyInfo> userFamilyInfo);
 	//联系人信息修改
 	public String updateUserFamily(UserFamilyInfo userFamilyInfo);
 	//删除联系人信息

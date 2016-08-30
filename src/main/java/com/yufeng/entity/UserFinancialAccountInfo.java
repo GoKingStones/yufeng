@@ -9,7 +9,11 @@ import java.util.Date;
  */
 public class UserFinancialAccountInfo implements Serializable{
 	
-	private String uniqueId;
+	/**
+     */
+    private static final long serialVersionUID = 4299505920916240269L;
+    
+    private String uniqueId;
 	//内码
 	private String internalCode;
 	//信息标识ID
@@ -32,6 +36,7 @@ public class UserFinancialAccountInfo implements Serializable{
 	private Boolean infoStatus;
 	//删除操作者
 	private String deleteOperator;
+	
 	public String getUniqueId() {
 		return uniqueId;
 	}

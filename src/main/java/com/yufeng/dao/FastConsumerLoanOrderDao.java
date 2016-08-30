@@ -12,17 +12,17 @@ import com.yufeng.entity.FastConsumerLoanOrderCommodity;
  */
 public interface FastConsumerLoanOrderDao {
 	//查询分期订单详细
-	public FastConsumerLoanOrder getFastConsumerLoanOrderById(String id);
-	public FastConsumerLoanOrder getFastConsumerLoanOrderByOrderId(String order_id);
+	public FastConsumerLoanOrder getFastConsumerLoanOrderById(String uniqueId);
+	public FastConsumerLoanOrder getFastConsumerLoanOrderByOrderId(String orderId);
 	//新增分期订单详细
 	public int insertFastConsumerLoanOrder(FastConsumerLoanOrder fastConsumerLoanOrder);
 	//修改分期订单详细
 	public int updateFastConsumerLoanOrder(FastConsumerLoanOrder fastConsumerLoanOrder);
 	
 	//查询商品详细
-	public FastConsumerLoanOrderCommodity getFastConsumerLoanOrderCommodityById(String id);
+	public FastConsumerLoanOrderCommodity getFastConsumerLoanOrderCommodityById(String uniqueId);
 	//查询商品详细
-	public List<FastConsumerLoanOrderCommodity> getFastConsumerLoanOrderCommodityByOrderId(String order_id);
+	public List<FastConsumerLoanOrderCommodity> getFastConsumerLoanOrderCommodityByOrderId(String orderId);
 	//新增商品详细
 	public int insertFastConsumerLoanOrderCommodity(FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity);
 	//修改商品详细

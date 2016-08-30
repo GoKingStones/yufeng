@@ -3,42 +3,42 @@
 <mapper namespace="com.yufeng.dao.UserFinancialAccountDao">
 
     <resultMap type="UserFinancialAccountInfo" id="UserFinancialAccountInfoMap">  
-        <result column="id" property="id"/>
-        <result column="internal_code" property="internal_code"/>
-        <result column="signId" property="signId"/>
-        <result column="financialConsumeAccountId" property="financialConsumeAccountId"/>
-        <result column="financialConsumeCompany" property="financialConsumeCompany"/>
-        <result column="financialConsumeAccountState" property="financialConsumeAccountState"/>
-        <result column="creditScoring" property="creditScoring"/>
+        <result column="unique_id" property="uniqueId"/>
+        <result column="internal_code" property="internalCode"/>
+        <result column="sign_id" property="signId"/>
+        <result column="financial_consume_account_id" property="financialConsumeAccountId"/>
+        <result column="financial_consume_company" property="financialConsumeCompany"/>
+        <result column="financial_consume_account_state" property="financialConsumeAccountState"/>
+        <result column="credit_scoring" property="creditScoring"/>
         <result column="authorize" property="authorize"/>
-        <result column="foundTime" property="foundTime"/>
-        <result column="updateTime" property="updateTime"/>
-        <result column="info_status" property="info_status"/>
-        <result column="delete_operator" property="delete_operator"/>  
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modTime"/>
+        <result column="info_status" property="infoStatus"/>
+        <result column="delete_operator" property="deleteOperator"/>  
     </resultMap>
 
     <select id="getUserFinancialAccountByCode" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
-            SELECT * FROM user_financial_account_info_table WHERE internal_code=#{code} AND info_status=1
+            SELECT * FROM user_financial_account_info_table WHERE internal_code=#{internalCode} AND info_status=1
 
     </select>
     
     <select id="getUserFinancialAccountById" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
-            SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
+            SELECT * FROM user_financial_account_info_table WHERE unique_id=#{0} AND internal_code=#{1} AND info_status=1
 
     </select>
     
     <select id="getUserFinancialAccountByAccountId" parameterType="String" resultMap="UserFinancialAccountInfoMap" >
 
-            SELECT * FROM user_financial_account_info_table WHERE id=#{id} AND info_status=1
+            SELECT * FROM user_financial_account_info_table WHERE financial_consume_account_id=#{accountId} 
 
     </select>
 
     <insert id="insertUserFinancialAccount">
 
-        INSERT ignore INTO user_financial_account_info_table(internal_code,signId,financialConsumeAccountId,financialConsumeCompany,financialConsumeAccountState,creditScoring,authorize,foundTime,updateTime)
-        VALUES (#{internal_code},#{signId},#{financialConsumeAccountId},#{financialConsumeCompany},#{financialConsumeAccountState},#{creditScoring},#{authorize},#{foundTime},#{updateTime})
+        INSERT ignore INTO user_financial_account_info_table(internal_code,sign_id,financial_consume_account_id,financial_consume_company,financial_consume_account_state,credit_scoring,authorize,create_time)
+        VALUES (#{internalCode},#{signId},#{financialConsumeAccountId},#{financialConsumeCompany},#{financialConsumeAccountState},#{creditScoring},#{authorize},#{createTime})
 
     </insert>
 
@@ -46,33 +46,33 @@
         UPDATE user_financial_account_info_table
         
         <set>  
-        <if test="internal_code !=null">  
-            internal_code = #{internal_code},  
+        <if test="internalCode !=null">  
+            internal_code = #{internalCode},  
         </if>
         <if test="signId !=null">  
-            signId = #{signId},  
+            sign_id = #{signId},  
         </if>
         <if test="financialConsumeAccountId !=null">  
-            financialConsumeAccountId = #{financialConsumeAccountId},  
+            financial_consume_account_id = #{financialConsumeAccountId},  
         </if>
         <if test="financialConsumeCompany !=null">  
-            financialConsumeCompany = #{financialConsumeCompany},  
+            financial_consume_company = #{financialConsumeCompany},  
         </if>
         <if test="financialConsumeAccountState !=null">  
-            financialConsumeAccountState = #{financialConsumeAccountState},  
+            financial_consume_account_state = #{financialConsumeAccountState},  
         </if>
         <if test="creditScoring !=null">  
-            creditScoring = #{creditScoring},  
+            credit_scoring = #{creditScoring},  
         </if>
         <if test="authorize !=null">  
             authorize = #{authorize},  
         </if>
-        <if test="updateTime !=null">  
-            updateTime = #{updateTime},  
+        <if test="modTime !=null">  
+            mod_time = #{modTime},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId}
     </update>
     
     <delete id="deleteUserFinancialAccount">
@@ -80,12 +80,12 @@
         UPDATE user_financial_account_info_table
         <set>  
         info_status=0,
-        <if test="delete_operator !=null">  
-            delete_operator = #{delete_operator},  
+        <if test="deleteOperator !=null">  
+            delete_operator = #{deleteOperator},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId}
     </delete>
 
 

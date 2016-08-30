@@ -3,42 +3,42 @@
 <mapper namespace="com.yufeng.dao.BankCardDao">
 
     <resultMap type="UserBankCardInfo" id="UserBankCardInfoMap">  
-        <result column="id" property="id"/> 
-        <result column="internal_code" property="internal_code"/>
-        <result column="bankCardNumber" property="bankCardNumber"/>
-        <result column="bankCardType" property="bankCardType"/>
-        <result column="expireTime" property="expireTime"/>
-        <result column="transferAccount" property="transferAccount"/>
-        <result column="bankCardState" property="bankCardState"/>
-        <result column="foundTime" property="foundTime"/>
-        <result column="updateTime" property="updateTime"/>
-        <result column="info_status" property="info_status"/>
-        <result column="delete_operator" property="delete_operator"/>
+        <result column="unique_id" property="uniqueId"/> 
+        <result column="internal_code" property="internalCode"/>
+        <result column="bankcard_number" property="bankCardNumber"/>
+        <result column="bankcard_type" property="bankCardType"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="transfer_account" property="transferAccount"/>
+        <result column="bankcard_state" property="bankCardState"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modTime"/>
+        <result column="info_status" property="infoStatus"/>
+        <result column="delete_operator" property="deleteOperator"/>
         
     </resultMap>
 
     <select id="getBankCardByCode" parameterType="String" resultMap="UserBankCardInfoMap" >
 
-            SELECT * FROM bank_card_Info_table WHERE internal_code=#{code} AND info_status=1
+            SELECT * FROM bank_card_Info_table WHERE internal_code=#{internalCode} AND info_status=1
 
     </select>
     
     <select id="getBankCardByID" parameterType="String" resultMap="UserBankCardInfoMap" >
 
-            SELECT * FROM bank_card_Info_table WHERE id=#{id} AND info_status=1
+            SELECT * FROM bank_card_Info_table WHERE unique_id=#{0} AND internal_code=#{1} AND info_status=1
 
     </select>
     
     <select id="getBankCardByBankCardNumber" parameterType="String" resultMap="UserBankCardInfoMap" >
 
-            SELECT * FROM bank_card_Info_table WHERE bankCardNumber=#{bankCardNumber} AND info_status=1
+            SELECT * FROM bank_card_Info_table WHERE bankcard_number=#{number} AND info_status=1
 
     </select>
 
     <insert id="insertBankCard">
 
-        INSERT ignore INTO bank_card_Info_table(internal_code,bankCardNumber,bankCardType,expireTime,transferAccount,bankCardState,foundTime,delete_operator)
-        VALUES (#{internal_code},#{bankCardNumber},#{bankCardType},#{expireTime},#{transferAccount},#{bankCardState},#{foundTime},#{delete_operator})
+        INSERT ignore INTO bank_card_Info_table(internal_code,bankcard_number,bankcard_type,expire_time,transfer_account,bankcard_state,create_time)
+        VALUES (#{internalCode},#{bankCardNumber},#{bankCardType},#{expireTime},#{transferAccount},#{bankCardState},#{createTime})
 
     </insert>
 
@@ -46,30 +46,30 @@
         UPDATE bank_card_Info_table
         
         <set>  
-        <if test="internal_code !=null">  
-            internal_code = #{internal_code},  
+        <if test="internalCode !=null">  
+            internal_code = #{internalCode},  
         </if>
         <if test="bankCardNumber !=null">  
-            bankCardNumber = #{bankCardNumber},  
+            bankcard_number = #{bankCardNumber},  
         </if>
         <if test="bankCardType !=null">  
-            bankCardType = #{bankCardType},  
+            bankcard_type = #{bankCardType},  
         </if>
         <if test="expireTime !=null">  
-            expireTime = #{expireTime},  
+            expire_time = #{expireTime},  
         </if>
         <if test="transferAccount !=null">  
-            transferAccount = #{transferAccount},  
+            transfer_account = #{transferAccount},  
         </if>
         <if test="bankCardState !=null">  
-            bankCardState = #{bankCardState},  
+            bankcard_state = #{bankCardState},  
         </if>
-        <if test="updateTime !=null">  
-            updateTime = #{updateTime},  
+        <if test="modTime !=null">  
+            mod_time = #{modTime},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId} AND internal_code=#{internalCode}
     </update>
     
     <delete id="deleteBankCard">
@@ -77,13 +77,13 @@
         UPDATE bank_card_Info_table
         
         <set>  
-        info_status=0,
-        <if test="delete_operator !=null">  
-            delete_operator = #{delete_operator},  
+            info_status=0,
+        <if test="deleteOperator !=null">  
+            delete_operator = #{deleteOperator},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId}
     </delete>
 
 

@@ -22,10 +22,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
 	@Test
     public void testGetUserFinancialAccountByCode() throws Exception {
         //参数
-    	String parameter="code=nnn";
+    	String parameter="internalCode=987";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/UserFinancialAccount/getUserFinancialAccountByCode?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/UserFinancialAccount/getUserFinancialAccountByInternalCode?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -33,10 +33,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     @Test
     public void testGetUserFinancialAccountById() throws Exception {
         //参数
-    	String parameter="id=8";
+    	String parameter="uniqueId=16&internalCode=987";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/UserFinancialAccount/getUserFinancialAccountById?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/UserFinancialAccount/getUserFinancialAccountByIdAndInternalCode?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -49,13 +49,14 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     	UserFinancialAccountInfo userFinancialAccountInfo=new UserFinancialAccountInfo();
     	userFinancialAccountInfo.setAuthorize("11");
     	userFinancialAccountInfo.setCreditScoring(111);
-    	userFinancialAccountInfo.setDelete_operator("11");
+    	userFinancialAccountInfo.setDeleteOperator("11");
     	userFinancialAccountInfo.setFinancialConsumeAccountId("11");
     	userFinancialAccountInfo.setFinancialConsumeAccountState("11");
     	userFinancialAccountInfo.setFinancialConsumeCompany("11");
-    	userFinancialAccountInfo.setInfo_status(false);
-    	userFinancialAccountInfo.setInternal_code("11");
+    	userFinancialAccountInfo.setInfoStatus(false);
+    	userFinancialAccountInfo.setInternalCode("11");
     	userFinancialAccountInfo.setSignId("11");
+    	userFinancialAccountInfo.setCreateTime(new Date());
     	
         HttpEntity<UserFinancialAccountInfo> httpEntity=new HttpEntity<UserFinancialAccountInfo>(userFinancialAccountInfo);
         ResponseEntity<String> resultModelResponseEntity = restTemplate.
@@ -72,14 +73,15 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     	UserFinancialAccountInfo userFinancialAccountInfo=new UserFinancialAccountInfo();
     	userFinancialAccountInfo.setCreditScoring(222);
     	userFinancialAccountInfo.setAuthorize("22");
-    	userFinancialAccountInfo.setDelete_operator("22");
+    	userFinancialAccountInfo.setDeleteOperator("22");
     	userFinancialAccountInfo.setFinancialConsumeAccountId("22");
     	userFinancialAccountInfo.setFinancialConsumeAccountState("22");
     	userFinancialAccountInfo.setFinancialConsumeCompany("22");
-    	userFinancialAccountInfo.setInfo_status(false);
-    	userFinancialAccountInfo.setInternal_code("22");
+    	userFinancialAccountInfo.setInfoStatus(false);
+    	userFinancialAccountInfo.setInternalCode("22");
     	userFinancialAccountInfo.setSignId("22");
-    	userFinancialAccountInfo.setId("14");
+    	userFinancialAccountInfo.setUniqueId("16");
+    	userFinancialAccountInfo.setInternalCode("987");
     	
         HttpEntity<UserFinancialAccountInfo> httpEntity=new HttpEntity<UserFinancialAccountInfo>(userFinancialAccountInfo);
         ResponseEntity<String> resultModelResponseEntity = restTemplate.
@@ -94,8 +96,9 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     	RestTemplate restTemplate = new RestTemplate();
 
     	UserFinancialAccountInfo userFinancialAccountInfo=new UserFinancialAccountInfo();
-    	userFinancialAccountInfo.setId("14");
-    	userFinancialAccountInfo.setDelete_operator("bbb");
+    	userFinancialAccountInfo.setUniqueId("17");
+    	//userFinancialAccountInfo.setInternalCode("11");
+    	userFinancialAccountInfo.setDeleteOperator("bbb");
     	
     	HttpEntity<UserFinancialAccountInfo> httpEntity=new HttpEntity<UserFinancialAccountInfo>(userFinancialAccountInfo);
         ResponseEntity<String> resultModelResponseEntity = restTemplate.

@@ -12,9 +12,9 @@ import com.yufeng.entity.UserFamilyInfo;
 public interface UserFamilyDao {
 	
 	//查询用户家庭联系人信息详细
-	public List<UserFamilyInfo> getUserFamilyByCode(String code);
-	public UserFamilyInfo getUserFamilyById(String id);
-	public UserFamilyInfo getUserFamilyByCredentialsNumber(String number);
+	public List<UserFamilyInfo> getUserFamilyByCode(String internalCode);
+	public UserFamilyInfo getUserFamilyById(String uniqueId,String internalCode);
+	public UserFamilyInfo getUserFamilyByCredentialsNumber(String credentialsNumber);
 	//新增用户家庭联系人信息
 	public int insertUserFamily(UserFamilyInfo userFamilyInfo);
 	//修改用户家庭联系人信息

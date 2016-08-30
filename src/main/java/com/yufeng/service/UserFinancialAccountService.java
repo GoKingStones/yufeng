@@ -11,9 +11,9 @@ import com.yufeng.entity.UserFinancialAccountInfo;
 public interface UserFinancialAccountService {
 	
 	//查询金融账户信息
-	public List<UserFinancialAccountInfo> getUserFinancialAccountByCode(String code);
+	public List<UserFinancialAccountInfo> getUserFinancialAccountByCode(String internalCode);
 	//查询金融账户信息
-	public UserFinancialAccountInfo getUserFinancialAccountById(String id);
+	public UserFinancialAccountInfo getUserFinancialAccountById(String uniqueId,String internalCode);
 	//新建金融账户信息
 	public String insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);
 	//金融账户信息修改

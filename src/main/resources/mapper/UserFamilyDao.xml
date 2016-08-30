@@ -3,46 +3,46 @@
 <mapper namespace="com.yufeng.dao.UserFamilyDao">
 
     <resultMap type="UserFamilyInfo" id="UserFamilyInfoMap">  
-        <result column="id" property="id"/>
-        <result column="internal_code" property="internal_code"/>
-        <result column="credentialsType" property="credentialsType"/>
-        <result column="credentialsNumber" property="credentialsNumber"/>
+        <result column="unique_id" property="uniqueId"/>
+        <result column="internal_code" property="internalCode"/>
+        <result column="credentials_type" property="credentialsType"/>
+        <result column="credentials_number" property="credentialsNumber"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>
-        <result column="mailingAddress" property="mailingAddress"/>
+        <result column="mailing_address" property="mailingAddress"/>
         <result column="organization" property="organization"/>
-        <result column="phone" property="phone"/>
-        <result column="mailbox" property="mailbox"/>
+        <result column="cell_no" property="cellNo"/>
+        <result column="email" property="email"/>
         <result column="relation" property="relation"/>
-        <result column="highestEducationSchool" property="highestEducationSchool"/>
-        <result column="highestEducation" property="highestEducation"/>
-        <result column="foundTime" property="foundTime"/>
-        <result column="updateTime" property="updateTime"/> 
+        <result column="highest_education_school" property="highestEducationSchool"/>
+        <result column="highest_education" property="highestEducation"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modTime"/> 
         
     </resultMap>
 
     <select id="getUserFamilyByCode" parameterType="String" resultMap="UserFamilyInfoMap" >
 
-            SELECT * FROM user_family_info_table WHERE internal_code=#{code}
+            SELECT * FROM user_family_info_table WHERE internal_code=#{internalCode}
 
     </select>
     
     <select id="getUserFamilyById" parameterType="String" resultMap="UserFamilyInfoMap" >
 
-            SELECT * FROM user_family_info_table WHERE id=#{id}
+            SELECT * FROM user_family_info_table WHERE unique_id=#{0} AND internal_code=#{1}
 
     </select>
     
     <select id="getUserFamilyByCredentialsNumber" parameterType="String" resultMap="UserFamilyInfoMap" >
 
-            SELECT * FROM user_family_info_table WHERE credentialsNumber=#{credentialsNumber}
+            SELECT * FROM user_family_info_table WHERE credentials_number=#{credentialsNumber}
 
     </select>
 
     <insert id="insertUserFamily">
 
-        INSERT ignore INTO user_family_info_table(internal_code,credentialsType,credentialsNumber,name,gender,mailingAddress,organization,phone,mailbox,relation,highestEducationSchool,highestEducation,foundTime,updateTime)
-        VALUES (#{internal_code},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{phone},#{mailbox},#{relation},#{highestEducationSchool},#{highestEducation},#{foundTime},#{updateTime})
+        INSERT ignore INTO user_family_info_table(internal_code,credentials_type,credentials_number,name,gender,mailing_address,organization,cell_no,email,relation,highest_education_school,highest_education,create_time)
+        VALUES (#{internalCode},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{cellNo},#{email},#{relation},#{highestEducationSchool},#{highestEducation},#{createTime})
 
     </insert>
 
@@ -50,14 +50,14 @@
         UPDATE user_family_info_table
         
         <set>  
-        <if test="internal_code !=null">  
-            internal_code = #{internal_code},  
+        <if test="internalCode !=null">  
+            internal_code = #{internalCode},  
         </if>
         <if test="credentialsType !=null">  
-            credentialsType = #{credentialsType},  
+            credentials_type = #{credentialsType},  
         </if>
         <if test="credentialsNumber !=null">  
-            credentialsNumber = #{credentialsNumber},  
+            credentials_number = #{credentialsNumber},  
         </if>
         <if test="name !=null">  
             name = #{name},  
@@ -66,36 +66,36 @@
             gender = #{gender},  
         </if>
         <if test="mailingAddress !=null">  
-            mailingAddress = #{mailingAddress},  
+            mailing_address = #{mailingAddress},  
         </if>
         <if test="organization !=null">  
             organization = #{organization},  
         </if>
-        <if test="phone !=null">  
-            phone = #{phone},  
+        <if test="cellNo !=null">  
+            cell_no = #{cellNo},  
         </if>
-        <if test="mailbox !=null">  
-            mailbox = #{mailbox},  
+        <if test="email !=null">  
+            email = #{email},  
         </if>
         <if test="relation !=null">  
             relation = #{relation},  
         </if>
         <if test="highestEducationSchool !=null">  
-            highestEducationSchool = #{highestEducationSchool},  
+            highest_education_school = #{highestEducationSchool},  
         </if>
         <if test="highestEducation !=null">  
-            highestEducation = #{highestEducation},  
+            highest_education = #{highestEducation},  
         </if>
-        <if test="updateTime !=null">  
-            updateTime = #{updateTime},  
+        <if test="modTime !=null">  
+            mod_time = #{modTime},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId}
     </update>
     
     <delete id="deleteUserFamily">
-        DELETE FROM user_family_info_table WHERE id = #{id}
+        DELETE FROM user_family_info_table WHERE unique_id = #{uniqueId}
     </delete>
 
 

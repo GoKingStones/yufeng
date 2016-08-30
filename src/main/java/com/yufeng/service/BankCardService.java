@@ -15,7 +15,7 @@ public interface BankCardService {
 	//查询银行卡信息
 	public UserBankCardInfo getBankCardByID(String id,String internalCode);
 	//新建银行卡信息
-	public String insertBankCard(UserBankCardInfo userBankCardInfo);
+	public String insertBankCard(List<UserBankCardInfo> userBankCardInfo);
 	//银行卡信息修改
 	public String updateBankCard(UserBankCardInfo userBankCardInfo);
 	//删除银行卡信息

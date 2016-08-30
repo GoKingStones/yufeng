@@ -11,8 +11,8 @@ import com.yufeng.entity.UserBankCardInfo;
  */
 public interface BankCardDao {
 	//查询银行卡详细
-	public List<UserBankCardInfo> getBankCardByCode(String internal_code);
-	public UserBankCardInfo getBankCardByID(String id);
+	public List<UserBankCardInfo> getBankCardByCode(String internalCode);
+	public UserBankCardInfo getBankCardByID(String uniqueId,String internalCode);
 	public UserBankCardInfo getBankCardByBankCardNumber(String number);
 	//新增银行卡信息
 	public int insertBankCard(UserBankCardInfo userBankCardInfo);

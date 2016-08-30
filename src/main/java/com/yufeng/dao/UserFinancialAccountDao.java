@@ -10,8 +10,8 @@ import com.yufeng.entity.UserFinancialAccountInfo;
  */
 public interface UserFinancialAccountDao {
 	//查询用户金融信息详细
-	public List<UserFinancialAccountInfo> getUserFinancialAccountByCode(String code);
-	public UserFinancialAccountInfo getUserFinancialAccountById(String id);
+	public List<UserFinancialAccountInfo> getUserFinancialAccountByCode(String internalCode);
+	public UserFinancialAccountInfo getUserFinancialAccountById(String uniqueId,String internalCode);
 	public UserFinancialAccountInfo getUserFinancialAccountByAccountId(String accountId);
 	//新增用户金融信息信息
 	public int insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo);

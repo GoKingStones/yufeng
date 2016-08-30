@@ -81,7 +81,7 @@ public class MallPayController {
         for(int i=0;i<lists.size();i++) {
 
             FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity=lists.get(i);
-            String state =fastConsumerLoanOrderCommodity.getInformation_state();
+            String state =fastConsumerLoanOrderCommodity.getInformationState();
             if(state.equals(CommodityStateEnum.已提交.name())) {
 
 

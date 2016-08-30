@@ -9,7 +9,11 @@ import java.util.Date;
  */
 public class UserBankCardInfo implements Serializable{
 	
-	private String uniqueId;
+	/**
+     */
+    private static final long serialVersionUID = -344226052708458671L;
+    
+    private String uniqueId;
 	//内码
 	private String internalCode;
 	//银行卡号码
@@ -30,6 +34,7 @@ public class UserBankCardInfo implements Serializable{
 	private String infoStatus;
 	//删除操作者
 	private String deleteOperator;
+	
 	public String getUniqueId() {
 		return uniqueId;
 	}

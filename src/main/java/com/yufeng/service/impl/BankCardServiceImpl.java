@@ -1,5 +1,6 @@
 package com.yufeng.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,29 +28,36 @@ public class BankCardServiceImpl implements BankCardService{
 	}
 	
 	//查询银行卡信息
-	public UserBankCardInfo getBankCardByID(String id,String internalCode){
-		UserBankCardInfo info=bankCardDao.getBankCardByID(id);
+	public UserBankCardInfo getBankCardByID(String uniqueId,String internalCode){
+		UserBankCardInfo info=bankCardDao.getBankCardByID(uniqueId,internalCode);
 		return info;
 	}
 		
 	//新建银行卡信息
-	public String insertBankCard(UserBankCardInfo userBankCardInfo){
-		userBankCardInfo.setCreateTime(new Date());
-		//检查是否存在重复银行卡号
-		UserBankCardInfo info=bankCardDao.getBankCardByBankCardNumber(userBankCardInfo.getBankCardNumber());
-		if(info!=null){
-			return "2";//存在重复
-		}
-		return bankCardDao.insertBankCard(userBankCardInfo)+"";	
+	public String insertBankCard(List<UserBankCardInfo> userBankCardInfo){
+	    //验证信息
+	    if(userBankCardInfo!=null&&userBankCardInfo.size()>0){
+	        for(UserBankCardInfo u:userBankCardInfo){
+	            u.setCreateTime(new Date());
+	            //检查是否存在重复银行卡号
+	            UserBankCardInfo info=bankCardDao.getBankCardByBankCardNumber(u.getBankCardNumber());
+	            if(info!=null){
+	                return "99";//存在重复
+	            }
+	            bankCardDao.insertBankCard(u); 
+	        }
+	        
+	    }
+		return "1";
 	}
 		
 	//银行卡信息修改
 	public String updateBankCard(UserBankCardInfo userBankCardInfo){
 		userBankCardInfo.setModTime(new Date());
 		//检查数据是否存在
-		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId());
+		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId(),userBankCardInfo.getInternalCode());
 		if(info==null){
-			return "0";
+			return "3";
 		}
 		return bankCardDao.updateBankCard(userBankCardInfo)+"";	
 	}
@@ -57,9 +65,9 @@ public class BankCardServiceImpl implements BankCardService{
 	//删除银行卡信息
 	public String deleteBankCard(UserBankCardInfo userBankCardInfo){
 		//检查数据是否存在
-		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId());
+		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId(),userBankCardInfo.getInternalCode());
 		if(info==null){
-			return "0";
+			return "3";
 		}
 		return bankCardDao.deleteBankCard(userBankCardInfo)+"";	
 	}

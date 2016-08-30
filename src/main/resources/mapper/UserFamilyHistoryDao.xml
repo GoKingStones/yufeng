@@ -5,8 +5,8 @@
 
     <insert id="insertUserFamilyHistory">
 
-        INSERT ignore INTO user_family_info_history_table(internal_code,credentialsType,credentialsNumber,name,gender,mailingAddress,organization,phone,mailbox,relation,highestEducationSchool,highestEducation,foundTime,updateTime,delete_operator)
-        VALUES (#{internal_code},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{phone},#{mailbox},#{relation},#{highestEducationSchool},#{highestEducation},#{foundTime},#{updateTime},#{delete_operator})
+        INSERT ignore INTO user_family_info_history_table(internal_code,credentials_type,credentials_number,name,gender,mailing_address,organization,cell_no,email,relation,highest_education_school,highest_education,create_time,delete_operator)
+        VALUES (#{internalCode},#{credentialsType},#{credentialsNumber},#{name},#{gender},#{mailingAddress},#{organization},#{cellNo},#{email},#{relation},#{highestEducationSchool},#{highestEducation},#{createTime},#{deleteOperator})
 
     </insert>
 
