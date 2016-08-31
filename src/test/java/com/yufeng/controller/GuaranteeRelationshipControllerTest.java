@@ -23,10 +23,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
 	//@Test
     public void testGetById() throws Exception {
         //参数
-    	String parameter="id=b54edc1c-0675-4bbe-b951-08a4154ad9a5";
+    	String parameter="uniqueId=3";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getById?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getByUniqueId?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -34,10 +34,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
 	//@Test
     public void testGetByCode() throws Exception {
         //参数
-    	String parameter="code=vrferfre";
+    	String parameter="internalCode=11";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getByCode?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getByInternalCode?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -45,10 +45,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
 	//@Test
     public void testGetByRelateCode() throws Exception {
         //参数
-    	String parameter="code=77";
+    	String parameter="relateUserInternalCode=22";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getByRelateCode?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/getByRelateInternalCode?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -59,10 +59,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     	RestTemplate restTemplate = new RestTemplate();
 
     	GuaranteeRelationshipInfo guaranteeRelationshipInfo=new GuaranteeRelationshipInfo();
-    	guaranteeRelationshipInfo.setAssure_money(new BigDecimal(11));
-    	guaranteeRelationshipInfo.setInternal_code("11");
-    	guaranteeRelationshipInfo.setRelate_user_internal_code("11");
-    	guaranteeRelationshipInfo.setStatus(11);
+    	guaranteeRelationshipInfo.setAssureMoney(new BigDecimal(11));
+    	guaranteeRelationshipInfo.setInternalCode("xx");
+    	guaranteeRelationshipInfo.setRelateUserInternalCode("1xdx");
+    	guaranteeRelationshipInfo.setStatus(1);
     	
         HttpEntity<GuaranteeRelationshipInfo> httpEntity=new HttpEntity<GuaranteeRelationshipInfo>(guaranteeRelationshipInfo);
         ResponseEntity<String> resultModelResponseEntity = restTemplate.
@@ -74,10 +74,10 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     //@Test
     public void testDeleteGuaranteeRelationship() throws Exception {
     	//参数
-    	String parameter="id=0c384bef-6a68-46e8-b115-53a5e2b8f64f";
+    	String parameter="uniqueId=3";
     	RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> resultModelResponseEntity = restTemplate
-        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/deleteGuaranteeRelationship?"+parameter,String.class);
+        		.getForEntity(REST_SERVICE_URI + "/GuaranteeRelationship/deleteGuaranteeRelationshipByUniqueId?"+parameter,String.class);
         
         System.out.println(resultModelResponseEntity.getBody());
     }
@@ -88,11 +88,11 @@ public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     	RestTemplate restTemplate = new RestTemplate();
 
     	GuaranteeRelationshipInfo guaranteeRelationshipInfo=new GuaranteeRelationshipInfo();
-    	guaranteeRelationshipInfo.setAssure_money(new BigDecimal(22));
-    	guaranteeRelationshipInfo.setInternal_code("22");
-    	guaranteeRelationshipInfo.setRelate_user_internal_code("22");
-    	guaranteeRelationshipInfo.setStatus(22);
-    	guaranteeRelationshipInfo.setId("0c384bef-6a68-46e8-b115-53a5e2b8f64f");
+    	guaranteeRelationshipInfo.setAssureMoney(new BigDecimal(99));
+    	guaranteeRelationshipInfo.setInternalCode("ii");
+    	guaranteeRelationshipInfo.setRelateUserInternalCode("ii");
+    	guaranteeRelationshipInfo.setStatus(1);
+    	guaranteeRelationshipInfo.setUniqueId("634c8603-ae13-4102-9688-7f8e7242d7e8");
     	
         HttpEntity<GuaranteeRelationshipInfo> httpEntity=new HttpEntity<GuaranteeRelationshipInfo>(guaranteeRelationshipInfo);
         ResponseEntity<String> resultModelResponseEntity = restTemplate.

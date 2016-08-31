@@ -4,30 +4,30 @@
 
     <!--担保关系 -->
     <resultMap type="GuaranteeRelationshipInfo" id="GuaranteeRelationshipInfoMap">  
-        <result column="id" property="id"/>  
-        <result column="internal_code" property="internal_code"/>
-        <result column="relate_user_internal_code" property="relate_user_internal_code"/>
+        <result column="unique_id" property="uniqueId"/>  
+        <result column="internal_code" property="internalCode"/>
+        <result column="relate_user_internal_code" property="relateUserInternalCode"/>
         <result column="status" property="status"/>
-        <result column="assure_money" property="assure_money"/>
-        <result column="create_time" property="create_time"/>
-        <result column="mod_time" property="mod_time"/>
+        <result column="assure_money" property="assureMoney"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modTime"/>
     </resultMap> 
    
     <select id="getById" parameterType="String" resultMap="GuaranteeRelationshipInfoMap" >
 
-        SELECT * FROM guarantee_relationship_info_table WHERE id=#{id} AND status=1
+        SELECT * FROM guarantee_relationship_info_table WHERE unique_id=#{uniqueId} AND status=1
 
     </select>
     
     <select id="getByCode" parameterType="String" resultMap="GuaranteeRelationshipInfoMap" >
 
-        SELECT * FROM guarantee_relationship_info_table WHERE internal_code=#{code} AND status=1
+        SELECT * FROM guarantee_relationship_info_table WHERE internal_code=#{internalCode} AND status=1
 
     </select>
     
     <select id="getByRelateCode" parameterType="String" resultMap="GuaranteeRelationshipInfoMap" >
 
-        SELECT * FROM guarantee_relationship_info_table WHERE relate_user_internal_code=#{code} AND status=1
+        SELECT * FROM guarantee_relationship_info_table WHERE relate_user_internal_code=#{relateUserInternalCode} AND status=1
 
     </select>
     
@@ -39,8 +39,8 @@
     
     <insert id="insert">
 
-        INSERT ignore INTO guarantee_relationship_info_table(id,internal_code,relate_user_internal_code,assure_money,create_time)
-        VALUES (#{id},#{internal_code},#{relate_user_internal_code},#{assure_money},#{create_time})
+        INSERT ignore INTO guarantee_relationship_info_table(unique_id,internal_code,relate_user_internal_code,assure_money,create_time)
+        VALUES (#{uniqueId},#{internalCode},#{relateUserInternalCode},#{assureMoney},#{createTime})
 
     </insert>
     
@@ -51,30 +51,30 @@
         UPDATE guarantee_relationship_info_table
         
         <set>  
-        <if test="internal_code !=null">  
-            internal_code = #{internal_code},  
+        <if test="internalCode !=null">  
+            internal_code = #{internalCode},  
         </if>
-        <if test="relate_user_internal_code !=null">  
-            relate_user_internal_code = #{relate_user_internal_code},  
+        <if test="relateUserInternalCode !=null">  
+            relate_user_internal_code = #{relateUserInternalCode},  
         </if>
         <if test="status !=null">  
             status = #{status},  
         </if>
-        <if test="assure_money !=null">  
-            assure_money = #{assure_money},  
+        <if test="assureMoney !=null">  
+            assure_money = #{assureMoney},  
         </if>
-        <if test="mod_time !=null">  
-            mod_time = #{mod_time},  
+        <if test="modTime !=null">  
+            mod_time = #{modTime},  
         </if>
         </set>
         
-        WHERE id = #{id}
+        WHERE unique_id = #{uniqueId}
         
     </update>
     
     <update id="deleteGuaranteeRelationship">
         
-        UPDATE guarantee_relationship_info_table set status=0 WHERE id=#{id}
+        UPDATE guarantee_relationship_info_table set status=0 WHERE unique_id=#{uniqueId}
         
     </update>
     
@@ -82,8 +82,8 @@
     <!--担保关系历史记录 -->
     <insert id="insertHis">
 
-        INSERT ignore INTO guarantee_relationship_info_his_table(id,internal_code,relate_user_internal_code,status,assure_money,create_time)
-        VALUES (#{id},#{internal_code},#{relate_user_internal_code},#{status},#{assure_money},#{create_time})
+        INSERT ignore INTO guarantee_relationship_info_his_table(unique_id,internal_code,relate_user_internal_code,status,assure_money,create_time)
+        VALUES (#{uniqueId},#{internalCode},#{relateUserInternalCode},#{status},#{assureMoney},#{createTime})
 
     </insert>
     

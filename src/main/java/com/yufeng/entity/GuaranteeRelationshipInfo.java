@@ -10,65 +10,79 @@ import java.util.Date;
  */
 public class GuaranteeRelationshipInfo implements Serializable{
 	
-	private String id;
+	/**
+     */
+    private static final long serialVersionUID = 1302428537736724361L;
+    
+    private String uniqueId;
 	//用户内码(被担保人)
-	private String internal_code;
+	private String internalCode;
 	//形成关系用户内码(担保人)
-	private String relate_user_internal_code;
+	private String relateUserInternalCode;
 	//关系状态
 	private Integer status;
 	//担保金额
-	private BigDecimal assure_money;
+	private BigDecimal assureMoney;
 	//创建时间
-	private Date create_time;
+	private Date createTime;
 	//修改时间
-	private Date mod_time;
-	
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getInternal_code() {
-		return internal_code;
-	}
-	public void setInternal_code(String internal_code) {
-		this.internal_code = internal_code;
-	}
-	public String getRelate_user_internal_code() {
-		return relate_user_internal_code;
-	}
-	public void setRelate_user_internal_code(String relate_user_internal_code) {
-		this.relate_user_internal_code = relate_user_internal_code;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-	public BigDecimal getAssure_money() {
-		return assure_money;
-	}
-	public void setAssure_money(BigDecimal assure_money) {
-		this.assure_money = assure_money;
-	}
-	public Date getCreate_time() {
-		return create_time;
-	}
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
-	}
-	public Date getMod_time() {
-		return mod_time;
-	}
-	public void setMod_time(Date mod_time) {
-		this.mod_time = mod_time;
-	}
-	
-	
+	private Date modTime;
+    
+    public String getUniqueId() {
+        return uniqueId;
+    }
+    
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+    
+    public String getInternalCode() {
+        return internalCode;
+    }
+    
+    public void setInternalCode(String internalCode) {
+        this.internalCode = internalCode;
+    }
+    
+    public String getRelateUserInternalCode() {
+        return relateUserInternalCode;
+    }
+    
+    public void setRelateUserInternalCode(String relateUserInternalCode) {
+        this.relateUserInternalCode = relateUserInternalCode;
+    }
+    
+    public Integer getStatus() {
+        return status;
+    }
+    
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+    
+    public BigDecimal getAssureMoney() {
+        return assureMoney;
+    }
+    
+    public void setAssureMoney(BigDecimal assureMoney) {
+        this.assureMoney = assureMoney;
+    }
+    
+    public Date getCreateTime() {
+        return createTime;
+    }
+    
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+    
+    public Date getModTime() {
+        return modTime;
+    }
+    
+    public void setModTime(Date modTime) {
+        this.modTime = modTime;
+    }
 	
 	
 	

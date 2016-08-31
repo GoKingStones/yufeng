@@ -1,5 +1,5 @@
 CREATE TABLE `fast_consumer_loan_order_commodity_table` (
-  `id` varchar(50) NOT NULL COMMENT 'id',
+  `unique_id` varchar(50) NOT NULL COMMENT 'id',
   `commodity_id` varchar(50) NOT NULL COMMENT '商品id',
   `commodity_name` varchar(50) NOT NULL,
   `order_id` varchar(50) NOT NULL COMMENT '订单id',
@@ -21,7 +21,7 @@ CREATE TABLE `fast_consumer_loan_order_commodity_table` (
   `finish_time` timestamp NULL DEFAULT NULL COMMENT '完成时间',
   `discount_price` decimal(50,2) DEFAULT NULL COMMENT '折扣价',
   `anonymous` tinyint(10) DEFAULT NULL COMMENT '是否匿名',
-  `found_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`id`)
+  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `mod_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`unique_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

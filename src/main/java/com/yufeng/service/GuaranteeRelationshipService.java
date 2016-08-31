@@ -11,15 +11,15 @@ import com.yufeng.entity.GuaranteeRelationshipInfo;
 public interface GuaranteeRelationshipService {
 	
 	//查询担保关系(id)
-	public Map<String,Object> getById(String id);
+	public Map<String,Object> getById(String uniqueId);
 	//查询担保关系(被担保人)
-	public Map<String,Object> getByCode(String code);
+	public Map<String,Object> getByCode(String internalCode);
 	//查询担保关系(担保人)
-	public Map<String,Object> getByRelateCode(String code);
+	public Map<String,Object> getByRelateCode(String relateUserInternalCode);
 	//创建担保关系
 	public String foundGuaranteeRelationship(GuaranteeRelationshipInfo info);
 	//取消担保关系
-	public String deleteGuaranteeRelationship(String id);
+	public String deleteGuaranteeRelationship(String uniqueId);
 	//修改担保关系
 	public String updateGuaranteeRelationship(GuaranteeRelationshipInfo info);
 	

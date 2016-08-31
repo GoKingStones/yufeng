@@ -1,5 +1,7 @@
 package com.yufeng.config;
 
+import com.yufeng.util.Utils;
+
 /**
  * 自定义请求状态码
  * kingstones
@@ -27,9 +29,14 @@ public enum ResultStatus {
     
     //用户金融账户信息请求码
     FINANCIALCONSUMEACCOUNTID_REPEAT(-1301, "金融账户重复"),
-    FINANCIALACCOUNT_NOT_FOUND(-1302, "不存在金融账户信息");
+    FINANCIALACCOUNT_NOT_FOUND(-1302, "不存在金融账户信息"),
     
-
+    
+    //担保关系请求码
+    GUARANTEERELATION_REPEAT(-1401, "担保关系已存在"),
+    GUARANTEERELATION_NUMBER_ERROR(-1402, "为用户担保的已经有"+Utils.TOTAL_GUARANTEE+"人"),
+    GUARANTEERELATION_NUMBER1_ERROR(-1403, "担保人已经担保了"+Utils.TOTAL_GUARANTEE+"人");
+   
     /**
      * 返回码
      */
