@@ -5,7 +5,7 @@
 
 	 <select id="isExistedSchoolExperienceInfo" >
 
-        SELECT  COUNT(*) from school_experience_info WHERE unique_id=#{uniqueId},internal_code=#{internalCode}
+        SELECT  COUNT(*) from school_experience_info WHERE unique_id=#{uniqueId} and internal_code=#{internalCode}
 
     </select>
 
@@ -25,6 +25,20 @@
 
     </select>
     
+    
+    <select id="getSchoolExperienceInfoByInternalCodeAndSchoolName" parameterType="String" resultType="SchoolExperienceInfo" >
+
+            SELECT * from school_experience_info 
+                WHERE  internal_code = #{internalCode} and school_code=#{schoolCode}  and info_status!='d';
+
+    </select>
+    
+    <select id="getSchoolExperienceInfo" parameterType="String" resultType="SchoolExperienceInfo" >
+
+            SELECT * from school_experience_info 
+                WHERE  internal_code = #{internalCode} and unique_id=#{uniqueId}  and info_status!='d';
+
+    </select>
     
     
 

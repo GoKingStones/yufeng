@@ -44,7 +44,7 @@ public class Utils {
 	
 	//学生账户
 	public final static String STUDENT_ACCOUNT = "student";
-	//学生账户
+	//成人账户
 	public final static String ADULT_ACCOUNT = "adult";
 	
 	//信用账户状态--正常
