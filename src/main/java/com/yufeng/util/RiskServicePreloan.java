@@ -1,24 +1,67 @@
 package com.yufeng.util;
 
 import com.alibaba.fastjson.JSON;
+import com.yufeng.entity.RiskPreloanResponse;
+import com.yufeng.entity.RiskPreloanResponseQuery;
+import com.yufeng.entity.UserBasicInfo;
+import com.yufeng.entity.UserInfo;
+import com.yufeng.service.UserBasicInfoService;
+import com.yufeng.service.UserInfoService;
+import com.yufeng.service.impl.UserBasicInfoServiceImpl;
+import com.yufeng.service.impl.UserInfoServiceImpl;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
- 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
  
 public class RiskServicePreloan {
+    
+    @Autowired
+    private UserInfoService userInfoService;  
+    
+    public static String partner_code;    
+    public static String partner_key;
+    public static String app_name;    
+    public static String submitRrl;
+    public static String queryRrl;
+    
+    static  {    
+        Properties prop =  new  Properties();    
+        InputStream in = Object. class .getResourceAsStream( "/tongdun.properties" );    
+         try  {    
+            prop.load(in);    
+            partner_code = prop.getProperty( "partner_code" ).trim();    
+            partner_key = prop.getProperty( "partner_key" ).trim(); 
+            app_name = prop.getProperty( "app_name" ).trim(); 
+            submitRrl = prop.getProperty( "submitRrl" ).trim();
+            queryRrl = prop.getProperty( "queryRrl" ).trim(); 
+        }  catch  (IOException e) {    
+            e.printStackTrace();    
+        }    
+    }   
+    
+    
     private static final Log log = LogFactory.getLog(RiskServicePreloan.class);
-    private static final String apiUrl = "https://apitest.tongdun.cn/preloan/apply/v5?partner_code=xypd&partner_key=f4b5bfc2ca6d42eb873d9c31f9e430cf&app_name=xypd_web";
+    
  
     private HttpURLConnection conn;
  
     public RiskPreloanResponse invoke(Map<String, Object> params) {
+        String apiUrl = submitRrl+"?partner_code="+partner_code+"&partner_key="+partner_key+"&app_name="+app_name;
+        
         try {
             URL url = new URL(apiUrl);
             // 组织请求参数
@@ -65,126 +108,105 @@ public class RiskServicePreloan {
         return null;
     }
  
-    public static void main(String[] args) {
-        Map<String, Object> params = new HashMap<String, Object>();
-//        params.put("partner_code", "xypd");        // 此处值填写您的合作方标识
-//        params.put("partner_key", "f4b5bfca6d42eb873d9c31f9e430cf");                     // 合作方密钥
-//        params.put("app_name", "xypd_web");                    // 应用名称
-        params.put("loan_amount", "10000");                // 申请借款金额
-//        params.put("loan_term", "12");                     // 申请借款期限
-//        params.put("loan_term_unit", "DAY");               // 期限单位
-//        params.put("loan_date", "2018-11-11");             // 申请借款日期
-//        params.put("purpose", "");                         // 借款用途
-//        params.put("apply_province", "");                  // 进件省份
-//        params.put("apply_city", "");                      // 进件城市
-//        params.put("apply_channel", "");                   // 进件渠道
-        params.put("name", "杜昊");                        // 姓名
-        params.put("id_number", "120106199007311031");     // 身份证号
-        params.put("mobile", "13820521383");               // 手机号
-//        params.put("card_number", "");                     // 银行卡
-//        params.put("work_phone", "");                      // 单位座机
-//        params.put("home_phone", "");                      // 家庭座机
-//        params.put("qq", "");                              // qq
-//        params.put("email", "");                           // 电子邮箱
-//        params.put("diploma", "");                         // 学历
-//        params.put("marriage", "");                        // 婚姻
-//        params.put("house_property", "");                  // 房产情况
-//        params.put("house_type", "");                      // 房产类型
-//        params.put("registered_address", "");              // 户籍地址
-//        params.put("home_address", "");                    // 家庭地址
-//        params.put("contact_address", "");                 // 通讯地址
-//        params.put("career", "");                          // 职业
-//        params.put("applyer_type", "");                    // 申请人类别
-//        params.put("work_time", "");                       // 工作时间
-//        params.put("company_name", "");                    // 工作单位
-//        params.put("company_address","");                  // 单位地址
-//        params.put("company_industry", "");                // 公司行业
-//        params.put("company_type", "");                    // 公司性质
-//        params.put("occupation", "");                      // 职位
-//        params.put("annual_income", "");                   // 年收入
-//        params.put("is_cross_loan", "");                   // 三个月内是否跨平台申请借款
-//        params.put("cross_loan_count", "");                // 三个月内跨平台申请借款平台个数
-//        params.put("is_liability_loan", "");               // 三个月内是否跨平台借款负债
-//        params.put("liability_loan_count", "");            // 三个月内跨平台借款负债平台个数
-//        params.put("is_id_checked", "");                   // 是否通过实名认证
-//        params.put("contact1_relation", "");               // 第一联系人社会关系
-//        params.put("concatc1_name", "");                   // 第一联系人姓名
-//        params.put("contact1_id_number", "");              // 第一联系人身份证
-//        params.put("contact1_mobile", "");                 // 第一联系人手机号
-//        params.put("contact1_addr", "");                   // 第一联系人家庭地址
-//        params.put("contact1_com_name", "");               // 第一联系人工作单位
-//        params.put("contact1_com_addr", "");               // 第一联系人工作地址
-//        params.put("contact2_relation", "");
-//        params.put("contact2_name", "");
-//        params.put("contact2_id_number", "");
-//        params.put("contact2_mobile", "");
-//        params.put("contact2_addr", "");
-//        params.put("contact2_com_name", "");
-//        params.put("contact2_com_addr", "");
-//        params.put("contact3_relation", "");
-//        params.put("contact3_name", "");
-//        params.put("contact3_id_number", "");
-//        params.put("contact3_mobile", "");
-//        params.put("contact3_addr", "");
-//        params.put("contact3_com_name", "");
-//        params.put("contact3_com_addr", "");
-//        params.put("contact4_relation", "");
-//        params.put("contact4_name", "");
-//        params.put("contact4_id_number", "");
-//        params.put("contact4_mobile", "");
-//        params.put("contact4_addr", "");
-//        params.put("contact4_com_name", "");
-//        params.put("contact4_com_addr", "");
-//        params.put("contact5_relation", "");
-//        params.put("contact5_name", "");
-//        params.put("contact5_id_number", "");
-//        params.put("contact5_mobile", "");
-//        params.put("contact5_addr", "");
-//        params.put("contact5_com_name", "");
-//        params.put("contact5_com_addr", "");
-//        params.put("ip_address", "");                       // IP地址
-//        params.put("token_id", "");                         // token_id
-//        params.put("black_box", "");                        // black_box
+    //获取信用评级
+    public RiskPreloanResponse submit(String internalCode){
+        Map<String, Object> params = new HashMap<String, Object>();//参数
+        UserInfo userInfo=userInfoService.getUserInfo(internalCode);
+        UserBasicInfo userBasic=userInfo.getUserBasicInfo();
+        
+         //添加参数
+        params.put("name", userBasic.getName());          // 姓名
+        params.put("id_number", userBasic.getIdNo());     // 身份证号
+        params.put("mobile", userBasic.getCellNo());      //电话
+        params.put("qq", userBasic.getQqNo());                              // qq
+        params.put("email", userBasic.getEmail());                           // 电子邮箱
+        params.put("home_address", userBasic.getFamilyAddress());                    // 家庭地址
+        params.put("contact_address", userBasic.getPostalAddress());                 // 通讯地址
+        
         RiskPreloanResponse riskPreloanResponse = new RiskServicePreloan().invoke(params);
         System.out.println(riskPreloanResponse.toString());
-        System.out.println(RiskReport.sendGet(riskPreloanResponse.getReport_id()));
+        return riskPreloanResponse;
     }
     
     //获取报告
-    public void getRiskReport(String id){
-    	String riskReportUrl="https://apitest.tongdun.cn/preloan/report/v6?partner_code=xypd&partner_key=f4b5bfc2ca6d42eb873d9c31f9e430cf&app_name=xypd_web&report_id="+id;
+    public static String getQuery(String id) {
         
-    	System.out.println(riskReportUrl);
-    	HttpURLConnection connn;
-    	
-    	try {
-            URL url = new URL(riskReportUrl);
-            
-            connn = (HttpURLConnection) url.openConnection();
-            // 设置长链接
-            connn.setRequestProperty("Connection", "Keep-Alive");
-            // 设置连接超时
-            connn.setConnectTimeout(1000);
-            // 设置读取超时
-            connn.setReadTimeout(500);
-            // 提交参数
-            connn.setRequestMethod("GET");
-            connn.setDoOutput(true);
-            connn.getOutputStream().flush();
-            int responseCode = connn.getResponseCode();
-            if (responseCode != 200) {
-                log.warn("RiskServicePreloan] invoke failed, response status:" + responseCode);
-                return;
-            }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connn.getInputStream(), "utf-8"));
-            StringBuilder result = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                result.append(line).append("\n");
-            }
-            System.out.println(result.toString());
-        } catch (Exception e) {
-            log.error("[RiskServicePreloan] invoke throw exception, details: " + e);
-        }
+        String url=queryRrl+"?partner_code="+partner_code+"&partner_key="+partner_key+"&app_name="+app_name+"&report_id="+id;
+           String result = "";
+           BufferedReader in = null;
+           try {
+               URL realUrl = new URL(url);
+               // 打开和URL之间的连接
+               URLConnection connection = realUrl.openConnection();
+               // 设置通用的请求属性
+               connection.setRequestProperty("connection", "Keep-Alive");
+               // 建立实际的连接
+               connection.connect();
+               // 获取所有响应头字段
+               Map<String, List<String>> map = connection.getHeaderFields();
+               // 遍历所有的响应头字段
+               // 定义 BufferedReader输入流来读取URL的响应
+               in = new BufferedReader(new InputStreamReader(
+                       connection.getInputStream()));
+               String line;
+               while ((line = in.readLine()) != null) {
+                   result += line;
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+           // 使用finally块来关闭输入流
+           finally {
+               try {
+                   if (in != null) {
+                       in.close();
+                   }
+               } catch (Exception e2) {
+                   e2.printStackTrace();
+               }
+           }
+           return result;
+       }
+    
+    //风险评估服务
+    public RiskPreloanResponseQuery riskService(String internalCode) throws InterruptedException{
+        //调用submit接口获得报告
+        RiskPreloanResponse riskPreloanResponse=submit(internalCode);
+        
+//        Map<String, Object> params = new HashMap<String, Object>();
+//        params.put("loan_amount", "10000");                // 申请借款金额
+//        params.put("name", "张三");                        // 姓名
+//        params.put("id_number", "1201231231231");     // 身份证号
+//        params.put("mobile", "1383838438");               // 手机号
+//        RiskPreloanResponse riskPreloanResponse = new RiskServicePreloan().invoke(params);
+        
+        if(riskPreloanResponse.getSuccess()==false) return null;//错误
+        //生成报告需要一定的时间
+        Thread.sleep(500);
+        //获取报告
+        String result=getQuery(riskPreloanResponse.getReport_id());
+        System.out.println(result);
+        
+        return JSON.parseObject(result.toString().trim(), RiskPreloanResponseQuery.class);
     }
+    
+    
+    
+    
+    
+    public static void main(String[] args) throws InterruptedException {
+        RiskPreloanResponseQuery r=new RiskServicePreloan().riskService("111");
+        
+        System.out.println(r.getApplication_id());
+        System.out.println(r.getFinal_decision());
+        System.out.println(r.getReport_id());
+        System.out.println(r.getSuccess());
+        System.out.println(r.getApply_time());
+        System.out.println(r.getFinal_score());
+        System.out.println(r.getReport_time());
+        
+        
+        
+    }
+    
 }

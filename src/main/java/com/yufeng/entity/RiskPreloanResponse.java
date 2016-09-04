@@ -1,12 +1,12 @@
-package com.yufeng.util;
+package com.yufeng.entity;
 
 import java.io.Serializable;
 public class RiskPreloanResponse implements Serializable {
     private static final long serialVersionUID = 4152462611121573434L;
-    private Boolean success = false;
-    private String report_id;
-    private String reason_code;
-    private String reason_desc;
+    private Boolean success = false;//是否成功
+    private String report_id;//报告id
+    private String reason_code;//错误编码
+    private String reason_desc;//错误详细
     
     // ... 省略若干Getter与Setter
  
