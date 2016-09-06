@@ -1,9 +1,16 @@
 package com.yufeng.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Properties;
 
 public class Utils {
+    
+    
 
 	
 	//信用额度基础值
@@ -58,7 +65,27 @@ public class Utils {
 	
 	public final static BigDecimal GUARANTEE_QUOATA_RATIO = new BigDecimal(0.2);
 	
-	
+	//风险评估参数
+	public static String partner_code;    
+    public static String partner_key;
+    public static String app_name;    
+    public static String submitRrl;
+    public static String queryRrl;
+    
+    static{
+        try {
+            Properties prop =new Properties();
+            prop.load(new InputStreamReader(Thread.currentThread().getContextClassLoader().
+                    getResourceAsStream("/tongdun.properties"),"UTF-8"));
+            partner_code = prop.getProperty( "partner_code" ).trim();    
+            partner_key = prop.getProperty( "partner_key" ).trim(); 
+            app_name = prop.getProperty( "app_name" ).trim(); 
+            submitRrl = prop.getProperty( "submitRrl" ).trim();
+            queryRrl = prop.getProperty( "queryRrl" ).trim(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	/**
 	 * 日期比较

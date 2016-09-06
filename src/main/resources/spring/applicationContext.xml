@@ -39,6 +39,8 @@
 	<bean id="urgeRepaymentServiceEntityService" class="com.yufeng.service.impl.UrgeRepaymentServiceEntityServiceImpl" autowire="byName"></bean>
 	
 	<bean id="creditAccountInfoService" class="com.yufeng.service.impl.CreditAccountInfoServiceImpl"    autowire="byName"/>
+	
+	<bean id="riskService" class="com.yufeng.service.impl.RiskServiceImpl"    autowire="byName"/>
 
 
 
