@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yufeng.dao.UserFinancialAccountDao;
 import com.yufeng.entity.UserFinancialAccountInfo;
 import com.yufeng.service.UserFinancialAccountService;
+import com.yufeng.util.Utils;
 
 /**
  * 用户金融业务处理层
@@ -37,7 +38,7 @@ public class UserFinancialAccountServiceImpl implements UserFinancialAccountServ
 	public String insertUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
 		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountByAccountId(userFinancialAccountInfo.getFinancialConsumeAccountId());
 		if(info!=null){
-			return "99";//存在重复
+			return Utils.RETURN_VALUE_CODE_99;//存在重复
 		}
 		userFinancialAccountInfo.setCreateTime(new Date());
 		return userFinancialAccountDao.insertUserFinancialAccount(userFinancialAccountInfo)+"";
@@ -47,7 +48,7 @@ public class UserFinancialAccountServiceImpl implements UserFinancialAccountServ
 	public String updateUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
 		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getUniqueId(),userFinancialAccountInfo.getInternalCode());
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		userFinancialAccountInfo.setModTime(new Date());
 		return userFinancialAccountDao.updateUserFinancialAccount(userFinancialAccountInfo)+"";
@@ -57,7 +58,7 @@ public class UserFinancialAccountServiceImpl implements UserFinancialAccountServ
 	public String deleteUserFinancialAccount(UserFinancialAccountInfo userFinancialAccountInfo){
 		UserFinancialAccountInfo info=userFinancialAccountDao.getUserFinancialAccountById(userFinancialAccountInfo.getUniqueId(),userFinancialAccountInfo.getInternalCode());
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		return userFinancialAccountDao.deleteUserFinancialAccount(userFinancialAccountInfo)+"";	
 	}

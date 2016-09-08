@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.yufeng.dao.BankCardDao;
 import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.service.BankCardService;
+import com.yufeng.util.Utils;
 
 /**
  * 用户银行卡业务处理层
@@ -42,13 +43,13 @@ public class BankCardServiceImpl implements BankCardService{
 	            //检查是否存在重复银行卡号
 	            UserBankCardInfo info=bankCardDao.getBankCardByBankCardNumber(u.getBankCardNumber());
 	            if(info!=null){
-	                return "99";//存在重复
+	                return Utils.RETURN_VALUE_CODE_99;//存在重复
 	            }
 	            bankCardDao.insertBankCard(u); 
 	        }
 	        
 	    }
-		return "1";
+		return Utils.RETURN_VALUE_CODE_1;
 	}
 		
 	//银行卡信息修改
@@ -57,7 +58,7 @@ public class BankCardServiceImpl implements BankCardService{
 		//检查数据是否存在
 		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId(),userBankCardInfo.getInternalCode());
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		return bankCardDao.updateBankCard(userBankCardInfo)+"";	
 	}
@@ -67,7 +68,7 @@ public class BankCardServiceImpl implements BankCardService{
 		//检查数据是否存在
 		UserBankCardInfo info=bankCardDao.getBankCardByID(userBankCardInfo.getUniqueId(),userBankCardInfo.getInternalCode());
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		return bankCardDao.deleteBankCard(userBankCardInfo)+"";	
 	}

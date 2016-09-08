@@ -16,6 +16,7 @@ import com.yufeng.entity.FastConsumerLoanOrder;
 import com.yufeng.entity.FastConsumerLoanOrderCommodity;
 import com.yufeng.service.FastConsumerLoanOrderService;
 import com.yufeng.util.ResultModel;
+import com.yufeng.util.Utils;
 
 /**
  * 快速消费品分期订单控制层
@@ -37,7 +38,7 @@ public class FastConsumerLoanOrderController {
 	@RequestMapping("/insertFastConsumerLoanOrder")
 	public ResponseEntity<ResultModel> insertFastConsumerLoanOrder(@RequestBody String order){
 		String type=fastConsumerLoanOrderService.insertFastConsumerLoanOrder(order);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -48,7 +49,7 @@ public class FastConsumerLoanOrderController {
 	@RequestMapping("/updateFastConsumerLoanOrder")
 	public ResponseEntity<ResultModel> updateFastConsumerLoanOrder(@RequestBody String order){
 		String type=fastConsumerLoanOrderService.updateFastConsumerLoanOrder(order);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);

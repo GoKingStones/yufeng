@@ -16,6 +16,7 @@ import com.yufeng.dao.FastConsumerLoanOrderDao;
 import com.yufeng.entity.FastConsumerLoanOrder;
 import com.yufeng.entity.FastConsumerLoanOrderCommodity;
 import com.yufeng.service.FastConsumerLoanOrderService;
+import com.yufeng.util.Utils;
 
 /**
  * 快速消费品分期订单业务处理层
@@ -64,9 +65,9 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 				commodity.setCreateTime(date);
 				fastConsumerLoanOrderDao.insertFastConsumerLoanOrderCommodity(commodity);
 			}
-			return "1";
+			return Utils.RETURN_VALUE_CODE_1;
 		} catch (Exception e) {
-			return "0"; 
+			return Utils.RETURN_VALUE_CODE_0; 
 		}
 	}
 	
@@ -99,9 +100,9 @@ public class FastConsumerLoanOrderServiceImpl implements FastConsumerLoanOrderSe
 				}
 			}
 			
-			return "1";
+			return Utils.RETURN_VALUE_CODE_1;
 		} catch (Exception e) {
-			return "0"; 
+			return Utils.RETURN_VALUE_CODE_0; 
 		}
 	}
 

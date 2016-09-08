@@ -13,6 +13,7 @@ import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.GuaranteeRelationshipInfo;
 import com.yufeng.service.GuaranteeRelationshipService;
 import com.yufeng.util.ResultModel;
+import com.yufeng.util.Utils;
 
 /**
  * 担保关系控制层
@@ -47,13 +48,13 @@ public class GuaranteeRelationshipController {
 	@RequestMapping("/foundGuaranteeRelationship")
 	public ResponseEntity<ResultModel> foundGuaranteeRelationship(@RequestBody GuaranteeRelationshipInfo info){
 		String type=guaranteeRelationshipService.foundGuaranteeRelationship(info);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if("2".equals(type)){
+        }else if(Utils.RETURN_VALUE_CODE_2.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.GUARANTEERELATION_NUMBER_ERROR),HttpStatus.OK);
-        }else if("3".equals(type)){
+        }else if(Utils.RETURN_VALUE_CODE_3.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.GUARANTEERELATION_NUMBER1_ERROR),HttpStatus.OK);
-        }else if("99".equals(type)){
+        }else if(Utils.RETURN_VALUE_CODE_99.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.GUARANTEERELATION_REPEAT),HttpStatus.OK);
         }else{
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -64,7 +65,7 @@ public class GuaranteeRelationshipController {
 	@RequestMapping("/deleteGuaranteeRelationshipByUniqueId")
 	public ResponseEntity<ResultModel> deleteGuaranteeRelationship(String uniqueId){
 		String type=guaranteeRelationshipService.deleteGuaranteeRelationship(uniqueId);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }else{
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -75,7 +76,7 @@ public class GuaranteeRelationshipController {
 	@RequestMapping("/updateGuaranteeRelationship")
 	public ResponseEntity<ResultModel> updateGuaranteeRelationship(@RequestBody GuaranteeRelationshipInfo info){
 	    String type=guaranteeRelationshipService.updateGuaranteeRelationship(info);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
         }else{
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);

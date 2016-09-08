@@ -13,6 +13,7 @@ import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.UserFinancialAccountInfo;
 import com.yufeng.service.UserFinancialAccountService;
 import com.yufeng.util.ResultModel;
+import com.yufeng.util.Utils;
 
 /**
  * 用户金融控制层
@@ -43,9 +44,9 @@ public class UserFinancialAccountController {
 	@RequestMapping("/insertUserFinancialAccount")
 	public ResponseEntity<ResultModel> insertUserFinancialAccount(@RequestBody UserFinancialAccountInfo userFinancialAccountInfo){
 		String type=userFinancialAccountService.insertUserFinancialAccount(userFinancialAccountInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if("99".equals(type)){
+        }else if(Utils.RETURN_VALUE_CODE_99.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.FINANCIALCONSUMEACCOUNTID_REPEAT),HttpStatus.OK);
         }else{
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -56,9 +57,9 @@ public class UserFinancialAccountController {
 	@RequestMapping("/updateUserFinancialAccount")
 	public ResponseEntity<ResultModel> updateUserFinancialAccount(@RequestBody UserFinancialAccountInfo userFinancialAccountInfo){
 	    String type=userFinancialAccountService.updateUserFinancialAccount(userFinancialAccountInfo);	
-	    if("1".equals(type)){
+	    if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if(("3".equals(type))){
+        }else if((Utils.RETURN_VALUE_CODE_3.equals(type))){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.FINANCIALACCOUNT_NOT_FOUND),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -69,9 +70,9 @@ public class UserFinancialAccountController {
 	@RequestMapping("/deleteUserFinancialAccount")
 	public ResponseEntity<ResultModel> deleteUserFinancialAccount(@RequestBody UserFinancialAccountInfo userFinancialAccountInfo){
 	    String type=userFinancialAccountService.deleteUserFinancialAccount(userFinancialAccountInfo);
-	    if("1".equals(type)){
+	    if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if(("3".equals(type))){
+        }else if((Utils.RETURN_VALUE_CODE_3.equals(type))){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.FINANCIALACCOUNT_NOT_FOUND),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);

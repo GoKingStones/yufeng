@@ -14,6 +14,7 @@ import com.yufeng.entity.UserFamilyHistoryInfo;
 import com.yufeng.entity.UserFamilyInfo;
 import com.yufeng.service.UserFamilyService;
 import com.yufeng.util.ResultModel;
+import com.yufeng.util.Utils;
 
 /**
  * 用户家庭联系人控制层
@@ -45,9 +46,9 @@ public class UserFamilyController {
 	//入参这应该是个list，填写联系人应该是在一个page内，会一起提交。
 	public ResponseEntity<ResultModel> insertUserFamily(@RequestBody List<UserFamilyInfo> userFamilyInfo){
 		String type=userFamilyService.insertUserFamily(userFamilyInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if("99".equals(type)){
+        }else if(Utils.RETURN_VALUE_CODE_99.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.CREDENTIALSNUMBER_REPEAT),HttpStatus.OK);
         }else{
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -58,9 +59,9 @@ public class UserFamilyController {
 	@RequestMapping("/updateUserFamily")
 	public ResponseEntity<ResultModel> updateUserFamily(@RequestBody UserFamilyInfo userFamilyInfo){
 		String type=userFamilyService.updateUserFamily(userFamilyInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if(("3".equals(type))){//不存在银行卡
+        }else if((Utils.RETURN_VALUE_CODE_3.equals(type))){//不存在银行卡
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.FAMILY_NOT_FOUND),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -71,9 +72,9 @@ public class UserFamilyController {
 	@RequestMapping("/deleteUserFamily")
 	public ResponseEntity<ResultModel> deleteUserFamily(@RequestBody UserFamilyHistoryInfo userFamilyHistoryInfo){
 		String type=userFamilyService.deleteUserFamily(userFamilyHistoryInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if(("3".equals(type))){//不存在银行卡
+        }else if((Utils.RETURN_VALUE_CODE_3.equals(type))){//不存在银行卡
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.FAMILY_NOT_FOUND),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);

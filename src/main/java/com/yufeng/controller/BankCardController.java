@@ -14,6 +14,7 @@ import com.yufeng.config.ResultStatus;
 import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.service.BankCardService;
 import com.yufeng.util.ResultModel;
+import com.yufeng.util.Utils;
 
 /**
  * 银行卡控制层
@@ -46,9 +47,9 @@ public class BankCardController {
 	//入参应该是个list
 	public ResponseEntity<ResultModel> insertBankCard(@RequestBody List<UserBankCardInfo> userBankCardInfo){
 		String type=bankCardService.insertBankCard(userBankCardInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
 		    return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-		}else if("99".equals(type)){
+		}else if(Utils.RETURN_VALUE_CODE_99.equals(type)){
 		    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BANKCARDNUMBER_REPEAT),HttpStatus.OK);
 		}else{
 		    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -61,9 +62,9 @@ public class BankCardController {
 	public ResponseEntity<ResultModel> updateBankCard(@RequestBody UserBankCardInfo userBankCardInfo){
 		//id和内码作为where条件，以免出现问题
 		String type=bankCardService.updateBankCard(userBankCardInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
 		    return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-		}else if(("3".equals(type))){//不存在银行卡
+		}else if((Utils.RETURN_VALUE_CODE_3.equals(type))){//不存在银行卡
 		    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BANKCARD_NOT_FOUND),HttpStatus.OK);
 		}else{//操作失败
 		    return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
@@ -74,9 +75,9 @@ public class BankCardController {
 	@RequestMapping("/deleteBankCard")
 	public ResponseEntity<ResultModel> deleteBankCard(@RequestBody UserBankCardInfo userBankCardInfo){
 		String type=bankCardService.deleteBankCard(userBankCardInfo);
-		if("1".equals(type)){
+		if(Utils.RETURN_VALUE_CODE_1.equals(type)){
             return new ResponseEntity<ResultModel>(ResultModel.ok(),HttpStatus.OK);
-        }else if(("3".equals(type))){//不存在银行卡
+        }else if((Utils.RETURN_VALUE_CODE_3.equals(type))){//不存在银行卡
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BANKCARD_NOT_FOUND),HttpStatus.OK);
         }else{//操作失败
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
