@@ -55,13 +55,13 @@ public class GuaranteeRelationshipServiceImpl implements GuaranteeRelationshipSe
 		List<GuaranteeRelationshipInfo> passiveList=guaranteeRelationshipDao.getByCode(info.getInternalCode());
 		//如果已经有4人了
 		if(passiveList.size()>=number){
-			return "2";//为其担保的人已经有4人
+			return Utils.RETURN_VALUE_CODE_2;//为其担保的人已经有4人
 		}
 		//检查担保人已经担保了几人
 		List<GuaranteeRelationshipInfo> activeList=guaranteeRelationshipDao.getByRelateCode(info.getRelateUserInternalCode());
 		//如果已经有4人了
 		if(activeList.size()>=number){
-			return "3";//担保人担保的人已经有4人
+			return Utils.RETURN_VALUE_CODE_3;//担保人担保的人已经有4人
 		}
 		
 		//先查找是否存在重复或者闲置状态的担保
@@ -80,7 +80,7 @@ public class GuaranteeRelationshipServiceImpl implements GuaranteeRelationshipSe
 				guaranteeRelationshipDao.insertHis(oldInfo);
 				return guaranteeRelationshipDao.update(newInfo)+"";
 			}else{
-				return "99";//存在重复
+				return Utils.RETURN_VALUE_CODE_99;//存在重复
 			}
 		}
 		//新建担保
@@ -99,7 +99,7 @@ public class GuaranteeRelationshipServiceImpl implements GuaranteeRelationshipSe
 			old.setCreateTime(new Date());
 			guaranteeRelationshipDao.insertHis(old);
 		}else{
-			return "0";//无关系
+			return Utils.RETURN_VALUE_CODE_0;//无关系
 		}
 		
 		return guaranteeRelationshipDao.deleteGuaranteeRelationship(uniqueId)+"";
@@ -114,7 +114,7 @@ public class GuaranteeRelationshipServiceImpl implements GuaranteeRelationshipSe
 			guaranteeRelationshipDao.insertHis(old);
 			return guaranteeRelationshipDao.update(info)+"";
 		}else{
-			return "0";//不存在需要修改的信息
+			return Utils.RETURN_VALUE_CODE_0;//不存在需要修改的信息
 		}
 		
 	}

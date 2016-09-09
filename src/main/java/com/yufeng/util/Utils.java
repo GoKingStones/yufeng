@@ -86,7 +86,14 @@ public class Utils {
             e.printStackTrace();
         }
     }
-	
+    
+    //返回值代码
+    public final static String RETURN_VALUE_CODE_0= "0";
+    public final static String RETURN_VALUE_CODE_1= "1";
+    public final static String RETURN_VALUE_CODE_2 = "2";
+    public final static String RETURN_VALUE_CODE_3 = "3";
+    public final static String RETURN_VALUE_CODE_99 = "99";
+    
 	/**
 	 * 日期比较
 	 * @param DATE1 

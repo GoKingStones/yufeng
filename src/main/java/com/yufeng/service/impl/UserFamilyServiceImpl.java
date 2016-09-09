@@ -12,6 +12,7 @@ import com.yufeng.dao.UserFamilyHistoryDao;
 import com.yufeng.entity.UserFamilyHistoryInfo;
 import com.yufeng.entity.UserFamilyInfo;
 import com.yufeng.service.UserFamilyService;
+import com.yufeng.util.Utils;
 
 /**
  * 用户家庭联系人业务处理层
@@ -43,15 +44,15 @@ public class UserFamilyServiceImpl implements UserFamilyService{
               //检查身份证号是否重复
                 UserFamilyInfo info=userFamilyDao.getUserFamilyByCredentialsNumber(u.getCredentialsNumber());
                 if(info!=null){
-                    return "99";//重复
+                    return Utils.RETURN_VALUE_CODE_99;//重复
                 }
                 //保存新建时间
                 u.setCreateTime(new Date());
                 userFamilyDao.insertUserFamily(u);
             }
-            return "1";
+            return Utils.RETURN_VALUE_CODE_1;
         }else{
-            return "0";
+            return Utils.RETURN_VALUE_CODE_0;
         }
 		
 	}
@@ -61,7 +62,7 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyInfo.getUniqueId(),userFamilyInfo.getInternalCode());
 		//检查信息是否存在
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		//保存修改时间
 		userFamilyInfo.setModTime(new Date());
@@ -73,7 +74,7 @@ public class UserFamilyServiceImpl implements UserFamilyService{
 		UserFamilyInfo info=userFamilyDao.getUserFamilyById(userFamilyHistoryInfo.getUniqueId(),userFamilyHistoryInfo.getInternalCode());
 		//检查信息是否存在
 		if(info==null){
-			return "3";
+			return Utils.RETURN_VALUE_CODE_3;
 		}
 		UserFamilyHistoryInfo u=new UserFamilyHistoryInfo();
 		u.setCredentialsNumber(info.getCredentialsNumber());
