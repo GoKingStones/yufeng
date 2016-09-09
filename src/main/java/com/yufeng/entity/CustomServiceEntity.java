@@ -28,6 +28,8 @@ public class CustomServiceEntity {
     private String detail;
 
 
+
+
     public int getId() {
         return id;
     }

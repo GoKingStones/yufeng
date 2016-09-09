@@ -21,6 +21,18 @@ public class RegisterAccount implements Serializable{
     //账户状态
     private String accountFlag;
     private Date createTime;
+    private Date modTime;//修改时间
+
+
+    public Date getModTime() {
+        return modTime;
+    }
+
+    public void setModTime(Date modTime) {
+        this.modTime = modTime;
+    }
+
+
 
     public int getRegisterAccountId() {
         return registerAccountId;

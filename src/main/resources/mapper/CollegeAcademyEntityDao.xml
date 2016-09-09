@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.CollegeAcademyEntityDao">
 
-    <select id="getCollegeAcademyEntity">
+    <select id="getCollegeAcademyEntityByCollegeCode" resultType="CollegeAcademyEntity">
 
-        SELECT  COUNT(*) from college_table WHERE college_name=#{collegeName}
-
+        SELECT  * from college_table WHERE college_code=#{collegeCode} AND academy_name=#{academyName} AND
+        department_name=#{departmentName}
 
     </select>
     <!--  -->

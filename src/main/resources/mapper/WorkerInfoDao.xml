@@ -21,13 +21,13 @@
     </select>
 
     <select id="getWorkInfoByWorkerId" parameterType="int" resultType="WorkerInfo">
-        SELECT * FROM worker_info_table WHERE worker_id={workerId}
+        SELECT * FROM worker_info_table WHERE worker_id=#{workerId}
     </select>
     <!--  -->
     <insert id="insertWorkerInfo">
 
 
-        INSERT ignore INTO worker_info_table(password,worker_name,id_type,id_numer,org_id,phone_number,work_phone,
+        INSERT ignore INTO worker_info_table(password,worker_name,id_type,id_number,org_id,phone_number,work_phone,
         email,weixin_no,category,worker_position,position_level,creator,worker_status) VALUES (#{password},#{workerName},
         #{idType},#{idNumber},#{orgId},#{phoneNumber},#{workPhone},#{email},#{weixinNo},
         #{category},#{workerPosition},#{positionLevel},#{creator},#{workerStatus})

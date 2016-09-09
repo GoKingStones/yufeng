@@ -1,7 +1,9 @@
 package com.yufeng.dao;
 
 import com.yufeng.entity.UrgeRepaymentServiceEntity;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +12,8 @@ import java.util.List;
  */
 public interface UrgeRepaymentServiceEntityDao {
 
+    public UrgeRepaymentServiceEntity getUrgeRepaymentServiceEntityById(int id);
+    public UrgeRepaymentServiceEntity getSingleUrgeRepaymentServiceEntity(@Param("workerId")int workerId,@Param("internalCode")String internalCode,@Param("urgeTime")String urgeTime);
     public int insertUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
     public int updateUrgeRepaymentServiceEntity(UrgeRepaymentServiceEntity urgeRepaymentServiceEntity);
     public List<UrgeRepaymentServiceEntity> getUrgeRepaymentServiceEntityByWorkerId(int workerId);

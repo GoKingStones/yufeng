@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.UrgeRepaymentServiceEntityDao">
 
-    <select id="getUrgeRepaymentServiceEntityByWorkerId" parameterType="String" resultType="UrgeRepaymentServiceEntity">
+
+    <select id="getSingleUrgeRepaymentServiceEntity" resultType="UrgeRepaymentServiceEntity">
+
+        SELECT * from urge_repayment_service_table WHERE worker_id=#{workerId} AND internal_code=#{internalCode} AND urge_time=#{urgeTime} limit 1
+
+    </select>
+
+    <select id="getUrgeRepaymentServiceEntityById" parameterType="int" resultType="UrgeRepaymentServiceEntity">
+
+        SELECT * from urge_repayment_service_table WHERE id=#{id} limit 1
+
+    </select>
+
+    <select id="getUrgeRepaymentServiceEntityByWorkerId" parameterType="int" resultType="UrgeRepaymentServiceEntity">
 
         SELECT * from urge_repayment_service_table WHERE worker_id=#{workerId}
 
@@ -15,11 +28,12 @@
     </select>
 
 
+
     <insert id="insertUrgeRepaymentServiceEntity" parameterType="UrgeRepaymentServiceEntity">
 
         INSERT ignore INTO urge_repayment_service_table(worker_id,internal_code,urge_time,urge_mode,
         urge_type,repayment,urge_status,detail)
-        VALUES (#{workId},#{internalId},#{urgeTime},#{urgeMode},
+        VALUES (#{workerId},#{internalCode},#{urgeTime},#{urgeMode},
         #{urgeType},#{repayment},#{urgeStatus},#{detail})
     </insert>
 
@@ -27,9 +41,6 @@
     <update id="updateUrgeRepaymentServiceEntity" parameterType="int">
         UPDATE urge_repayment_service_table
         <trim prefix="set" suffixOverrides=",">
-        <if test="workerId!=null">
-            worker_id=#{workerId},
-        </if>
         <if test="internalCode!=null">
             internal_code=#{internalCode},
         </if>

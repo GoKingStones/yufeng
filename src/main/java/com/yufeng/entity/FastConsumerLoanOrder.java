@@ -14,120 +14,185 @@ public class FastConsumerLoanOrder implements Serializable{
      */
     private static final long serialVersionUID = 8515072576768655683L;
     
-    private String uniqueId;
+    //private String uniqueId;
 	//订单id
-	private String orderId;
+	private long orderId;
 	//订单类型
-	private String orderType;
+	//private String orderType;
 	//购买用户内码
 	private String userInternalCode;
 	//订单状态
 	private String orderState;
 	//发票号
-	private String invoiceNumber;
+	//private String invoiceNumber;
 	//总金额
 	private BigDecimal totalAmount;
-	//折扣价
-	private BigDecimal discountPrice;
+
+    //分期数
+    private int installCount;
+
+    //分期类型
+    private String installType;
+
+	//折扣金额
+	private BigDecimal discountAmount;
+
+    //实付总金额
+    private BigDecimal actualTotalAmount;
+
+    //利息
+    private BigDecimal interest;
+
+    //运费
+    private BigDecimal freight;
+
+    //发货时间
+    private Date sendTime;
+
+    //收货时间
+    private Date receiptTime;
+
+    //全部退货时间
+    private Date returnOrderTime;
+    //部分退货时间
+    private Date returnCommodityTime;
+
 	//订单折扣价
-	private BigDecimal orderDiscountPrice;
+	//private BigDecimal orderDiscountPrice;
 	//创建时间
 	private Date createTime;
 	//修改时间
 	private Date modTime;
-    
-    public String getUniqueId() {
-        return uniqueId;
+
+    public Date getReturnOrderTime() {
+        return returnOrderTime;
     }
-    
-    public void setUniqueId(String uniqueId) {
-        this.uniqueId = uniqueId;
+
+    public void setReturnOrderTime(Date returnOrderTime) {
+        this.returnOrderTime = returnOrderTime;
     }
-    
-    public String getOrderId() {
+
+    public Date getReturnCommodityTime() {
+        return returnCommodityTime;
+    }
+
+    public void setReturnCommodityTime(Date returnCommodityTime) {
+        this.returnCommodityTime = returnCommodityTime;
+    }
+
+    public Date getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public Date getReceiptTime() {
+        return receiptTime;
+    }
+
+    public void setReceiptTime(Date receiptTime) {
+        this.receiptTime = receiptTime;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public long getOrderId() {
         return orderId;
     }
-    
-    public void setOrderId(String orderId) {
+
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
-    
-    public String getOrderType() {
-        return orderType;
-    }
-    
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-    
+
     public String getUserInternalCode() {
         return userInternalCode;
     }
-    
+
     public void setUserInternalCode(String userInternalCode) {
         this.userInternalCode = userInternalCode;
     }
-    
+
     public String getOrderState() {
         return orderState;
     }
-    
+
     public void setOrderState(String orderState) {
         this.orderState = orderState;
     }
-    
-    public String getInvoiceNumber() {
-        return invoiceNumber;
-    }
-    
-    public void setInvoiceNumber(String invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
-    
+
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
-    
+
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
-    
-    public BigDecimal getDiscountPrice() {
-        return discountPrice;
+
+    public int getInstallCount() {
+        return installCount;
     }
-    
-    public void setDiscountPrice(BigDecimal discountPrice) {
-        this.discountPrice = discountPrice;
+
+    public void setInstallCount(int installCount) {
+        this.installCount = installCount;
     }
-    
-    public BigDecimal getOrderDiscountPrice() {
-        return orderDiscountPrice;
+
+    public String getInstallType() {
+        return installType;
     }
-    
-    public void setOrderDiscountPrice(BigDecimal orderDiscountPrice) {
-        this.orderDiscountPrice = orderDiscountPrice;
+
+    public void setInstallType(String installType) {
+        this.installType = installType;
     }
-    
+
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(BigDecimal discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public BigDecimal getActualTotalAmount() {
+        return actualTotalAmount;
+    }
+
+    public void setActualTotalAmount(BigDecimal actualTotalAmount) {
+        this.actualTotalAmount = actualTotalAmount;
+    }
+
+    public BigDecimal getInterest() {
+        return interest;
+    }
+
+    public void setInterest(BigDecimal interest) {
+        this.interest = interest;
+    }
+
+    public BigDecimal getFreight() {
+        return freight;
+    }
+
+    public void setFreight(BigDecimal freight) {
+        this.freight = freight;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
-    
+
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-    
+
     public Date getModTime() {
         return modTime;
     }
-    
+
     public void setModTime(Date modTime) {
         this.modTime = modTime;
     }
-	
-	
-	
-	
-	
-	
-
 }

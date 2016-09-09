@@ -2,7 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.CustomServiceEntityDao">
 
-    <select id="getCustomServiceEntityByWorkerId" parameterType="String" resultType="CustomServiceEntity">
+    <select id="getCustomServiceEntityById" parameterType="int" resultType="CustomServiceEntity">
+
+        SELECT * from custom_service_table WHERE id=#{id} limit 1
+
+    </select>
+
+    <select id="getSingleCustomServiceEntity" resultType="CustomServiceEntity">
+
+        SELECT * from custom_service_table WHERE worker_id=#{workerId} AND internal_code=#{internalCode} AND service_time=#{serviceTime} limit 1
+
+    </select>
+
+    <select id="getCustomServiceEntityByWorkerId" parameterType="int" resultType="CustomServiceEntity">
 
         SELECT * from custom_service_table WHERE worker_id=#{workerId}
 
@@ -19,7 +31,7 @@
 
         INSERT ignore INTO custom_service_table(worker_id,internal_code,service_time,service_mode,
         service_type,service_level,detail)
-        VALUES (#{workId},#{internalId},#{serviceTime},#{serviceMode},
+        VALUES (#{workerId},#{internalCode},#{serviceTime},#{serviceMode},
         #{serviceType},#{serviceLevel},#{detail})
     </insert>
 
@@ -27,20 +39,17 @@
     <update id="updateCustomServiceEntity" parameterType="int">
         UPDATE custom_service_table
         <trim prefix="set" suffixOverrides=",">
-        <if test="workerId!=null">
-            worker_id=#{workerId},
-        </if>
         <if test="internalCode!=null">
             internal_code=#{internalCode},
         </if>
         <if test="serviceTime!=null">
             service_time=#{serviceTime},
         </if>
-        <if test="interviewMode!=null">
-            service_mode = #{interviewMode},
+        <if test="serviceMode!=null">
+            service_mode = #{serviceMode},
         </if>
-        <if test="interviewType!=null">
-            service_type = #{interviewType},
+        <if test="serviceType!=null">
+            service_type = #{serviceType},
         </if>
         <if test="serviceLevel!=null">
             service_level = #{serviceLevel},

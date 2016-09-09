@@ -8,10 +8,8 @@ import java.util.Date;
  */
 public class WorkerInfo {
 
-
     //客户经理ID
     private int workerId;
-
     //登录密码
     private String password;
     //姓名

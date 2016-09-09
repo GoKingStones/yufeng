@@ -29,7 +29,7 @@ public class WorkerInfoController {
 	private WorkerInfoService workerInfoService;
 	
 	//
-	@RequestMapping("/getWorkerInfoByWorkerName")
+	@RequestMapping(value = "/getWorkerInfoByWorkerName",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getWorkerInfoByWorkerName(@RequestParam("workerName") String workerName){
 
 		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByWorkerName(workerName);
@@ -41,21 +41,8 @@ public class WorkerInfoController {
 
     }
 
-	//
-	@RequestMapping("/getWorkerInfoByOrgId")
-	public ResponseEntity<ResultModel> getWorkerInfoByOrgId(@RequestParam("orgId") String orgId){
 
-		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByOrgId(orgId);
-		if (workerInfo!=null) {
-			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.USER_NOT_FOUND),HttpStatus.OK);
-		}
-
-	}
-
-	//
-	@RequestMapping("/getWorkerInfoByPhoneNumber")
+	@RequestMapping(value = "/getWorkerInfoByPhoneNumber",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getWorkerInfoByPhoneNumber(@RequestParam("phoneNumber") String phoneNumber){
 
 		WorkerInfo  workerInfo =workerInfoService.getWorkerInfoByPhoneNumber(phoneNumber);
@@ -67,10 +54,23 @@ public class WorkerInfoController {
 	}
 
 
-	@RequestMapping("/insertWorkerInfo")
+	@RequestMapping(value = "/insertWorkerInfo",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> insertWorkerInfo(@RequestBody WorkerInfo workerInfo){
+		WorkerInfo workerInfo2=workerInfoService.getWorkerInfoByWorkerName(workerInfo.getWorkerName());
+		if (workerInfo==null) {
 
+			Map<String,String> map=new HashMap<String, String>();
+			map.put("workerName","is existed");
+			return new ResponseEntity<ResultModel>(ResultModel.ok(map),HttpStatus.OK);
+		}
 
+		WorkerInfo workerInfo3=workerInfoService.getWorkerInfoByPhoneNumber(workerInfo.getPhoneNumber());
+		if (workerInfo==null) {
+			Map<String,String> map=new HashMap<String, String>();
+			map.put("workerPhoneNumber","is existed");
+			return new ResponseEntity<ResultModel>(ResultModel.ok(map),HttpStatus.OK);
+
+		}
 
 		WorkerInfo  workerInfo1 =workerInfoService.insertWorkerInfo(workerInfo);
 		if (workerInfo1!=null) {
@@ -80,8 +80,18 @@ public class WorkerInfoController {
 		}
 	}
 
-	@RequestMapping("updateWorkerInfo")
+	@RequestMapping(value = "updateWorkerInfo",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> updateWorkerInfo(@RequestBody WorkerInfo workerInfo){
+
+		if(workerInfo.getPhoneNumber()!=null) {
+			WorkerInfo workerInfo3=workerInfoService.getWorkerInfoByPhoneNumber(workerInfo.getPhoneNumber());
+			if (workerInfo==null) {
+				Map<String,String> map=new HashMap<String, String>();
+				map.put("workerPhoneNumber","is existed");
+				return new ResponseEntity<ResultModel>(ResultModel.ok(map),HttpStatus.OK);
+
+			}
+		}
 
 		WorkerInfo  workerInfo1 =workerInfoService.updateWorkerInfo(workerInfo);
 		if (workerInfo1!=null) {
@@ -92,10 +102,30 @@ public class WorkerInfoController {
 
 	}
 
-	@RequestMapping("updateWorkerInfoByAdmin")
+	@RequestMapping(value = "updateWorkerInfoByAdmin",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> updateWorkerInfoByAdmin(@RequestBody WorkerInfo workerInfo){
 
-		WorkerInfo  workerInfo1 =workerInfoService.updateWorkerInfo(workerInfo);
+		if (workerInfo.getWorkerName()!=null) {
+			WorkerInfo workerInfo2=workerInfoService.getWorkerInfoByWorkerName(workerInfo.getWorkerName());
+			if (workerInfo==null) {
+
+				Map<String,String> map=new HashMap<String, String>();
+				map.put("workerName","is existed");
+				return new ResponseEntity<ResultModel>(ResultModel.ok(map),HttpStatus.OK);
+			}
+		}
+
+		if(workerInfo.getPhoneNumber()!=null) {
+			WorkerInfo workerInfo3=workerInfoService.getWorkerInfoByPhoneNumber(workerInfo.getPhoneNumber());
+			if (workerInfo==null) {
+				Map<String,String> map=new HashMap<String, String>();
+				map.put("workerPhoneNumber","is existed");
+				return new ResponseEntity<ResultModel>(ResultModel.ok(map),HttpStatus.OK);
+
+			}
+		}
+
+		WorkerInfo  workerInfo1 =workerInfoService.updateWorkerInfoByAdmin(workerInfo);
 		if (workerInfo1!=null) {
 			return new ResponseEntity<ResultModel>(ResultModel.ok(workerInfo1), HttpStatus.OK);
 		}else {

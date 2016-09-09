@@ -11,7 +11,7 @@ public interface EnterpriseBusinessBasicInfoDao {
     int isExistedEnterpriseBusinessBasicInfo(String internalCode);
     //是否存在店铺名称
     int isExistedBusinessName(String businessName);
-    int isExistedBusinessLicenceManagementScope(String businessLicenceManagementScope);
+    int isExistedBusinessLicenseNumber(String businessLicenceNumber);
     EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String internalCode);
     int insertEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);
     int updateEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);

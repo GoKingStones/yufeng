@@ -19,7 +19,7 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
 
         int result = workerInfoDao.insertWorkerInfo(workerInfo);
         if (result==1) {
-            return workerInfoDao.getWorkerInfoByOrgId(workerInfo.getPhoneNumber());
+            return workerInfoDao.getWorkerInfoByPhoneNumber(workerInfo.getPhoneNumber());
         }else {
             return null;
         }
@@ -50,9 +50,6 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
         return workerInfoDao.getWorkInfoByWorkerId(workerId);
     }
 
-    public WorkerInfo getWorkerInfoByOrgId(String orgId) {
-        return workerInfoDao.getWorkerInfoByOrgId(orgId);
-    }
 
     public WorkerInfo getWorkerInfoByWorkerName(String workerName) {
         return workerInfoDao.getWorkerInfoByWorkerName(workerName);

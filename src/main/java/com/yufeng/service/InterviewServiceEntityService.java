@@ -22,5 +22,8 @@ public interface InterviewServiceEntityService {
     //根据用户内码查询面签服务
     public List<InterviewServiceEntity> getInterviewServiceEntityByInternalCode(String internalCode);
 
+    //获取用户的面签结果
+    public String getInterviewResultByInternalCode(String internalCode);
+
 
 }

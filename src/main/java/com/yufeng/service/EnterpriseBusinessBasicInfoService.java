@@ -11,7 +11,7 @@ public interface EnterpriseBusinessBasicInfoService {
 
     //是否存在店铺名称
     boolean isExistedBusinessName(String businessName);
-    boolean isExistedBusinessLicenceManagementScope(String businessLicenceManagementScope);
+    public boolean isExistedBusinessLicenseNumber(String businessLicenceNumber);
     EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String internalCode);
     EnterpriseBusinessBasicInfo insertEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);
     EnterpriseBusinessBasicInfo updateEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo);

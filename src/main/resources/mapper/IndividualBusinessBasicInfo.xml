@@ -3,14 +3,14 @@
 <mapper namespace="com.yufeng.dao.IndividualBusinessBasicInfoDao">
 
 
-    <select id="isExistedIndividualBusinessBasicInfo" parameterType="String">
+    <select id="isExistedIndividualBusinessBasicInfo" parameterType="String" resultType="int">
 
         SELECT  COUNT(*) from individual_business_basic_info_table WHERE internal_code=#{internalCode}
 
 
     </select>
 
-    <select id="isExistedShopName" parameterType="String">
+    <select id="isExistedShopName" parameterType="String" resultType="int">
 
         SELECT  COUNT(*) from individual_business_basic_info_table WHERE shop_name=#{shopName}
 

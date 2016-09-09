@@ -52,10 +52,28 @@ public class EnterpriseBusinessBasicInfo {
     //商户等级
     private String businessRank;
     //商户积分
-    private double business_score;
+    private double businessScore;
     //商户信用值
-    private double business_credit_value;
+    private double businessCreditValue;
 
+    private Date createTime;//创建时间
+    private Date modTime;//修改时间
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModTime() {
+        return modTime;
+    }
+
+    public void setModTime(Date modTime) {
+        this.modTime = modTime;
+    }
 
     public String getInternalCode() {
         return internalCode;
@@ -217,19 +235,19 @@ public class EnterpriseBusinessBasicInfo {
         this.businessRank = businessRank;
     }
 
-    public double getBusiness_score() {
-        return business_score;
+    public double getBusinessScore() {
+        return businessScore;
     }
 
-    public void setBusiness_score(double business_score) {
-        this.business_score = business_score;
+    public void setBusinessScore(double businessScore) {
+        this.businessScore = businessScore;
     }
 
-    public double getBusiness_credit_value() {
-        return business_credit_value;
+    public double getBusinessCreditValue() {
+        return businessCreditValue;
     }
 
-    public void setBusiness_credit_value(double business_credit_value) {
-        this.business_credit_value = business_credit_value;
+    public void setBusinessCreditValue(double businessCreditValue) {
+        this.businessCreditValue = businessCreditValue;
     }
 }

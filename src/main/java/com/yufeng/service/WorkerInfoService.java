@@ -14,7 +14,6 @@ public interface WorkerInfoService {
     public WorkerInfo updateWorkerInfoByAdmin(WorkerInfo workerInfo);
 
     public WorkerInfo getWorkerInfoByWorkerId(int workerId);
-    public WorkerInfo getWorkerInfoByOrgId(String orgId);
     public WorkerInfo getWorkerInfoByWorkerName(String workerName);
     public WorkerInfo getWorkerInfoByPhoneNumber(String phoneNumber);
 }

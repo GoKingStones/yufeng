@@ -3,6 +3,7 @@ package com.yufeng.service.impl;
 import com.yufeng.dao.CustomServiceEntityDao;
 import com.yufeng.entity.CustomServiceEntity;
 import com.yufeng.service.CustomServiceEntityService;
+import com.yufeng.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class CustomServiceEntityServiceImpl implements CustomServiceEntityServic
 
         int result =  customServiceEntityDao.insertCustomServiceEntity(customServiceEntity);
         if(result==1) {
-            return customServiceEntity;
+            return customServiceEntityDao.getSingleCustomServiceEntity(customServiceEntity.getWorkerId(),customServiceEntity.getInternalCode(), DateUtil.dateToString(customServiceEntity.getServiceTime()));
         }else {
             return null;
         }
@@ -30,7 +31,7 @@ public class CustomServiceEntityServiceImpl implements CustomServiceEntityServic
 
         int result =  customServiceEntityDao.updateCustomServiceEntity(customServiceEntity);
         if(result==1) {
-            return customServiceEntity;
+            return customServiceEntityDao.getCustomServiceEntityById(customServiceEntity.getId());
         }else {
             return null;
         }

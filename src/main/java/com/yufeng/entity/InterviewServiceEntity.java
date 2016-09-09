@@ -27,7 +27,7 @@ public class InterviewServiceEntity {
     private String interviewResult;
 
     //合影照片URL
-    private String phoneUrl;
+    private String photoUrl;
 
     //详细情况
     private String detail;
@@ -80,12 +80,12 @@ public class InterviewServiceEntity {
         this.interviewResult = interviewResult;
     }
 
-    public String getPhoneUrl() {
-        return phoneUrl;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setPhoneUrl(String phoneUrl) {
-        this.phoneUrl = phoneUrl;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getDetail() {

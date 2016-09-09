@@ -10,6 +10,8 @@ import com.yufeng.service.RegisterAccountService;
 import com.yufeng.service.TokenModelService;
 import com.yufeng.util.ResultMap;
 import com.yufeng.util.ResultModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("registerAccount")
 public class RegisterAccountController {
+
 
     @Autowired
     private RegisterAccountService registerAccountService;

@@ -1,5 +1,7 @@
 package com.yufeng.service;
 
+import com.yufeng.entity.FastConsumerLoanOrder;
+
 import java.util.Map;
 
 /**
@@ -9,11 +11,13 @@ import java.util.Map;
 public interface FastConsumerLoanOrderService {
 	
 	//查询订单详细
-	public Map<String,Object> getFastConsumerLoanOrder(String order_id);
+	public FastConsumerLoanOrder getFastConsumerLoanOrder(long orderId);
 	//新建订单详细
-	public String insertFastConsumerLoanOrder(String json);
+	public long insertFastConsumerLoanOrder(String json);
+	//取消订单
+	public boolean cancelFastConsumerLoanOrder(long orderId);
 	//修改订单
-	public String updateFastConsumerLoanOrder(String json);
+	public boolean updateFastConsumerLoanOrder(String json);
 	
 
 }

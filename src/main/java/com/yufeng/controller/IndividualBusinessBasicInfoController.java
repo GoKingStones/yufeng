@@ -9,9 +9,7 @@ import com.yufeng.util.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +20,7 @@ import java.util.Map;
   */
 
 @RestController
-@RequestMapping("IndividualBusinessBasicInfo")
+@RequestMapping("individualBusinessBasicInfo")
 public class IndividualBusinessBasicInfoController {
 	
 	@Autowired
@@ -31,7 +29,7 @@ public class IndividualBusinessBasicInfoController {
 	
 	//查询个体商户信息
 	@RequestMapping(value = "/getIndividualBusinessBasicInfo",method = RequestMethod.GET)
-	public ResponseEntity<ResultModel> getIndividualBusinessBasicInfo(String internalCode){
+	public ResponseEntity<ResultModel> getIndividualBusinessBasicInfo(@RequestParam String internalCode){
 
 		boolean flag = individualBusinessBasicInfoService.isExistedIndividualBusinessBasicInfo(internalCode);
 		if (!flag) {
@@ -47,11 +45,12 @@ public class IndividualBusinessBasicInfoController {
 	
 	//插入个体商户信息
 	@RequestMapping(value = "/insertIndividualBusinessBasicInfo",method = RequestMethod.POST)
-	public ResponseEntity<ResultModel> insertIndividualBusinessBasicInfo(IndividualBusinessBasicInfo individualBusinessBasicInfo){
+	public ResponseEntity<ResultModel> insertIndividualBusinessBasicInfo(@RequestBody IndividualBusinessBasicInfo individualBusinessBasicInfo){
 		String internalCode = InternalCodeGenerator.getCode(individualBusinessBasicInfo.getShopkeeperCertificateType(), individualBusinessBasicInfo.getShopkeeperCertificateNumber());
+		individualBusinessBasicInfo.setInternalCode(internalCode);
 		boolean flag = individualBusinessBasicInfoService.isExistedIndividualBusinessBasicInfo(internalCode);
 		if (flag) {
-			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,internalCode),HttpStatus.OK);
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,individualBusinessBasicInfo.getShopkeeperCertificateNumber()),HttpStatus.OK);
 		}
 
 		flag=individualBusinessBasicInfoService.isExistedShopName(individualBusinessBasicInfo.getShopName());
@@ -71,7 +70,7 @@ public class IndividualBusinessBasicInfoController {
 		
 	//个体商户修改
 	@RequestMapping(value = "/updateIndividualBusinessBasicInfo",method = RequestMethod.POST)
-	public ResponseEntity<ResultModel> updateIndividualBusinessBasicInfo(IndividualBusinessBasicInfo  individualBusinessBasicInfo){
+	public ResponseEntity<ResultModel> updateIndividualBusinessBasicInfo(@RequestBody IndividualBusinessBasicInfo  individualBusinessBasicInfo){
 
 		if(individualBusinessBasicInfo.getShopName()!=null) {
 			boolean flag=individualBusinessBasicInfoService.isExistedShopName(individualBusinessBasicInfo.getShopName());

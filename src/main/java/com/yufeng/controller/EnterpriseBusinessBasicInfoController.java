@@ -10,9 +10,7 @@ import com.yufeng.util.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +22,7 @@ import java.util.Map;
   */
 
 @RestController
-@RequestMapping("EnterpriseBusinessBasicInfo")
+@RequestMapping("enterpriseBusinessBasicInfo")
 public class EnterpriseBusinessBasicInfoController {
 	
 	@Autowired
@@ -33,7 +31,7 @@ public class EnterpriseBusinessBasicInfoController {
 	
 	//查询企业商户信息
 	@RequestMapping(value = "/getEnterpriseBusinessBasicInfo",method = RequestMethod.GET)
-	public ResponseEntity<ResultModel> getEnterpriseBusinessBasicInfo(String internalCode){
+	public ResponseEntity<ResultModel> getEnterpriseBusinessBasicInfo(@RequestParam String internalCode){
 
 		boolean flag = enterpriseBusinessBasicInfoService.isExistedEnterpriseBusinessBasicInfo(internalCode);
 		if (!flag) {
@@ -50,9 +48,10 @@ public class EnterpriseBusinessBasicInfoController {
 	
 	//插入企业商户信息
 	@RequestMapping(value = "/insertEnterpriseBusinessBasicInfo",method = RequestMethod.POST)
-	public ResponseEntity<ResultModel> insertEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo){
+	public ResponseEntity<ResultModel> insertEnterpriseBusinessBasicInfo(@RequestBody EnterpriseBusinessBasicInfo enterpriseBusinessBasicInfo){
 
 		String internalCode = InternalCodeGenerator.getCode(enterpriseBusinessBasicInfo.getLegalPersonCertificateType(),enterpriseBusinessBasicInfo.getLegalPersonCertificateNumber());
+		enterpriseBusinessBasicInfo.setInternalCode(internalCode);
 		boolean flag = enterpriseBusinessBasicInfoService.isExistedEnterpriseBusinessBasicInfo(internalCode);
 		if (flag) {
 			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,internalCode),HttpStatus.OK);
@@ -65,10 +64,10 @@ public class EnterpriseBusinessBasicInfoController {
 			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,map),HttpStatus.OK);
 		}
 
-		flag=enterpriseBusinessBasicInfoService.isExistedBusinessLicenceManagementScope(enterpriseBusinessBasicInfo.getBusinessLicenceManagementScope());
+		flag=enterpriseBusinessBasicInfoService.isExistedBusinessLicenseNumber(enterpriseBusinessBasicInfo.getBusinessLicenseNumber());
 		if (flag) {
 			Map<String,String> map=new HashMap<String,String>();
-			map.put("businessLicenceManagementScope",enterpriseBusinessBasicInfo.getBusinessLicenceManagementScope());
+			map.put("businessLicenseNumber",enterpriseBusinessBasicInfo.getBusinessLicenseNumber());
 			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,map),HttpStatus.OK);
 		}
 
@@ -82,7 +81,7 @@ public class EnterpriseBusinessBasicInfoController {
 		
 	//企业商户修改
 	@RequestMapping(value = "/updateEnterpriseBusinessBasicInfo",method = RequestMethod.POST)
-	public ResponseEntity<ResultModel> updateEnterpriseBusinessBasicInfo(EnterpriseBusinessBasicInfo  enterpriseBusinessBasicInfo){
+	public ResponseEntity<ResultModel> updateEnterpriseBusinessBasicInfo(@RequestBody EnterpriseBusinessBasicInfo  enterpriseBusinessBasicInfo){
 
 		boolean flag;
 
@@ -95,11 +94,11 @@ public class EnterpriseBusinessBasicInfoController {
 			}
 		}
 
-		if(enterpriseBusinessBasicInfo.getBusinessLicenceManagementScope()!=null) {
-			flag=enterpriseBusinessBasicInfoService.isExistedBusinessLicenceManagementScope(enterpriseBusinessBasicInfo.getBusinessLicenceManagementScope());
+		if(enterpriseBusinessBasicInfo.getBusinessLicenseNumber()!=null) {
+			flag=enterpriseBusinessBasicInfoService.isExistedBusinessLicenseNumber(enterpriseBusinessBasicInfo.getBusinessLicenseNumber());
 			if (flag) {
 				Map<String,String> map=new HashMap<String,String>();
-				map.put("businessLicenceManagementScope",enterpriseBusinessBasicInfo.getBusinessLicenceManagementScope());
+				map.put("businessLicenceNumber",enterpriseBusinessBasicInfo.getBusinessLicenseNumber());
 				return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,map),HttpStatus.OK);
 			}
 

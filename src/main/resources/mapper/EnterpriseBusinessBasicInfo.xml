@@ -16,9 +16,9 @@
 
     </select>
 
-    <select id="isExistedBusinessLicenceManagementScope" parameterType="String" resultType="int">
+    <select id="isExistedBusinessLicenseNumber" parameterType="String" resultType="int">
 
-        SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE business_licence_management_scope=#{businessLicenceManagementScope}
+        SELECT  COUNT(*) from enterprise_business_basic_info_table WHERE business_license_number=#{businessLicenseNumber}
 
 
     </select>
@@ -42,7 +42,7 @@
 
     </insert>
 
-    <update id="updateEnterpriseBusinessBasicInfo" parameterType="String">
+    <update id="updateEnterpriseBusinessBasicInfo" parameterType="EnterpriseBusinessBasicInfo">
 
         UPDATE enterprise_business_basic_info_table
         <trim prefix="set" suffixOverrides=",">

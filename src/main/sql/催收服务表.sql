@@ -1,5 +1,5 @@
-DROP  TABLE if EXISTS urge_repayment_service;
-CREATE TABLE urge_repayment_service(
+DROP  TABLE if EXISTS urge_repayment_service_table;
+CREATE TABLE urge_repayment_service_table(
 
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'ID',
   worker_id INT NOT NULL comment '客户经理ID',

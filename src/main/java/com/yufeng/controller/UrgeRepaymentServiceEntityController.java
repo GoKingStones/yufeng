@@ -24,9 +24,8 @@ public class UrgeRepaymentServiceEntityController {
 	@Autowired
 	private UrgeRepaymentServiceEntityService urgeRepaymentServiceEntityService;
 
-	@RequestMapping("/getUrgeRepaymentServiceEntityByWorkerId")
+	@RequestMapping(value = "/getUrgeRepaymentServiceEntityByWorkerId",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getUrgeRepaymentServiceEntityByWorkerId(@RequestParam("workerId") int workerId){
-
 
 		List<UrgeRepaymentServiceEntity> urgeRepaymentServiceEntity = urgeRepaymentServiceEntityService.getUrgeRepaymentServiceEntityByWorkerId(workerId);
 
@@ -37,7 +36,7 @@ public class UrgeRepaymentServiceEntityController {
 		}
     }
 
-	@RequestMapping("/getUrgeRepaymentServiceEntityByInternalCode")
+	@RequestMapping(value = "/getUrgeRepaymentServiceEntityByInternalCode",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getUrgeRepaymentServiceEntityByInternalCode(@RequestParam("internalCode") String internalCode){
 
 		List<UrgeRepaymentServiceEntity> urgeRepaymentServiceEntity = urgeRepaymentServiceEntityService.getUrgeRepaymentServiceEntityByInternalCode(internalCode);
@@ -50,7 +49,7 @@ public class UrgeRepaymentServiceEntityController {
 
 	}
 
-	@RequestMapping("/insertUrgeRepaymentServiceEntity")
+	@RequestMapping(value = "/insertUrgeRepaymentServiceEntity",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> insertUrgeRepaymentServiceEntity(@RequestBody UrgeRepaymentServiceEntity urgeRepaymentServiceEntity){
 
 		UrgeRepaymentServiceEntity urgeRepaymentServiceEntity1 = urgeRepaymentServiceEntityService.insertUrgeRepaymentServiceEntity(urgeRepaymentServiceEntity);
@@ -61,7 +60,7 @@ public class UrgeRepaymentServiceEntityController {
 		}
 	}
 
-	@RequestMapping("/updateUrgeRepaymentServiceEntity")
+	@RequestMapping(value = "/updateUrgeRepaymentServiceEntity",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> updateUrgeRepaymentServiceEntity(@RequestBody UrgeRepaymentServiceEntity urgeRepaymentServiceEntity){
 		UrgeRepaymentServiceEntity urgeRepaymentServiceEntity1 = urgeRepaymentServiceEntityService.updateUrgeRepaymentServiceEntity(urgeRepaymentServiceEntity);
 		if (urgeRepaymentServiceEntity1!=null) {

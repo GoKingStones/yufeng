@@ -11,8 +11,13 @@ import com.yufeng.entity.FastConsumerLoanOrderCommodity;
  * @author dh
  */
 public interface FastConsumerLoanOrderDao {
+
+
+	//取消订单
+	public int cancelConsumerLoanOrder(long orderId);
+
 	//查询分期订单详细
-	public FastConsumerLoanOrder getFastConsumerLoanOrderById(String uniqueId);
+	public FastConsumerLoanOrder getFastConsumerLoanOrderById(long id);
 	public FastConsumerLoanOrder getFastConsumerLoanOrderByOrderId(String orderId);
 	//新增分期订单详细
 	public int insertFastConsumerLoanOrder(FastConsumerLoanOrder fastConsumerLoanOrder);
@@ -27,6 +32,8 @@ public interface FastConsumerLoanOrderDao {
 	public int insertFastConsumerLoanOrderCommodity(FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity);
 	//修改商品详细
 	public int updateFastConsumerLoanOrderCommodity(FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity);
-	    
+
+	//取消商品
+	public int cancelFastConsumerLoanOrderCommodity(String uniqueId);
 
 }

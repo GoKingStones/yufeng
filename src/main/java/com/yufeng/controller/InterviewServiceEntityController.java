@@ -29,7 +29,7 @@ public class InterviewServiceEntityController {
 	private InterviewServiceEntityService interviewServiceEntityService;
 	
 	//
-	@RequestMapping("/getInterviewServiceEntityByWorkerId")
+	@RequestMapping(value = "/getInterviewServiceEntityByWorkerId",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getInterviewServiceEntityByWorkerId(@RequestParam("workerId") int workerId){
 
 		List<InterviewServiceEntity> interviewServiceEntity = interviewServiceEntityService.getInterviewServiceEntityByWorkerId(workerId);
@@ -41,7 +41,7 @@ public class InterviewServiceEntityController {
 
     }
 
-	@RequestMapping("/getInterviewServiceEntityByInternalCode")
+	@RequestMapping(value = "/getInterviewServiceEntityByInternalCode",method = RequestMethod.GET)
 	public ResponseEntity<ResultModel> getInterviewServiceEntityByInternalCode(@RequestParam("internalCode") String internalCode){
 
 		List<InterviewServiceEntity> interviewServiceEntity = interviewServiceEntityService.getInterviewServiceEntityByInternalCode(internalCode);
@@ -54,7 +54,7 @@ public class InterviewServiceEntityController {
 	}
 
 
-	@RequestMapping("/insertInterviewServiceEntity")
+	@RequestMapping(value = "/insertInterviewServiceEntity",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> insertInterviewServiceEntity(@RequestBody InterviewServiceEntity interviewServiceEntity){
 
 		InterviewServiceEntity interviewServiceEntity1 = interviewServiceEntityService.insertInterviewServiceEntity(interviewServiceEntity);
@@ -65,7 +65,7 @@ public class InterviewServiceEntityController {
 		}
 	}
 
-	@RequestMapping("/updateInterviewServiceEntity")
+	@RequestMapping(value = "/updateInterviewServiceEntity",method = RequestMethod.POST)
 	public ResponseEntity<ResultModel> updateInterviewServiceEntity(@RequestBody InterviewServiceEntity interviewServiceEntity){
 
 		InterviewServiceEntity interviewServiceEntity1 = interviewServiceEntityService.updateInterviewServiceEntity(interviewServiceEntity);
@@ -76,8 +76,22 @@ public class InterviewServiceEntityController {
 		}
 	}
 
+	//获取用户的面签结果
+	@RequestMapping(value = "/getInterviewResultByInternalCode",method = RequestMethod.GET)
+	public ResponseEntity<ResultModel> getInterviewResultByInternalCode(@RequestParam("internalCode") String internalCode){
 
+		String interviewResult =interviewServiceEntityService.getInterviewResultByInternalCode(internalCode);
+		Map<String,String> map = new HashMap<String, String>();
+		if (interviewResult==null) {
+			map.put("internalCode",internalCode);
+			map.put("interviewResult","无面签纪录");
+			return new ResponseEntity<ResultModel>(ResultModel.ok(map), HttpStatus.OK);
 
-
+		}else {
+			map.put("internalCode",internalCode);
+			map.put("interviewResult",interviewResult);
+			return new ResponseEntity<ResultModel>(ResultModel.ok(map), HttpStatus.OK);
+		}
+	}
 
 }

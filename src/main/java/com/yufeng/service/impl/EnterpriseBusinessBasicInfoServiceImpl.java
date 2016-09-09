@@ -26,8 +26,8 @@ public class EnterpriseBusinessBasicInfoServiceImpl implements EnterpriseBusines
         return enterpriseBusinessBasicInfoDao.isExistedBusinessName(businessName)==1?true:false;
     }
 
-    public boolean isExistedBusinessLicenceManagementScope(String businessLicenceManagementScope) {
-        return enterpriseBusinessBasicInfoDao.isExistedBusinessLicenceManagementScope(businessLicenceManagementScope)==1?true:false;
+    public boolean isExistedBusinessLicenseNumber(String businessLicenceNumber) {
+        return enterpriseBusinessBasicInfoDao.isExistedBusinessLicenseNumber(businessLicenceNumber)==1?true:false;
     }
 
     public EnterpriseBusinessBasicInfo getEnterpriseBusinessBasicInfo(String internalCode) {

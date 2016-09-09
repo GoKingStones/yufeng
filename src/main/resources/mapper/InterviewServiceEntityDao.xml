@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.InterviewServiceEntityDao">
 
-    <select id="getInterviewServiceEntityByWorkerId" parameterType="String" resultType="InterviewServiceEntity">
+
+    <select id="getSingleInterviewServiceEntity"  resultType="InterviewServiceEntity">
+
+        SELECT * from interview_service_table WHERE worker_id=#{workerId} AND internal_code=#{internalCode} AND interview_time=#{interviewTime} limit 1
+
+    </select>
+
+    <select id="getInterviewServiceEntityById" parameterType="int" resultType="InterviewServiceEntity">
+
+        SELECT * from interview_service_table WHERE id=#{id} limit 1
+
+    </select>
+
+    <select id="getInterviewServiceEntityByWorkerId" parameterType="int" resultType="InterviewServiceEntity">
 
         SELECT * from interview_service_table WHERE worker_id=#{workerId}
 
@@ -15,22 +28,25 @@
     </select>
 
 
+
+    <select id="getInterviewResultByInternalCode" parameterType="String" resultType="String">
+
+        SELECT interview_result  from interview_service_table WHERE internal_code=#{internalCode} ORDER BY interview_time DESC limit 1
+
+    </select>
+
     <insert id="insertInterviewServiceEntity" parameterType="InterviewServiceEntity">
 
         INSERT ignore INTO interview_service_table(worker_id,internal_code,interview_time,interview_place,
-        interview_result,phone_url,detail)
+        interview_result,photo_url,detail)
         VALUES (#{workerId},#{internalCode},#{interviewTime},#{interviewPlace}
-        ,#{interviewResult},#{phoneUrl},#{detail})
+        ,#{interviewResult},#{photoUrl},#{detail})
     </insert>
 
 
     <update id="updateInterviewServiceEntity" parameterType="int">
         UPDATE interview_service_table
         <trim prefix="set" suffixOverrides=",">
-
-        <if test="workerId!=null">
-            worker_id=#{workerId},
-        </if>
         <if test="internalCode!=null">
             internal_code=#{internalCode},
         </if>
@@ -43,8 +59,8 @@
         <if test="interviewResult!=null">
             interview_result = #{interviewResult},
         </if>
-        <if test="phoneUrl!=null">
-            phone_url = #{phoneUrl},
+        <if test="photoUrl!=null">
+            photo_url = #{photoUrl},
         </if>
         <if test="detail!=null">
             detail=#{detail},

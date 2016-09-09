@@ -39,6 +39,25 @@ public class IndividualBusinessBasicInfo {
     //店铺信用值
     private double shopCreditValue;
 
+    private Date createTime;//创建时间
+    private Date modTime;//修改时间
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModTime() {
+        return modTime;
+    }
+
+    public void setModTime(Date modTime) {
+        this.modTime = modTime;
+    }
+
     public String getInternalCode() {
         return internalCode;
     }
