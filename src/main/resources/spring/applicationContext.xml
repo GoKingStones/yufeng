@@ -41,6 +41,8 @@
 	<bean id="creditAccountInfoService" class="com.yufeng.service.impl.CreditAccountInfoServiceImpl"    autowire="byName"/>
 	
 	<bean id="riskService" class="com.yufeng.service.impl.RiskServiceImpl"    autowire="byName"/>
+	
+	<bean id="chinaUnionPayService" class="com.yufeng.service.impl.ChinaUnionPayServiceImpl"    autowire="byName"/>
 
 
 
