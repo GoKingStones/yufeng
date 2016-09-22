@@ -87,6 +87,13 @@ public class Utils {
         }
     }
     
+    
+    //银联代付服务器连接IP
+    public final static String CHINAUNIONPAY_PAY_IP = "211.103.172.38";
+    //银联代付服务器连接IP端口
+    public final static int CHINAUNIONPAY_PAY_PORT = 8830;
+    
+    
     //返回值代码
     public final static String RETURN_VALUE_CODE_0= "0";
     public final static String RETURN_VALUE_CODE_1= "1";

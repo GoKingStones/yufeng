@@ -8,11 +8,11 @@ import java.lang.reflect.Method;
  */
 public class Base64Util {
     public static String encode(String code) throws UnsupportedEncodingException, Exception {
-        return encodeBase64(code.getBytes());
+        return encodeBase64(code.getBytes("utf-8"));
     }
 
     public static String decode(String code) throws UnsupportedEncodingException, Exception {
-        return new String(decodeBase64(code));
+        return new String(decodeBase64(code),"utf-8");
     }
 
     public static String encodeBase64(byte[] input) throws Exception {
