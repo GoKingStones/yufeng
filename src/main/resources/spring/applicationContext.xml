@@ -42,6 +42,4 @@
 	
 	<bean id="riskService" class="com.yufeng.service.impl.RiskServiceImpl"    autowire="byName"/>
 
-
-
 </beans>

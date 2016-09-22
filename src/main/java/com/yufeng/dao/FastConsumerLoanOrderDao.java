@@ -12,13 +12,8 @@ import com.yufeng.entity.FastConsumerLoanOrderCommodity;
  */
 public interface FastConsumerLoanOrderDao {
 
-
-	//取消订单
-	public int cancelConsumerLoanOrder(long orderId);
-
 	//查询分期订单详细
-	public FastConsumerLoanOrder getFastConsumerLoanOrderById(long id);
-	public FastConsumerLoanOrder getFastConsumerLoanOrderByOrderId(String orderId);
+	public FastConsumerLoanOrder getFastConsumerLoanOrderByOrderId(long orderId);
 	//新增分期订单详细
 	public int insertFastConsumerLoanOrder(FastConsumerLoanOrder fastConsumerLoanOrder);
 	//修改分期订单详细
@@ -27,11 +22,16 @@ public interface FastConsumerLoanOrderDao {
 	//查询商品详细
 	public FastConsumerLoanOrderCommodity getFastConsumerLoanOrderCommodityById(String uniqueId);
 	//查询商品详细
-	public List<FastConsumerLoanOrderCommodity> getFastConsumerLoanOrderCommodityByOrderId(String orderId);
+	public List<FastConsumerLoanOrderCommodity> getFastConsumerLoanOrderCommodityByOrderId(long orderId);
+
+	public int insertFastConsumerLoanOrderCommodityList(List<FastConsumerLoanOrderCommodity> fastConsumerLoanOrderCommodityList);
 	//新增商品详细
 	public int insertFastConsumerLoanOrderCommodity(FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity);
 	//修改商品详细
+
 	public int updateFastConsumerLoanOrderCommodity(FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity);
+
+	public int updateFastConsumerLoanOrderCommodityList(List<FastConsumerLoanOrderCommodity> fastConsumerLoanOrderCommodityList);
 
 	//取消商品
 	public int cancelFastConsumerLoanOrderCommodity(String uniqueId);

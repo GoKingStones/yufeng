@@ -34,4 +34,12 @@ public class FastConsumerLoanOrderDto {
     public void setFastConsumerLoanOrderCommodities(List<FastConsumerLoanOrderCommodity> fastConsumerLoanOrderCommodities) {
         this.fastConsumerLoanOrderCommodities = fastConsumerLoanOrderCommodities;
     }
+
+    @Override
+    public String toString() {
+        return "FastConsumerLoanOrderDto{" +
+                "fastConsumerLoanOrder=" + fastConsumerLoanOrder +
+                ", fastConsumerLoanOrderCommodities=" + fastConsumerLoanOrderCommodities +
+                '}';
+    }
 }

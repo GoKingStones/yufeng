@@ -54,7 +54,7 @@ public class EnterpriseBusinessBasicInfoController {
 		enterpriseBusinessBasicInfo.setInternalCode(internalCode);
 		boolean flag = enterpriseBusinessBasicInfoService.isExistedEnterpriseBusinessBasicInfo(internalCode);
 		if (flag) {
-			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED,internalCode),HttpStatus.OK);
+			return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
 		}
 
 		flag=enterpriseBusinessBasicInfoService.isExistedBusinessName(enterpriseBusinessBasicInfo.getBusinessName());

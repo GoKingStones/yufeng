@@ -46,6 +46,12 @@ public class FastConsumerLoanOrder implements Serializable{
     //运费
     private BigDecimal freight;
 
+    //订单生成时间
+    private Date submitTime;
+
+    //订单取消时间
+    private Date cancelTime;
+
     //发货时间
     private Date sendTime;
 
@@ -63,6 +69,22 @@ public class FastConsumerLoanOrder implements Serializable{
 	private Date createTime;
 	//修改时间
 	private Date modTime;
+
+    public Date getSubmitTime() {
+        return submitTime;
+    }
+
+    public void setSubmitTime(Date submitTime) {
+        this.submitTime = submitTime;
+    }
+
+    public Date getCancelTime() {
+        return cancelTime;
+    }
+
+    public void setCancelTime(Date cancelTime) {
+        this.cancelTime = cancelTime;
+    }
 
     public Date getReturnOrderTime() {
         return returnOrderTime;

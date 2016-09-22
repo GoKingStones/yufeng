@@ -36,7 +36,7 @@ public class HttpClientUtil {
 
         String url=REST_SERVICE_URI + "/registerAccount/insertRegisterAccount";
         RegisterAccount registerAccount=new RegisterAccount();
-        registerAccount.setAccountName("王磊磊xxx");
+        //registerAccount.setAccountName("王磊磊xxx");
         registerAccount.setPassword("YUFENG");
         registerAccount.setAccountFlag("1");
         registerAccount.setPhoneNumber("18723223");

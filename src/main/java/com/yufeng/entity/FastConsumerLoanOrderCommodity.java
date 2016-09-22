@@ -69,7 +69,7 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
 	//价格
 	private BigDecimal price;
 	//数量
-	private Integer number;
+	private int commodityNumber ;
 	//购买用户内码
 	private String userInternalCode;
 	//商户内码
@@ -83,6 +83,14 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
     private Date createTime;
     //修改时间
     private Date modTime;
+
+    public int getCommodityNumber() {
+        return commodityNumber;
+    }
+
+    public void setCommodityNumber(int commodityNumber) {
+        this.commodityNumber = commodityNumber;
+    }
 
     public String getCommodityState() {
 
@@ -135,14 +143,6 @@ public class FastConsumerLoanOrderCommodity implements Serializable{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
     }
 
     public String getUserInternalCode() {

@@ -1,147 +1,209 @@
-//package com.yufeng.controller;
-//
-//import java.math.BigDecimal;
-//import java.util.ArrayList;
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
-//import org.junit.Test;
-//import org.springframework.http.HttpEntity;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.client.RestTemplate;
-//
-//import com.alibaba.fastjson.JSON;
-//import com.yufeng.entity.FastConsumerLoanOrder;
-//import com.yufeng.entity.FastConsumerLoanOrderCommodity;
-//import com.yufeng.entity.UserBankCardInfo;
-//
-///**
-// * 快速消费品分期订单控制层测试类
-// * @author dh
-// */
-//public class FastConsumerLoanOrderControllerTest {
-//
-//public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
-//
-//	@Test
-//    public void testGetFastConsumerLoanOrder() throws Exception {
-//        //参数
-//    	String parameter="orderId=11";
-//    	RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<String> resultModelResponseEntity = restTemplate
-//        		.getForEntity(REST_SERVICE_URI + "/FastConsumerLoanOrder/getFastConsumerLoanOrder?"+parameter,String.class);
-//
-//        System.out.println(resultModelResponseEntity.getBody());
-//    }
-//
-//	@Test
-//	public void testInsertFastConsumerLoanOrder() throws Exception {
-//	    //参数
-//	    RestTemplate restTemplate = new RestTemplate();
-//        //订单
-//	    FastConsumerLoanOrder f=new FastConsumerLoanOrder();
-//	    f.setDiscountPrice(new BigDecimal(11));
-//	    f.setInvoiceNumber("11");
-//	    f.setOrderDiscountPrice(new BigDecimal(11));
-//	    f.setOrderId("11");
-//	    f.setOrderState("11");
-//	    f.setOrderType("11");
-//	    f.setTotalAmount(new BigDecimal(11));
-//	    f.setUserInternalCode("11");
-//	    //商品
-//	    FastConsumerLoanOrderCommodity ff=new FastConsumerLoanOrderCommodity();
-//	    ff.setAnonymous(false);
-//	    ff.setCommodityId("11");
-//	    ff.setCommodityName("11");
-//	    ff.setDiscountPrice(new BigDecimal(11));
-//	    ff.setExternalPayNumber("11");
-//	    ff.setFinishTime(new Date());
-//	    ff.setInformationState("11");
-//	    ff.setNumber(11);
-//	    ff.setOrderTime(new Date());
-//	    ff.setPayCode("11");
-//	    ff.setPayMessage("11");
-//	    ff.setPayMethod("11");
-//	    ff.setPayName("11");
-//	    ff.setPayTime(new Date());
-//	    ff.setPrice(new BigDecimal(11));
-//	    ff.setReceiptTime(new Date());
-//	    ff.setSellerInternalCode("11");
-//	    ff.setSendTime(new Date());
-//	    ff.setTotalAmount(new BigDecimal(11));
-//	    ff.setUserInternalCode("11");
-//
-//	    List<FastConsumerLoanOrderCommodity> list=new ArrayList<FastConsumerLoanOrderCommodity>();
-//	    list.add(ff);
-//	    Map<String,Object> map=new HashMap<String,Object>();
-//	    map.put("loanOrder",f);
-//	    map.put("loanOrderConsumerList",list);
-//	    String json=JSON.toJSONString(map);
-//	    System.out.println(json);
-//
-//	    HttpEntity<String> httpEntity=new HttpEntity<String>(json);
-//	    ResponseEntity<String> resultModelResponseEntity = restTemplate.
-//	        exchange(REST_SERVICE_URI + "/FastConsumerLoanOrder/insertFastConsumerLoanOrder",HttpMethod.POST,httpEntity,String.class);
-//
-//	    System.out.println(resultModelResponseEntity.getBody());
-//	}
-//
-//	@Test
-//	public void testUpdateFastConsumerLoanOrder() throws Exception {
-//	    //参数
-//	    RestTemplate restTemplate = new RestTemplate();
-//        //订单
-//	    FastConsumerLoanOrder f=new FastConsumerLoanOrder();
-//	    f.setDiscountPrice(new BigDecimal(22));
-//	    f.setInvoiceNumber("22");
-//	    f.setOrderDiscountPrice(new BigDecimal(22));
-//	    f.setOrderId("22");
-//	    f.setOrderState("22");
-//	    f.setOrderType("22");
-//	    f.setTotalAmount(new BigDecimal(22));
-//	    f.setUserInternalCode("22");
-//	    f.setUniqueId("8ee102c6-be1f-4a81-97e7-c9f71b918fe9");
-//	    //商品
-//	    FastConsumerLoanOrderCommodity ff=new FastConsumerLoanOrderCommodity();
-//	    ff.setAnonymous(true);
-//	    ff.setCommodityId("22");
-//	    ff.setCommodityName("22");
-//	    ff.setDiscountPrice(new BigDecimal(22));
-//	    ff.setExternalPayNumber("22");
-//	    ff.setFinishTime(new Date());
-//	    ff.setInformationState("22");
-//	    ff.setNumber(22);
-//	    ff.setOrderTime(new Date());
-//	    ff.setPayCode("22");
-//	    ff.setPayMessage("22");
-//	    ff.setPayMethod("22");
-//	    ff.setPayName("22");
-//	    ff.setPayTime(new Date());
-//	    ff.setPrice(new BigDecimal(22));
-//	    ff.setReceiptTime(new Date());
-//	    ff.setSellerInternalCode("22");
-//	    ff.setSendTime(new Date());
-//	    ff.setTotalAmount(new BigDecimal(22));
-//	    ff.setUserInternalCode("22");
-//	    ff.setUniqueId("d1185fa4-1828-4a69-9cdd-2d46a6d5e8b2");
-//
-//	    List<FastConsumerLoanOrderCommodity> list=new ArrayList<FastConsumerLoanOrderCommodity>();
-//	    list.add(ff);
-//	    Map<String,Object> map=new HashMap<String,Object>();
-//	    map.put("loanOrder",f);
-//	    map.put("loanOrderConsumerList",list);
-//	    String json=JSON.toJSONString(map);
-//	    System.out.println(json);
-//
-//	    HttpEntity<String> httpEntity=new HttpEntity<String>(json);
-//	    ResponseEntity<String> resultModelResponseEntity = restTemplate.
-//	        exchange(REST_SERVICE_URI + "/FastConsumerLoanOrder/updateFastConsumerLoanOrder",HttpMethod.POST,httpEntity,String.class);
-//
-//	    System.out.println(resultModelResponseEntity.getBody());
-//	}
-//
-//
-//}
+package com.yufeng.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.yufeng.dto.FastConsumerLoanOrderDto;
+import com.yufeng.dto.GetOrderInterestDto;
+import com.yufeng.dto.OrderStateDto;
+import com.yufeng.dto.ReturnCommodityDto;
+import com.yufeng.entity.FastConsumerLoanOrder;
+import com.yufeng.entity.FastConsumerLoanOrderCommodity;
+import com.yufeng.util.OrderStateEnum;
+import com.yufeng.util.ResultModel;
+import org.junit.Test;
+import org.springframework.http.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+/**
+ * Created by kingstones on 16/9/19.
+ */
+public class FastConsumerLoanOrderControllerTest {
+
+    public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
+
+    //public static final String REST_SERVICE_URI = "http://118.178.92.189:8080/yufeng";
+    @Test
+    public void testGetRepaymentInterest() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        GetOrderInterestDto getOrderInterestDto=new GetOrderInterestDto();
+        getOrderInterestDto.setTotalAmount(new BigDecimal(1000));
+        getOrderInterestDto.setInstallCount(12);
+        getOrderInterestDto.setInstallType("快消品");
+        HttpEntity<GetOrderInterestDto> httpEntity=new HttpEntity<GetOrderInterestDto>(getOrderInterestDto);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/fastConsumerLoanOrder/getOrderInterest",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+    }
+
+    @Test
+    public void testSubmitOrder() throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+
+        FastConsumerLoanOrderDto fastConsumerLoanOrderDto=new FastConsumerLoanOrderDto();
+        FastConsumerLoanOrder fastConsumerLoanOrder=new FastConsumerLoanOrder();
+        fastConsumerLoanOrder.setInterest(new BigDecimal(10));
+        fastConsumerLoanOrder.setTotalAmount(new BigDecimal(1000));
+        fastConsumerLoanOrder.setDiscountAmount(new BigDecimal(900));
+        fastConsumerLoanOrder.setFreight(new BigDecimal(10));
+        fastConsumerLoanOrder.setInstallType("快消品 ");
+        fastConsumerLoanOrder.setInstallCount(12);
+        fastConsumerLoanOrder.setUserInternalCode("xxxxx");
+        fastConsumerLoanOrder.setActualTotalAmount(new BigDecimal(920));
+        fastConsumerLoanOrderDto.setFastConsumerLoanOrder(fastConsumerLoanOrder);
+        List<FastConsumerLoanOrderCommodity> list=new ArrayList<FastConsumerLoanOrderCommodity>();
+        FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity=new FastConsumerLoanOrderCommodity();
+        fastConsumerLoanOrderCommodity.setCommodityId("100");
+        fastConsumerLoanOrderCommodity.setCommodityName("iphone");
+        fastConsumerLoanOrderCommodity.setCommodityNumber(1);
+        fastConsumerLoanOrderCommodity.setOrderId(0);
+        fastConsumerLoanOrderCommodity.setPrice(new BigDecimal(2000));
+        fastConsumerLoanOrderCommodity.setSellerInternalCode("yyyy");
+        fastConsumerLoanOrderCommodity.setTotalAmount(new BigDecimal(2000));
+        fastConsumerLoanOrderCommodity.setUniqueId("0");
+        fastConsumerLoanOrderCommodity.setUserInternalCode("xxxx");
+
+        list.add(fastConsumerLoanOrderCommodity);
+
+        FastConsumerLoanOrderCommodity fastConsumerLoanOrderCommodity1=new FastConsumerLoanOrderCommodity();
+        fastConsumerLoanOrderCommodity1.setCommodityId("200");
+        fastConsumerLoanOrderCommodity1.setCommodityName("sumang");
+        fastConsumerLoanOrderCommodity1.setCommodityNumber(2);
+        fastConsumerLoanOrderCommodity1.setOrderId(0);
+        fastConsumerLoanOrderCommodity1.setPrice(new BigDecimal(1000));
+        fastConsumerLoanOrderCommodity1.setSellerInternalCode("yyyy");
+        fastConsumerLoanOrderCommodity1.setTotalAmount(new BigDecimal(2000));
+        fastConsumerLoanOrderCommodity1.setUniqueId("1");
+        fastConsumerLoanOrderCommodity1.setUserInternalCode("xxxx");
+        list.add(fastConsumerLoanOrderCommodity1);
+        fastConsumerLoanOrderDto.setFastConsumerLoanOrderCommodities(list);
+        String json= JSON.toJSONString(fastConsumerLoanOrderDto);
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        System.out.println(type);
+        HttpEntity<String> httpEntity=new HttpEntity<String>(json,headers);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/fastConsumerLoanOrder/submitOrder",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+    }
+
+
+    @Test
+    public void testCancelOrder() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/fastConsumerLoanOrder/cancelOrder?orderId=1",
+                ResultModel.class);
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+    }
+
+    @Test
+    public void testReturnOrder() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/fastConsumerLoanOrder/returnOrder?orderId=0",
+                ResultModel.class);
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+
+
+
+    }
+
+    @Test
+    public void testReturnCommodity() throws Exception {
+
+
+        RestTemplate restTemplate = new RestTemplate();
+
+
+        ReturnCommodityDto returnCommodityDto=new ReturnCommodityDto();
+        returnCommodityDto.setOrderId(0);
+        List<String> list=new ArrayList<String>();
+        list.add("0");
+        returnCommodityDto.setCommodityIdList(list);
+        String params=JSON.toJSONString(returnCommodityDto);
+        HttpEntity<String> httpEntity=new HttpEntity<String>(params);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/fastConsumerLoanOrder/returnCommodity",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+
+    }
+
+    @Test
+    public void testUpdateOrderState() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        OrderStateDto orderStateDto=new OrderStateDto();
+        orderStateDto.setOrderId(0);
+        orderStateDto.setOrderState(OrderStateEnum.部分退货.name());
+        String orderStateInfo=JSON.toJSONString(orderStateDto);
+        HttpHeaders headers = new HttpHeaders();
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        System.out.println(type);
+        HttpEntity<String> httpEntity=new HttpEntity<String>(orderStateInfo,headers);
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/fastConsumerLoanOrder/updateOrderState",
+                HttpMethod.POST,
+                httpEntity,
+                ResultModel.class);
+
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+    }
+
+    @Test
+    public void testQueryOrderState() throws Exception {
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.getForEntity(REST_SERVICE_URI + "/fastConsumerLoanOrder/queryOrderState?orderId=4",
+                ResultModel.class);
+        // ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.postForEntity(REST_SERVICE_URI + "/loginByAccoutName", registerAccount,ResultModel.class);
+        System.out.println(resultModelResponseEntity.getStatusCode());
+        System.out.println(resultModelResponseEntity.getBody().getCode());
+        System.out.println(resultModelResponseEntity.getBody().getContent());
+        System.out.println(resultModelResponseEntity.getBody().getMessage());
+
+
+    }
+}

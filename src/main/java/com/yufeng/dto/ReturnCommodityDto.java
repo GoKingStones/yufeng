@@ -25,4 +25,13 @@ public class ReturnCommodityDto {
     public void setCommodityIdList(List<String> commodityIdList) {
         this.commodityIdList = commodityIdList;
     }
+
+
+    @Override
+    public String toString() {
+        return "ReturnCommodityDto{" +
+                "orderId=" + orderId +
+                ", commodityIdList=" + commodityIdList +
+                '}';
+    }
 }

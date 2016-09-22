@@ -2,116 +2,129 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yufeng.dao.FastConsumerLoanOrderDao">
 
-    <!--订单 -->
-    <resultMap type="FastConsumerLoanOrder" id="FastConsumerLoanOrderMap">  
-        <result column="unique_id" property="uniqueId"/>  
-        <result column="order_id" property="orderId"/>
-        <result column="order_type" property="orderType"/>
-        <result column="user_internal_code" property="userInternalCode"/>
-        <result column="order_state" property="orderState"/>
-        <result column="invoice_number" property="invoiceNumber"/>
-        <result column="total_amount" property="totalAmount"/>
-        <result column="discount_price" property="discountPrice"/>
-        <result column="order_discount_price" property="orderDiscountPrice"/>
-        <result column="create_time" property="createTime"/>
-        <result column="mod_time" property="modTime"/>
-    </resultMap> 
-   
-    <select id="getFastConsumerLoanOrderById" parameterType="String" resultMap="FastConsumerLoanOrderMap" >
+    
+    <select id="getFastConsumerLoanOrderByOrderId" parameterType="long" resultType="FastConsumerLoanOrder" >
 
-            SELECT * FROM fast_consumer_loan_order_table WHERE unique_id=#{uniqueId}
+            SELECT * FROM fast_consumer_loan_order_table WHERE order_id=#{orderId} limit 1
 
     </select>
     
-    <select id="getFastConsumerLoanOrderByOrderId" parameterType="String" resultMap="FastConsumerLoanOrderMap" >
+   <insert id="insertFastConsumerLoanOrder" parameterType="FastConsumerLoanOrder" useGeneratedKeys="true" keyProperty="orderId">
 
-            SELECT * FROM fast_consumer_loan_order_table WHERE order_id=#{orderId}
+        INSERT ignore INTO fast_consumer_loan_order_table
+        (user_internal_code,order_state,
+        total_amount,discount_amount,actual_total_amount,
+        install_count,
+        install_type,
+         interest,freight ,
+        submit_time ,
+        cancel_time ,
+        send_time ,
+        receipt_time ,
+        return_order_time)
+        VALUES (#{userInternalCode},#{orderState},
+        #{totalAmount},#{discountAmount},
+        #{actualTotalAmount},
+        #{installCount},
+        #{installType},
+        #{interest},
+        #{freight},
+        #{submitTime},
+        #{cancelTime},#{sendTime},#{receiptTime},#{returnOrderTime})
 
-    </select>
-    
-   <insert id="insertFastConsumerLoanOrder">
+    </insert>
 
-        INSERT ignore INTO fast_consumer_loan_order_table(unique_id,order_id,order_type,user_internal_code,order_state,invoice_number,total_amount,discount_price,order_discount_price,create_time)
-        VALUES (#{uniqueId},#{orderId},#{orderType},#{userInternalCode},#{orderState},#{invoiceNumber},#{totalAmount},#{discountPrice},#{orderDiscountPrice},#{createTime})
+    <!--<insert id="add" parameterType="EStudent" useGeneratedKeys="true" keyProperty="id">-->
+        <!--insert into TStudent(name, age) values(#{name}, #{age})-->
+    <!--</insert>-->
+
+    <insert id="insertFastConsumerLoanOrderCommodityList" parameterType="java.util.List">
+
+        INSERT ignore INTO fast_consumer_loan_order_commodity_table
+        (unique_id,commodity_id,commodity_name,order_id,price,commodity_number,
+        user_internal_code,seller_internal_code,total_amount,commodity_state
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uniqueId},#{item.commodityId},#{item.commodityName},#{item.orderId},#{item.price},#{item.commodityNumber},
+            #{item.userInternalCode},#{item.sellerInternalCode},#{item.totalAmount},#{item.commodityState})
+        </foreach>
 
     </insert>
 
     <update id="updateFastConsumerLoanOrder">
         
         UPDATE fast_consumer_loan_order_table
-        
-        <set>  
-        <if test="orderId !=null">  
-            order_id = #{orderId},  
-        </if>
-        <if test="orderType !=null">  
-            order_type = #{orderType},  
-        </if>
-        <if test="userInternalCode !=null">  
-            user_internal_code = #{userInternalCode},  
-        </if>
-        <if test="orderState !=null">  
-            order_state = #{orderState},  
-        </if>
-        <if test="invoiceNumber !=null">  
-            invoice_number = #{invoiceNumber},  
-        </if>
-        <if test="totalAmount !=null">  
-            total_amount = #{totalAmount},  
-        </if>
-        <if test="discountPrice !=null">  
-            discount_price = #{discountPrice},  
-        </if>
-        <if test="orderDiscountPrice !=null">  
-            order_discount_price = #{orderDiscountPrice},  
-        </if>
-        <if test="modTime !=null">  
-            mod_time = #{modTime},  
-        </if>
-        </set>
-        
-        WHERE unique_id = #{uniqueId}
+
+         <trim prefix="set" suffixOverrides=",">
+
+
+             <if test="userInternalCode !=null">
+                 user_internal_code = #{userInternalCode},
+             </if>
+
+             <if test="orderState !=null">
+                 order_state = #{orderState},
+             </if>
+
+             <if test="totalAmount !=null">
+                 total_amount = #{totalAmount},
+             </if>
+             <if test="discountAmount !=null">
+                 discount_amount = #{discountAmount},
+             </if>
+             <if test="actualTotalAmount !=null">
+                 actual_total_amount = #{actualTotalAmount},
+             </if>
+             <if test="installCount!=null">
+                 install_count=#{installCount},
+             </if>
+             <if test="installType!=null">
+                 install_type=#{installType},
+
+             </if>
+
+             <if test="interest!=null">
+                 interest=#{interest},
+             </if>
+
+             <if test="freight!=null">
+                 freight=#{freight},
+             </if>
+             <if test="submitTime!=null">
+                 submit_time=#{submitTime},
+             </if>
+             <if test="cancelTime!=null">
+                 cancel_time=#{cancelTime},
+             </if>
+             <if test="sendTime!=null">
+                 send_time=#{sendTime},
+             </if>
+             <if test="receiptTime!=null">
+                 receipt_time=#{receiptTime},
+             </if>
+
+             <if test="returnOrderTime!=null">
+                 return_order_time=#{returnOrderTime},
+             </if>
+             <if test="returnCommodityTime!=null">
+                 return_commodity_time=#{returnCommodityTime},
+             </if>
+
+        </trim>
+
+        WHERE order_id = #{orderId}
         
     </update>
-    
-   
-   
-   
-    <!--商品 -->
-    <resultMap type="FastConsumerLoanOrderCommodity" id="FastConsumerLoanOrderCommodityMap">  
-        <result column="unique_id" property="uniqueId"/>  
-        <result column="commodity_id" property="commodityId"/>
-        <result column="commodity_name" property="commodityName"/>
-        <result column="order_id" property="orderId"/>
-        <result column="price" property="price"/>
-        <result column="number" property="number"/>
-        <result column="user_internal_code" property="userInternalCode"/>
-        <result column="seller_internal_code" property="sellerInternalCode"/>
-        <result column="total_amount" property="totalAmount"/>
-        <result column="information_state" property="informationState"/>
-        <result column="pay_method" property="payMethod"/>
-        <result column="pay_name" property="payName"/>
-        <result column="pay_code" property="payCode"/>
-        <result column="external_pay_number" property="externalPayNumber"/>
-        <result column="pay_time" property="payTime"/>
-        <result column="order_time" property="orderTime"/>
-        <result column="send_time" property="sendTime"/>
-        <result column="pay_message" property="payMessage"/>
-        <result column="receipt_time" property="receiptTime"/>
-        <result column="finish_time" property="finishTime"/>
-        <result column="discount_price" property="discountPrice"/>
-        <result column="anonymous" property="anonymous"/>
-        <result column="create_time" property="createTime"/>
-        <result column="mod_time" property="modTime"/>
-    </resultMap>
-    
-    <select id="getFastConsumerLoanOrderCommodityById" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
 
-            SELECT * FROM fast_consumer_loan_order_commodity_table WHERE unique_id=#{uniqueId}
+    
+    <select id="getFastConsumerLoanOrderCommodityById" parameterType="String" resultType="FastConsumerLoanOrderCommodity" >
+
+            SELECT * FROM fast_consumer_loan_order_commodity_table WHERE unique_id=#{uniqueId} limit 1
 
     </select>
     
-    <select id="getFastConsumerLoanOrderCommodityByOrderId" parameterType="String" resultMap="FastConsumerLoanOrderCommodityMap" >
+    <select id="getFastConsumerLoanOrderCommodityByOrderId" parameterType="long" resultType="FastConsumerLoanOrderCommodity" >
 
             SELECT * FROM fast_consumer_loan_order_commodity_table WHERE order_id=#{orderId}
 
@@ -119,16 +132,19 @@
     
    <insert id="insertFastConsumerLoanOrderCommodity">
 
-        INSERT ignore INTO fast_consumer_loan_order_commodity_table(unique_id,commodity_id,commodity_name,order_id,price,number,user_internal_code,seller_internal_code,total_amount,information_state,pay_method,pay_name,pay_code,external_pay_number,pay_time,order_time,send_time,pay_message,receipt_time,finish_time,discount_price,anonymous,create_time)
-        VALUES (#{uniqueId},#{commodityId},#{commodityName},#{orderId},#{price},#{number},#{userInternalCode},#{sellerInternalCode},#{totalAmount},#{informationState},#{payMethod},#{payName},#{payCode},#{externalPayNumber},#{payTime},#{orderTime},#{sendTime},#{payMessage},#{receiptTime},#{finishTime},#{discountPrice},#{anonymous},#{createTime})
-
+        INSERT ignore INTO fast_consumer_loan_order_commodity_table
+        (unique_id,commodity_id,commodity_name,order_id,price,commodity_number,
+        user_internal_code,seller_internal_code,total_amount,commodity_state
+        )
+        VALUES (#{uniqueId},#{commodityId},#{commodityName},#{orderId},#{price},#{commodityNumber},
+        #{userInternalCode},#{sellerInternalCode},#{totalAmount},#{commodityState})
     </insert>
 
     <update id="updateFastConsumerLoanOrderCommodity">
         
         UPDATE fast_consumer_loan_order_commodity_table
     
-        <set>  
+        <trim prefix="set" suffixOverrides=",">
         <if test="commodityId !=null">  
             commodity_id = #{commodityId},  
         </if>
@@ -141,8 +157,8 @@
         <if test="price !=null">  
             price = #{price},  
         </if>
-        <if test="number !=null">  
-            number = #{number},  
+        <if test="commodityNumber !=null">
+            commodity_number = #{commodityNumber},
         </if>
         <if test="userInternalCode !=null">  
             user_internal_code = #{userInternalCode},  
@@ -153,55 +169,58 @@
         <if test="totalAmount !=null">  
             total_amount = #{totalAmount},  
         </if>
-        <if test="informationState !=null">  
-            information_state = #{informationState},  
+        <if test="commodityState !=null">
+            commodity_state = #{commodityState},
         </if>
-        <if test="payMethod !=null">  
-            pay_method = #{payMethod},  
-        </if>
-        <if test="payName !=null">  
-            pay_name = #{payName},  
-        </if>
-        <if test="payCode !=null">  
-            pay_code = #{payCode},  
-        </if>
-        <if test="externalPayNumber !=null">  
-            external_pay_number = #{externalPayNumber},  
-        </if>
-        <if test="payTime !=null">  
-            pay_time = #{payTime},  
-        </if>
-        <if test="orderTime !=null">  
-            order_time = #{orderTime},  
-        </if>
-        <if test="sendTime !=null">  
-            send_time = #{sendTime},  
-        </if>
-        <if test="payMessage !=null">  
-            pay_message = #{payMessage},  
-        </if>
-        <if test="receiptTime !=null">  
-            receipt_time = #{receiptTime},  
-        </if>
-        <if test="finishTime !=null">  
-            finish_time = #{finishTime},  
-        </if>
-        <if test="discountPrice !=null">  
-            discount_price = #{discountPrice},  
-        </if>
-        <if test="anonymous !=null">  
-            anonymous = #{anonymous},  
-        </if>
-        <if test="modTime !=null">  
-            mod_time = #{modTime},  
-        </if>
-        </set>
-    
+        </trim>
+
         WHERE unique_id = #{uniqueId}
         
     </update>
-    
-  
+
+
+    <update id="updateFastConsumerLoanOrderCommodityList" parameterType="java.util.List">
+
+        <foreach collection="list" item="item"  index="index" separator=";" >
+
+            UPDATE fast_consumer_loan_order_commodity_table
+
+            <trim prefix="set" suffixOverrides=",">
+                <if test="item.commodityId !=null">
+                    commodity_id = #{item.commodityId},
+                </if>
+                <if test="item.commodityName !=null">
+                    commodity_name = #{item.commodityName},
+                </if>
+                <if test="item.orderId !=null">
+                    order_id = #{item.orderId},
+                </if>
+                <if test="item.price !=null">
+                    price = #{item.price},
+                </if>
+                <if test="item.commodityNumber !=null">
+                    commodity_number = #{item.commodityNumber},
+                </if>
+                <if test="item.userInternalCode !=null">
+                    user_internal_code = #{item.userInternalCode},
+                </if>
+                <if test="item.sellerInternalCode !=null">
+                    seller_internal_code = #{item.sellerInternalCode},
+                </if>
+                <if test="item.totalAmount !=null">
+                    total_amount = #{item.totalAmount},
+                </if>
+                <if test="item.commodityState !=null">
+                    commodity_state = #{item.commodityState},
+                </if>
+            </trim>
+
+            WHERE unique_id = #{item.uniqueId};
+        </foreach>
+
+    </update>
+
+
 
 
 

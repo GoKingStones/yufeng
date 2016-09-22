@@ -75,4 +75,6 @@ public class IndividualBusinessBasicInfoDaoTest {
         IndividualBusinessBasicInfo individualBusinessBasicInfo1=individualBusinessBasicInfoDao.getIndividualBusinessBasicInfo(InternalCodeGenerator.getCode("150125198912025318"));
         System.out.println(individualBusinessBasicInfo1);
     }
+
+
 }

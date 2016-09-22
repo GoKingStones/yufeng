@@ -41,7 +41,7 @@ public class HttpClientTest {
      * @param params
      * @return
      */
-    public void requestGet(String urlWithParams) throws Exception {
+    public static  void requestGet(String urlWithParams) throws Exception {
         CloseableHttpClient httpclient = HttpClientBuilder.create().build();
 
         //HttpGet httpget = new HttpGet("http://www.baidu.com/");
@@ -87,14 +87,17 @@ public class HttpClientTest {
     }
     public static void main(String[] args){
         try {
-            String loginUrl = "http://localhost:8080/yufeng";
+            String loginUrl = "http://118.178.92.189:8080/yufeng/loginByAccoutName";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", "zhang"));
+            params.add(new BasicNameValuePair("internalCode", "xxx"));
             params.add(new BasicNameValuePair("passwd", "123"));
             requestPost(loginUrl, params);
+            //requestGet(loginUrl);
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

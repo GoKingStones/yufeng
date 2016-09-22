@@ -30,6 +30,7 @@ import java.util.Map;
 @RequestMapping("registerAccount")
 public class RegisterAccountController {
 
+    private static Logger logger=LoggerFactory.getLogger(RegisterAccountController.class);
 
     @Autowired
     private RegisterAccountService registerAccountService;

@@ -25,7 +25,7 @@ import java.util.List;
  * 用户订单分期查询
  */
 @RestController
-@RequestMapping("orderInstallThingController")
+@RequestMapping("orderInstallThing")
 public class OrderInstallThingController {
 
     @Autowired

@@ -5,6 +5,7 @@ package com.yufeng.util;
  * 订单状态
  */
 public enum OrderStateEnum {
+    已支付,
     等待发货,
     已取消,
     已发货,

@@ -28,9 +28,17 @@
 
         INSERT ignore INTO individual_business_basic_info_table(internal_code,shop_name,shopkeeper_name,shop_addr,
         shop_tel,shopkeeper_certificate_type,shopkeeper_certificate_number,local_area,open_time,
-        close_time,close_reason,shop_status,shop_rank,shop_scope,shop_credit_value)
+
+              close_time,
+
+        close_reason,shop_status,shop_rank,shop_scope,shop_credit_value)
         VALUES (#{internalCode},#{shopName},#{shopkeeperName},#{shopAddr},#{shopTel},
-        #{shopkeeperCertificateType},#{shopkeeperCertificateNumber},#{localArea},#{openTime},#{closeTime},#{closeReason},
+        #{shopkeeperCertificateType},#{shopkeeperCertificateNumber},#{localArea},#{openTime},
+
+                #{closeTime,jdbcType=TIMESTAMP},
+
+
+        #{closeReason},
         #{shopStatus},#{shopRank},#{shopScope},#{shopCreditValue})
 
     </insert>

@@ -18,7 +18,7 @@ CREATE TABLE enterprise_business_basic_info_table(
     business_licence_management_scope VARCHAR(100) NOT NULL COMMENT '经营执照营业范围',
     business_brand VARCHAR(100) NOT NULL COMMENT '经营品牌',
     registered_capital DECIMAL NOT NULL COMMENT '注册资金',
-    open_time TIMESTAMP NOT NULL COMMENT '开通时间',
+    open_time DATETIME NOT NULL COMMENT '开通时间',
     business_rank VARCHAR(100) NOT NULL COMMENT '商户等级',
     business_score DOUBLE NOT NULL COMMENT '商户积分',
     business_credit_value DOUBLE NOT NULL COMMENT '商户信用值',

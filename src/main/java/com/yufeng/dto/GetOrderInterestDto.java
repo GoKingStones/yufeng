@@ -34,4 +34,13 @@ public class GetOrderInterestDto {
     public void setInstallType(String installType) {
         this.installType = installType;
     }
+
+    @Override
+    public String toString() {
+        return "GetOrderInterestDto{" +
+                "totalAmount=" + totalAmount +
+                ", installCount=" + installCount +
+                ", installType='" + installType + '\'' +
+                '}';
+    }
 }
