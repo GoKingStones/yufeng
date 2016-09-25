@@ -159,7 +159,7 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
         RiskPreloanResponse riskPreloanResponse = submitInformation(userInfo);
         //尝试获取报告次数
         int count=5;
-        riskPreloanResponse.setSuccess(false);
+        
         while(count>0){
             Thread.sleep(1000);
             if (riskPreloanResponse.getSuccess() == false){
@@ -215,11 +215,11 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
             itemsArrayMap.put("risk_level",itemsJO.get("risk_level"));
             itemsArrayMap.put("item_name",itemsJO.get("item_name"));
             itemsArrayMap.put("group",itemsJO.get("group"));
-            itemsMap.put("item_detail",itemDetailString);
+            itemsMap.put(String.valueOf(itemsJO.get("item_id")),itemsArrayMap);
             
         }
         
-        riskReport.setRiskItems(JSON.toJSONString(itemsArray));
+        riskReport.setRiskItems(JSON.toJSONString(itemsMap));
         
         tongdunRiskDao.insertTongdunRiskReport(riskReport);
         
@@ -229,7 +229,7 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
     }
     
     //保存字符串到文件中
-    private String saveAsFileWriter(String content,String reportId) {
+    public String saveAsFileWriter(String content,String reportId) {
         //路径
         String filePath=Utils.result_path+reportId+".txt";
         FileWriter fwriter = null;
@@ -248,5 +248,11 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    //取出报告
+    public List<TongdunRiskReport> getTongdunRiskReportByInternalCode(String internalCode){
+        List<TongdunRiskReport> tongdunRiskReport=tongdunRiskDao.getTongdunRiskReportByInternalCode(internalCode);
+        return tongdunRiskReport;
     }
 }

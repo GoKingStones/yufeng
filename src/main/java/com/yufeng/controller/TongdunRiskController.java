@@ -53,5 +53,12 @@ public class TongdunRiskController {
         RiskPreloanResponse query=tongdunRiskService.submitInformation(userInfo);
         return query;
     }
+    
+    //提取报告
+    @RequestMapping("/getTongdunRiskReportByInternalCode")
+    public List<TongdunRiskReport> getTongdunRiskReportByInternalCode(String internalCode){
+        List<TongdunRiskReport> tongdunRiskReport=tongdunRiskService.getTongdunRiskReportByInternalCode(internalCode);
+        return tongdunRiskReport;
+    }
 
 }

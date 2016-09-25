@@ -18,11 +18,11 @@
         
     </resultMap>
 
-<!--     <select id="getTongdunRiskReport" parameterType="String" resultMap="UserBankCardInfoMap" > -->
+    <select id="getTongdunRiskReportByInternalCode" parameterType="String" resultMap="TongdunRiskReportMap" >
 
-<!--             SELECT * FROM tongdun_risk_report_table WHERE internal_code=#{internalCode}  -->
+            SELECT * FROM tongdun_risk_report_table WHERE internal_code=#{internalCode} 
 
-<!--     </select> -->
+    </select>
     
     <insert id="insertTongdunRiskReport">
 
