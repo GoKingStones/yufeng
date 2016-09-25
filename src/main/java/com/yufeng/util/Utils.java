@@ -72,6 +72,8 @@ public class Utils {
     public static String submitRrl;
     public static String queryRrl;
     
+    public static String result_path;
+    
     static{
         try {
             Properties prop =new Properties();
@@ -82,6 +84,8 @@ public class Utils {
             app_name = prop.getProperty( "app_name" ).trim(); 
             submitRrl = prop.getProperty( "submitRrl" ).trim();
             queryRrl = prop.getProperty( "queryRrl" ).trim(); 
+            
+            result_path = prop.getProperty( "result_path" ).trim();
         } catch (IOException e) {
             e.printStackTrace();
         }

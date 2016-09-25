@@ -2,15 +2,19 @@ package com.yufeng.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yufeng.entity.RiskPreloanResponse;
 import com.yufeng.entity.RiskPreloanResponseQuery;
+import com.yufeng.entity.TongdunRiskReport;
 import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.entity.UserInfo;
-import com.yufeng.service.RiskService;
+import com.yufeng.service.TongdunRiskService;
 import com.yufeng.service.UserInfoService;
 
 /**
@@ -19,25 +23,26 @@ import com.yufeng.service.UserInfoService;
  */
 @RestController
 @RequestMapping("/risk")
-public class RiskController {
+public class TongdunRiskController {
     
     @Autowired
     private UserInfoService userInfoService; 
     @Autowired
-    private RiskService riskService;
+    private TongdunRiskService tongdunRiskService;
     
     //风险评估服务
     @RequestMapping("/riskAssessment")
-    public RiskPreloanResponseQuery riskAssessment(String internalCode) throws Exception{
+    public TongdunRiskReport riskAssessment(HttpServletResponse response,String internalCode) throws Exception{
+        response.setContentType("application/json;charset=UTF-8");
         UserInfo userInfo=userInfoService.getUserInfo(internalCode);
-        RiskPreloanResponseQuery query=riskService.riskAssessment(userInfo);
+        TongdunRiskReport query=tongdunRiskService.riskAssessment(userInfo);
         return query;
     }
     
     //用报告id获取报告详细
     @RequestMapping("/getQuery")
-    public RiskPreloanResponseQuery getQuery(String id) throws Exception{
-        RiskPreloanResponseQuery query=riskService.getQuery(id);
+    public String getQuery(String id) throws Exception{
+        String query=tongdunRiskService.getQuery(id);
         return query;
     }
     
@@ -45,7 +50,7 @@ public class RiskController {
     @RequestMapping("/submitInformation")
     public RiskPreloanResponse submitInformation(String internalCode) throws Exception{
         UserInfo userInfo=userInfoService.getUserInfo(internalCode);
-        RiskPreloanResponse query=riskService.submitInformation(userInfo);
+        RiskPreloanResponse query=tongdunRiskService.submitInformation(userInfo);
         return query;
     }
 

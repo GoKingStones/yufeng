@@ -1,11 +1,16 @@
 package com.yufeng.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.yufeng.dao.TongdunRiskDao;
 import com.yufeng.entity.RiskPreloanResponse;
 import com.yufeng.entity.RiskPreloanResponseQuery;
+import com.yufeng.entity.TongdunRiskReport;
+import com.yufeng.entity.UserBankCardInfo;
 import com.yufeng.entity.UserBasicInfo;
 import com.yufeng.entity.UserInfo;
-import com.yufeng.service.RiskService;
+import com.yufeng.service.TongdunRiskService;
 import com.yufeng.service.UserBasicInfoService;
 import com.yufeng.service.UserInfoService;
 import com.yufeng.service.impl.UserBasicInfoServiceImpl;
@@ -18,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,13 +31,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 
 @Service
-public class RiskServiceImpl implements RiskService {
+public class TongdunRiskServiceImpl implements TongdunRiskService {
+    
+    @Autowired
+    public TongdunRiskDao tongdunRiskDao;
 
     public RiskPreloanResponse invoke(Map<String, Object> params) {
         HttpURLConnection conn;
@@ -49,8 +62,6 @@ public class RiskServiceImpl implements RiskService {
             if (!params.isEmpty()) {
                 postBody.deleteCharAt(postBody.length() - 1);
             }
-
-            System.out.println(postBody.toString());
 
             conn = (HttpURLConnection) url.openConnection();
             // 设置长链接
@@ -86,7 +97,7 @@ public class RiskServiceImpl implements RiskService {
         Map<String, Object> params = new HashMap<String, Object>();// 参数
         // UserInfo userInfo=userInfoService.getUserInfo(internalCode);
         UserBasicInfo userBasic = userInfo.getUserBasicInfo();
-
+        List<UserBankCardInfo> UserBankCardInfoList=userInfo.getUserBankCardInfoList();
         // 添加参数
         params.put("name", userBasic.getName()); // 姓名
         params.put("id_number", userBasic.getIdNo()); // 身份证号
@@ -95,14 +106,16 @@ public class RiskServiceImpl implements RiskService {
         params.put("email", userBasic.getEmail()); // 电子邮箱
         params.put("home_address", userBasic.getFamilyAddress()); // 家庭地址
         params.put("contact_address", userBasic.getPostalAddress()); // 通讯地址
+        if(UserBankCardInfoList.size()>0){
+            params.put("card_number", UserBankCardInfoList.get(0).getBankCardNumber()); // 通讯地址
+        }
 
-        RiskPreloanResponse riskPreloanResponse = new RiskServiceImpl().invoke(params);
-        System.out.println(riskPreloanResponse.toString());
+        RiskPreloanResponse riskPreloanResponse = new TongdunRiskServiceImpl().invoke(params);
         return riskPreloanResponse;
     }
 
     // 获取报告
-    public RiskPreloanResponseQuery getQuery(String id) {
+    public String getQuery(String id) {
 
         String url = Utils.queryRrl + "?partner_code=" + Utils.partner_code + "&partner_key=" + Utils.partner_key + "&app_name=" + Utils.app_name + "&report_id=" + id;
         String result = "";
@@ -137,44 +150,103 @@ public class RiskServiceImpl implements RiskService {
                 e2.printStackTrace();
             }
         }
-        return JSON.parseObject(result.toString().trim(), RiskPreloanResponseQuery.class);
+        return result.toString().trim();
     }
 
     // 风险评估服务
-    public RiskPreloanResponseQuery riskAssessment(UserInfo userInfo) throws Exception {
+    public TongdunRiskReport riskAssessment(UserInfo userInfo) throws Exception {
         // 调用submit接口获得报告
         RiskPreloanResponse riskPreloanResponse = submitInformation(userInfo);
+        //尝试获取报告次数
+        int count=5;
+        riskPreloanResponse.setSuccess(false);
+        while(count>0){
+            Thread.sleep(1000);
+            if (riskPreloanResponse.getSuccess() == false){
+                count--;
+                System.out.println("尝试了1回");
+                continue;
+            }
+            String result = getQuery(riskPreloanResponse.getReport_id());
+            //保存报告
+            TongdunRiskReport tongdunRiskReport=saveRiskReport(result,userInfo.getUserBasicInfo().getInternalCode());
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("loan_amount", "10000"); // 申请借款金额
-        params.put("name", "张三"); // 姓名
-        params.put("id_number", "1201231231231"); // 身份证号
-        params.put("mobile", "1383838438"); // 手机号
-        // RiskPreloanResponse riskPreloanResponse = invoke(params);
-
-        if (riskPreloanResponse.getSuccess() == false) return null;// 错误
-        // 生成报告需要一定的时间
-        Thread.sleep(500);
-        // 获取报告
-        RiskPreloanResponseQuery result = getQuery(riskPreloanResponse.getReport_id());
-        System.out.println(result);
-
-        return result;
+            return tongdunRiskReport;
+            
+        }
+        return null;
+        
     }
 
-    // public static void main(String[] args) throws Exception {
-    // RiskPreloanResponseQuery r=new RiskServiceImpl().riskService(null);
-    //
-    // System.out.println(r.getApplication_id());
-    // System.out.println(r.getFinal_decision());
-    // System.out.println(r.getReport_id());
-    // System.out.println(r.getSuccess());
-    // System.out.println(r.getApply_time());
-    // System.out.println(r.getFinal_score());
-    // System.out.println(r.getReport_time());
-    //
-    //
-    //
-    // }
-    //
+    //保存报告
+    public TongdunRiskReport saveRiskReport(String result,String internalCode){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        TongdunRiskReport riskReport=new TongdunRiskReport();
+        JSONObject jsonObject=JSON.parseObject(result);
+        //提取主要属性
+        riskReport.setAddressDetect(jsonObject.getString("address_detect"));
+        riskReport.setApplicationId(jsonObject.getString("application_id"));
+        riskReport.setApplyTime(new Date(Long.parseLong(jsonObject.getString("apply_time"))));
+        riskReport.setFinalDecision(jsonObject.getString("final_decision"));
+        riskReport.setFinalScore(Integer.parseInt(jsonObject.getString("final_score")));
+        riskReport.setReportId(jsonObject.getString("report_id"));
+        riskReport.setReportTime(new Date(Long.parseLong(jsonObject.getString("report_time"))));
+        //riskReport.setRiskItems(jsonObject.getString("risk_items"));
+        riskReport.setSuccess(Boolean.parseBoolean(jsonObject.getString("success")));
+        
+        riskReport.setInternalCode(internalCode);
+        riskReport.setUniqueId(UUID.randomUUID().toString());
+        //保存至本地
+        String path=saveAsFileWriter(result,riskReport.getReportId());
+        riskReport.setResultPath(path);
+        //保存报告详细
+        JSONArray itemsArray=JSON.parseArray(jsonObject.getString("risk_items"));
+        Iterator<Object> itemsIterator=itemsArray.iterator();
+        //结果map
+        Map<String,Object> itemsMap=new HashMap<String,Object>();
+        while(itemsIterator.hasNext()){
+            String itemsObjectString=JSON.toJSONString(itemsIterator.next());
+            JSONObject itemsJO=JSON.parseObject(itemsObjectString);
+            String itemDetailString=JSON.toJSONString(itemsJO.get("item_detail"));
+            //详细属性
+            Map<String,Object> itemsArrayMap=new HashMap<String,Object>();
+            itemsArrayMap.put("item_detail",itemDetailString);
+            
+            itemsArrayMap.put("risk_level",itemsJO.get("risk_level"));
+            itemsArrayMap.put("item_name",itemsJO.get("item_name"));
+            itemsArrayMap.put("group",itemsJO.get("group"));
+            itemsMap.put("item_detail",itemDetailString);
+            
+        }
+        
+        riskReport.setRiskItems(JSON.toJSONString(itemsArray));
+        
+        tongdunRiskDao.insertTongdunRiskReport(riskReport);
+        
+        
+        
+        return riskReport;
+    }
+    
+    //保存字符串到文件中
+    private String saveAsFileWriter(String content,String reportId) {
+        //路径
+        String filePath=Utils.result_path+reportId+".txt";
+        FileWriter fwriter = null;
+        try{
+            fwriter = new FileWriter(filePath);
+            fwriter.write(content);
+            return filePath;
+        }catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }finally{
+            try{
+                fwriter.flush();
+                fwriter.close();
+            }catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
