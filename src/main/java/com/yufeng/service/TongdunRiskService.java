@@ -11,7 +11,7 @@ public interface TongdunRiskService {
     
     public RiskPreloanResponse submitInformation(UserInfo userInfo);
     public String getQuery(String id);
-    public TongdunRiskReport riskAssessment(UserInfo userInfo)  throws Exception;
+    public TongdunRiskReport riskAssessment(UserInfo userInfo);
     //取出报告
     public List<TongdunRiskReport> getTongdunRiskReportByInternalCode(String internalCode);
 

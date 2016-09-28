@@ -26,7 +26,7 @@ public class RiskControllerTest {
     
     public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
     
-    //@Test
+    @Test
     public void riskAssessmentTest() throws Exception {
         //参数
         String parameter="internalCode=piqingqing";
@@ -37,7 +37,7 @@ public class RiskControllerTest {
     }
     
     
-    @Test
+    //@Test
     public void getTongdunRiskReportByInternalCodeTest() throws Exception {
         //参数
         String parameter="internalCode=piqingqing";

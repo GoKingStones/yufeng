@@ -107,7 +107,7 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
         params.put("home_address", userBasic.getFamilyAddress()); // 家庭地址
         params.put("contact_address", userBasic.getPostalAddress()); // 通讯地址
         if(UserBankCardInfoList.size()>0){
-            params.put("card_number", UserBankCardInfoList.get(0).getBankCardNumber()); // 通讯地址
+            params.put("card_number", UserBankCardInfoList.get(0).getBankCardNumber()); // 银行卡
         }
 
         RiskPreloanResponse riskPreloanResponse = new TongdunRiskServiceImpl().invoke(params);
@@ -154,32 +154,45 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
     }
 
     // 风险评估服务
-    public TongdunRiskReport riskAssessment(UserInfo userInfo) throws Exception {
-        // 调用submit接口获得报告
-        RiskPreloanResponse riskPreloanResponse = submitInformation(userInfo);
-        //尝试获取报告次数
-        int count=5;
-        
-        while(count>0){
-            Thread.sleep(1000);
-            if (riskPreloanResponse.getSuccess() == false){
-                count--;
-                System.out.println("尝试了1回");
-                continue;
-            }
-            String result = getQuery(riskPreloanResponse.getReport_id());
-            //保存报告
-            TongdunRiskReport tongdunRiskReport=saveRiskReport(result,userInfo.getUserBasicInfo().getInternalCode());
-
-            return tongdunRiskReport;
+    public TongdunRiskReport riskAssessment(UserInfo userInfo){
+        try{
             
+         // 调用submit接口获得报告
+            RiskPreloanResponse riskPreloanResponse = submitInformation(userInfo);
+            if (riskPreloanResponse.getSuccess() == false) return null;//未正确获取
+            
+            //尝试获取报告次数
+            int count=5;
+            
+            while(count>0){
+                Thread.sleep(1000);
+                
+                String result = getQuery(riskPreloanResponse.getReport_id());
+                JSONObject jsonObject=JSON.parseObject(result);
+                boolean success=Boolean.parseBoolean(JSON.toJSONString(jsonObject.get("success")));
+                if(success!=true){
+                    continue;
+                }
+                //保存报告至本地
+                String path=saveAsFileWriter(result,JSON.toJSONString(jsonObject.get("report_id")).trim().replace("\"",""));
+                //保存报告至数据库
+                TongdunRiskReport tongdunRiskReport=saveRiskReport(result,userInfo.getUserBasicInfo().getInternalCode(),path);
+
+                return tongdunRiskReport;
+                
+            }
+            return null;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
-        return null;
+        
         
     }
 
     //保存报告
-    public TongdunRiskReport saveRiskReport(String result,String internalCode){
+    public TongdunRiskReport saveRiskReport(String result,String internalCode,String path){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         TongdunRiskReport riskReport=new TongdunRiskReport();
         JSONObject jsonObject=JSON.parseObject(result);
@@ -196,8 +209,7 @@ public class TongdunRiskServiceImpl implements TongdunRiskService {
         
         riskReport.setInternalCode(internalCode);
         riskReport.setUniqueId(UUID.randomUUID().toString());
-        //保存至本地
-        String path=saveAsFileWriter(result,riskReport.getReportId());
+        
         riskReport.setResultPath(path);
         //保存报告详细
         JSONArray itemsArray=JSON.parseArray(jsonObject.getString("risk_items"));

@@ -32,7 +32,7 @@ public class TongdunRiskController {
     
     //风险评估服务
     @RequestMapping("/riskAssessment")
-    public TongdunRiskReport riskAssessment(HttpServletResponse response,String internalCode) throws Exception{
+    public TongdunRiskReport riskAssessment(HttpServletResponse response,String internalCode){
         response.setContentType("application/json;charset=UTF-8");
         UserInfo userInfo=userInfoService.getUserInfo(internalCode);
         TongdunRiskReport query=tongdunRiskService.riskAssessment(userInfo);
