@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.TongdunRiskDao">
+
+    <resultMap type="TongdunRiskReport" id="TongdunRiskReportMap">  
+        <result column="unique_id" property="uniqueId"/> 
+        <result column="internal_code" property="internalCode"/>
+        <result column="success" property="success"/>
+        <result column="risk_items" property="riskItems"/>
+        <result column="report_id" property="reportId"/>
+        <result column="apply_time" property="applyTime"/>
+        <result column="final_decision" property="finalDecision"/>
+        <result column="application_id" property="applicationId"/>
+        <result column="final_score" property="finalScore"/>
+        <result column="report_time" property="reportTime"/>
+        <result column="address_detect" property="addressDetect"/>
+        <result column="result_path" property="resultPath"/>
+        
+    </resultMap>
+
+    <select id="getTongdunRiskReportByInternalCode" parameterType="String" resultMap="TongdunRiskReportMap" >
+
+            SELECT * FROM tongdun_risk_report_table WHERE internal_code=#{internalCode} 
+
+    </select>
+    
+    <insert id="insertTongdunRiskReport">
+
+        INSERT ignore INTO tongdun_risk_report_table(unique_id,internal_code,success,risk_items,report_id,apply_time,final_decision,application_id,final_score,report_time,address_detect,result_path)
+        VALUES (#{uniqueId},#{internalCode},#{success},#{riskItems},#{reportId},#{applyTime},#{finalDecision},#{applicationId},#{finalScore},#{reportTime},#{addressDetect},#{resultPath})
+
+    </insert>
+
+ 
+
+
+
+</mapper>
