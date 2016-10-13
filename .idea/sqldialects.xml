@@ -17,8 +17,10 @@
     <file url="file://$PROJECT_DIR$/src/main/sql/快消品分期订单商品表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/快消品分期订单表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/注册账户表.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/sql/消费订单表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/省份学费表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/订单请款表.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/sql/账户额度信息表.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/sql/面签服务.sql" dialect="MySQL" />
   </component>
 </project>

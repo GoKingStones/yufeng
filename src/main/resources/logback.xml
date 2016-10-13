@@ -20,7 +20,7 @@
 <configuration>
 
     <!-- 在Eclipse中运行，请到Eclipse的安装目录中找log文件，Tomcat下，请到Tomcat目录下找 -->
-    <property name="LOG_PATH" value="../logs" />
+    <property name="LOG_PATH" value="${CATALINA_HOME}/logs" />
 
     <!-- 日志记录器，日期滚动记录 -->
     <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">

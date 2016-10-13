@@ -67,10 +67,16 @@ public class RegisterAccountController {
 
         String accountName = registerAccount.getAccountName();
         String phoneNumber = registerAccount.getPhoneNumber();
-        if(accountName==null&&phoneNumber==null||accountName!=null&&phoneNumber!=null) {
+        if(accountName==null) {
+            accountName="";
+        }
+        if(phoneNumber==null) {
+            phoneNumber="";
+        }
+        if((accountName.equals("")&&phoneNumber.equals(""))||((!accountName.equals("")&&!phoneNumber.equals("")))) {
             return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.BAD_REQUEST),HttpStatus.OK);
         }else {
-            if(accountName!=null) {
+            if(!accountName.equals("")) {
                 boolean result = registerAccountService.isExistedRegisterAccount(accountName);
                 if(result) {
                     return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
@@ -111,12 +117,22 @@ public class RegisterAccountController {
 
         String accountName = registerAccount.getAccountName();
         String phoneNumber = registerAccount.getPhoneNumber();
-
-        if (registerAccount.getPassword() != null) {
-            registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+        String password=registerAccount.getPassword();
+        if(accountName==null) {
+            accountName="";
+        }
+        if(phoneNumber==null) {
+            phoneNumber="";
+        }
+        if (password==null) {
+            password="";
         }
 
-        if(accountName!=null&&phoneNumber==null) {
+        if (!password.equals("")) {
+            registerAccount.setPassword(MD5Util.string2MD5(password));
+        }
+
+        if((!accountName.equals(""))&&(phoneNumber.equals(""))) {
             boolean result = registerAccountService.isExistedRegisterAccount(accountName);
             if(result) {
                 return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
@@ -130,12 +146,12 @@ public class RegisterAccountController {
                     return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.OPERATION_FAILURE),HttpStatus.OK);
                 }
             }
-        }else if(accountName==null&&phoneNumber!=null){
+        }else if(accountName.equals("")&&!phoneNumber.equals("")){
             boolean result = registerAccountService.isExistedRegisterAccountByPhoneNumber(phoneNumber);
             if(result) {
                 return new ResponseEntity<ResultModel>(ResultModel.error(ResultStatus.ALREADY_EXISTED),HttpStatus.OK);
             }else {
-                registerAccount.setPassword(MD5Util.string2MD5(registerAccount.getPassword()));
+                registerAccount.setPassword(MD5Util.string2MD5(password));
 
                 RegisterAccount registerAccount1 = registerAccountService.updateRegisterAccount(registerAccount);
                 if (registerAccount1!=null) {

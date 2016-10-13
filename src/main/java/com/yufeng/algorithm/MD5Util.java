@@ -57,7 +57,7 @@ public class MD5Util {
         System.out.println("MD5后：" + string2MD5(s));
         System.out.println(string2MD5(s).length());
         System.out.println("加密的：" + convertMD5(s));
-        System.out.println("解密的：" + convertMD5(convertMD5(s)));
+        System.out.println("解密的：" + convertMD5(convertMD5("19caf7f9c92361fe69c56d2feebb41ec")));
 
     }
 }

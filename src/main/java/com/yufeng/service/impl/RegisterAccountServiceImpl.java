@@ -1,5 +1,6 @@
 package com.yufeng.service.impl;
 
+import com.yufeng.algorithm.MD5Util;
 import com.yufeng.algorithm.UUIDGenerator;
 import com.yufeng.dao.InternalCodeDao;
 import com.yufeng.dao.RegisterAccountDao;
@@ -49,11 +50,11 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
         RegisterAccount registerAccount1=null;
 
         if(result==1) {
-            if(registerAccount.getAccountName()!=null) {
+            if(!registerAccount.getAccountName().equals("")) {
                 registerAccount1=registerAccountDao.getRegisterAccount(registerAccount.getAccountName());
-
             }else {
                 registerAccount1=registerAccountDao.getRegisterAccountByPhoneNumber(registerAccount.getPhoneNumber());
+
             }
         }
 
@@ -67,6 +68,7 @@ public class RegisterAccountServiceImpl implements RegisterAccountService{
         RegisterAccount registerAccount1=null;
         if(result==1) {
             registerAccount1 =registerAccountDao.getRegisterAccountById(registerAccount.getRegisterAccountId());
+
         }
 
         return registerAccount1;

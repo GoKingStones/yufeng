@@ -4,10 +4,7 @@ import com.yufeng.config.Constants;
 import com.yufeng.entity.RegisterAccount;
 import com.yufeng.util.ResultModel;
 import org.junit.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -21,6 +18,7 @@ import static org.junit.Assert.*;
 public class RegisterAccountControllerTest {
 
     public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
+   // public static final String REST_SERVICE_URI = "http://118.178.92.189:8080/yufeng";
 
     @Test
     public void testIsExistedRegisterAccount() throws Exception {
@@ -59,13 +57,15 @@ public class RegisterAccountControllerTest {
         RestTemplate restTemplate = new RestTemplate();
 
         RegisterAccount registerAccount=new RegisterAccount();
-        registerAccount.setAccountName("王磊磊");
-        registerAccount.setPassword("aaa");
+        registerAccount.setAccountName("");
+        registerAccount.setPassword("wangleilei");
         registerAccount.setAccountFlag("1");
-        registerAccount.setPhoneNumber("18722475214");
-        registerAccount.setSource("mall");
-
-        HttpEntity<RegisterAccount> httpEntity=new HttpEntity<RegisterAccount>(registerAccount);
+        registerAccount.setPhoneNumber("22222");
+        registerAccount.setSource("p2p");
+        HttpHeaders headers = new HttpHeaders();
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        HttpEntity<RegisterAccount> httpEntity=new HttpEntity<RegisterAccount>(registerAccount,headers);
         ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/registerAccount/insertRegisterAccount",
                 HttpMethod.POST,
                 httpEntity,
@@ -85,7 +85,7 @@ public class RegisterAccountControllerTest {
 
         RegisterAccount registerAccount=new RegisterAccount();
         registerAccount.setRegisterAccountId(2);
-        registerAccount.setPhoneNumber("13232223");
+        registerAccount.setPhoneNumber("18722475214");
 
         HttpEntity<RegisterAccount> httpEntity=new HttpEntity<RegisterAccount>(registerAccount);
         ResponseEntity<ResultModel> resultModelResponseEntity = restTemplate.exchange(REST_SERVICE_URI + "/registerAccount/updateRegisterAccount",
