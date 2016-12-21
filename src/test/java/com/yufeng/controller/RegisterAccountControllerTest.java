@@ -17,8 +17,8 @@ import static org.junit.Assert.*;
  */
 public class RegisterAccountControllerTest {
 
-    public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
-   // public static final String REST_SERVICE_URI = "http://118.178.92.189:8080/yufeng";
+    //public static final String REST_SERVICE_URI = "http://localhost:8080/yufeng";
+    public static final String REST_SERVICE_URI = "http://118.178.92.189:8080/yufeng";
 
     @Test
     public void testIsExistedRegisterAccount() throws Exception {
@@ -60,8 +60,8 @@ public class RegisterAccountControllerTest {
         registerAccount.setAccountName("");
         registerAccount.setPassword("wangleilei");
         registerAccount.setAccountFlag("1");
-        registerAccount.setPhoneNumber("22222");
-        registerAccount.setSource("p2p");
+        registerAccount.setPhoneNumber("17362626262");
+        registerAccount.setSource("mall");
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
         headers.setContentType(type);

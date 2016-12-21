@@ -65,6 +65,7 @@ public class RegisterAccountController {
     @RequestMapping(value = "/insertRegisterAccount",method = RequestMethod.POST)
     public ResponseEntity<ResultModel> insertRegisterAccount(@RequestBody RegisterAccount registerAccount){
 
+        logger.debug(registerAccount.toString());
         String accountName = registerAccount.getAccountName();
         String phoneNumber = registerAccount.getPhoneNumber();
         if(accountName==null) {

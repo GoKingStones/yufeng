@@ -102,9 +102,18 @@ public class RegisterAccount implements Serializable{
 
 
     @Override
-    public String toString(){
-        return accountName+","+password+","+phoneNumber+","
-                +source+","+accountFlag+","+createTime;
+    public String toString() {
+        return "RegisterAccount{" +
+                "registerAccountId=" + registerAccountId +
+                ", internalCode='" + internalCode + '\'' +
+                ", accountName='" + accountName + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", source='" + source + '\'' +
+                ", accountFlag='" + accountFlag + '\'' +
+                ", createTime=" + createTime +
+                ", modTime=" + modTime +
+                '}';
     }
 }
 
