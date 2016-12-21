@@ -10,7 +10,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;  
 import javax.xml.bind.Unmarshaller;  
 import javax.xml.bind.annotation.XmlAnyElement;  
-import javax.xml.namespace.QName;  
+import javax.xml.namespace.QName;
+
+import org.apache.commons.lang.StringUtils;  
   
 //import org.apache.commons.lang.StringUtils;  
   
@@ -105,7 +107,7 @@ public class JaxbUtil {
   
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);  
   
-            if (encoding!=null && (!"".equals(encoding))) {  
+            if (StringUtils.isNotBlank(encoding)) {  
                 marshaller.setProperty(Marshaller.JAXB_ENCODING, encoding);  
             }  
             return marshaller;  
