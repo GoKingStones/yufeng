@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.IndividualBusinessBasicInfoDao">
+
+
+
+    <insert id="insertBOCCancelOrder">
+
+        INSERT ignore INTO boc_loan_account_table(user_internal_code,
+    acct_no,
+    merchant_code,
+    return_amt,
+    ori_merchant_order_id,
+    ori_pay_time,
+    merchant_order_id,
+    pay_gate_order_id)
+        VALUES (#{userInternalCode},#{acctNo},#{merchantCode},#{returnAmt},
+        #{oriMerchantOrderId},
+        #{oriPayTime},#{merchantOrderId},#{payGateOrderId})
+
+    </insert>
+
+</mapper>

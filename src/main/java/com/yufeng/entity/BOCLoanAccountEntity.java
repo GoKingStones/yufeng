@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class BOCLoanAccountEntity {
 
-    private String user_internal_code; //'购买用户内码',
+    private String userInternalCode; //'购买用户内码',
     private String loanAcctNo;	//中银消费金融账号
     private String mobileNo	; //客戶手机号
     /*
@@ -74,12 +74,12 @@ public class BOCLoanAccountEntity {
     private Date createTime;//创建时间
     private Date modTime;//修改时间
 
-    public String getUser_internal_code() {
-        return user_internal_code;
+    public String getUserInternalCode() {
+        return userInternalCode;
     }
 
-    public void setUser_internal_code(String user_internal_code) {
-        this.user_internal_code = user_internal_code;
+    public void setUserInternalCode(String userInternalCode) {
+        this.userInternalCode = userInternalCode;
     }
 
     public Date getCreateTime() {

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yufeng.dao.IndividualBusinessBasicInfoDao">
+
+
+
+    <insert id="insertBOCLoanAccount">
+
+        INSERT ignore INTO boc_loan_account_table( user_internal_code  ,
+    loan_acct_no ,
+    mobile_no 	,
+    acct_stus,
+    creLine_stus,
+    acct_balance,
+    return_balance,
+    base_tot_creLine,
+    base_used_creLine,
+    base_rest_creLine,
+    temp_tot_creLine,
+    temp_used_creLine,
+    temp_rest_creLine,
+    day_pay_total_amt,
+    day_return_total_amt,
+    txn_print,
+    txn_fee,
+    txn_ovd_fee,
+    txn_int,
+    temp_frozen_amt,
+    creLine_expDate,
+    total_loan_amt,
+    int_tot,
+    expense_tot,
+    ovd_fee_tot,
+    ovd_fee_abl,
+    return_amt,
+    next_pay_date,
+    overdue_status,
+    ovd_day_cnt,
+    min_return_amount,
+    debit_card_no,
+    open_bank_id,
+    decard_open_bank,
+    prov,
+    city,
+    decard_card_issuer,
+    decard_card_issuer_name)
+        VALUES (#{userInternalCode},#{loanAcctNo},#{mobileNo},#{acctStus},#{creLineStus},
+        #{acctBalance},#{returnBalance},#{baseTotCreLine},#{baseUsedCreLine},
+        #{baseRestCreLine},
+        #{tempTotCreLine},
+        #{tempUsedCreLine},#{tempRestCreLine},#{dayPayTotalAmt},#{dayReturnTotalAmt},#{txnPrint},#{txnFee}
+        ,{txnOvdFee},#{txnInt},#{tempFrozenAmt},#{creLineExpDate},#{totalLoanAmt},#{intTot},#{expenseTot}
+        ,#{ovdFeeTot},#{ovdFeeAbl},#{returnAmt},#{nextPayDate},#{overdueStatus},#{ovdDayCnt}
+        ,#{minReturnAmount},#{debitCardNo},#{openBankId},#{decardOpenBank},#{prov},#{city}
+        ,#{decardCardIssuer},#{decardCardIssuerName})
+
+    </insert>
+
+    <update id="updateBOCLoanAccount" parameterType="String">
+
+        UPDATE boc_loan_account_table
+        <trim prefix="set" suffixOverrides=",">
+        <if test="userInternalCode!=null">
+            user_internal_code=#{userInternalCode},
+        </if>
+        <if test="loanAcctNo!=null">
+            loan_acct_no=#{loanAcctNo},
+        </if>
+        <if test="mobileNo!=null">
+            mobile_no=#{mobileNo},
+        </if>
+        <if test="acctStus!=null">
+            acct_stus=#{acctStus},
+        </if>
+        <if test="creLineStus!=null">
+            creLine_stus=#{creLineStus},
+        </if>
+        <if test="acctBalance!=null">
+            acct_balance=#{acctBalance},
+        </if>
+        <if test="returnBalance!=null">
+            return_balance=#{returnBalance},
+        </if>
+        <if test="baseTotCreLine!=null">
+            base_tot_creLine=#{baseTotCreLine},
+        </if>
+        <if test="baseUsedCreLine!=null">
+            base_used_creLine=#{baseUsedCreLine},
+        </if>
+        <if test="baseRestCreLine!=null">
+            base_rest_creLine=#{baseRestCreLine},
+        </if>
+        <if test="tempTotCreLine!=null">
+            temp_tot_creLine=#{tempTotCreLine},
+        </if>
+        <if test="tempUsedCreLine!=null">
+            temp_used_creLine=#{tempUsedCreLine},
+        </if>
+        <if test="tempRestCreLine!=null">
+            temp_rest_creLine=#{tempRestCreLine},
+        </if>
+        <if test="dayPayTotalAmt!=null">
+            day_pay_total_amt=#{dayPayTotalAmt},
+        </if>
+            <if test="dayReturnTotalAmt!=null">
+                day_return_total_amt=#{dayReturnTotalAmt},
+            </if>
+            <if test="txnPrint!=null">
+                txn_print=#{txnPrint},
+            </if>
+            <if test="txnFee!=null">
+                txn_fee=#{txnFee},
+            </if>
+            <if test="txnOvdFee!=null">
+                txn_ovd_fee=#{txnOvdFee},
+            </if>
+            <if test="txnInt!=null">
+                txn_int=#{txnInt},
+            </if>
+            <if test="tempFrozenAmt!=null">
+                temp_frozen_amt=#{tempFrozenAmt},
+            </if>
+            <if test="creLineExpDate!=null">
+                creLine_expDate=#{creLineExpDate},
+            </if>
+            <if test="totalLoanAmt!=null">
+                total_loan_amt=#{totalLoanAmt},
+            </if>
+            <if test="intTot!=null">
+                int_tot=#{intTot},
+            </if>
+            <if test="expenseTot!=null">
+                expense_tot=#{expenseTot},
+            </if>
+            <if test="ovdFeeTot!=null">
+                ovd_fee_tot=#{ovdFeeTot},
+            </if>
+            <if test="ovdFeeAbl!=null">
+                ovd_fee_abl=#{ovdFeeAbl},
+            </if>
+            <if test="returnAmt!=null">
+                return_amt=#{returnAmt},
+            </if>
+            <if test="nextPayDate!=null">
+                next_pay_date=#{nextPayDate},
+            </if>
+            <if test="overdueStatus!=null">
+                overdue_status=#{overdueStatus},
+            </if>
+            <if test="ovdDayCnt!=null">
+                ovd_day_cnt=#{ovdDayCnt},
+            </if>
+            <if test="minReturnAmount!=null">
+                min_return_amount=#{minReturnAmount},
+            </if>
+            <if test="debitCardNo!=null">
+                debit_card_no=#{debitCardNo},
+            </if>
+            <if test="openBankId!=null">
+                open_bank_id=#{openBankId},
+            </if>
+            <if test="decardOpenBank!=null">
+                decard_open_bank=#{decardOpenBank},
+            </if>
+            <if test="prov!=null">
+                prov=#{prov},
+            </if>
+            <if test="city!=null">
+                city=#{city},
+            </if>
+            <if test="decardCardIssuer!=null">
+                decard_card_issuer=#{decardCardIssuer},
+            </if>
+            <if test="decardCardIssuerName!=null">
+                decard_card_issuer_name=#{decardCardIssuerName}
+            </if>
+
+        </trim>
+        WHERE internal_code = #{userInternalCode}
+    </update>
+
+
+
+
+
+</mapper>
