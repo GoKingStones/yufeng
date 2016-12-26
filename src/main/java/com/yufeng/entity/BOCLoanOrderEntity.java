@@ -8,8 +8,9 @@ import java.util.Date;
  * 中银消费订单实体
  */
 public class BOCLoanOrderEntity {
-
-    private String user_internal_code; //'购买用户内码',
+    
+    private Integer id;
+    private String userInternalCode; //'购买用户内码',
     private String loanAcctNo;	//中银消费金融账号	X(13)
     private String merchantCode;	//	(清算)商户代号	X(15)
     private BigDecimal amount;	//	消费金额	9(8)V9(2)	单位：分
@@ -49,138 +50,250 @@ public class BOCLoanOrderEntity {
     private Date createTime;//创建时间
     private Date modTime;//修改时间
 
-    public String getUser_internal_code() {
-        return user_internal_code;
+    
+
+    
+    public Integer getId() {
+        return id;
     }
 
-    public void setUser_internal_code(String user_internal_code) {
-        this.user_internal_code = user_internal_code;
+
+
+    
+    public void setId(Integer id) {
+        this.id = id;
     }
 
+
+
+    
+    public String getUserInternalCode() {
+        return userInternalCode;
+    }
+
+
+
+    
+    public void setUserInternalCode(String userInternalCode) {
+        this.userInternalCode = userInternalCode;
+    }
+
+
+
+    
     public String getLoanAcctNo() {
         return loanAcctNo;
     }
 
+
+
+    
     public void setLoanAcctNo(String loanAcctNo) {
         this.loanAcctNo = loanAcctNo;
     }
 
+
+
+    
     public String getMerchantCode() {
         return merchantCode;
     }
 
+
+
+    
     public void setMerchantCode(String merchantCode) {
         this.merchantCode = merchantCode;
     }
 
+
+
+    
     public BigDecimal getAmount() {
         return amount;
     }
 
+
+
+    
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
+
+
+    
     public String getMerchantOrderId() {
         return merchantOrderId;
     }
 
+
+
+    
     public void setMerchantOrderId(String merchantOrderId) {
         this.merchantOrderId = merchantOrderId;
     }
 
+
+
+    
     public String getPayGateOrderId() {
         return payGateOrderId;
     }
 
+
+
+    
     public void setPayGateOrderId(String payGateOrderId) {
         this.payGateOrderId = payGateOrderId;
     }
 
+
+
+    
     public String getPayType() {
         return payType;
     }
 
+
+
+    
     public void setPayType(String payType) {
         this.payType = payType;
     }
 
+
+
+    
     public String getChargeType() {
         return chargeType;
     }
 
+
+
+    
     public void setChargeType(String chargeType) {
         this.chargeType = chargeType;
     }
 
+
+
+    
     public String getCurrency() {
         return currency;
     }
 
+
+
+    
     public void setCurrency(String currency) {
         this.currency = currency;
     }
 
+
+
+    
     public String getUseTempCreLine() {
         return useTempCreLine;
     }
 
+
+
+    
     public void setUseTempCreLine(String useTempCreLine) {
         this.useTempCreLine = useTempCreLine;
     }
 
+
+
+    
     public String getPayDescription() {
         return payDescription;
     }
 
+
+
+    
     public void setPayDescription(String payDescription) {
         this.payDescription = payDescription;
     }
 
+
+
+    
     public int getInstalPeriod() {
         return instalPeriod;
     }
 
+
+
+    
     public void setInstalPeriod(int instalPeriod) {
         this.instalPeriod = instalPeriod;
     }
 
+
+
+    
     public String getInstalType() {
         return instalType;
     }
 
+
+
+    
     public void setInstalType(String instalType) {
         this.instalType = instalType;
     }
 
+
+
+    
     public String getInstalFeeType() {
         return instalFeeType;
     }
 
+
+
+    
     public void setInstalFeeType(String instalFeeType) {
         this.instalFeeType = instalFeeType;
     }
 
+
+
+    
     public Date getCreateTime() {
         return createTime;
     }
 
+
+
+    
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+
+
+    
     public Date getModTime() {
         return modTime;
     }
 
+
+
+    
     public void setModTime(Date modTime) {
         this.modTime = modTime;
     }
 
+
+
     @Override
     public String toString() {
         return "BOCLoanOrderEntity{" +
-                "user_internal_code='" + user_internal_code + '\'' +
+                "userInternalCode='" + userInternalCode + '\'' +
                 ", loanAcctNo='" + loanAcctNo + '\'' +
                 ", merchantCode='" + merchantCode + '\'' +
                 ", amount=" + amount +

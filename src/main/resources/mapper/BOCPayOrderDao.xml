@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yufeng.dao.BOCPayOrderDao" >
+  <resultMap id="BaseResultMap" type="com.yufeng.entity.BOCPayOrderEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_internal_code" property="userInternalCode" jdbcType="VARCHAR" />
+    <result column="acct_no" property="acctNo" jdbcType="VARCHAR" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="return_date" property="returnDate" jdbcType="TIMESTAMP" />
+    <result column="ori_merchant_order_id" property="oriMerchantOrderId" jdbcType="VARCHAR" />
+    <result column="ori_pay_time" property="oriPayTime" jdbcType="TIMESTAMP" />
+    <result column="merchant_order_id" property="merchantOrderId" jdbcType="VARCHAR" />
+    <result column="pay_gate_order_id" property="payGateOrderId" jdbcType="VARCHAR" />
+    <result column="return_type" property="returnType" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="debit_card_no" property="debitCardNo" jdbcType="VARCHAR" />
+    <result column="decard_open_bank" property="decardOpenBank" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_internal_code, acct_no, merchant_code, amount, return_date, ori_merchant_order_id, 
+    ori_pay_time, merchant_order_id, pay_gate_order_id, return_type, pay_type, debit_card_no, 
+    decard_open_bank, create_time, mod_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from boc_pay_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from boc_pay_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.yufeng.entity.BOCPayOrderEntity" >
+    insert into boc_pay_order_table (id, user_internal_code, acct_no, 
+      merchant_code, amount, return_date, 
+      ori_merchant_order_id, ori_pay_time, merchant_order_id, 
+      pay_gate_order_id, return_type, pay_type, 
+      debit_card_no, decard_open_bank, create_time, 
+      mod_time)
+    values (#{id,jdbcType=INTEGER}, #{userInternalCode,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{returnDate,jdbcType=TIMESTAMP}, 
+      #{oriMerchantOrderId,jdbcType=VARCHAR}, #{oriPayTime,jdbcType=TIMESTAMP}, #{merchantOrderId,jdbcType=VARCHAR}, 
+      #{payGateOrderId,jdbcType=VARCHAR}, #{returnType,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{debitCardNo,jdbcType=VARCHAR}, #{decardOpenBank,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.yufeng.entity.BOCPayOrderEntity" >
+    insert into boc_pay_order_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userInternalCode != null" >
+        user_internal_code,
+      </if>
+      <if test="acctNo != null" >
+        acct_no,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="returnDate != null" >
+        return_date,
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        ori_merchant_order_id,
+      </if>
+      <if test="oriPayTime != null" >
+        ori_pay_time,
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id,
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id,
+      </if>
+      <if test="returnType != null" >
+        return_type,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="debitCardNo != null" >
+        debit_card_no,
+      </if>
+      <if test="decardOpenBank != null" >
+        decard_open_bank,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modTime != null" >
+        mod_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userInternalCode != null" >
+        #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDate != null" >
+        #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        #{oriMerchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPayTime != null" >
+        #{oriPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantOrderId != null" >
+        #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnType != null" >
+        #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="debitCardNo != null" >
+        #{debitCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="decardOpenBank != null" >
+        #{decardOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.yufeng.entity.BOCPayOrderEntity" >
+    update boc_pay_order_table
+    <set >
+      <if test="userInternalCode != null" >
+        user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        acct_no = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDate != null" >
+        return_date = #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        ori_merchant_order_id = #{oriMerchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPayTime != null" >
+        ori_pay_time = #{oriPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnType != null" >
+        return_type = #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="debitCardNo != null" >
+        debit_card_no = #{debitCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="decardOpenBank != null" >
+        decard_open_bank = #{decardOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        mod_time = #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.yufeng.entity.BOCPayOrderEntity" >
+    update boc_pay_order_table
+    set user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      acct_no = #{acctNo,jdbcType=VARCHAR},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      return_date = #{returnDate,jdbcType=TIMESTAMP},
+      ori_merchant_order_id = #{oriMerchantOrderId,jdbcType=VARCHAR},
+      ori_pay_time = #{oriPayTime,jdbcType=TIMESTAMP},
+      merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      return_type = #{returnType,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      debit_card_no = #{debitCardNo,jdbcType=VARCHAR},
+      decard_open_bank = #{decardOpenBank,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mod_time = #{modTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

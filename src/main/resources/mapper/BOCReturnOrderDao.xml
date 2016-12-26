@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yufeng.dao.BOCReturnOrderDao" >
+  <resultMap id="BaseResultMap" type="com.yufeng.entity.BOCReturnOrderEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_internal_code" property="userInternalCode" jdbcType="VARCHAR" />
+    <result column="acct_no" property="acctNo" jdbcType="VARCHAR" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="return_amt" property="returnAmt" jdbcType="DECIMAL" />
+    <result column="ori_merchant_order_id" property="oriMerchantOrderId" jdbcType="VARCHAR" />
+    <result column="ori_pay_time" property="oriPayTime" jdbcType="TIMESTAMP" />
+    <result column="merchant_order_id" property="merchantOrderId" jdbcType="VARCHAR" />
+    <result column="pay_gate_order_id" property="payGateOrderId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_internal_code, acct_no, merchant_code, return_amt, ori_merchant_order_id, 
+    ori_pay_time, merchant_order_id, pay_gate_order_id, create_time, mod_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from boc_return_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from boc_return_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.yufeng.entity.BOCReturnOrderEntity" >
+    insert into boc_return_order_table (id, user_internal_code, acct_no, 
+      merchant_code, return_amt, ori_merchant_order_id, 
+      ori_pay_time, merchant_order_id, pay_gate_order_id, 
+      create_time, mod_time)
+    values (#{id,jdbcType=INTEGER}, #{userInternalCode,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{returnAmt,jdbcType=DECIMAL}, #{oriMerchantOrderId,jdbcType=VARCHAR}, 
+      #{oriPayTime,jdbcType=TIMESTAMP}, #{merchantOrderId,jdbcType=VARCHAR}, #{payGateOrderId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yufeng.entity.BOCReturnOrderEntity" >
+    insert into boc_return_order_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userInternalCode != null" >
+        user_internal_code,
+      </if>
+      <if test="acctNo != null" >
+        acct_no,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="returnAmt != null" >
+        return_amt,
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        ori_merchant_order_id,
+      </if>
+      <if test="oriPayTime != null" >
+        ori_pay_time,
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id,
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modTime != null" >
+        mod_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userInternalCode != null" >
+        #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmt != null" >
+        #{returnAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        #{oriMerchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPayTime != null" >
+        #{oriPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantOrderId != null" >
+        #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.yufeng.entity.BOCReturnOrderEntity" >
+    update boc_return_order_table
+    <set >
+      <if test="userInternalCode != null" >
+        user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        acct_no = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmt != null" >
+        return_amt = #{returnAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="oriMerchantOrderId != null" >
+        ori_merchant_order_id = #{oriMerchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPayTime != null" >
+        ori_pay_time = #{oriPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        mod_time = #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.yufeng.entity.BOCReturnOrderEntity" >
+    update boc_return_order_table
+    set user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      acct_no = #{acctNo,jdbcType=VARCHAR},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      return_amt = #{returnAmt,jdbcType=DECIMAL},
+      ori_merchant_order_id = #{oriMerchantOrderId,jdbcType=VARCHAR},
+      ori_pay_time = #{oriPayTime,jdbcType=TIMESTAMP},
+      merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mod_time = #{modTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

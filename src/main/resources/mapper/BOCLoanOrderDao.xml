@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yufeng.dao.BOCLoanOrderDao" >
+  <resultMap id="BaseResultMap" type="com.yufeng.entity.BOCLoanOrderEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_internal_code" property="userInternalCode" jdbcType="VARCHAR" />
+    <result column="loan_acct_no" property="loanAcctNo" jdbcType="VARCHAR" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="merchant_order_id" property="merchantOrderId" jdbcType="VARCHAR" />
+    <result column="pay_gate_order_id" property="payGateOrderId" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="charge_type" property="chargeType" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="use_temp_cre_line" property="useTempCreLine" jdbcType="VARCHAR" />
+    <result column="pay_description" property="payDescription" jdbcType="VARCHAR" />
+    <result column="instal_period" property="instalPeriod" jdbcType="INTEGER" />
+    <result column="instal_type" property="instalType" jdbcType="VARCHAR" />
+    <result column="instal_fee_type" property="instalFeeType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_internal_code, loan_acct_no, merchant_code, amount, merchant_order_id, pay_gate_order_id, 
+    pay_type, charge_type, currency, use_temp_cre_line, pay_description, instal_period, 
+    instal_type, instal_fee_type, create_time, mod_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from boc_loan_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from boc_loan_order_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.yufeng.entity.BOCLoanOrderEntity" >
+    insert into boc_loan_order_table (id, user_internal_code, loan_acct_no, 
+      merchant_code, amount, merchant_order_id, 
+      pay_gate_order_id, pay_type, charge_type, 
+      currency, use_temp_cre_line, pay_description, 
+      instal_period, instal_type, instal_fee_type, 
+      create_time, mod_time)
+    values (#{id,jdbcType=INTEGER}, #{userInternalCode,jdbcType=VARCHAR}, #{loanAcctNo,jdbcType=VARCHAR}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{merchantOrderId,jdbcType=VARCHAR}, 
+      #{payGateOrderId,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{useTempCreLine,jdbcType=VARCHAR}, #{payDescription,jdbcType=VARCHAR}, 
+      #{instalPeriod,jdbcType=INTEGER}, #{instalType,jdbcType=VARCHAR}, #{instalFeeType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.yufeng.entity.BOCLoanOrderEntity" >
+    insert into boc_loan_order_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userInternalCode != null" >
+        user_internal_code,
+      </if>
+      <if test="loanAcctNo != null" >
+        loan_acct_no,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id,
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="chargeType != null" >
+        charge_type,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="useTempCreLine != null" >
+        use_temp_cre_line,
+      </if>
+      <if test="payDescription != null" >
+        pay_description,
+      </if>
+      <if test="instalPeriod != null" >
+        instal_period,
+      </if>
+      <if test="instalType != null" >
+        instal_type,
+      </if>
+      <if test="instalFeeType != null" >
+        instal_fee_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modTime != null" >
+        mod_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userInternalCode != null" >
+        #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAcctNo != null" >
+        #{loanAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantOrderId != null" >
+        #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="useTempCreLine != null" >
+        #{useTempCreLine,jdbcType=VARCHAR},
+      </if>
+      <if test="payDescription != null" >
+        #{payDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="instalPeriod != null" >
+        #{instalPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="instalType != null" >
+        #{instalType,jdbcType=VARCHAR},
+      </if>
+      <if test="instalFeeType != null" >
+        #{instalFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.yufeng.entity.BOCLoanOrderEntity" >
+    update boc_loan_order_table
+    <set >
+      <if test="userInternalCode != null" >
+        user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAcctNo != null" >
+        loan_acct_no = #{loanAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payGateOrderId != null" >
+        pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        charge_type = #{chargeType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="useTempCreLine != null" >
+        use_temp_cre_line = #{useTempCreLine,jdbcType=VARCHAR},
+      </if>
+      <if test="payDescription != null" >
+        pay_description = #{payDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="instalPeriod != null" >
+        instal_period = #{instalPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="instalType != null" >
+        instal_type = #{instalType,jdbcType=VARCHAR},
+      </if>
+      <if test="instalFeeType != null" >
+        instal_fee_type = #{instalFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        mod_time = #{modTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.yufeng.entity.BOCLoanOrderEntity" >
+    update boc_loan_order_table
+    set user_internal_code = #{userInternalCode,jdbcType=VARCHAR},
+      loan_acct_no = #{loanAcctNo,jdbcType=VARCHAR},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      merchant_order_id = #{merchantOrderId,jdbcType=VARCHAR},
+      pay_gate_order_id = #{payGateOrderId,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      charge_type = #{chargeType,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      use_temp_cre_line = #{useTempCreLine,jdbcType=VARCHAR},
+      pay_description = #{payDescription,jdbcType=VARCHAR},
+      instal_period = #{instalPeriod,jdbcType=INTEGER},
+      instal_type = #{instalType,jdbcType=VARCHAR},
+      instal_fee_type = #{instalFeeType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mod_time = #{modTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

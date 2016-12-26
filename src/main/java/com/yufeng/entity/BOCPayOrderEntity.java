@@ -9,7 +9,8 @@ import java.util.Date;
  */
 public class BOCPayOrderEntity {
 
-    private String user_internal_code; //'购买用户内码',
+    private Integer id;
+    private String userInternalCode; //'购买用户内码',
     private String loanAcctNo;	//中银消费金融账号	X(13)	不可為空
     private String merchantCode;	//	清算機構(商戶)代號	X(15)	不能為空
     private BigDecimal amount;	//	还款金额	9(8)V9(2)	不可為空
@@ -41,130 +42,236 @@ public class BOCPayOrderEntity {
     private Date createTime;//创建时间
     private Date modTime;//修改时间
 
-    public String getPayType() {
-        return payType;
+    
+
+    
+    public Integer getId() {
+        return id;
     }
 
-    public void setPayType(String payType) {
-        this.payType = payType;
+
+
+    
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUser_internal_code() {
-        return user_internal_code;
+
+
+    
+    public String getUserInternalCode() {
+        return userInternalCode;
     }
 
-    public void setUser_internal_code(String user_internal_code) {
-        this.user_internal_code = user_internal_code;
+
+
+    
+    public void setUserInternalCode(String userInternalCode) {
+        this.userInternalCode = userInternalCode;
     }
 
+
+
+    
     public String getLoanAcctNo() {
         return loanAcctNo;
     }
 
+
+
+    
     public void setLoanAcctNo(String loanAcctNo) {
         this.loanAcctNo = loanAcctNo;
     }
 
+
+
+    
     public String getMerchantCode() {
         return merchantCode;
     }
 
+
+
+    
     public void setMerchantCode(String merchantCode) {
         this.merchantCode = merchantCode;
     }
 
+
+
+    
     public BigDecimal getAmount() {
         return amount;
     }
 
+
+
+    
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
+
+
+    
     public Date getReturnDate() {
         return returnDate;
     }
 
+
+
+    
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
+
+
+    
     public String getMerchantOrderId() {
         return merchantOrderId;
     }
 
+
+
+    
     public void setMerchantOrderId(String merchantOrderId) {
         this.merchantOrderId = merchantOrderId;
     }
 
+
+
+    
     public String getOriPayGateOrderId() {
         return oriPayGateOrderId;
     }
 
+
+
+    
     public void setOriPayGateOrderId(String oriPayGateOrderId) {
         this.oriPayGateOrderId = oriPayGateOrderId;
     }
 
+
+
+    
     public String getPayGateOrderId() {
         return payGateOrderId;
     }
 
+
+
+    
     public void setPayGateOrderId(String payGateOrderId) {
         this.payGateOrderId = payGateOrderId;
     }
 
+
+
+    
     public Date getOriPayTime() {
         return oriPayTime;
     }
 
+
+
+    
     public void setOriPayTime(Date oriPayTime) {
         this.oriPayTime = oriPayTime;
     }
 
+
+
+    
     public String getReturnType() {
         return returnType;
     }
 
+
+
+    
     public void setReturnType(String returnType) {
         this.returnType = returnType;
     }
 
+
+
+    
+    public String getPayType() {
+        return payType;
+    }
+
+
+
+    
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+
+
+    
     public String getDebitCardNo() {
         return debitCardNo;
     }
 
+
+
+    
     public void setDebitCardNo(String debitCardNo) {
         this.debitCardNo = debitCardNo;
     }
 
+
+
+    
     public String getDecardOpenBank() {
         return decardOpenBank;
     }
 
+
+
+    
     public void setDecardOpenBank(String decardOpenBank) {
         this.decardOpenBank = decardOpenBank;
     }
 
+
+
+    
     public Date getCreateTime() {
         return createTime;
     }
 
+
+
+    
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+
+
+    
     public Date getModTime() {
         return modTime;
     }
 
+
+
+    
     public void setModTime(Date modTime) {
         this.modTime = modTime;
     }
 
+
+
     @Override
     public String toString() {
         return "BOCPayOrderEntity{" +
-                "user_internal_code='" + user_internal_code + '\'' +
+                "userInternalCode='" + userInternalCode + '\'' +
                 ", loanAcctNo='" + loanAcctNo + '\'' +
                 ", merchantCode='" + merchantCode + '\'' +
                 ", amount=" + amount +
